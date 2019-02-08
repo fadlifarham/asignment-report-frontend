@@ -2,13 +2,22 @@
   <b-row>
     <b-col lg="12">
         <div><label><b>ASSIGNMENT LIST</b></label>
-            <b-button variant="primary" to="/form/toko" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+            <b-button variant="secondary" to="/form/toko" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
         </div>
         <br>
         <table class="table table-striped table--middle table-responsive">
           <thead>
             <tr>
-              
+              <th>Assignment ID</th>
+              <th>PTL</th>
+              <th>Project Number</th>
+              <th>IO Number</th>
+              <th>Level</th>
+              <th>Team</th>
+              <th>Assignment Description</th>
+              <th>AR ID List</th>
+              <th>Location</th>
+              <th>Assignment status</th>
             </tr>
             <!-- <tr v-for="user in users" :key="user.id">
               <td>{{ user.id }}</td>
