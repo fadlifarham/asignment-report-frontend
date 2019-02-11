@@ -32,7 +32,7 @@ export default {
     {
       name: 'Submit Assignment Report',
 
-      url: '/reportAss/report',
+      url: '/submitReport',
       icon: 'icon-puzzle',
     },
     {
