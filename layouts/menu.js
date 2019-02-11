@@ -12,12 +12,14 @@ export default {
     },
     {
       name: 'Create Assignment',
-      url: '/form',
+
+      url: '/createAssignment',
       icon: 'icon-puzzle',
       children: [
         {
           name: 'List',
-          url: '/form/toko',
+
+          url: '/createAssignment/listCreated',
           icon: 'icon-puzzle'
         },
         {
@@ -29,7 +31,8 @@ export default {
     },
     {
       name: 'Submit Assignment Report',
-      url: '/submitReport',
+
+      url: '/reportAss/report',
       icon: 'icon-puzzle',
     },
     {
@@ -117,5 +120,29 @@ export default {
         },
       ]
     },
+
+    {
+      name: 'ex',
+      url: '/form',
+      icon: 'icon-puzzle',
+      children: [
+        {
+          name: 'in',
+          url: '/form/forms',
+          icon: 'icon-puzzle',
+        },
+        {
+          name: 'tab',
+          url: '/form/table',
+          icon: 'icon-puzzle',
+        },
+        {
+          name: 'tabs',
+          url: '/form/tables',
+          icon: 'icon-puzzle',
+        },
+      ]
+    },
+    
   ]
 }

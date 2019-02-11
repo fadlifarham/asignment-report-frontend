@@ -1,36 +1,159 @@
 <template>
   <b-row>
     <b-col lg="12">
+        <div>
+            <label>Assignment ID      : </label>
+        </div>
+        <div>
+            <label>Assignment Class   : </label>
+        </div>
+        <div>
+            <label>Assignment Title   : </label>
+        </div>
         <div class="animated fadeIn" style="padding: 0px">
-            <b-col sm="0"><h4>General Assignment Information</h4></b-col>
-            <b-row style="width: 100%; margin-left: auto; margin-right: auto; margin-top: 5px">
-                <b-col sm="3">Project Number</b-col>
-                <b-col sm="4">
-                    <b-form-input type="text" style="width: 515px; height: 30px; border-radius: 3px"></b-form-input>
+            <b-card style="border-radius: 3px">
+                <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                    <b-col>
+                        <b-row style="padding: 2px"><strong>System Status</strong></b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Assignment Type</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-select
+                                    :plain="true"
+                                    :options="options"
+                                    style="border-radius: 5px">
+                                </b-form-select>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Project Number</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="text" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">IO Number</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="text" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                    <b-col>
+                        <b-row style="padding: 2px"><strong>Time record</strong></b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Working Time</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="date" style="border-radius: 5px; vertical-align: center"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Arrived at location</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="time" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Job Finish</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="time" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">End</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="time" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                </b-row>
+                <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 4px">
+                    <b-col>
+                        <b-row style="padding: 2px"><strong>Customer Information</strong></b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Company</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col><b-form-input type="text" style="border-radius: 5px"></b-form-input></b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Address</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="text" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Contact Person</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="text" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">PIC Onsite</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="text" style="border-radius: 5px"></b-form-input>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                    <b-col>
+                        <b-row style="padding: 2px"><br></b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4"><strong>SPPD Status</strong></b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-radio name="sppd" value="ya">YA </b-form-radio>
+                                <b-form-radio name="sppd" value="ya">TIDAK </b-form-radio>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding-top: 25px; padding-bottom: 25px; padding-left: 2px; padding-right: 2px">
+                            <b-col sm="4">Number of day</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-select
+                                    :plain="true"
+                                    :options="options"
+                                    style="border-radius: 5px">
+                                </b-form-select>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Type</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-select
+                                    :plain="true"
+                                    :options="options"
+                                    style="border-radius: 5px">
+                                </b-form-select>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                </b-row>
+            </b-card>
+            <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                <b-col>
+                    <b-row><b-col sm="0"><strong>Brief of Work Carried Out</strong></b-col></b-row>
+                    <b-row>
+                        <b-col sm="4">
+                            <b-form-input type="text" style="width: 515px; height: 100px; border-radius: 3px"></b-form-input>
+                        </b-col>
+                    </b-row>
                 </b-col>
-            </b-row>
-            <b-row style="width: 100%; margin-left: auto; margin-right: auto; margin-top: 5px">
-                <b-col sm="3">IO Number</b-col>
-                <b-col sm="4">
-                    <b-form-input type="text" style="width: 515px; height: 30px; border-radius: 3px"></b-form-input>
-                </b-col>
-            </b-row>
-            <b-row style="width: 100%; margin-left: auto; margin-right: auto; margin-top: 5px">
-                <b-col sm="3">Assignment Class</b-col>
-                <b-col sm="4">
-                    <b-form-input type="text" style="width: 515px; height: 30px; border-radius: 3px"></b-form-input>
-                </b-col>
-            </b-row>
-            <b-row style="width: 100%; margin-left: auto; margin-right: auto; margin-top: 5px">
-                <b-col sm="3">Assignment Title</b-col>
-                <b-col sm="4">
-                    <b-form-input type="text" style="width: 515px; height: 30px; border-radius: 3px"></b-form-input>
-                </b-col>
-            </b-row>
-            <b-row style="width: 100%; margin-left: auto; margin-right: auto; margin-top: 5px">
-                <b-col sm="3">Assignment Detail Instruction</b-col>
-                <b-col sm="4">
-                    <b-form-input type="text" style="width: 515px; height: 120px; border-radius: 3px"></b-form-input>
+                <b-col>
+                    <b-row><b-col sm="0"><strong>Result of Assignment & Further Action</strong></b-col></b-row>
+                    <b-row>
+                        <b-col sm="4">
+                            <b-form-input type="text" style="width: 495px; height: 100px; border-radius: 3px"></b-form-input>
+                        </b-col>
+                    </b-row>
                 </b-col>
             </b-row>
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
