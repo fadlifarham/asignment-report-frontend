@@ -2,7 +2,7 @@ module.exports = {
   /*Modules
   */
  modules: [
-  '@nuxtjs/axios', '@nuxtjs/auth', 
+  '@nuxtjs/axios', '@nuxtjs/auth',
  ],
 
  plugins: [
@@ -12,6 +12,7 @@ module.exports = {
  axios: {
   baseURL: "https://still-spire-77258.herokuapp.com/api/v1",
   // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "http://124.158.165.11:8002/api",
   credentials: false
  },
  auth: {
@@ -34,9 +35,9 @@ module.exports = {
   strategies: {
     local: {
       endpoints: {
-        login: { url: 'admin/login', method: 'post', propertyName: 'access_token' },
-        logout: { url: 'user/logout', method: 'post' },
-        user: { url: 'auth/user', method: 'get', propertyName: 'user' }
+        login: { url: 'auth/login', method: 'post', propertyName: 'api_token' },
+        logout: { url: 'auth/logout', method: 'post' },
+        user: { url: 'user', method: 'get', propertyName: 'user' }
       },
     }
   },
@@ -97,7 +98,7 @@ module.exports = {
   ],
 
   /*
-  ** Import Plugin 
+  ** Import Plugin
    */
   plugins: [
     { src: '~plugins/bootstrap-vue.js', ssr: true }
@@ -122,7 +123,7 @@ module.exports = {
         const vueLoader = config.module.rules.find(
           ({loader}) => loader === 'vue-loader')
         const { options: {loaders} } = vueLoader || { options: {} }
-        
+
         if (loaders) {
           for (const loader of Object.values(loaders)) {
             changeLoaderOptions(Array.isArray(loader) ? loader : [loader])
