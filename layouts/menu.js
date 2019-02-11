@@ -22,7 +22,7 @@ export default {
         },
         {
           name: 'Create',
-          url: '/form/toko',
+          url: '/createAssignment/create',
           icon: 'icon-puzzle'
         },
       ]
