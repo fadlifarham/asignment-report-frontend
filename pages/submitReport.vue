@@ -21,7 +21,7 @@
                             <b-col>
                                 <b-form-select
                                     :plain="true"
-                                    :options="options"
+                                    :options="['Please select','Option 1', 'Option 2', 'Option 3']"
                                     style="border-radius: 5px">
                                 </b-form-select>
                             </b-col>
@@ -44,10 +44,17 @@
                     <b-col>
                         <b-row style="padding: 2px"><strong>Time record</strong></b-row>
                         <b-row style="padding: 2px">
-                            <b-col sm="4">Working Time</b-col>
+                            <b-col sm="4">Working Date</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
                                 <b-form-input type="date" style="border-radius: 5px; vertical-align: center"></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row style="padding: 2px">
+                            <b-col sm="4">Start</b-col>
+                            <b-col sm="0">:</b-col>
+                            <b-col>
+                                <b-form-input type="time" style="border-radius: 5px"></b-form-input>
                             </b-col>
                         </b-row>
                         <b-row style="padding: 2px">
@@ -109,19 +116,21 @@
                             <b-col sm="4"><strong>SPPD Status</strong></b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-radio name="sppd" value="ya">YA </b-form-radio>
-                                <b-form-radio name="sppd" value="ya">TIDAK </b-form-radio>
+                                <b-form-radio-group id="basicInlineRadios"
+                                :plain="true"
+                                :options="[
+                                    {text: 'YA ',value: '1'},
+                                    {text: 'TIDAK ',value: '2'}
+                                ]"
+                                :checked="2">
+                                </b-form-radio-group>
                             </b-col>
                         </b-row>
                         <b-row style="padding-top: 25px; padding-bottom: 25px; padding-left: 2px; padding-right: 2px">
                             <b-col sm="4">Number of day</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-select
-                                    :plain="true"
-                                    :options="options"
-                                    style="border-radius: 5px">
-                                </b-form-select>
+                                <b-form-input type="text" style="border-radius: 5px"></b-form-input>
                             </b-col>
                         </b-row>
                         <b-row style="padding: 2px">
@@ -130,7 +139,7 @@
                             <b-col>
                                 <b-form-select
                                     :plain="true"
-                                    :options="options"
+                                    :options="['Daily','Continue day']"
                                     style="border-radius: 5px">
                                 </b-form-select>
                             </b-col>
@@ -158,17 +167,21 @@
             </b-row>
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
                 <b-col>
-                    <b-row style="padding: 4px"><strong>Attachment</strong></b-row>
-                    <b-row style="padding: 4px">
+                    <b-row style="padding: 6px"><strong>Attachment</strong></b-row>
+                    <b-row style="padding: 6px">
                         <b-col sm="4">BAI</b-col>
                         <b-col sm="5"><b-form-file id="bai" :plain="true" v-model="bai" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
-                    <b-row style="padding: 4px">
+                    <b-row style="padding: 6px">
                         <b-col sm="4">TNC</b-col>
                         <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
-                    <b-row style="padding: 4px">
+                    <b-row style="padding: 6px">
                         <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
+                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col>
+                    </b-row>
+                    <b-row style="padding: 6px">
+                        <b-col sm="4">Other</b-col>
                         <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
                 </b-col>
