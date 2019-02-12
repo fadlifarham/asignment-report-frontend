@@ -186,8 +186,8 @@
                     </b-row>
                 </b-col>
                 <b-col style="padding: 10px">
-                    <b-button @click="addStore" size="lg" variant="primary" style="margin: 50px">Submit for Approval</b-button>
-                    <b-button @click="reset" size="lg" variant="danger">Delete and back</b-button>
+                    <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
+                    <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
                 </b-col>
             </b-row>
         </div>
