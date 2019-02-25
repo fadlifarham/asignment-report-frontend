@@ -150,19 +150,24 @@
             <b-row style="width: 100%; margin-left: auto; margin-right: auto">
                 <b-col>
                     <b-row><b-col sm="0"><strong>Brief of Work Carried Out</strong></b-col></b-row>
-                    <b-row>
-                        <b-col sm="4">
-                            <b-form-input type="text" style="width: 515px; height: 100px; border-radius: 3px"></b-form-input>
-                        </b-col>
-                    </b-row>
+                    <b-form-group :max-rows="6" border-radius: 3px>
+                        <b-form-textarea id="description" v-model="description"
+                            :rows="5"
+                            placeholder="Brief of Work Carried Out"></b-form-textarea>
+                    </b-form-group>
                 </b-col>
                 <b-col>
                     <b-row><b-col sm="0"><strong>Result of Assignment & Further Action</strong></b-col></b-row>
-                    <b-row>
+                    <b-form-group :max-rows="6" border-radius: 3px>
+                        <b-form-textarea id="description" v-model="description"
+                            :rows="5"
+                            placeholder="Result of Assignment & Further Action"></b-form-textarea>
+                    </b-form-group>
+                    <!-- <b-row>
                         <b-col sm="4">
                             <b-form-input type="text" style="width: 495px; height: 100px; border-radius: 3px"></b-form-input>
                         </b-col>
-                    </b-row>
+                    </b-row> -->
                 </b-col>
             </b-row>
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
@@ -185,10 +190,12 @@
                         <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
                 </b-col>
-                <b-col style="padding: 10px">
+            </b-row>
+            <b-row>
+            <b-col style="padding: 10px">
                     <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
-                </b-col>
+            </b-col>
             </b-row>
         </div>
         <br>
