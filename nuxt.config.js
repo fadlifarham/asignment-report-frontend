@@ -11,8 +11,9 @@ module.exports = {
 
  axios: {
   // baseURL: "https://still-spire-77258.herokuapp.com/api/v1",
-  // baseURL: "http://localhost:8000/api/v1",
-   baseURL: "http://124.158.165.11:8002/api",
+
+  baseURL: "http://localhost:8000/api/",
+  //  baseURL: "http://124.158.165.11:8002/api",
   credentials: false
  },
  auth: {
@@ -70,6 +71,9 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+    ],
+    script: [
+      { src: 'https://unpkg.com/sweetalert/dist/sweetalert.min.js' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
