@@ -3,9 +3,10 @@
     <b-col lg="12">
         <div class="animated fadeIn">
             <b-col sm="0"><h4>General Assignment Information</h4></b-col>
+            <br><br>
         </div>
     </b-col>
-    <b-col lg="8">
+    <b-col lg="12">
         <div class="animated fadeIn">
             <b-form-group
                 label="Project Number"
@@ -76,11 +77,14 @@
                         </b-col>
                     </b-row>
                 </b-col>
-                <b-col style="padding: 10px">
+            </b-row>
+            <b-input-group>
+                <!-- <b-col cols="6"></b-col> -->
+                <b-col cols="12" class="text-right" style="padding: 10px">
                     <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
                 </b-col>
-            </b-row>
+            </b-input-group>
         </div>
         <br>
         <table class="table table-striped table--middle table-responsive">
