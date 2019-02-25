@@ -5,6 +5,7 @@
         </template>
         <b-dropdown-header tag="div" class="text-center"><strong>{{username}}</strong></b-dropdown-header>
         <b-dropdown-item><i class="fa fa-user"></i> Edit Profile</b-dropdown-item>
+
         <b-dropdown-item><i class="fa fa-tasks"></i> My Performance</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>

@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <pre><h5><b>
-      ASSIGNMENT DASHBORD ONLINE</b></h5></pre>
+      ASSIGNMENT REPORT ONLINE</b></h5></pre>
     <!-- <b-navbar-nav class="d-md-down-none">
       <b-nav-item class="px-3">Dashboard</b-nav-item>
       <b-nav-item class="px-3">Users</b-nav-item>

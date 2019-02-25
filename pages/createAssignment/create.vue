@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col lg="12">
-        <div class="animated fadeIn" style="padding: 0px">
+        <div class="animated fadeIn">
             <b-col sm="0"><h4>General Assignment Information</h4></b-col>
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; margin-top: 5px">
                 <b-col sm="3">Project Number</b-col>
@@ -43,15 +43,30 @@
                     <b-row style="padding: 4px">
                         <b-col sm="4">TNC</b-col>
                         <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="onFileSelected"></b-form-file></b-col>
+
                     </b-row>
-                    <b-row style="padding: 4px">
-                        <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col>
+                    <b-row>
+                        <b-col>
+                            <template>
+                                <img src="/img/user.png">
+                            </template>
+                        </b-col>
+                        <b-col>
+                            <b-row>
+                                <template>
+                                    <form-select
+                                        v-model="selectedTeam"
+                                        :options="team"
+                                    />
+                                </template>
+                            </b-row>
+                        </b-col>
                     </b-row>
                 </b-col> -->
                 <b-col style="padding: 10px">
                     <b-button @click="create" size="lg" variant="primary" style="margin: 50px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger">Delete and back</b-button>
+
                 </b-col>
             </b-row>
         </div>

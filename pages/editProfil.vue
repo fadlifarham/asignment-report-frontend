@@ -1,27 +1,32 @@
 <template>
   <b-row>
-    <b-col lg="7">
-        <b-form-group
-            label="Assignment ID"
-            label-for="assignmentId"
-            :label-cols="4"
-            :horizontal="true">
-            <b-form-input  id="assignmentId" type="text"></b-form-input>
-          </b-form-group>
-        <b-form-group
-            label="Assignment Class"
-            label-for="assignmentClass"
-            :label-cols="4"
-            :horizontal="true">
-            <b-form-input  id="assignmentClass" type="text"></b-form-input>
-          </b-form-group>
-        <b-form-group
-            label="Assignment Title"
-            label-for="assignmentTitle"
-            :label-cols="4"
-            :horizontal="true">
-            <b-form-input  id="assignmentTitle" type="text"></b-form-input>
-          </b-form-group>
+    <b-col>
+        <b-row>
+            <b-col>
+                <b-form-group
+                    label="Nama depan"
+                    label-for="namaDepan"
+                    :label-cols="4"
+                    :vertical="true">
+                    <b-form-input  id="namaDepan" type="text"></b-form-input>
+                </b-form-group>
+            </b-col>
+            <b-col>
+                <b-form-group
+                    label="Nama Belakang"
+                    label-for="namaBelakang"
+                    :label-cols="4"
+                    :vertical="true">
+                    <b-form-input  id="namaBelakang" type="text"></b-form-input>
+                </b-form-group>
+            </b-col>
+        </b-row>
+        <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+            <b-form-group>
+                <label for="brief"><strong>Brief of Work Carried Out</strong></label>
+                <textarea class="form-control" rows="6" id="brief"></textarea>
+            </b-form-group>
+        </b-row>
     </b-col>
     <b-col lg="12">
         <div class="animated fadeIn" style="padding: 0px">
@@ -195,12 +200,10 @@
                         <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
                 </b-col>
-            </b-row>
-            <b-row>
-            <b-col style="padding: 10px">
+                <b-col style="padding: 10px">
                     <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
-            </b-col>
+                </b-col>
             </b-row>
         </div>
         <br>
