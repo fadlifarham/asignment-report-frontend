@@ -10,9 +10,9 @@ module.exports = {
  ],
 
  axios: {
-  // baseURL: "https://still-sp/ire-77258.herokuapp.com/api/v1",
+  // baseURL: "https://still-spire-77258.herokuapp.com/api/v1",
   // baseURL: "http://localhost:8000/api/v1",
-  baseURL: "http://124.158.165.11:8002/api",
+   baseURL: "http://124.158.165.11:8002/api",
   credentials: false
  },
  auth: {

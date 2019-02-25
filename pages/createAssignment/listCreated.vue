@@ -1,21 +1,28 @@
 <template>
   <b-row>
-    <!-- <b-col lg="12"> -->
+    <b-col lg="12">
         <div>
           <b-input-group>
+            <b-col cols="4">
             <b-button variant="primary" to="/createAssignment/create" class="form-actions" > + Create New Assignment</b-button>
-            <b-form-input type="text" placeholder="Search"></b-form-input>
-            <b-input-group-prepend>
-              <b-button variant="primary"><i class="fa fa-search"></i></b-button>
-            </b-input-group-prepend>
+            </b-col>
+            <b-col cols="8">
+              <b-input-group>
+                <b-form-input type="text" placeholder="Search"></b-form-input>
+                <b-input-group-prepend>
+                  <b-button variant="primary"><i class="fa fa-search"></i></b-button>
+                </b-input-group-prepend>
+                </b-input-group>
+            </b-col>
           </b-input-group>
             <br><br>
         </div>
         
-    <!-- </b-col> -->
+    </b-col>
     <table class="table table-striped table--middle table-responsive">
           <thead>
             <tr>
+              <th>No</th>
               <th>Assignment ID</th>
               <th>Project Number</th>
               <th>IO Number</th>
