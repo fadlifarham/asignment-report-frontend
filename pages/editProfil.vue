@@ -21,11 +21,28 @@
                 </b-form-group>
             </b-col>
         </b-row>
-        <b-row style="width: 100%; margin-left: auto; margin-right: auto">
-            <b-form-group>
-                <label for="brief"><strong>Brief of Work Carried Out</strong></label>
-                <textarea class="form-control" rows="6" id="brief"></textarea>
-            </b-form-group>
+        <b-row>
+            <b-col>
+                <b-form-group>
+                    <label for="brief">Motto</label>
+                    <textarea class="form-control" rows="3" id="brief"></textarea>
+                </b-form-group>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col>
+                <b-form-group
+                    label="Posisi saat ini"
+                    label-for="posisi"
+                    :label-cols="3"
+                    :horizontal="true">
+                    <b-form-select id="basicSelect"
+                    :plain="true"
+                    :options="['Please select','Manager', 'SPV', 'PTL', 'Engineer']"
+                    value="Please select">
+                    </b-form-select>
+                </b-form-group>
+            </b-col>
         </b-row>
     </b-col>
     <b-col lg="12">
