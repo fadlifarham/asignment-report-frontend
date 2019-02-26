@@ -10,10 +10,17 @@ module.exports = {
  ],
 
  axios: {
+<<<<<<< HEAD
   // baseURL: "https://still-spire-77258.herokuapp.com/api/v1",
 
   baseURL: "http://localhost:8000/api/",
   //  baseURL: "http://124.158.165.11:8002/api",
+=======
+  // baseURL: "https://still-sp/ire-77258.herokuapp.com/api/v1",
+  // baseURL: "http://localhost:8000/api/v1",
+  // baseURL: "http://124.158.165.11:8002/api",
+  baseURL: "http://10.14.36.33:8000/api",
+>>>>>>> dita
   credentials: false
  },
  auth: {
