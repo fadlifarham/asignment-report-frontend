@@ -55,7 +55,7 @@
                 <span class="fa fa-star" style="padding-top: 10px"></span>
             </b-form-group>
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
-                <!-- <b-col>
+                <b-col>
                     <b-row style="padding: 4px"><strong>Attachment</strong></b-row>
                     <b-row style="padding: 4px">
                         <b-col sm="4">BAI</b-col>
@@ -83,7 +83,6 @@
                             </b-row>
                         </b-col>
                     </b-row>
-<<<<<<< HEAD
                 </b-col>
             </b-row>
             <b-input-group>
@@ -91,13 +90,6 @@
                 <b-col cols="12" class="text-right" style="padding: 10px">
                     <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
-=======
-                </b-col> -->
-                <b-col style="padding: 10px">
-                    <b-button @click="create" size="lg" variant="primary" style="margin: 50px">Submit for Approval</b-button>
-                    <b-button @click="reset" size="lg" variant="danger">Delete and back</b-button>
-
->>>>>>> 2d2bd30026f1f50fbf73e19ebd48c68234cae22a
                 </b-col>
             </b-input-group>
         </div>
