@@ -37,7 +37,7 @@ export default {
     },
     {
       name: 'Team Utilization',
-      url: '/form',
+      url: '/utilization',
       icon: 'icon-puzzle',
     },
     {

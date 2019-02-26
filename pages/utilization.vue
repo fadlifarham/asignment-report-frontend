@@ -1,6 +1,6 @@
 <template>
   <b-row>
-    <b-col lg="12">
+    <b-col lg="6">
       <div>
           <b-input-group>
             <b-col cols="4">
