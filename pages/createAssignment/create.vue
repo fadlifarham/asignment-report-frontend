@@ -158,7 +158,7 @@
           sum_engineer: 1,
           user_id_0: 1,
         }).then(response => {
-          this.assignment.push(response.data.task);
+             // this.assignment.push(response.data.task);
           this.status = 'Create Assignment Success!';
           console.log(this.status);
           swal('Success', this.status, 'success');
