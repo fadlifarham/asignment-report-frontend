@@ -12,14 +12,14 @@
                             <b-col sm="7"></b-col>
                         </b-row>
                         <b-row style="padding: 2px">
-                            <b-col sm="4">Team </b-col>
+                            <b-col sm="4">Location </b-col>
                             <b-col sm="0">:</b-col>
-                            <b-col sm="7">:</b-col>
+                            <b-col sm="7"></b-col>
                         </b-row>
                         <b-row style="padding: 2px">
                             <b-col sm="4">Description </b-col>
                             <b-col sm="0">:</b-col>
-                            <b-col sm="8">zjndvbkefh chfhudscn jvbdifvgdh vvbusyd  chwefuye hgtuygtu5yt cqjehiquyr chgbuty45tw4 crhtytv tuw</b-col>
+                            <b-col sm="8"></b-col>
                         </b-row>
                     </b-col>
                 </b-row>
