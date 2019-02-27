@@ -20,7 +20,7 @@
         </div>
         <div class="animated fadeIn">
           <b-card style="width: 100%">
-            
+
             <table class="table table-striped table--middle table-responsive">
               <thead>
                 <tr>

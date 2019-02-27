@@ -88,7 +88,7 @@
             <b-input-group>
                 <!-- <b-col cols="6"></b-col> -->
                 <b-col cols="12" class="text-right" style="padding: 10px">
-                    <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
+                    <b-button @click="create" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
                 </b-col>
             </b-input-group>
