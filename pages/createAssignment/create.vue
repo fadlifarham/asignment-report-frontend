@@ -3,10 +3,9 @@
     <b-col lg="12">
         <div class="animated fadeIn">
             <b-col sm="0"><h4>General Assignment Information</h4></b-col>
-            <br><br>
         </div>
     </b-col>
-    <b-col lg="12">
+    <b-col lg="8">
         <div class="animated fadeIn">
             <b-form-group
                 label="Project Number"
@@ -56,15 +55,8 @@
             </b-form-group>
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
                 <b-col>
-                    <b-row style="padding: 4px"><strong>Attachment</strong></b-row>
-                    <b-row style="padding: 4px">
-                        <b-col sm="4">BAI</b-col>
-                        <b-col sm="5"><b-form-file id="bai" :plain="true" v-model="bai" @change="onFileSelected"></b-form-file></b-col>
-                    </b-row>
-                    <b-row style="padding: 4px">
-                        <b-col sm="4">TNC</b-col>
-                        <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="onFileSelected"></b-form-file></b-col>
-
+                    <b-row>
+                        <label><strong>Dispose Team</strong></label>
                     </b-row>
                     <b-row>
                         <b-col>
@@ -84,20 +76,17 @@
                         </b-col>
                     </b-row>
                 </b-col>
-            </b-row>
-            <b-input-group>
-                <!-- <b-col cols="6"></b-col> -->
-                <b-col cols="12" class="text-right" style="padding: 10px">
+                <b-col style="padding: 10px">
                     <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
                 </b-col>
-            </b-input-group>
+            </b-row>
         </div>
         <br>
         <table class="table table-striped table--middle table-responsive">
           <thead>
             <tr>
-
+              
             </tr>
             <!-- <tr v-for="user in users" :key="user.id">
               <td>{{ user.id }}</td>
@@ -110,69 +99,37 @@
     </b-col>
   </b-row>
 </template>
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
 
 <script>
-
-  // export default {
-  //   data () {
-  //       return {
-  //           users: '',
-  //           errors: [],
-  //       }
-  //   },
-  //   mounted(){
-  //       this.readUsers();
-  //   },
-  //   methods: {
-  //       readUsers() {
-  //           this.$axios.get('/user')
-  //           .then(response => {
-  //               this.users = response.data.users;
-  //               console.log(response.data.users);
-  //           })
-  //       }
-  //   }
-  // }
-
-	export default {
-		data :() => ({
-      project_number: null,
-      io_number: null,
-      assignment_class: null,
-      assignment_title: null,
-      assignment_desc: null,
-      sum_engineer: 1,
-      user_id_0: 1,
-      assignment: [],
-      status: null
-    }),
-
+    export default {
+    data () {
+        return {
+            users: '',
+            errors: [],
+        };
+    },
+    mounted(){
+        this.readUsers();
+    },
     methods: {
-      create() {
-        this.$axios.post('/assignment/create', {
-          project_number: this.project_number,
-          io_number: this.io_number,
-          assignment_class: this.assignment_class,
-          assignment_tittle: this.assignment_title,
-          assignment_desc: this.assignment_desc,
-          sum_engineer: 1,
-          user_id_0: 1,
-        }).then(response => {
-          this.assignment.push(response.data.task);
-          this.status = 'Create Assignment Success!';
-          console.log(this.status);
-          swal('Success', this.status, 'success');
-          this.reset();
-        })
-      },
-
-      reset() {
-        this.project_number = "";
-        this.io_number = "";
-        this.assignment_title = "";
-        this.assignment_class = "";
-        this.assignment_desc = ""
-      }
-    }
-	}
+        readUsers() {
+            this.$axios.get('/user')
+            .then(response => {
+                this.users = response.data.users;
+                console.log(response.data.users);
+            })
+        },
+        updateValue() {
+            // Emitting a `change` event with the new
+            // value of the `<select>` field, updates
+            // all values bound with `v-model`.
+            this.$emit('change', this.selected);
+        },
+    },
+    };
 </script>
