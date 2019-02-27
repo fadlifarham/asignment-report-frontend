@@ -2,25 +2,25 @@
   <b-row>
     <b-col lg="7">
         <b-form-group
-            label="Assignment ID"
+            label="Assignment ID "
             label-for="assignmentId"
             :label-cols="4"
-            :horizontal="true">
-            <b-form-input  id="assignmentId" type="text"></b-form-input>
+            :horizontal="true"> : 
+            <!-- <b-form-input  id="assignmentId" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Class"
             label-for="assignmentClass"
             :label-cols="4"
-            :horizontal="true">
-            <b-form-input  id="assignmentClass" type="text"></b-form-input>
+            :horizontal="true"> : 
+            <!-- <b-form-input  id="assignmentClass" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Title"
             label-for="assignmentTitle"
             :label-cols="4"
-            :horizontal="true">
-            <b-form-input  id="assignmentTitle" type="text"></b-form-input>
+            :horizontal="true">  :
+            <!-- <b-form-input  id="assignmentTitle" type="text"></b-form-input> -->
           </b-form-group>
     </b-col>
     <b-col lg="12">
@@ -197,7 +197,7 @@
                 </b-col>
             </b-row>
             <b-row>
-            <b-col style="padding: 10px">
+            <b-col style="padding: 10px" class="text-right">
                     <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
             </b-col>
@@ -209,10 +209,10 @@
             <tr>
               
             </tr>
-            <!-- <tr v-for="user in users" :key="user.id">
-              <td>{{ user.id }}</td>
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
+            <!-- <tr v-for="assignment_report in assignment_report" :key="assignment_report.id">
+              <td>{{ assignment_report.id }}</td>
+              <td>{{ assignment_report.name }}</td>
+              <td>{{ assignment_report.email }}</td>
               <td><img :src="user.foto" width="100" height="100"></td>
             </tr> -->
           </thead>

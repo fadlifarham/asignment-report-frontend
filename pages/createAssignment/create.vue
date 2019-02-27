@@ -55,7 +55,7 @@
                 <span class="fa fa-star" style="padding-top: 10px"></span>
             </b-form-group>
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
-                <!-- <b-col>
+                <b-col>
                     <b-row style="padding: 4px"><strong>Attachment</strong></b-row>
                     <b-row style="padding: 4px">
                         <b-col sm="4">BAI</b-col>
@@ -83,7 +83,7 @@
                             </b-row>
                         </b-col>
                     </b-row>
-                </b-col> -->
+                </b-col>
             </b-row>
             <b-input-group>
                 <!-- <b-col cols="6"></b-col> -->
