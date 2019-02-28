@@ -16,10 +16,12 @@
   "dependencies": {
     "@nuxtjs/auth": "^4.5.2",
     "@nuxtjs/axios": "^5.3.4",
+    "ajv": "^6.0.0",
     "bootstrap-vue": "^2.0.0-rc.1",
     "chart.js": "^2.7.3",
     "flag-icon-css": "^2.9.0",
     "font-awesome": "^4.7.0",
+    "jquery": "^1.9.1",
     "js-cookie": "^2.2.0",
     "node-sass": "^4.9.4",
     "nuxt": "^1.4.4",

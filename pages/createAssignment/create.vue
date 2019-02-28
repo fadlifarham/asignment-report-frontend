@@ -53,6 +53,7 @@
                 <span class="fa fa-star" style="padding-top: 10px"></span>
                 <span class="fa fa-star" style="padding-top: 10px"></span>
             </b-form-group>
+
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
                 <b-col>
                     <b-row>
@@ -95,42 +96,54 @@
 </style>
 
 <script>
+    import Multiselect from 'vue-multiselect'
+
     export default {
-    data () {
-        return {
-            users: '',
-            errors: [],
-        };
-    },
-    mounted(){
-        this.readUsers();
-    },
-    methods: {
-      create() {
-        this.$axios.post('/assignment/create', {
-          project_number: this.project_number,
-          io_number: this.io_number,
-          assignment_class: this.assignment_class,
-          assignment_tittle: this.assignment_title,
-          assignment_desc: this.assignment_desc,
-          sum_engineer: 1,
-          user_id_0: 1,
-        }).then(response => {
-             // this.assignment.push(response.data.task);
-          this.status = 'Create Assignment Success!';
-          console.log(this.status);
-          swal('Success', this.status, 'success');
-          this.reset();
-        })
+      components: {
+        Multiselect
       },
 
-      reset() {
-        this.project_number = "";
-        this.io_number = "";
-        this.assignment_title = "";
-        this.assignment_class = "";
-        this.assignment_desc = ""
+      data () {
+          return {
+              users: '',
+              errors: [],
+          };
+      },
+
+      mounted(){
+          this.readUsers();
+      },
+
+      methods: {
+        create() {
+          this.$axios.post('/assignment/create', {
+            project_number: this.project_number,
+            io_number: this.io_number,
+            assignment_class: this.assignment_class,
+            assignment_tittle: this.assignment_title,
+            assignment_desc: this.assignment_desc,
+            sum_engineer: 1,
+            user_id_0: 1,
+          }).then(response => {
+              // this.assignment.push(response.data.task);
+            this.status = 'Create Assignment Success!';
+            console.log(this.status);
+            swal('Success', this.status, 'success');
+            this.reset();
+          })
+        },
+
+        engineers() {
+          this.$axios.get('engineers', );
+        },
+
+        reset() {
+          this.project_number = "";
+          this.io_number = "";
+          this.assignment_title = "";
+          this.assignment_class = "";
+          this.assignment_desc = ""
+        },
       }
-    }
 	}
 </script>
