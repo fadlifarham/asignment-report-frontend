@@ -1,80 +1,66 @@
 <template>
   <b-row>
-    <b-col lg="4">
+    <b-col lg="6">
         <div class="animated fadeIn" style="padding: 0px">
             <b-card style="border-radius: 3px">
                 <b-row style="width: 100%; margin-left: auto; margin-right: auto">
-                    <b-col>
-                        <b-row style="padding: 2px"><strong>Assignment title</strong></b-row><br>
+                    <b-col v-for="list in lists" :key="list.id">
+                        <b-row style="padding: 2px"><strong>{{list.assignment.assignment_class}}</strong></b-row><br>
                         <b-row style="padding: 2px">
                             <b-col sm="4">PTL  </b-col>
                             <b-col sm="0">:</b-col>
-                            <b-col sm="7"></b-col>
+                            <b-col sm="7">{{list.assignment.ptl.full_name}}</b-col>
                         </b-row>
                         <b-row style="padding: 2px">
-                            <b-col sm="4">Location </b-col>
+                            <b-col sm="4">Assignment Title</b-col>
                             <b-col sm="0">:</b-col>
-                            <b-col sm="7"></b-col>
+                            <b-col sm="7">{{list.assignment.assignment_tittle}}</b-col>
                         </b-row>
                         <b-row style="padding: 2px">
-                            <b-col sm="4">Description </b-col>
+                            <b-col sm="4">Assignment Desc</b-col>
                             <b-col sm="0">:</b-col>
-                            <b-col sm="8"></b-col>
+                            <b-col sm="7">{{list.assignment.assignment_desc}}</b-col>
                         </b-row>
+                        <b-col style="padding: 10px" class="text-right">
+                            <b-button @click="showReport(list)" size="sm" variant="primary" style="margin: 10px">See More</b-button>
+                        </b-col>
                     </b-col>
-                </b-row>
-                <b-row>
-                <b-col style="padding: 10px" class="text-right">
-                    <b-button @click="addStore" size="sm" variant="primary" style="margin: 10px">Lihat</b-button>
-                </b-col>
                 </b-row>
             </b-card>
         </div>
-        <br>
-        <table class="table table-striped table--middle table-responsive">
-          <thead>
-            <tr>
-              
-            </tr>
-            <!-- <tr v-for="assignment_report in assignment_report" :key="assignment_report.id">
-              <td>{{ assignment_report.id }}</td>
-              <td>{{ assignment_report.name }}</td>
-              <td>{{ assignment_report.email }}</td>
-              <td><img :src="user.foto" width="100" height="100"></td>
-            </tr> -->
-          </thead>
-        </table>
     </b-col>
   </b-row>
 </template>
 <script>
     export default {
-    data () {
-        return {
-            assignment_id: '',
-            assignment_class: '',
-            assignment_title: '',
-            errors: [],
-        }
-    },
+    data :() => ({
+        lists: [],
+        errors: [],
+        showReports: false,
+    }),
     mounted(){
-        this.getAssignment();
+        this.readList();
     },
     methods: {
-        getAssignment() {
-        this.$axios.get('/assignment').then( response => {
-          this.assignment_id = response.data.assignment_id;
-          this.assignment_class = response.data.assignment_class;
-          this.assignment_title = response.data.assignment_title;
-        })
-      },
-        readUsers() {
-            this.$axios.get('/user')
+        readList() {
+            this.$axios.get('assignment/list')
             .then(response => {
-                this.users = response.data.users;
-                console.log(response.data.users);
+                this.lists = response.data;
+                console.log(this.lists);
             })
-        }
+        },
+        showReport(list){
+            this.showReports = true;
+            this.$axios.get('/list/' + list.id)
+            .then(response => {
+                this.showReports = response.data;
+                console.log(response.data);
+                this.$router.push('/submitReport');
+            })
+            .catch(e => {
+                (error) => console.log(error)
+            });
+        },
     }
     }
 </script>

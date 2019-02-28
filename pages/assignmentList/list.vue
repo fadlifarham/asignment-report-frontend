@@ -11,7 +11,7 @@
               <b-input-group>
                 <b-form-input type="text" placeholder="Search"></b-form-input>
                 <b-input-group-prepend>
-                  <b-button variant="primary"><i class="fa fa-search"></i></b-button>
+                  <b-button variant="primary" v-model="search"><i class="fa fa-search"></i></b-button>
                 </b-input-group-prepend>
                 </b-input-group>
             </b-col>
@@ -21,7 +21,7 @@
         <div class="animated fadeIn">
           <b-card style="width: 100%">
 
-            <table class="table table-striped table--middle table-responsive">
+            <table class="table table-striped table--middle table-responsive" id="myTable">
               <thead>
                 <tr>
                   <th>No</th>
@@ -29,19 +29,24 @@
                   <th>PTL</th>
                   <th>Project Number</th>
                   <th>IO Number</th>
-                  <th>Level</th>
-                  <th>Team</th>
+                  <th>Assignment Title</th>
                   <th>Assignment Description</th>
-                  <th>AR ID List</th>
-                  <th>Location</th>
+                  <!-- <th>Team</th>
+                  <th>AR ID List</th> -->
                   <th>Assignment status</th>
                 </tr>
-                <!-- <tr v-for="user in users" :key="user.id">
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td><img :src="user.foto" width="100" height="100"></td>
-                </tr> -->
+                <tr v-for="all in alls" :key="all.id">
+                  <td align="center"></td>
+                  <td>{{ all.id }}</td>
+                  <td>{{ all.ptl.full_name }}</td>
+                  <td>{{ all.project_number }}</td>
+                  <td>{{ all.io_number }}</td>
+                  <td>{{ all.assignment_tittle}}</td>
+                  <td>{{ all.assignment_desc}}</td>
+                  <!-- <td>{{ all.id }}</td>
+                  <td>{{ all.id }}</td> -->
+                  <td>{{ all.status }}</td>
+                </tr>
               </thead>
             </table>
             <br><br>
@@ -49,43 +54,34 @@
               <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
             </nav>
           </b-card>
-          <b-button variant="secondary" to="/form/toko" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+          <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
         </div>
     </b-col>
   </b-row>
 </template>
 <script>
-  const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1))
-        let temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-      }
-      return array
-    }
     export default {
     data () {
         return {
-            users: '',
+            alls: [],
             errors: [],
         }
     },
     mounted(){
-        this.readUsers();
+        this.readAlls();
     },
     methods: {
-        readUsers() {
-            this.$axios.get('/user')
+        readAlls() {
+            this.$axios.get('assignment/all')
             .then(response => {
-                this.users = response.data.users;
-                console.log(response.data.users);
-            })
-        },
+              this.alls = response.data;
+              console.log(this.alls);
+      })
+    },
         getBadge (status) {
-        return status === 'Approve' ? 'success'
-          : status === 'Done' ? 'secondary'
-            : status === 'On Progress' ? 'warning'
+        return status === 'On Progress' ? 'success'
+          : status === 'Close' ? 'secondary'
+            : status === 'Waiting Approvement' ? 'warning'
               : status === 'Cancel' ? 'danger' : 'primary'
       },
     }

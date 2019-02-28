@@ -103,7 +103,7 @@
         };
     },
     mounted(){
-        this.readUsers();
+        // this.readUsers();
     },
     methods: {
       create() {

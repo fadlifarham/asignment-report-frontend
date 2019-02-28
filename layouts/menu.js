@@ -12,13 +12,11 @@ export default {
     },
     {
       name: 'Create Assignment',
-
       url: '/createAssignment',
       icon: 'icon-puzzle',
       children: [
         {
           name: 'List',
-
           url: '/createAssignment/listCreated',
           icon: 'icon-puzzle'
         },
@@ -31,9 +29,20 @@ export default {
     },
     {
       name: 'Submit Assignment Report',
-
       url: '/report/listReport',
       icon: 'icon-puzzle',
+      children: [
+        {
+          name: 'List Report',
+          url: '/report/listReport',
+          icon: 'icon-puzzle'
+        },
+        {
+          name: 'Submit Report',
+          url: '/report/submitReport',
+          icon: 'icon-puzzle'
+        },
+      ]
     },
     {
       name: 'Team Utilization',
