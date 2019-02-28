@@ -5,21 +5,21 @@
             label="Assignment ID "
             label-for="assignment_id"
             :label-cols="4"
-            :horizontal="true"> : {{assignment_id}}
+            :horizontal="true"> : 
             <!-- <b-form-input  id="assignmentId" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Class"
             label-for="assignment_class"
             :label-cols="4"
-            :horizontal="true"> : {{assignment_class}}
+            :horizontal="true"> : 
             <!-- <b-form-input  id="assignmentClass" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Title"
             label-for="assignment_title"
             :label-cols="4"
-            :horizontal="true">  : {{assignment_title}}
+            :horizontal="true">  : 
             <!-- <b-form-input  id="assignmentTitle" type="text"></b-form-input> -->
           </b-form-group>
     </b-col>
@@ -185,7 +185,8 @@
                                     {text: 'YA ',value: '1'},
                                     {text: 'TIDAK ',value: '2'}
                                 ]"
-                                :checked="2">
+                                :checked="2"
+                                v-model="sppd_status">
                                 </b-form-radio-group>
                             </b-col>
                         </b-row>
@@ -207,7 +208,8 @@
                                 <b-form-select
                                     :plain="true"
                                     :options="['Daily','Continue day']"
-                                    style="border-radius: 5px">
+                                    style="border-radius: 5px"
+                                    v-model="type_sppd">
                                 </b-form-select>
                             </b-col>
                         </b-row>
@@ -249,11 +251,11 @@
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photos" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Other</b-col>
-                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="other" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
                 </b-col>
             </b-row>
@@ -283,11 +285,30 @@
 </template>
 <script>
     export default {
+    name: 'submitReport',
     data () {
         return {
-            assignment_id: '',
-            assignment_class: '',
-            assignment_title: '',
+            assignment_type: '',
+            project_number: '',
+            io_number: '',
+            date_work: '',
+            time_start: '',
+            time_at: '',
+            time_job_finish: '',
+            time_end: '',
+            company: '',
+            address: '',
+            cp: '',
+            pic: '',
+            sppd_status: '',
+            day_number: '',
+            type_sppd: '',
+            brief_work: '',
+            result: '',
+            bai: '',
+            tnc: '',
+            photos: '',
+            other: '',
             errors: [],
         }
     },
