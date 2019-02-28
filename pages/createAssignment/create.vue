@@ -99,8 +99,37 @@
     import Multiselect from 'vue-multiselect'
 
     export default {
+<<<<<<< HEAD
       components: {
         Multiselect
+=======
+    data () {
+        return {
+            users: '',
+            errors: [],
+        };
+    },
+    mounted(){
+        // this.readUsers();
+    },
+    methods: {
+      create() {
+        this.$axios.post('/assignment/create', {
+          project_number: this.project_number,
+          io_number: this.io_number,
+          assignment_class: this.assignment_class,
+          assignment_tittle: this.assignment_title,
+          assignment_desc: this.assignment_desc,
+          sum_engineer: 1,
+          user_id_0: 1,
+        }).then(response => {
+             // this.assignment.push(response.data.task);
+          this.status = 'Create Assignment Success!';
+          console.log(this.status);
+          swal('Success', this.status, 'success');
+          this.reset();
+        })
+>>>>>>> 2660af77c752e2e861159ccfbc2a2147079ae6f8
       },
 
       data () {
