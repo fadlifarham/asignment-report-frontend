@@ -1,18 +1,25 @@
 <template>
   <div class="animated fadeIn">
-    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Recent Activity</h5>
-    <b-card style="width: 100%; height: 300px">
-      <table class="table table--middle">
-        <tr v-for="recent in recents" :key="recent.id">
-          {{ recent.user.full_name }} membuat assignment {{ recent.assignment.assignment_tittle }}
-          pada {{ recent.created_at }}
-        </tr>
-      </table>
-    </b-card>
+    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Recent Activity</h5> 
+      <b-card no-body style="width: 100%; height: 300px">
+        <b-card-body
+          id="nav-scroller"
+          ref="content"
+          style="position:relative; height:300px; overflow-y:scroll;"
+        >
+          <c-table fixed bordered>
+            <b-row v-for="recent in recents" :key="recent.id" style="padding: 3px">
+              {{ recent.user.full_name }} is created {{ recent.assignment.assignment_tittle }} at {{ recent.created_at }}
+            </b-row>
+          </c-table>
+        </b-card-body>
+      </b-card>
     <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Idle Team This Day</h5>
     <b-card style="width: 100%; height: 300px">
       <table class="table table--middle">
-        <tr></tr>
+        <tr v-for="idle in idles" :key="idle.id">
+          Engineer {{ idle.full_name }}
+        </tr>
       </table>
     </b-card>
   </div>
@@ -32,15 +39,23 @@ import { Callout } from '~/components/'
 export default {
   data :() => ({
     recents: [],
+    idles: [],
   }),
   mounted() {
     this.readRecent();
+    this.readIdle();
   },
   methods: {
     readRecent() {
       this.$axios.get('history/recent').then(response => {
         this.recents = response.data;
         console.log(this.recents);
+      })
+    },
+    readIdle() {
+      this.$axios.get('history/idle').then(response => {
+        this.idles = response.data;
+        console.log(this.idles);
       })
     }
   }
