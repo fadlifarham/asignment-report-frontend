@@ -71,7 +71,8 @@
                         tag-placeholder="Add this as new tag"
                         placeholder="Search or add a tag"
                         label="name"
-                        track-by="code"
+                        track-by="id"
+                        :selected="selectedEngineer"
                         :options="options"
                         :multiple="true"
                         :taggable="true"
@@ -142,6 +143,13 @@
     },
     data () {
         return {
+            project_number: null,
+            io_number: null,
+            assignment_class: null,
+            assignment_tittle: null,
+            assignment_desc: null,
+            selectedEngineer: null,
+            status: '',
             users: '',
             errors: [],
             value: [],
@@ -155,6 +163,7 @@
     },
     mounted(){
         this.engineer();
+        // console.log(this.value);
     },
     methods: {
       create() {
@@ -162,7 +171,7 @@
           project_number: this.project_number,
           io_number: this.io_number,
           assignment_class: this.assignment_class,
-          assignment_tittle: this.assignment_title,
+          assignment_tittle: this.assignment_tittle,
           assignment_desc: this.assignment_desc,
           engineer: this.value,
         //   sum_engineer: 1,
@@ -175,39 +184,41 @@
           this.reset();
         }, response => {
             console.log(response);
+            console.log(this.value);
         })
       },
+
       engineer() {
           var temp;
           this.$axios.get('/engineers').then(response => {
             //   this.options = response.data;
-              for(let i=0;i<response.data.length;i++){
+              for(let i=0; i < response.data.length; i++) {
                 //   console.log(response.data[i]);
-                  temp = { id: response.data[i].id, name: response.data[i].full_name,
-                    code: response.data[i].id };
+                temp = { id: response.data[i].id, name: response.data[i].full_name };
                 this.options.push(temp);
               }
             //   this.options = temp;
-            console.log(this.options);
+            // console.log(this.options);
           })
       },
       reset() {
         this.project_number = "";
         this.io_number = "";
-        this.assignment_title = "";
+        this.assignment_tittle = "";
         this.assignment_class = "";
         this.assignment_desc = ""
       },
+
       addTag (newTag) {
         const tag = {
-            id: newTag,
-            name: newTag,
-            code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+            id: newTag.id,
+            name: newTag.name,
         }
         this.options.push(tag)
         this.value.push(tag)
-        console.log(this.value);
+        console.log(tag);
       },
+
       setRating: function(rating){
         this.rating= rating;
         console.log(this.rating);
