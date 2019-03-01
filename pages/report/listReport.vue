@@ -51,7 +51,7 @@
         },
         showReport(list){
             this.showReports = true;
-            this.$axios.get('/list/' + list.id)
+            this.$axios.get('assignment/list/' + list.id)
             .then(response => {
                 this.showReports = response.data;
                 console.log(response.data);

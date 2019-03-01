@@ -28,31 +28,27 @@
               <th>Project Number</th>
               <th>IO Number</th>
               <th>Assignment Title</th>
-              <th>Team</th>
+              <!-- <th>Team</th> -->
               <th>Assignment Description</th>
-              <th>Location</th>
-              <th>Assignment status
-                <!-- <div class="dropdown">
-                  <button type="button" data-toggle="dropdown">
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                  </ul>
-                </div> -->
-              </th>
+              <!-- <th>Location</th> -->
+              <th>Assignment status</th>
               <th>Action</th>
             </tr>
-            <!-- <tr v-for="user in users" :key="user.id">
-              <td>{{ user.id }}</td>
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <td><img :src="user.foto" width="100" height="100"></td>
-            </tr> -->
+            <tr v-for="ptl in ptls" :key="ptl.id">
+              <td align="center" class="no"></td>
+              <td align="center">{{ ptl.id}}</td>
+              <td>{{ ptl.project_number}}</td>
+              <td>{{ ptl.io_number}}</td>
+              <td>{{ ptl.assignment_tittle}}</td>
+              <!-- <td>{{ ptl.team}}</td> -->
+              <td>{{ ptl.assignment_desc}}</td>
+              <!-- <td>{{ ptl.location}}</td> -->
+              <td>{{ ptl.status}}</td>
+              <td><button v-b-modal.update class="btn btn-success btn-xs">Edit</button>
+                  <button class="btn btn-danger btn-xs">Delete</button></td>
+            </tr>
           </thead>
         </table>
-        
         <br><br>
         <nav>
           <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
@@ -62,39 +58,40 @@
   </b-row>
 </template>
 <script>
-    const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1))
-        let temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-      }
-      return array
-    }
     export default {
     data () {
         return {
-            users: '',
+            ptls: [],
             errors: [],
         }
     },
     mounted(){
-        this.readUsers();
+        this.readPtls();
     },
     methods: {
-        readUsers() {
-            this.$axios.get('/user')
+        readPtls() {
+            this.$axios.get('assignment/ptl')
             .then(response => {
-                this.users = response.data.users;
-                console.log(response.data.users);
-            })
-        },
+              this.ptls = response.data;
+              console.log(this.ptls);
+      })
+    },
         getBadge (status) {
-        return status === 'Approve' ? 'success'
-          : status === 'Done' ? 'secondary'
-            : status === 'On Progress' ? 'warning'
+        return status === 'On Progress' ? 'success'
+          : status === 'Close' ? 'secondary'
+            : status === 'Waiting Approvement' ? 'warning'
               : status === 'Cancel' ? 'danger' : 'primary'
       },
     }
     }
 </script>
+<style>
+  table {
+    counter-reset: section;
+  }
+
+  .no:before {
+    counter-increment: section;
+    content: counter(section);
+  }
+</style>
