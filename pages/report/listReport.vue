@@ -22,7 +22,11 @@
                             <b-col sm="7">{{list.assignment.assignment_desc}}</b-col>
                         </b-row>
                         <b-col style="padding: 10px" class="text-right">
-                            <b-button @click="showReport(list)" size="sm" variant="primary" style="margin: 10px">See More</b-button>
+                            <b-button :to="'/report/submitReport/' + list.assignment_id" size="sm" variant="primary" style="margin: 10px">
+                              <!-- <router-link :to="'/report/submitReport/' + list.assignment_id" > -->
+                                See More
+                              <!-- </router-link> -->
+                            </b-button>
                         </b-col>
                     </b-col>
                 </b-row>

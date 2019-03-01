@@ -1,3 +1,7 @@
+// import Vue from 'vue';
+// import VueRouter from 'vue-router';
+// Vue.use(VueRouter);
+
 export default {
   items: [
     {
@@ -29,7 +33,7 @@ export default {
     },
     {
       name: 'Assignment Report',
-      url: '/report/listReport',
+      path: '/report/listReport',
       icon: 'icon-puzzle',
       children: [
         {
@@ -39,7 +43,9 @@ export default {
         },
         {
           name: 'Submit Report',
-          url: '/report/submitReport',
+          path: '/report/submitReport/:id',
+          component: '/pages/report/submitReport.vue',
+          props: true,
           icon: 'icon-puzzle'
         },
       ]
@@ -152,6 +158,10 @@ export default {
         },
       ]
     },
-    
+
   ]
 }
+
+// let router = new VueRouter({
+//   items
+// });

@@ -5,22 +5,25 @@
             label="Assignment ID "
             label-for="assignment_id"
             :label-cols="4"
-            :horizontal="true"> : 
-            <!-- <b-form-input  id="assignmentId" type="text"></b-form-input> -->
+            :horizontal="true"> :
+            <!-- <b-form-input v-model="assignment_id"  id="assignmentId" type="text"></b-form-input> -->
+            {{ assignment_id }}
           </b-form-group>
         <b-form-group
             label="Assignment Class"
             label-for="assignment_class"
             :label-cols="4"
-            :horizontal="true"> : 
-            <!-- <b-form-input  id="assignmentClass" type="text"></b-form-input> -->
+            :horizontal="true"> :
+            {{ assignment_class }}
+            <!-- <b-form-input v-model="assignment_id" id="assignmentClass" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Title"
             label-for="assignment_title"
             :label-cols="4"
-            :horizontal="true">  : 
-            <!-- <b-form-input  id="assignmentTitle" type="text"></b-form-input> -->
+            :horizontal="true">  :
+            {{ assignment_tittle }}
+            <!-- <b-form-input v-model="assignment_id" id="assignmentTitle" type="text"></b-form-input> -->
           </b-form-group>
     </b-col>
     <b-col lg="12">
@@ -46,10 +49,10 @@
                             <b-col sm="4">Project Number</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="text" 
-                                    id="project_number" 
-                                    v-model="project_number" 
-                                    placeholder="project number" 
+                                <b-form-input type="text"
+                                    id="project_number"
+                                    v-model="project_number"
+                                    placeholder="project number"
                                     style="border-radius: 5px">
                                 </b-form-input>
                             </b-col>
@@ -58,9 +61,9 @@
                             <b-col sm="4">IO Number</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="text" 
-                                    id="io_number" 
-                                    v-model="io_number" 
+                                <b-form-input type="text"
+                                    id="io_number"
+                                    v-model="io_number"
                                     placeholder="IO number"
                                     style="border-radius: 5px">
                                 </b-form-input>
@@ -73,9 +76,9 @@
                             <b-col sm="4">Working Date</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="date" 
-                                    id="date_work" 
-                                    v-model="date_work" 
+                                <b-form-input type="date"
+                                    id="date_work"
+                                    v-model="date_work"
                                     style="border-radius: 5px; vertical-align: center">
                                 </b-form-input>
                             </b-col>
@@ -84,9 +87,9 @@
                             <b-col sm="4">Start</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="time" 
-                                    id="time_start" 
-                                    v-model="time_start" 
+                                <b-form-input type="time"
+                                    id="time_start"
+                                    v-model="time_start"
                                     style="border-radius: 5px"></b-form-input>
                             </b-col>
                         </b-row>
@@ -94,9 +97,9 @@
                             <b-col sm="4">Arrived at location</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="time" 
-                                    id="time_at" 
-                                    v-model="time_at" 
+                                <b-form-input type="time"
+                                    id="time_at"
+                                    v-model="time_at"
                                     style="border-radius: 5px"></b-form-input>
                             </b-col>
                         </b-row>
@@ -104,9 +107,9 @@
                             <b-col sm="4">Job Finish</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="time" 
-                                    id="time_job_finish" 
-                                    v-model="time_job_finish" 
+                                <b-form-input type="time"
+                                    id="time_job_finish"
+                                    v-model="time_job_finish"
                                     style="border-radius: 5px"></b-form-input>
                             </b-col>
                         </b-row>
@@ -114,9 +117,9 @@
                             <b-col sm="4">End</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="time" 
-                                    id="time_end" 
-                                    v-model="time_end" 
+                                <b-form-input type="time"
+                                    id="time_end"
+                                    v-model="time_end"
                                     style="border-radius: 5px"></b-form-input>
                             </b-col>
                         </b-row>
@@ -129,9 +132,9 @@
                             <b-col sm="4">Company</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="text" 
-                                    id="company" 
-                                    v-model="company" 
+                                <b-form-input type="text"
+                                    id="company"
+                                    v-model="company"
                                     placeholder="company"
                                     style="border-radius: 5px">
                                 </b-form-input>
@@ -141,9 +144,9 @@
                             <b-col sm="4">Address</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="text" 
-                                    id="address" 
-                                    v-model="address" 
+                                <b-form-input type="text"
+                                    id="address"
+                                    v-model="address"
                                     placeholder="address"
                                     style="border-radius: 5px">
                                 </b-form-input>
@@ -153,9 +156,9 @@
                             <b-col sm="4">Contact Person</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="text" 
-                                    id="cp" 
-                                    v-model="cp" 
+                                <b-form-input type="text"
+                                    id="cp"
+                                    v-model="cp"
                                     placeholder="contact person"
                                     style="border-radius: 5px">
                                 </b-form-input>
@@ -165,9 +168,9 @@
                             <b-col sm="4">PIC Onsite</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="text" 
-                                    id="pic" 
-                                    v-model="pic" 
+                                <b-form-input type="text"
+                                    id="pic"
+                                    v-model="pic"
                                     placeholder="PIC onsite"
                                     style="border-radius: 5px"></b-form-input>
                             </b-col>
@@ -194,9 +197,9 @@
                             <b-col sm="4">Number of day</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
-                                <b-form-input type="number" 
-                                    id="day_number" 
-                                    v-model="day_number" 
+                                <b-form-input type="number"
+                                    id="day_number"
+                                    v-model="day_number"
                                     placeholder="number of day"
                                     style="border-radius: 5px"></b-form-input>
                             </b-col>
@@ -220,9 +223,9 @@
                 <b-col>
                     <b-form-group>
                         <label for="brief_work"><strong>Brief of Work Carried Out</strong></label>
-                        <textarea class="form-control" 
-                            id="brief_work" 
-                            v-model="brief_work" 
+                        <textarea class="form-control"
+                            id="brief_work"
+                            v-model="brief_work"
                             placeholder="Brief of Work Carried Out"
                             rows="6" ></textarea>
                     </b-form-group>
@@ -230,9 +233,9 @@
                 <b-col>
                     <b-form-group>
                         <label for="result"><strong>Result of Assignment & Further Action</strong></label>
-                        <textarea class="form-control" 
-                            id="result" 
-                            v-model="result" 
+                        <textarea class="form-control"
+                            id="result"
+                            v-model="result"
                             placeholder="Result of Assignment & Further Action"
                             rows="6"></textarea>
                     </b-form-group>
@@ -270,7 +273,7 @@
         <table class="table table-striped table--middle table-responsive">
           <thead>
             <tr>
-              
+
             </tr>
             <!-- <tr v-for="assignment_report in assignment_report" :key="assignment_report.id">
               <td>{{ assignment_report.id }}</td>
@@ -285,9 +288,22 @@
 </template>
 <script>
     export default {
+
+    validate(params) {
+      // return /^\d+$/.test(params.id)]
+      // console.log("params " + params)
+      return true
+    },
+
     name: 'submitReport',
+
+    props: ['id'],
+
     data () {
         return {
+            assignment_id: null,
+            assignment_class: null,
+            assignment_tittle: null,
             assignment_type: '',
             project_number: '',
             io_number: '',
@@ -316,20 +332,23 @@
         this.getAssignment();
     },
     methods: {
+
         getAssignment() {
-        this.$axios.get('/assignment').then( response => {
-          this.assignment_id = response.data.assignment_id;
-          this.assignment_class = response.data.assignment_class;
-          this.assignment_title = response.data.assignment_title;
-        })
-      },
-        readUsers() {
-            this.$axios.get('/user')
-            .then(response => {
-                this.users = response.data.users;
-                console.log(response.data.users);
-            })
-        }
-    }
+          console.log("id : " + this.$route.params.id);
+          this.$axios.get('/ar/create/' + this.$route.params.id).then( response => {
+            console.log(response.data);
+            this.assignment_id = response.data.id;
+            this.assignment_class = response.data.assignment_class;
+            this.assignment_tittle = response.data.assignment_tittle;
+          })
+        },
+          readUsers() {
+              this.$axios.get('/user')
+              .then(response => {
+                  this.users = response.data.users;
+                  console.log(response.data.users);
+              })
+          }
+      }
     }
 </script>
