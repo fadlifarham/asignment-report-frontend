@@ -22,7 +22,7 @@
                             <b-col sm="7">{{list.assignment.assignment_desc}}</b-col>
                         </b-row>
                         <b-col style="padding: 10px" class="text-right">
-                            <b-button @click="showReport(list)" size="sm" variant="primary" style="margin: 10px">See More</b-button>
+                            <b-button to="submitReport" size="sm" variant="primary" style="margin: 10px">See More</b-button>
                         </b-col>
                     </b-col>
                 </b-row>
@@ -51,7 +51,7 @@
         },
         showReport(list){
             this.showReports = true;
-            this.$axios.get('/list/' + list.id)
+            this.$axios.get('assignment/list/' + list.id)
             .then(response => {
                 this.showReports = response.data;
                 console.log(response.data);

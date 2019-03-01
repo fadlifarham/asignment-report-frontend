@@ -20,8 +20,7 @@
         </div>
         <div class="animated fadeIn">
           <b-card style="width: 100%">
-
-            <table class="table table-striped table--middle table-responsive" id="myTable">
+            <table class="table table-striped table--middle table-responsive">
               <thead>
                 <tr>
                   <th>No</th>
@@ -36,8 +35,8 @@
                   <th>Assignment status</th>
                 </tr>
                 <tr v-for="all in alls" :key="all.id">
-                  <td align="center"></td>
-                  <td>{{ all.id }}</td>
+                  <td align="center" class="no"></td>
+                  <td align="center">{{ all.id }}</td>
                   <td>{{ all.ptl.full_name }}</td>
                   <td>{{ all.project_number }}</td>
                   <td>{{ all.io_number }}</td>
@@ -87,3 +86,14 @@
     }
     }
 </script>
+<style>
+  table {
+    counter-reset: section;
+  }
+
+  .no:before {
+    counter-increment: section;
+    content: counter(section);
+  }
+</style>
+
