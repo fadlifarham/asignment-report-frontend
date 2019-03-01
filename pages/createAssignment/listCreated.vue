@@ -44,8 +44,9 @@
               <td>{{ ptl.assignment_desc}}</td>
               <!-- <td>{{ ptl.location}}</td> -->
               <td>{{ ptl.status}}</td>
-              <td><button v-b-modal.update class="btn btn-success btn-xs">Edit</button>
-                  <button class="btn btn-danger btn-xs">Delete</button></td>
+              <td><button v-b-modal.update class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
+                  <button v-b-modal.update class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                  <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></td>
             </tr>
           </thead>
         </table>
