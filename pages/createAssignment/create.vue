@@ -50,11 +50,11 @@
                     <div id="app">
                         <star-rating
                         v-model="rating"
-                        v-bind:increment="0.5"
+                        v-bind:increment="1"
                         v-bind:max-rating="5"
-                        inactive-color="#000"
-                        active-color="#cc1166"
-                        v-bind:star-size="90"
+                        inactive-color="#808080"
+                        active-color="#ff9900"
+                        v-bind:star-size="40"
                         @rating-selected ="setRating"
                         >
                         </star-rating>
