@@ -2,7 +2,7 @@
   <b-row>
     <b-col sm="4">
         <br><br><br><br>
-        <img src="" class="rounded-circle" alt="Cinque Terre" width="304" height="236"> 
+        <img src="~/static/img/avatars/ss.jpg" class="rounded-circle" alt="Cinque Terre" width="304" height="236"> 
     </b-col>
     <b-col lg="8">
         <div class="animated fadeIn" style="padding: 0px">

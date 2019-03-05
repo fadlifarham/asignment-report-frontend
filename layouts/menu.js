@@ -15,17 +15,17 @@ export default {
       icon: 'icon-puzzle',
     },
     {
-      name: 'Create Assignment',
+      name: 'Assignment',
       url: '/createAssignment',
       icon: 'icon-puzzle',
       children: [
         {
-          name: 'List Assignment',
+          name: 'List',
           url: '/createAssignment/listCreated',
           icon: 'icon-puzzle'
         },
         {
-          name: 'Create Assignment',
+          name: 'Create',
           url: '/createAssignment/create',
           icon: 'icon-puzzle'
         },
