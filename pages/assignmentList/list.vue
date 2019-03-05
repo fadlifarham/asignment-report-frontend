@@ -22,8 +22,7 @@
           <b-card style="width: 100%">
             <table class="table table-striped table--middle table-responsive">
               <thead>
-                <tr>
-                  <th>No</th>
+                <tr align="center">
                   <th>Assignment ID</th>
                   <th>PTL</th>
                   <th>Project Number</th>
@@ -34,9 +33,8 @@
                   <th>AR ID List</th> -->
                   <th>Assignment status</th>
                 </tr>
-                <tr v-for="all in alls" :key="all.id">
-                  <td align="center" class="no"></td>
-                  <td align="center">{{ all.id }}</td>
+                <tr v-for="all in alls" :key="all.id" align="center">
+                  <td>{{ all.id }}</td>
                   <td>{{ all.ptl.full_name }}</td>
                   <td>{{ all.project_number }}</td>
                   <td>{{ all.io_number }}</td>

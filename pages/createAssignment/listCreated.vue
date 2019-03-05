@@ -22,7 +22,7 @@
     <b-card style="width: 100%">
     <table class="table table-striped table--middle table-responsive">
           <thead>
-            <tr>
+            <tr align="center">
               <th>No</th>
               <th>Assignment ID</th>
               <th>Project Number</th>
@@ -34,7 +34,7 @@
               <th>Assignment status</th>
               <th>Action</th>
             </tr>
-            <tr v-for="ptl in ptls" :key="ptl.id">
+            <tr v-for="ptl in ptls" :key="ptl.id" align="center">
               <td align="center" class="no"></td>
               <td align="center">{{ ptl.id}}</td>
               <td>{{ ptl.project_number}}</td>

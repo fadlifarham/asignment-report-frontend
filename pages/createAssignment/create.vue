@@ -50,11 +50,11 @@
                     <div id="app">
                         <star-rating
                         v-model="rating"
-                        v-bind:increment="1"
+                        v-bind:increment="0.5"
                         v-bind:max-rating="5"
-                        inactive-color="#808080"
-                        active-color="#ff9900"
-                        v-bind:star-size="40"
+                        inactive-color="#000"
+                        active-color="#cc1166"
+                        v-bind:star-size="90"
                         @rating-selected ="setRating"
                         >
                         </star-rating>
@@ -66,16 +66,15 @@
                 :label-cols="4"
                 :horizontal="true">
                 <div>
-                    <multiselect
+                    <multiselect 
                         v-model="value"
-                        tag-placeholder="Add this as new tag"
-                        placeholder="Search or add a tag"
-                        label="name"
-                        track-by="id"
-                        :selected="selectedEngineer"
-                        :options="options"
-                        :multiple="true"
-                        :taggable="true"
+                        tag-placeholder="Add this as new tag" 
+                        placeholder="Search or add a tag" 
+                        label="name" 
+                        track-by="code" 
+                        :options="options" 
+                        :multiple="true" 
+                        :taggable="true" 
                         @tag="addTag">
                     </multiselect>
                 </div>
@@ -94,15 +93,15 @@
                         <b-col>
                             <b-row>
                                 <div class="multiselect">
-                                    <multiselect
-                                        v-model="value"
-                                        tag-placeholder="Add this as new tag"
-                                        placeholder="Search or add a tag"
-                                        label="name"
-                                        track-by="code"
-                                        :options="options"
-                                        :multiple="true"
-                                        :taggable="true"
+                                    <multiselect 
+                                        v-model="value" 
+                                        tag-placeholder="Add this as new tag" 
+                                        placeholder="Search or add a tag" 
+                                        label="name" 
+                                        track-by="code" 
+                                        :options="options" 
+                                        :multiple="true" 
+                                        :taggable="true" 
                                         @tag="addTag">
                                     </multiselect>
                                 </div>
@@ -143,13 +142,6 @@
     },
     data () {
         return {
-            project_number: null,
-            io_number: null,
-            assignment_class: null,
-            assignment_tittle: null,
-            assignment_desc: null,
-            selectedEngineer: null,
-            status: '',
             users: '',
             errors: [],
             value: [],
@@ -163,7 +155,6 @@
     },
     mounted(){
         this.engineer();
-        // console.log(this.value);
     },
     methods: {
       create() {
@@ -171,7 +162,7 @@
           project_number: this.project_number,
           io_number: this.io_number,
           assignment_class: this.assignment_class,
-          assignment_tittle: this.assignment_tittle,
+          assignment_tittle: this.assignment_title,
           assignment_desc: this.assignment_desc,
           engineer: this.value,
         //   sum_engineer: 1,
@@ -184,41 +175,39 @@
           this.reset();
         }, response => {
             console.log(response);
-            console.log(this.value);
         })
       },
-
       engineer() {
           var temp;
           this.$axios.get('/engineers').then(response => {
             //   this.options = response.data;
-              for(let i=0; i < response.data.length; i++) {
+              for(let i=0;i<response.data.length;i++){
                 //   console.log(response.data[i]);
-                temp = { id: response.data[i].id, name: response.data[i].full_name };
+                  temp = { id: response.data[i].id, name: response.data[i].full_name, 
+                    code: response.data[i].id };
                 this.options.push(temp);
               }
             //   this.options = temp;
-            // console.log(this.options);
+            console.log(this.options);
           })
       },
       reset() {
         this.project_number = "";
         this.io_number = "";
-        this.assignment_tittle = "";
+        this.assignment_title = "";
         this.assignment_class = "";
         this.assignment_desc = ""
       },
-
       addTag (newTag) {
         const tag = {
-            id: newTag.id,
-            name: newTag.name,
+            id: newTag,
+            name: newTag,
+            code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
         }
         this.options.push(tag)
         this.value.push(tag)
-        console.log(tag);
+        console.log(this.value);
       },
-
       setRating: function(rating){
         this.rating= rating;
         console.log(this.rating);
