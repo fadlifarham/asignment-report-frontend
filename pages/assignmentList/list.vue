@@ -53,7 +53,7 @@
               <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
             </nav>
           </b-card>
-          <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+          <b-button @click="exportToExcel" variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
         </div>
     </b-col>
   </b-row>
@@ -64,6 +64,7 @@
         return {
             alls: [],
             errors: [],
+            apply: null,
         }
     },
     mounted(){
@@ -76,14 +77,26 @@
               this.alls = response.data;
               console.log(this.alls);
       })
-    },
-        getBadge (status) {
-        return status === 'On Progress' ? 'success'
-          : status === 'Close' ? 'secondary'
-            : status === 'Waiting Approvement' ? 'warning'
-              : status === 'Cancel' ? 'danger' : 'primary'
       },
-    }
+          getBadge (status) {
+          return status === 'On Progress' ? 'success'
+            : status === 'Close' ? 'secondary'
+              : status === 'Waiting Approvement' ? 'warning'
+                : status === 'Cancel' ? 'danger' : 'primary'
+        },
+      },
+
+      exportToExcel() {
+        this.$axios.get('assignment/all/export').then(response => {
+          this.apply = response.data
+          let blob = new Blob([response.data], { type: 'application/xlsx'})
+          let link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = 'All_Assignment.xlsx'
+          link.click()
+          // console.log(response.data)
+        });
+      }
     }
 </script>
 <style>
