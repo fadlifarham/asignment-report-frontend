@@ -66,19 +66,56 @@
                 :label-cols="4"
                 :horizontal="true">
                 <div>
-                    <multiselect 
+                    <multiselect
                         v-model="value"
-                        tag-placeholder="Add this as new tag" 
-                        placeholder="Search or add a tag" 
-                        label="name" 
-                        track-by="code" 
-                        :options="options" 
-                        :multiple="true" 
-                        :taggable="true" 
+                        tag-placeholder="Add this as new tag"
+                        placeholder="Search or add a tag"
+                        label="name"
+                        track-by="code"
+                        :options="options"
+                        :multiple="true"
+                        :taggable="true"
                         @tag="addTag">
                     </multiselect>
                 </div>
             </b-form-group>
+<<<<<<< HEAD
+=======
+            <!-- <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
+                <b-col>
+                    <b-row>
+                        <label><strong>Dispose Team</strong></label>
+                    </b-row>
+                    <b-row>
+                        <b-col>
+                            <template>
+                                <img src="/img/user.png">
+                            </template>
+                        </b-col>
+                        <b-col>
+                            <b-row>
+                                <div class="multiselect">
+                                    <multiselect
+                                        v-model="value"
+                                        tag-placeholder="Add this as new tag"
+                                        placeholder="Search or add a tag"
+                                        label="name"
+                                        track-by="code"
+                                        :options="options"
+                                        :multiple="true"
+                                        :taggable="true"
+                                        @tag="addTag">
+                                    </multiselect>
+                                </div>
+                                <label class="typo__label form__label" v-show="isInvalid">
+                                    Must have at least one value
+                                </label>
+                            </b-row>
+                        </b-col>
+                    </b-row>
+                </b-col>
+            </b-row> -->
+>>>>>>> 58622ef422445161badc290a967b3ad5970e4bfa
             <b-input-group>
                 <!-- <b-col cols="6"></b-col> -->
                 <b-col cols="12" class="text-right" style="padding: 10px">
@@ -140,7 +177,7 @@
           swal('Success', this.status, 'success');
           this.reset();
         }, response => {
-            console.log(response);
+            console.log(this.project_number);
         })
       },
       engineer() {
@@ -149,8 +186,8 @@
             //   this.options = response.data;
               for(let i=0;i<response.data.length;i++){
                 //   console.log(response.data[i]);
-                  temp = { id: response.data[i].id, name: response.data[i].full_name, 
-                    code: response.data[i].id };
+                temp = { id: response.data[i].id, name: response.data[i].full_name,
+                  code: response.data[i].id };
                 this.options.push(temp);
               }
             //   this.options = temp;

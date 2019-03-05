@@ -54,7 +54,25 @@
             : status === 'Waiting Approvement' ? 'warning'
               : status === 'Cancel' ? 'danger' : 'primary'
       },
-    }
+          getBadge (status) {
+          return status === 'On Progress' ? 'success'
+            : status === 'Close' ? 'secondary'
+              : status === 'Waiting Approvement' ? 'warning'
+                : status === 'Cancel' ? 'danger' : 'primary'
+        },
+      },
+
+      exportToExcel() {
+        this.$axios.get('assignment/all/export').then(response => {
+          this.apply = response.data
+          let blob = new Blob([response.data], { type: 'application/xlsx'})
+          let link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = 'All_Assignment.xlsx'
+          link.click()
+          // console.log(response.data)
+        });
+      }
     }
 </script>
 <style>

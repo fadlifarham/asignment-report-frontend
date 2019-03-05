@@ -29,7 +29,7 @@
               <th>IO Number</th>
               <th>Assignment Title</th>
               <!-- <th>Team</th> -->
-              <th>Assignment Description</th>
+              <!-- <th>Assignment Description</th> -->
               <!-- <th>Location</th> -->
               <th>Assignment status</th>
               <th>Action</th>
@@ -41,7 +41,7 @@
               <td>{{ ptl.io_number}}</td>
               <td>{{ ptl.assignment_tittle}}</td>
               <!-- <td>{{ ptl.team}}</td> -->
-              <td>{{ ptl.assignment_desc}}</td>
+              <!-- <td>{{ ptl.assignment_desc}}</td> -->
               <!-- <td>{{ ptl.location}}</td> -->
               <td>{{ ptl.status}}</td>
               <td><button v-b-modal.update class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
