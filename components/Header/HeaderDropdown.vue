@@ -1,9 +1,9 @@
 <template>
       <b-nav-item-dropdown right no-caret>
         <template slot="button-content">
-          <img src="~static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+          <img :src="picture" class="img-avatar" alt="admin@bootstrapmaster.com">
         </template>
-        <b-dropdown-header tag="div" class="text-center"><strong>{{first_name}}{{last_name}}</strong>
+        <b-dropdown-header tag="div" class="text-center"><strong>{{full_name}}</strong>
         <br>{{position}}
         </b-dropdown-header>
         <!-- <b-dropdown-header tag="div" class="text-center"><strong>{{username}}</strong></b-dropdown-header> -->
@@ -21,9 +21,9 @@
     data: () => ({
       // return { itemsCount: 42 }
       itemsCount: 42,
-      username: "",
+      full_name: "",
       email: "",
-      image: "",
+      picture: "",
       role_id: "",
       position: "",
       // update: false,
@@ -50,9 +50,9 @@
       },
       getUser() {
         this.$axios.get('/profile').then( response => {
-          this.image = response.data.picture;
+          this.picture = response.data.picture;
           this.email = response.data.email;
-          this.username = response.data.username;
+          this.full_name = response.data.full_name;
           this.position = response.data.role.name;
         })
       }
