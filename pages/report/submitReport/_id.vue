@@ -45,7 +45,7 @@
                                 </b-form-select>
                             </b-col>
                         </b-row>
-                        <b-row style="padding: 2px">
+                        <!-- <b-row style="padding: 2px">
                             <b-col sm="4">Project Number</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
@@ -68,7 +68,7 @@
                                     style="border-radius: 5px">
                                 </b-form-input>
                             </b-col>
-                        </b-row>
+                        </b-row> -->
                     </b-col>
                     <b-col>
                         <b-row style="padding: 2px"><strong>Time record</strong></b-row>
@@ -258,35 +258,24 @@
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Other</b-col>
-                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="other" @change="onFileSelected"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="other" :plain="true" @change="onFileSelected"></b-form-file></b-col>
                     </b-row>
                 </b-col>
             </b-row>
             <b-row>
             <b-col style="padding: 10px" class="text-right">
-                    <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
+                    <b-button @click="submit" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
                     <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
             </b-col>
             </b-row>
         </div>
         <br>
-        <table class="table table-striped table--middle table-responsive">
-          <thead>
-            <tr>
-
-            </tr>
-            <!-- <tr v-for="assignment_report in assignment_report" :key="assignment_report.id">
-              <td>{{ assignment_report.id }}</td>
-              <td>{{ assignment_report.name }}</td>
-              <td>{{ assignment_report.email }}</td>
-              <td><img :src="user.foto" width="100" height="100"></td>
-            </tr> -->
-          </thead>
-        </table>
     </b-col>
   </b-row>
 </template>
 <script>
+import moment from 'moment'
+
     export default {
 
     validate(params) {
@@ -304,27 +293,27 @@
             assignment_id: null,
             assignment_class: null,
             assignment_tittle: null,
-            assignment_type: '',
-            project_number: '',
-            io_number: '',
-            date_work: '',
-            time_start: '',
-            time_at: '',
-            time_job_finish: '',
-            time_end: '',
-            company: '',
-            address: '',
-            cp: '',
-            pic: '',
-            sppd_status: '',
-            day_number: '',
-            type_sppd: '',
-            brief_work: '',
-            result: '',
-            bai: '',
-            tnc: '',
-            photos: '',
-            other: '',
+            assignment_type: null,
+            // project_number: null,
+            // io_number: null,
+            date_work: null,
+            time_start: null,
+            time_at: null,
+            time_job_finish: null,
+            time_end: null,
+            company: null,
+            address: null,
+            cp: null,
+            pic: null,
+            sppd_status: null,
+            day_number: null,
+            type_sppd: null,
+            brief_work: null,
+            result: null,
+            bai: null,
+            tnc: null,
+            photos: null,
+            other: 'null',
             errors: [],
         }
     },
@@ -332,7 +321,6 @@
         this.getAssignment();
     },
     methods: {
-
         getAssignment() {
           console.log("id : " + this.$route.params.id);
           this.$axios.get('/ar/create/' + this.$route.params.id).then( response => {
@@ -342,13 +330,77 @@
             this.assignment_tittle = response.data.assignment_tittle;
           })
         },
-          readUsers() {
-              this.$axios.get('/user')
-              .then(response => {
-                  this.users = response.data.users;
-                  console.log(response.data.users);
-              })
+        submit(){
+            this.$axios.post('/ar/submit', {
+                assignment_type: this.assignment_type, //1
+                // project_number: this.project_number, //2
+                // io_number: this.io_number, //3
+                date_work: this.date_work, //4
+                time_start: this.time_start, //5
+                time_at: this.time_at, //6
+                time_job_finish: this.time_job_finish, //7
+                time_end: this.time_end, //8
+                company: this.company, //9
+                address: this.address, //10
+                cp: this.cp, //11
+                pic: this.pic, //12
+                sppd_status: this.sppd_status, //13
+                day_number: this.day_number, //14
+                type_sppd: this.type_sppd, //15
+                brief_work: this.brief_work, //16
+                result: this.result, //17
+                bai: this.bai, //18
+                tnc: this.tnc, //19
+                photos: this.photos, //20
+                other: this.other, //21
+                
+                }).then(response => {
+                    // this.assignment.push(response.data.task);
+                    this.status = 'Submit Assignment Report Success!';
+                    console.log(this.status);
+                    swal('Success', this.status, 'success');
+                    this.reset();
+                }, response => {
+                    console.log("ass type" + this.assignment_type);
+                    console.log("company" + this.company);
+                    console.log("start " + this.time_start);
+                    console.log("tanggal" + this.date_work);
+                    console.log("file" + this.bai);
+                    // console.log(response);
+                    // console.log(this.value);
+            })
+        },
+        onFileSelected(event) {
+            this.selectedFile = event.target.files[0]
+        },
+        reset() {
+            this.assignment_type = ""; //1
+            // this.project_number = ""; //2
+            // this.io_number = ""; //3
+            this.date_work = ""; //4
+            this.time_start = ""; //5
+            this.time_at = ""; //6
+            this.time_job_finish = ""; //7
+            this.time_end = ""; //8
+            this.company = "";  //9
+            this.address = ""; //10
+            this.cp = ""; //11
+            this.pic = ""; //12
+            this.sppd_status = ""; //13
+            this.day_number = "";  //14
+            this.type_sppd = ""; //15
+            this.brief_work = "";  //16
+            this.result = "";  //17
+            this.bai = ""; //18
+            this.tnc = ""; //19
+            this.photos = ""; //20
+            this.other = ""; //21
+        },
+        format_date(value){
+         if (value) {
+           return moment(String(value)).format('YYYY-MM-DD')
           }
+      },
       }
     }
 </script>

@@ -3,15 +3,15 @@
         <template slot="button-content">
           <img src="~static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
         </template>
-        <b-dropdown-header tag="div" class="text-center"><strong>{{username}}</strong>
+        <b-dropdown-header tag="div" class="text-center"><strong>{{first_name}}{{last_name}}</strong>
         <br>{{position}}
         </b-dropdown-header>
         <!-- <b-dropdown-header tag="div" class="text-center"><strong>{{username}}</strong></b-dropdown-header> -->
-        <b-dropdown-item to="/editProfil"><i class="fa fa-user" ></i> Edit Profile</b-dropdown-item>
+        <b-dropdown-item to="editProfil"><i class="fa fa-user"></i> Edit Profile</b-dropdown-item>
         <b-dropdown-item><i class="fa fa-tasks"></i> My Performance</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>
-      </b-nav-item-dropdown>
+      </b-nav-item-dropdown>   
 </template>
 
 <script>
@@ -25,6 +25,7 @@
       image: "",
       role_id: "",
       position: "",
+      // update: false,
     }),
 
     mounted() {

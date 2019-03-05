@@ -16,6 +16,7 @@
                 </b-input-group>
             </b-col>
           </b-input-group>
+
             <br><br>
         </div>
         <div class="animated fadeIn">
@@ -29,7 +30,7 @@
                   <th>Project Number</th>
                   <th>IO Number</th>
                   <th>Assignment Title</th>
-                  <th>Assignment Description</th>
+                  <!-- <th>Assignment Description</th> -->
                   <!-- <th>Team</th>
                   <th>AR ID List</th> -->
                   <th>Assignment status</th>
@@ -41,7 +42,7 @@
                   <td>{{ all.project_number }}</td>
                   <td>{{ all.io_number }}</td>
                   <td>{{ all.assignment_tittle}}</td>
-                  <td>{{ all.assignment_desc}}</td>
+                  <!-- <td>{{ all.assignment_desc}}</td> -->
                   <!-- <td>{{ all.id }}</td>
                   <td>{{ all.id }}</td> -->
                   <td>{{ all.status }}</td>

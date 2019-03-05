@@ -10,45 +10,31 @@ export default {
       icon: 'icon-speedometer',
     },
     {
-      name: 'Assignment List',
+      name: 'All Assignment',
       url: '/assignmentList/list',
       icon: 'icon-puzzle',
     },
     {
-      name: 'Create Assignment',
+      name: 'Assignment',
       url: '/createAssignment',
       icon: 'icon-puzzle',
       children: [
         {
-          name: 'List Assignment',
+          name: 'List',
           url: '/createAssignment/listCreated',
           icon: 'icon-puzzle'
         },
         {
-          name: 'Create Assignment',
+          name: 'Create',
           url: '/createAssignment/create',
           icon: 'icon-puzzle'
         },
       ]
     },
     {
-      name: 'Assignment Report',
-      path: '/report/listReport',
-      icon: 'icon-puzzle',
-      children: [
-        {
-          name: 'List Report',
-          url: '/report/listReport',
-          icon: 'icon-puzzle'
-        },
-        {
-          name: 'Submit Report',
-          path: '/report/submitReport/:id',
-          component: '/pages/report/submitReport.vue',
-          props: true,
-          icon: 'icon-puzzle'
-        },
-      ]
+        name: 'Assignment Report',
+        url: '/report/listReport',
+        icon: 'icon-puzzle',
     },
     {
       name: 'Team Utilization',
