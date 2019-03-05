@@ -11,13 +11,9 @@
         <b-dropdown-item><i class="fa fa-tasks"></i> My Performance</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>
-        <div>
       </b-nav-item-dropdown>
 </template>
 <script>
-import VModal from 'vue-js-modal'
- 
-Vue.use(VModal)
   export default {
     name: 'header-dropdown',
     data: () => ({

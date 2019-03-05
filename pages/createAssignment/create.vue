@@ -79,40 +79,6 @@
                     </multiselect>
                 </div>
             </b-form-group>
-            <!-- <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
-                <b-col>
-                    <b-row>
-                        <label><strong>Dispose Team</strong></label>
-                    </b-row>
-                    <b-row>
-                        <b-col>
-                            <template>
-                                <img src="/img/user.png">
-                            </template>
-                        </b-col>
-                        <b-col>
-                            <b-row>
-                                <div class="multiselect">
-                                    <multiselect 
-                                        v-model="value" 
-                                        tag-placeholder="Add this as new tag" 
-                                        placeholder="Search or add a tag" 
-                                        label="name" 
-                                        track-by="code" 
-                                        :options="options" 
-                                        :multiple="true" 
-                                        :taggable="true" 
-                                        @tag="addTag">
-                                    </multiselect>
-                                </div>
-                                <label class="typo__label form__label" v-show="isInvalid">
-                                    Must have at least one value
-                                </label>
-                            </b-row>
-                        </b-col>
-                    </b-row>
-                </b-col>
-            </b-row> -->
             <b-input-group>
                 <!-- <b-col cols="6"></b-col> -->
                 <b-col cols="12" class="text-right" style="padding: 10px">
