@@ -2,68 +2,34 @@
   <b-row>
     <b-col lg="12">
       <div>
-          <b-input-group>
-            <b-col cols="4">
-              <label><b>ASSIGNMENT LIST</b></label>
-            </b-col>
-            <b-col cols="4"></b-col>
-            <b-col cols="4">
-              <b-input-group>
-                <b-form-input type="text" placeholder="Search"></b-form-input>
-                <b-input-group-prepend>
-                  <b-button variant="primary" v-model="search"><i class="fa fa-search"></i></b-button>
-                </b-input-group-prepend>
-                </b-input-group>
-            </b-col>
-          </b-input-group>
-
-            <br><br>
-        </div>
+        <b-col cols="4">
+          <label><b>ASSIGNMENT LIST</b></label>
+        </b-col>
+      </div>
         <div class="animated fadeIn">
-          <b-card style="width: 100%">
-            <table class="table table-striped table--middle table-responsive">
-              <thead>
-                <tr align="center">
-                  <th>Assignment ID</th>
-                  <th>PTL</th>
-                  <th>Project Number</th>
-                  <th>IO Number</th>
-                  <th>Assignment Title</th>
-                  <!-- <th>Assignment Description</th> -->
-                  <!-- <th>Team</th>
-                  <th>AR ID List</th> -->
-                  <th>Assignment status</th>
-                </tr>
-                <tr v-for="all in alls" :key="all.id" align="center">
-                  <td>{{ all.id }}</td>
-                  <td>{{ all.ptl.full_name }}</td>
-                  <td>{{ all.project_number }}</td>
-                  <td>{{ all.io_number }}</td>
-                  <td>{{ all.assignment_tittle}}</td>
-                  <!-- <td>{{ all.assignment_desc}}</td> -->
-                  <!-- <td>{{ all.id }}</td>
-                  <td>{{ all.id }}</td> -->
-                  <td>{{ all.status }}</td>
-                </tr>
-              </thead>
-            </table>
-            <br><br>
-            <nav>
-              <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
-            </nav>
-          </b-card>
-          <b-button @click="exportToExcel" variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+          <div class="card" style="radius: 3px">
+            <div class="card-body">
+              <div id="people">
+                <v-client-table :data="alls" :columns="columns" align="center"></v-client-table>
+              </div>
+              <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+            </div>
+          </div>
         </div>
     </b-col>
   </b-row>
 </template>
 <script>
+  import Vue from 'vue';
+  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+    Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
     data () {
         return {
             alls: [],
             errors: [],
-            apply: null,
+            columns: ['id', 'ptl', 'project_Number', 'io_Number', 'assignment_Class', 'assignment_Title', 'status', 'created_At', 'update_At'],
+
         }
     },
     mounted(){
@@ -71,12 +37,23 @@
     },
     methods: {
         readAlls() {
-            this.$axios.get('assignment/all')
-            .then(response => {
-              this.alls = response.data;
-              console.log(this.alls);
-      })
-      },
+          var temp;
+          this.$axios.get('assignment/all').then(response => {
+              for(let i=0;i<response.data.length;i++){
+                  temp = { id: response.data[i].id, ptl: response.data[i].ptl.first_name, project_Number: response.data[i].project_number,
+                  io_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
+                  status: response.data[i].status, created_At: response.data[i].created_at, update_At: response.data[i].updated_at };
+                this.alls.push(temp);
+              }
+            console.log(this.alls);
+          })
+    },
+      //   getBadge (status) {
+      //   return status === 'On Progress' ? 'success'
+      //     : status === 'Close' ? 'secondary'
+      //       : status === 'Waiting Approvement' ? 'warning'
+      //         : status === 'Cancel' ? 'danger' : 'primary'
+      // },
           getBadge (status) {
           return status === 'On Progress' ? 'success'
             : status === 'Close' ? 'secondary'

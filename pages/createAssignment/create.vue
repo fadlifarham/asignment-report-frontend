@@ -66,15 +66,15 @@
                 :label-cols="4"
                 :horizontal="true">
                 <div>
-                    <multiselect 
+                    <multiselect
                         v-model="value"
-                        tag-placeholder="Add this as new tag" 
-                        placeholder="Search or add a tag" 
-                        label="name" 
-                        track-by="code" 
-                        :options="options" 
-                        :multiple="true" 
-                        :taggable="true" 
+                        tag-placeholder="Add this as new tag"
+                        placeholder="Search or add a tag"
+                        label="name"
+                        track-by="code"
+                        :options="options"
+                        :multiple="true"
+                        :taggable="true"
                         @tag="addTag">
                     </multiselect>
                 </div>
@@ -93,15 +93,15 @@
                         <b-col>
                             <b-row>
                                 <div class="multiselect">
-                                    <multiselect 
-                                        v-model="value" 
-                                        tag-placeholder="Add this as new tag" 
-                                        placeholder="Search or add a tag" 
-                                        label="name" 
-                                        track-by="code" 
-                                        :options="options" 
-                                        :multiple="true" 
-                                        :taggable="true" 
+                                    <multiselect
+                                        v-model="value"
+                                        tag-placeholder="Add this as new tag"
+                                        placeholder="Search or add a tag"
+                                        label="name"
+                                        track-by="code"
+                                        :options="options"
+                                        :multiple="true"
+                                        :taggable="true"
                                         @tag="addTag">
                                     </multiselect>
                                 </div>
@@ -174,7 +174,7 @@
           swal('Success', this.status, 'success');
           this.reset();
         }, response => {
-            console.log(response);
+            console.log(this.project_number);
         })
       },
       engineer() {
@@ -183,8 +183,8 @@
             //   this.options = response.data;
               for(let i=0;i<response.data.length;i++){
                 //   console.log(response.data[i]);
-                  temp = { id: response.data[i].id, name: response.data[i].full_name, 
-                    code: response.data[i].id };
+                temp = { id: response.data[i].id, name: response.data[i].full_name,
+                  code: response.data[i].id };
                 this.options.push(temp);
               }
             //   this.options = temp;
