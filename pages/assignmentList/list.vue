@@ -29,7 +29,7 @@
             alls: [],
             errors: [],
             columns: ['id', 'ptl', 'project_Number', 'io_Number', 'assignment_Class', 'assignment_Title', 'status', 'created_At', 'update_At'],
-            
+
         }
     },
     mounted(){
@@ -48,12 +48,12 @@
             console.log(this.alls);
           })
     },
-        getBadge (status) {
-        return status === 'On Progress' ? 'success'
-          : status === 'Close' ? 'secondary'
-            : status === 'Waiting Approvement' ? 'warning'
-              : status === 'Cancel' ? 'danger' : 'primary'
-      },
+      //   getBadge (status) {
+      //   return status === 'On Progress' ? 'success'
+      //     : status === 'Close' ? 'secondary'
+      //       : status === 'Waiting Approvement' ? 'warning'
+      //         : status === 'Cancel' ? 'danger' : 'primary'
+      // },
           getBadge (status) {
           return status === 'On Progress' ? 'success'
             : status === 'Close' ? 'secondary'

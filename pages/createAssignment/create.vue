@@ -79,8 +79,6 @@
                     </multiselect>
                 </div>
             </b-form-group>
-<<<<<<< HEAD
-=======
             <!-- <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
                 <b-col>
                     <b-row>
@@ -115,7 +113,6 @@
                     </b-row>
                 </b-col>
             </b-row> -->
->>>>>>> 58622ef422445161badc290a967b3ad5970e4bfa
             <b-input-group>
                 <!-- <b-col cols="6"></b-col> -->
                 <b-col cols="12" class="text-right" style="padding: 10px">
