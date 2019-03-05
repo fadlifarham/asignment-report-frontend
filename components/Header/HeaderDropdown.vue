@@ -3,16 +3,24 @@
         <template slot="button-content">
           <img src="~static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
         </template>
-        <b-dropdown-header tag="div" class="text-center"><strong>{{username}}</strong>
+        <b-dropdown-header tag="div" class="text-center"><strong>{{first_name}}{{last_name}}</strong>
         <br>{{position}}
         </b-dropdown-header>
         <!-- <b-dropdown-header tag="div" class="text-center"><strong>{{username}}</strong></b-dropdown-header> -->
+<<<<<<< HEAD
+        <b-dropdown-item to="editProfil"><i class="fa fa-user"></i> Edit Profile</b-dropdown-item>
+        <b-dropdown-item><i class="fa fa-tasks"></i> My Performance</b-dropdown-item>
+        <b-dropdown-divider></b-dropdown-divider>
+        <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>
+      </b-nav-item-dropdown>   
+=======
         <b-dropdown-item class="btn btn-success btn-xs"><i class="fa fa-user" ></i> Edit Profile<modal name="hello-world">hello, world!</modal></b-dropdown-item>
         <b-dropdown-item><i class="fa fa-tasks"></i> My Performance</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>
         <!-- <div> -->
       </b-nav-item-dropdown>
+>>>>>>> ce4ece8756bb77424a85b58c4e572c2148ca1e04
 </template>
 <script>
 
@@ -27,6 +35,7 @@
       image: "",
       role_id: "",
       position: "",
+      // update: false,
     }),
 
     mounted() {
