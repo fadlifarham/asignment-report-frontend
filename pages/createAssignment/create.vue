@@ -26,7 +26,15 @@
                 label-for="assignmentClass"
                 :label-cols="4"
                 :horizontal="true">
-                <b-form-input v-model="assignment_class" id="assignmentClass" type="text"></b-form-input>
+                <b-form-select id="assignment_class"
+                    :plain="true"
+                    :options="['Testcomm','Survey','Installation','QC','BERTest','Supervise Vendor','Migration','Integration',
+                    'Integration','Technical Meeting','Sales Activity','Asplan Drawing','Administration']"
+                    value="Assignment Class"
+                    style="border-radius: 5px"
+                    v-model="assignment_class">
+                </b-form-select>
+                <!-- <b-form-input v-model="assignment_class" id="assignmentClass" type="text"></b-form-input> -->
             </b-form-group>
             <b-form-group
                 label="Assignment Title"
@@ -143,6 +151,11 @@
     data () {
         return {
             users: '',
+            project_number: '',
+            io_number: '',
+            assignment_class: '',
+            assignment_tittle: '',
+            assignment_desc: '',
             errors: [],
             value: [],
             options: [
@@ -162,7 +175,7 @@
           project_number: this.project_number,
           io_number: this.io_number,
           assignment_class: this.assignment_class,
-          assignment_tittle: this.assignment_title,
+          assignment_tittle: this.assignment_tittle,
           assignment_desc: this.assignment_desc,
           engineer: this.value,
         //   sum_engineer: 1,
@@ -195,7 +208,7 @@
       reset() {
         this.project_number = "";
         this.io_number = "";
-        this.assignment_title = "";
+        this.assignment_tittle = "";
         this.assignment_class = "";
         this.assignment_desc = ""
       },

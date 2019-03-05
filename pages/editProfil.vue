@@ -9,7 +9,9 @@
     <b-col>
         <div class="animated fadeIn" style="padding: 0px">
             <br><br>
-            <center><img :src="picture" class="rounded-circle" alt="Cinque Terre" width="204" height="136"></center>
+            <center><img :src="picture" class="rounded-circle" alt="Cinque Terre" width="204" height="136">
+            <!-- <button v-b-modal.picture class="btn btn-default" @click="showPicture()"><i class="fa fa-pencil" style="font-size: 24px; color: blue"></i></button> -->
+            </center>  
             <br><br>
             <b-card style="border-radius: 8px" >
              <b-row style="width: 100%; margin-center: auto">
@@ -46,8 +48,8 @@
                         </b-row>
                     </b-col>
              </b-row>
-            </b-card>
-            <b-col style="padding: 10px" class="text-right">
+             <br><br>
+             <b-col style="padding: 10px" class="text-center">
                 <b-button v-b-modal.update size="md" variant="primary" style="margin: 10px" @click="showItem()">
                     Edit
                 </b-button>
@@ -55,12 +57,14 @@
                     Kembali
                 </b-button>
             </b-col>
+            </b-card>
+            
         </div>
     </b-col>
     <b-col lg="2"></b-col>
   </b-row>
   <div>
-    <b-modal id="update" size="lg" title="Edit Data Toko" @ok="editProfile()">
+    <b-modal id="update" size="lg" title="Edit Profile" @ok="editProfile()">
         <form @submit.prevent ="editProfile()">
             <div class="form-group">
                 <label>Nama Lengkap :</label>
@@ -94,6 +98,17 @@
             <div class="form-group">
                 <label>Konfirmasi Password :</label>
                 <input type="password" placeholder="Konfirmasi Password" class="form-control">
+            </div>
+        </form>
+    </b-modal>
+  </div>
+  <div>
+    <b-modal id="picture" size="lg" title="Edit Photo Profile" @ok="editPicture()">
+        <form @submit.prevent ="editPicture()">
+            <div class="form-group">
+                <label for="picture">Logo :</label>
+                    <b-form-file id="picture" :plain="true" v-model="picture" @change="onFileSelected"></b-form-file><br>
+                    <img :src="picture" width="100" height="100">
             </div>
         </form>
     </b-modal>
@@ -164,6 +179,33 @@ import VModal from 'vue-js-modal'
                 // console.log(this.status);
                 swal('Success', this.status, 'success');
                 this.showItem();
+            })
+        },
+        showPicture() {
+            this.edits = true;
+            this.$axios.get('/profile')
+            .then(response => {
+                this.picture = response.data.picture;
+                // console.log(response.data.profiles);
+            })
+            .catch(e => {
+                (error) => console.log(error)
+            });
+        },
+        onFileSelected(event) {
+            this.selectedFile = event.target.files[0]
+        },
+        editPicture() {
+            const fd = new FormData();
+            fd.append('_method', 'POST');
+            if(this.selectedFile) {
+                fd.append('picture', this.selectedFile, this.selectedFile.name);
+            }
+            his.$axios.post('/profile', fd)
+            .then(response => {
+                 this.status = 'Update Photo Profile Success!';
+                // console.log(this.status);
+                swal('Success', this.status, 'success');
             })
         },
     },
