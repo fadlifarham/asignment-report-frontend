@@ -1,36 +1,38 @@
 <template>
   <b-row>
-    <b-col lg="6">
-        <div class="animated fadeIn" style="padding: 0px">
-            <b-card style="border-radius: 3px">
-                <b-row style="width: 100%; margin-left: auto; margin-right: auto">
-                    <b-col v-for="list in lists" :key="list.id">
-                        <b-row style="padding: 2px"><strong>{{list.assignment.assignment_class}}</strong></b-row><br>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">PTL  </b-col>
-                            <b-col sm="0">:</b-col>
-                            <b-col sm="7">{{list.assignment.ptl.full_name}}</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Assignment Title</b-col>
-                            <b-col sm="0">:</b-col>
-                            <b-col sm="7">{{list.assignment.assignment_tittle}}</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Assignment Desc</b-col>
-                            <b-col sm="0">:</b-col>
-                            <b-col sm="7">{{list.assignment.assignment_desc}}</b-col>
-                        </b-row>
-                        <b-col style="padding: 10px" class="text-right">
-                            <b-button :to="'/report/submitReport/' + list.assignment_id" size="sm" variant="primary" style="margin: 10px">
-                              <!-- <router-link :to="'/report/submitReport/' + list.assignment_id" > -->
-                                See More
-                              <!-- </router-link> -->
-                            </b-button>
+    <b-col lg="12">
+        <div v-for="list in lists" :key="list.id" class="animated fadeIn" style="padding: 0px">
+            <b-col sm="6">
+                <b-card style="border-radius: 3px">
+                    <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                        <b-col>
+                            <b-row style="padding: 2px"><strong>{{list.assignment.assignment_class}}</strong></b-row><br>
+                            <b-row style="padding: 2px">
+                                <b-col sm="4">PTL  </b-col>
+                                <b-col sm="0">:</b-col>
+                                <b-col sm="7">{{list.assignment.ptl.full_name}}</b-col>
+                            </b-row>
+                            <b-row style="padding: 2px">
+                                <b-col sm="4">Assignment Title</b-col>
+                                <b-col sm="0">:</b-col>
+                                <b-col sm="7">{{list.assignment.assignment_tittle}}</b-col>
+                            </b-row>
+                            <b-row style="padding: 2px">
+                                <b-col sm="4">Assignment Desc</b-col>
+                                <b-col sm="0">:</b-col>
+                                <b-col sm="7">{{list.assignment.assignment_desc}}</b-col>
+                            </b-row>
+                            <b-col style="padding: 10px" class="text-right">
+                                <b-button :to="'/report/submitReport/' + list.assignment_id" size="sm" variant="primary" style="margin: 10px">
+                                <!-- <router-link :to="'/report/submitReport/' + list.assignment_id" > -->
+                                    See More
+                                <!-- </router-link> -->
+                                </b-button>
+                            </b-col>
                         </b-col>
-                    </b-col>
-                </b-row>
-            </b-card>
+                    </b-row>
+                </b-card>
+            </b-col>
         </div>
     </b-col>
   </b-row>

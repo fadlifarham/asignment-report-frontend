@@ -9,23 +9,30 @@
         >
           <table class="table table--middle">
             <tr v-for="recent in recents" :key="recent.id">
-              {{ recent.user.full_name }} is created {{ recent.assignment.assignment_tittle }} at {{ recent.created_at }}
+              <strong>{{ recent.user.full_name }}</strong> is created <strong>{{ recent.assignment.assignment_tittle }}</strong> at <strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong>
             </tr>
           </table>
         </b-card-body>
       </b-card>
     <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Idle Team This Day</h5>
-    <b-card style="width: 100%; height: 300px">
-      <table class="table table--middle">
-        <tr v-for="idle in idles" :key="idle.id">
-          Engineer {{ idle.full_name }}
-        </tr>
-      </table>
-    </b-card>
+    <b-card no-body style="width: 100%; height: 300px">
+        <b-card-body
+          id="nav-scroller"
+          ref="content"
+          style="position:relative; height:300px; overflow-y:scroll;"
+        >
+          <table class="table table--middle">
+            <tr v-for="idle in idles" :key="idle.id">
+              {{ idle.full_name }}
+            </tr>
+          </table>
+        </b-card-body>
+      </b-card>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import CardLine1ChartExample from '~/components/dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from '~/components/dashboard/CardLine2ChartExample'
 import CardLine3ChartExample from '~/components/dashboard/CardLine3ChartExample'
@@ -34,6 +41,8 @@ import MainChartExample from '~/components/dashboard/MainChartExample'
 import SocialBoxChartExample from '~/components/dashboard/SocialBoxChartExample'
 import CalloutChartExample from '~/components/dashboard/CalloutChartExample'
 import { Callout } from '~/components/'
+
+Vue.use(require('vue-moment'));
 
 
 export default {
