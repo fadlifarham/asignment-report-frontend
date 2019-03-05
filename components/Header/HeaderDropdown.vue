@@ -7,14 +7,17 @@
         <br>{{position}}
         </b-dropdown-header>
         <!-- <b-dropdown-header tag="div" class="text-center"><strong>{{username}}</strong></b-dropdown-header> -->
-        <b-dropdown-item to="/editProfil"><i class="fa fa-user" ></i> Edit Profile</b-dropdown-item>
+        <b-dropdown-item class="btn btn-success btn-xs"><i class="fa fa-user" ></i> Edit Profile<modal name="hello-world">hello, world!</modal></b-dropdown-item>
         <b-dropdown-item><i class="fa fa-tasks"></i> My Performance</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>
+        <div>
       </b-nav-item-dropdown>
 </template>
-
 <script>
+import VModal from 'vue-js-modal'
+ 
+Vue.use(VModal)
   export default {
     name: 'header-dropdown',
     data: () => ({
@@ -40,7 +43,12 @@
           }
         });
       },
-
+      show () {
+        this.$modal.show('hello-world');
+      },
+      hide () {
+        this.$modal.hide('hello-world');
+      },
       getUser() {
         this.$axios.get('/profile').then( response => {
           this.image = response.data.picture;

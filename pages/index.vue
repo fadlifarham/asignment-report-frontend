@@ -7,11 +7,11 @@
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;"
         >
-          <c-table fixed bordered>
-            <b-row v-for="recent in recents" :key="recent.id" style="padding: 3px">
+          <table class="table table--middle">
+            <tr v-for="recent in recents" :key="recent.id">
               {{ recent.user.full_name }} is created {{ recent.assignment.assignment_tittle }} at {{ recent.created_at }}
-            </b-row>
-          </c-table>
+            </tr>
+          </table>
         </b-card-body>
       </b-card>
     <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Idle Team This Day</h5>
