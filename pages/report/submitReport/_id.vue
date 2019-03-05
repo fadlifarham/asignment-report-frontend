@@ -338,6 +338,7 @@ import moment from 'moment'
             formData.append('other', this.file);
 
             this.$axios.post('/ar/submit', {
+                assignment_id: this.assignment_id,
                 assignment_type: this.assignment_type, //1
                 // project_number: this.project_number, //2
                 // io_number: this.io_number, //3
