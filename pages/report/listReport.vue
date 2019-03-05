@@ -1,10 +1,8 @@
 <template>
   <b-row>
-    <b-col lg="12">
         <div v-for="list in lists" :key="list.id" class="animated fadeIn" style="padding: 0px">
-            <b-col lg="6">
-                <b-card style="border-radius: 3px">
-                    <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+            <b-col lg="12" sm="6">
+                <b-card style="width: 525px">
                         <b-col>
                             <b-row style="padding: 2px"><strong>{{list.assignment.assignment_class}}</strong></b-row><br>
                             <b-row style="padding: 2px">
@@ -30,11 +28,9 @@
                                 </b-button>
                             </b-col>
                         </b-col>
-                    </b-row>
                 </b-card>
             </b-col>
         </div>
-    </b-col>
   </b-row>
 </template>
 <script>

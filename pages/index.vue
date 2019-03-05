@@ -7,11 +7,17 @@
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;"
         >
-          <table class="table table--middle">
-            <tr v-for="recent in recents" :key="recent.id">
-              <strong>{{ recent.user.full_name }}</strong> is created <strong>{{ recent.assignment.assignment_tittle }}</strong> at <strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong>
-            </tr>
-          </table>
+          <!-- <b-table :small="small" responsive="sm" :items="recents">
+          </b-table> -->
+          <c-table small>
+            <b-row v-for="recent in recents" :key="recent.id">
+              <b-col sm="2"><strong>{{ recent.user.full_name }}</strong></b-col>
+              <b-col sm="2">is created</b-col>
+              <b-col sm="2"><strong>{{ recent.assignment.assignment_tittle }}</strong></b-col>
+              <b-col sm="2">at</b-col>
+              <b-col sm="4"><strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong></b-col>
+            </b-row>
+          </c-table>
         </b-card-body>
       </b-card>
     <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Idle Team This Day</h5>
@@ -46,6 +52,33 @@ Vue.use(require('vue-moment'));
 
 
 export default {
+  name: 'c-table',
+    props: {
+      caption: {
+        type: String,
+        default: 'Table'
+      },
+      hover: {
+        type: Boolean,
+        default: false
+      },
+      striped: {
+        type: Boolean,
+        default: false
+      },
+      bordered: {
+        type: Boolean,
+        default: false
+      },
+      small: {
+        type: Boolean,
+        default: false
+      },
+      fixed: {
+        type: Boolean,
+        default: false
+      }
+    },
   data :() => ({
     recents: [],
     idles: [],
@@ -56,6 +89,16 @@ export default {
   },
   methods: {
     readRecent() {
+      // var temp;
+      //     this.$axios.get('history/recent').then(response => {
+      //         for(let i=0;i<response.data.length;i++){
+      //             temp = { ID: response.data[i].id, user: response.data[i].user.full_name, project_Number: response.data[i].project_number,
+      //             IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
+      //             status: response.data[i].status, created_At: response.data[i].created_at, update_At: response.data[i].updated_at };
+      //           this.alls.push(temp);
+      //         }
+      //       console.log(this.alls);
+      // })
       this.$axios.get('history/recent').then(response => {
         this.recents = response.data;
         console.log(this.recents);
