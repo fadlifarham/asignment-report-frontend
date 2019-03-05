@@ -14,11 +14,8 @@
       </b-nav-item-dropdown>
 </template>
 <script>
-<<<<<<< HEAD
-=======
 
 // import VModal from 'vue-js-modal'
->>>>>>> 58622ef422445161badc290a967b3ad5970e4bfa
   export default {
     name: 'header-dropdown',
     data: () => ({
