@@ -15,7 +15,7 @@
               <b-col sm="2">is created</b-col>
               <b-col sm="2"><strong>{{ recent.assignment.assignment_tittle }}</strong></b-col>
               <b-col sm="2">at</b-col>
-              <!-- <b-col sm="4"><strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong></b-col> -->
+              <b-col sm="4"><strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong></b-col>
             </b-row>
           </c-table>
         </b-card-body>
@@ -39,46 +39,46 @@
 
 <script>
 import Vue from 'vue';
-import CardLine1ChartExample from '~/components/dashboard/CardLine1ChartExample'
-import CardLine2ChartExample from '~/components/dashboard/CardLine2ChartExample'
-import CardLine3ChartExample from '~/components/dashboard/CardLine3ChartExample'
-import CardBarChartExample from '~/components/dashboard/CardBarChartExample'
-import MainChartExample from '~/components/dashboard/MainChartExample'
-import SocialBoxChartExample from '~/components/dashboard/SocialBoxChartExample'
-import CalloutChartExample from '~/components/dashboard/CalloutChartExample'
-import { Callout } from '~/components/'
+// import CardLine1ChartExample from '~/components/dashboard/CardLine1ChartExample'
+// import CardLine2ChartExample from '~/components/dashboard/CardLine2ChartExample'
+// import CardLine3ChartExample from '~/components/dashboard/CardLine3ChartExample'
+// import CardBarChartExample from '~/components/dashboard/CardBarChartExample'
+// import MainChartExample from '~/components/dashboard/MainChartExample'
+// import SocialBoxChartExample from '~/components/dashboard/SocialBoxChartExample'
+// import CalloutChartExample from '~/components/dashboard/CalloutChartExample'
+// import { Callout } from '~/components/'
 
 Vue.use(require('vue-moment'));
 
 
 export default {
-  name: 'c-table',
-    props: {
-      caption: {
-        type: String,
-        default: 'Table'
-      },
-      hover: {
-        type: Boolean,
-        default: false
-      },
-      striped: {
-        type: Boolean,
-        default: false
-      },
-      bordered: {
-        type: Boolean,
-        default: false
-      },
-      small: {
-        type: Boolean,
-        default: false
-      },
-      fixed: {
-        type: Boolean,
-        default: false
-      }
-    },
+  // name: 'c-table',
+  //   props: {
+  //     caption: {
+  //       type: String,
+  //       default: 'Table'
+  //     },
+  //     hover: {
+  //       type: Boolean,
+  //       default: false
+  //     },
+  //     striped: {
+  //       type: Boolean,
+  //       default: false
+  //     },
+  //     bordered: {
+  //       type: Boolean,
+  //       default: false
+  //     },
+  //     small: {
+  //       type: Boolean,
+  //       default: false
+  //     },
+  //     fixed: {
+  //       type: Boolean,
+  //       default: false
+  //     }
+  //   },
   data :() => ({
     recents: [],
     idles: [],
