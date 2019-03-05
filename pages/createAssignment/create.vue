@@ -53,8 +53,8 @@
                         v-bind:increment="0.5"
                         v-bind:max-rating="5"
                         inactive-color="#000"
-                        active-color="#cc1166"
-                        v-bind:star-size="90"
+                        active-color="orange"
+                        v-bind:star-size="50"
                         @rating-selected ="setRating"
                         >
                         </star-rating>
@@ -71,7 +71,7 @@
                         tag-placeholder="Add this as new tag"
                         placeholder="Search or add a tag"
                         label="name"
-                        track-by="code"
+                        track-by="id"
                         :options="options"
                         :multiple="true"
                         :taggable="true"
@@ -174,17 +174,18 @@
           swal('Success', this.status, 'success');
           this.reset();
         }, response => {
-            console.log(this.project_number);
+            this.status = 'Please Fill In All Data';
+            console.log(this.status);
+            swal('Failed', this.status, 'warning');
         })
       },
       engineer() {
           var temp;
           this.$axios.get('/engineers').then(response => {
             //   this.options = response.data;
-              for(let i=0;i<response.data.length;i++){
+              for(let i = 0; i < response.data.length; i++){
                 //   console.log(response.data[i]);
-                temp = { id: response.data[i].id, name: response.data[i].full_name,
-                  code: response.data[i].id };
+                temp = { id: response.data[i].id, name: response.data[i].full_name};
                 this.options.push(temp);
               }
             //   this.options = temp;

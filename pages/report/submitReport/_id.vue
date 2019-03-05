@@ -246,19 +246,19 @@
                     <b-row style="padding: 6px"><strong>Attachment</strong></b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">BAI</b-col>
-                        <b-col sm="5"><b-form-file id="bai" :plain="true" v-model="bai" @change="onFileSelected"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="bai" :plain="true" v-model="bai" @change="baiHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">TNC</b-col>
-                        <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="onFileSelected"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photos" @change="onFileSelected"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photos" @change="photoHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Other</b-col>
-                        <b-col sm="5"><b-form-file id="other" :plain="true" @change="onFileSelected"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="other" :plain="true" ref="other" @change="handleFileOther()"></b-form-file></b-col>
                     </b-row>
                 </b-col>
             </b-row>
@@ -310,9 +310,9 @@ import moment from 'moment'
             type_sppd: null,
             brief_work: null,
             result: null,
-            bai: null,
-            tnc: null,
-            photos: null,
+            bai: '',
+            tnc: '',
+            photos: '',
             other: 'null',
             errors: [],
         }
@@ -331,6 +331,12 @@ import moment from 'moment'
           })
         },
         submit(){
+            let formData = new FormData();
+            formData.append('bai', this.file);
+            formData.append('tnc', this.file);
+            formData.append('photos', this.file);
+            formData.append('other', this.file);
+
             this.$axios.post('/ar/submit', {
                 assignment_type: this.assignment_type, //1
                 // project_number: this.project_number, //2
@@ -353,7 +359,7 @@ import moment from 'moment'
                 tnc: this.tnc, //19
                 photos: this.photos, //20
                 other: this.other, //21
-                
+
                 }).then(response => {
                     // this.assignment.push(response.data.task);
                     this.status = 'Submit Assignment Report Success!';
@@ -361,18 +367,76 @@ import moment from 'moment'
                     swal('Success', this.status, 'success');
                     this.reset();
                 }, response => {
-                    console.log("ass type" + this.assignment_type);
-                    console.log("company" + this.company);
+                    console.log("ass type " + this.assignment_type);
+                    console.log("company " + this.company);
                     console.log("start " + this.time_start);
-                    console.log("tanggal" + this.date_work);
-                    console.log("file" + this.bai);
+                    console.log("tanggal " + this.date_work);
+                    console.log("bai " + this.bai);
                     // console.log(response);
                     // console.log(this.value);
             })
         },
+        handleFileBai(){
+            this.bai = this.$refs.bai.files[0];
+        },
+        handleFileTnc(){
+            this.tnc = this.$refs.tnc.files[0];
+        },
+        handleFilePhotos(){
+            this.photos = this.$refs.photos.files[0];
+        },
+        handleFileOther(){
+            this.other = this.$refs.other.files[0];
+        },
         onFileSelected(event) {
             this.selectedFile = event.target.files[0]
         },
+
+        baiHandler(e) {
+          let files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+            return;
+          this.createBai(files[0]);
+        },
+
+        createBai(file) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            this.bai = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        },
+
+        tncHandler(e) {
+          let files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+            return;
+          this.createTnc(files[0]);
+        },
+
+        createTnc(file) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            this.tnc = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        },
+
+        photoHandler(e) {
+          let files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+            return;
+          this.createPhoto(files[0]);
+        },
+
+        createPhoto(file) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            this.photos = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        },
+
         reset() {
             this.assignment_type = ""; //1
             // this.project_number = ""; //2
