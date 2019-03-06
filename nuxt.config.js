@@ -13,7 +13,7 @@ module.exports = {
   // baseURL: "https://still-spire-77258.herokuapp.com/api/v1",
 
   // baseURL: "http://localhost:8000/api/",
-   baseURL: "http://192.168.10.178:8000/api",
+   baseURL: "http://10.14.36.87:8000/api",
   // baseURL: "http://10.14.36.33:8000/api",
   credentials: false
  },
