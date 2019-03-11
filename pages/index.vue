@@ -1,6 +1,6 @@
 <template>
   <div class="animated fadeIn">
-    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Recent Activity</h5> 
+    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Recent Activity</h5>
       <b-card no-body style="width: 100%; height: 300px">
         <b-card-body
           id="nav-scroller"

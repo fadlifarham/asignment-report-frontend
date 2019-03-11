@@ -3,10 +3,10 @@
     <b-col lg="12">
         <div>
           <b-input-group>
-            <b-col cols="4">
+            <b-col sm="4">
             <b-button variant="primary" to="/createAssignment/create" class="form-actions" > + Create New Assignment</b-button>
             </b-col>
-            <b-col cols="8">
+            <b-col sm="8">
               <b-input-group>
                 <b-form-input type="text" placeholder="Search"></b-form-input>
                 <b-input-group-prepend>
@@ -18,6 +18,7 @@
             <br><br>
         </div>
     </b-col>
+    <b-col lg="12">
     <div class="animated fadeIn">
     <b-card style="width: 100%">
     <table class="table table-striped table--middle table-responsive">
@@ -27,6 +28,7 @@
               <th>Assignment ID</th>
               <th>Project Number</th>
               <th>IO Number</th>
+              <th>Assignment Class</th>
               <th>Assignment Title</th>
               <!-- <th>Team</th> -->
               <!-- <th>Assignment Description</th> -->
@@ -39,6 +41,7 @@
               <td align="center">{{ ptl.id}}</td>
               <td>{{ ptl.project_number}}</td>
               <td>{{ ptl.io_number}}</td>
+              <td>{{ ptl.assignment_class}}</td>
               <td>{{ ptl.assignment_tittle}}</td>
               <!-- <td>{{ ptl.team}}</td> -->
               <!-- <td>{{ ptl.assignment_desc}}</td> -->
@@ -56,6 +59,7 @@
         </nav>
         </b-card>
         </div>
+    </b-col>
   </b-row>
 </template>
 <script>

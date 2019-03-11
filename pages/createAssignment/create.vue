@@ -26,7 +26,15 @@
                 label-for="assignmentClass"
                 :label-cols="4"
                 :horizontal="true">
-                <b-form-input v-model="assignment_class" id="assignmentClass" type="text"></b-form-input>
+                <b-form-select id="assignment_class"
+                    :plain="true"
+                    :options="['Testcomm','Survey','Installation','QC','BERTest','Supervise Vendor','Migration','Integration',
+                    'Integration','Technical Meeting','Sales Activity','Asplan Drawing','Administration']"
+                    value="Assignment Class"
+                    style="border-radius: 5px"
+                    v-model="assignment_class">
+                </b-form-select>
+                <!-- <b-form-input v-model="assignment_class" id="assignmentClass" type="text"></b-form-input> -->
             </b-form-group>
             <b-form-group
                 label="Assignment Title"
@@ -53,8 +61,8 @@
                         v-bind:increment="0.5"
                         v-bind:max-rating="5"
                         inactive-color="#000"
-                        active-color="#cc1166"
-                        v-bind:star-size="90"
+                        active-color="orange"
+                        v-bind:star-size="50"
                         @rating-selected ="setRating"
                         >
                         </star-rating>
@@ -71,7 +79,7 @@
                         tag-placeholder="Add this as new tag"
                         placeholder="Search or add a tag"
                         label="name"
-                        track-by="code"
+                        track-by="id"
                         :options="options"
                         :multiple="true"
                         :taggable="true"
@@ -143,6 +151,11 @@
     data () {
         return {
             users: '',
+            project_number: '',
+            io_number: '',
+            assignment_class: '',
+            assignment_tittle: '',
+            assignment_desc: '',
             errors: [],
             value: [],
             options: [
@@ -162,7 +175,7 @@
           project_number: this.project_number,
           io_number: this.io_number,
           assignment_class: this.assignment_class,
-          assignment_tittle: this.assignment_title,
+          assignment_tittle: this.assignment_tittle,
           assignment_desc: this.assignment_desc,
           engineer: this.value,
         //   sum_engineer: 1,
@@ -174,17 +187,18 @@
           swal('Success', this.status, 'success');
           this.reset();
         }, response => {
-            console.log(this.project_number);
+            this.status = 'Please Fill In All Data';
+            console.log(this.status);
+            swal('Failed', this.status, 'warning');
         })
       },
       engineer() {
           var temp;
           this.$axios.get('/engineers').then(response => {
             //   this.options = response.data;
-              for(let i=0;i<response.data.length;i++){
+              for(let i = 0; i < response.data.length; i++){
                 //   console.log(response.data[i]);
-                temp = { id: response.data[i].id, name: response.data[i].full_name,
-                  code: response.data[i].id };
+                temp = { id: response.data[i].id, name: response.data[i].full_name};
                 this.options.push(temp);
               }
             //   this.options = temp;
@@ -194,7 +208,7 @@
       reset() {
         this.project_number = "";
         this.io_number = "";
-        this.assignment_title = "";
+        this.assignment_tittle = "";
         this.assignment_class = "";
         this.assignment_desc = ""
       },
