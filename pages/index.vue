@@ -12,17 +12,10 @@
           <c-table small>
             <b-row v-for="recent in recents" :key="recent.id">
               <b-col sm="2"><strong>{{ recent.user.full_name }}</strong></b-col>
-<<<<<<< HEAD
-              <b-col sm="2">is created</b-col>
-              <b-col sm="2"><strong>{{ recent.assignment.assignment_tittle }}</strong></b-col>
-              <b-col sm="2">at</b-col>
-              <b-col sm="4"><strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong></b-col>
-=======
-              <b-col sm="2">{{ recent.action }}</b-col>
+              <b-col sm="2"> {{ recent.action }} </b-col>
               <b-col sm="4"><strong>{{ recent.assignment.assignment_tittle }}</strong></b-col>
               <!-- <b-col sm="0">at</b-col> -->
               <b-col sm="4">at <strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong></b-col>
->>>>>>> master
             </b-row>
           </c-table>
         </b-card-body>
