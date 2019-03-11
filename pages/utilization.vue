@@ -29,7 +29,7 @@
                   <th>Work Load</th>
                   <th>Work Quality</th>
                   <th>SPPD</th>
-                  <th>Compile Assignment</th>
+                  <th>Complite Assignment</th>
                   <th>Aksi</th>
                 </tr>
                 <!-- <tr v-for="user in users" :key="user.id">
