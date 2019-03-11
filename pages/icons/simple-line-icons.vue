@@ -654,7 +654,7 @@
           <b-col cols="6" sm="4" md="3">
             <i class="icon-symbol-male icons font-2xl d-block mt-4"></i>icon-symbol-male
           </b-col>
-
+          
           <b-col cols="6" sm="4" md="3">
             <i class="icon-target icons font-2xl d-block mt-4"></i>icon-target
           </b-col>

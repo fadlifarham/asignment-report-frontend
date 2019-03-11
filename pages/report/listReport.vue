@@ -6,9 +6,9 @@
                         <b-col>
                             <b-row style="padding: 2px"><strong>{{list.assignment.assignment_class}}</strong></b-row><br>
                             <b-row style="padding: 2px">
-                                <b-col cols="4">PTL  </b-col>
+                                <b-col cols="4">Assignment ID  </b-col>
                                 <b-col cols="0">:</b-col>
-                                <b-col cols="7">{{list.assignment.ptl.full_name}}</b-col>
+                                <b-col cols="7">{{list.assignment_id}}</b-col>
                             </b-row>
                             <b-row style="padding: 2px">
                                 <b-col cols="4">Assignment Title</b-col>

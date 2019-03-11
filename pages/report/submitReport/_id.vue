@@ -246,19 +246,19 @@
                     <b-row style="padding: 6px"><strong>Attachment</strong></b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">BAI</b-col>
-                        <b-col sm="5"><b-form-file id="bai" :plain="true" v-model="bai" @change="baiHandler"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="bai" accept=".pdf" :plain="true" v-model="bai" @change="baiHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">TNC</b-col>
-                        <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file accept=".pdf" id="tnc" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                        <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photos" @change="photoHandler"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="photo"  accept=".jpg" :plain="true" v-model="photos" @change="photoHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Other</b-col>
-                        <b-col sm="5"><b-form-file id="other" :plain="true" ref="other" @change="handleFileOther()"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="other" v-model="other" :plain="true" ref="other" @change="otherHandler"></b-form-file></b-col>
                     </b-row>
                 </b-col>
             </b-row>
@@ -313,7 +313,7 @@ import moment from 'moment'
             bai: '',
             tnc: '',
             photos: '',
-            other: 'null',
+            other: '',
             errors: [],
         }
     },
@@ -324,7 +324,7 @@ import moment from 'moment'
         getAssignment() {
           console.log("id : " + this.$route.params.id);
           this.$axios.get('/ar/create/' + this.$route.params.id).then( response => {
-            console.log(response.data);
+            // console.log(response.data);
             this.assignment_id = response.data.id;
             this.assignment_class = response.data.assignment_class;
             this.assignment_tittle = response.data.assignment_tittle;
@@ -368,11 +368,11 @@ import moment from 'moment'
                     swal('Success', this.status, 'success');
                     this.reset();
                 }, response => {
-                    console.log("ass type " + this.assignment_type);
-                    console.log("company " + this.company);
-                    console.log("start " + this.time_start);
-                    console.log("tanggal " + this.date_work);
-                    console.log("bai " + this.bai);
+                    console.log("BAI \t: " + this.bai);
+                    console.log("TnC \t: " + this.tnc);
+                    console.log("Photo \t: " + this.photos);
+                    console.log("Others \t: " + this.other);
+
                     // console.log(response);
                     // console.log(this.value);
             })
@@ -434,6 +434,21 @@ import moment from 'moment'
           let reader = new FileReader();
           reader.onload = (e) => {
             this.photos = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        },
+
+        otherHandler(e) {
+          let files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+            return;
+          this.createOther(files[0]);
+        },
+
+        createOther(file) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            this.other = e.target.result;
           };
           reader.readAsDataURL(file);
         },
