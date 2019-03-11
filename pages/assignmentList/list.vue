@@ -10,7 +10,7 @@
           <div class="card" style="radius: 3px">
             <div class="card-body">
               <div id="people">
-                <v-client-table :data="alls" :columns="columns" align="center"></v-client-table>
+                <v-client-table :data="alls" :columns="columns" :options="options"></v-client-table>
               </div>
               <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
             </div>
@@ -28,31 +28,33 @@
         return {
             alls: [],
             errors: [],
-            // columns: ['id', 'name', 'age'],
-            // tableData: [
-            //     { id: 1, name: "John", age: "20" },
-            //     { id: 2, name: "Jane", age: "24" },
-            //     { id: 3, name: "Susan", age: "16" },
-            //     { id: 4, name: "Chris", age: "55" },
-            //     { id: 5, name: "Dan", age: "40" },
-            //     { id: 6, name: "John", age: "20" },
-            //     { id: 7, name: "Jane", age: "24" },
-            //     { id: 8, name: "Susan", age: "16" },
-            //     { id: 9, name: "Chris", age: "55" },
-            //     { id: 10, name: "Dan", age: "40" },
-            //     { id: 11, name: "John", age: "20" },
-            //     { id: 12, name: "Jane", age: "24" },
-            //     { id: 13, name: "Susan", age: "16" },
-            //     { id: 14, name: "Chris", age: "55" },
-            //     { id: 15, name: "Dan", age: "40" },
-            //     { id: 16, name: "John", age: "20" },
-            //     { id: 17, name: "Jane", age: "24" },
-            //     { id: 18, name: "Susan", age: "16" },
-            //     { id: 19, name: "Chris", age: "55" },
-            //     { id: 20, name: "Dan", age: "40" }
-            // ],
-            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_desc', 'status', 'created_At', 'update_At'],
-            
+            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'status', 'created_At', 'update_At'],
+            options: {
+                filterByColumn: true,
+                listColumns: {
+                  // name: [{
+                  //   ID: 'sample2',
+                  //   text: 'Spy'
+                  // }]
+                },
+                headings: {
+                  ID: 'ID',
+                  PTL: 'PTL',
+                  project_Number: 'project_Number',
+                  IO_Number: 'IO_Number',
+                  assignment_Class: 'assignment_Class',
+                  assignment_Title: 'assignment_Title',
+                  status: 'status',
+                  created_At: 'created_At',
+                  update_At: 'update_At'
+                },
+                sortable: [
+                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'status', 'created_At', 'update_At'
+                ],
+                texts: {
+                  filterPlaceholder: 'filter'
+                }
+            }
         }
     },
     mounted(){
