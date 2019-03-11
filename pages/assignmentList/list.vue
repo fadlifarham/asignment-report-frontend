@@ -51,7 +51,7 @@
             //     { id: 19, name: "Chris", age: "55" },
             //     { id: 20, name: "Dan", age: "40" }
             // ],
-            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'status', 'created_At', 'update_At'],
+            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_desc', 'status', 'created_At', 'update_At'],
             
         }
     },
@@ -65,7 +65,7 @@
               for(let i=0;i<response.data.length;i++){
                   temp = { ID: response.data[i].id, PTL: response.data[i].ptl.full_name, project_Number: response.data[i].project_number,
                   IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
-                  status: response.data[i].status, created_At: response.data[i].created_at, update_At: response.data[i].updated_at };
+                  assignment_desc: response.data[i].assignment_desc, status: response.data[i].status, created_At: response.data[i].created_at, update_At: response.data[i].updated_at };
                 this.alls.push(temp);
               }
             console.log(this.alls);
