@@ -8,34 +8,34 @@ export default {
     {
       name: 'All Assignment',
       url: '/assignmentList/list',
-      icon: 'icon-puzzle',
+      icon: 'icon-list',
     },
     {
       name: 'Assignment',
       url: '/createAssignment',
-      icon: 'icon-puzzle',
+      icon: 'icon-paper-clip',
       children: [
         {
-          name: 'List',
+          name: 'Assignment List',
           url: '/createAssignment/listCreated',
-          icon: 'icon-puzzle'
+          icon: 'icon-list'
         },
         {
-          name: 'Create',
+          name: 'Create Assignment',
           url: '/createAssignment/create',
-          icon: 'icon-puzzle'
+          icon: 'icon-plus'
         },
       ]
     },
     {
         name: 'Assignment Report',
         url: '/report/listReport',
-        icon: 'icon-puzzle',
+        icon: 'icon-book-open',
     },
     {
       name: 'Team Utilization',
       url: '/utilization',
-      icon: 'icon-puzzle',
+      icon: 'icon-chart',
     },
     // {
     //   name: 'Form',
