@@ -1,36 +1,36 @@
 <template>
   <div class="animated fadeIn">
-    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Recent Activity</h5> 
+     
       <b-card no-body style="width: 100%; height: 300px">
+        <b-card-header>
+          <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Recent Activity</h5>
+        </b-card-header>
         <b-card-body
           id="nav-scroller"
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;"
-        >
-          <!-- <b-table :small="small" responsive="sm" :items="recents">
-          </b-table> -->
-          <c-table small>
+        > 
+          <table>
             <b-row v-for="recent in recents" :key="recent.id">
-              <b-col sm="2"><strong>{{ recent.user.full_name }}</strong></b-col>
-              <b-col sm="2">{{ recent.action }}</b-col>
-              <b-col sm="4"><strong>{{ recent.assignment.assignment_tittle }}</strong></b-col>
-              <!-- <b-col sm="0">at</b-col> -->
-              <b-col sm="4">at <strong><span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></strong></b-col>
+              <td style="margin-left: 20px; margin-bottom: 4px"><strong>{{ recent.user.full_name }}</strong> {{ recent.action }} {{ recent.assignment.assignment_tittle }} at <span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></td>
             </b-row>
-          </c-table>
+          </table>
         </b-card-body>
       </b-card>
-    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Idle Team This Day</h5>
+    
     <b-card no-body style="width: 100%; height: 300px">
+      <b-card-header>
+        <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Idle Team This Day</h5>
+      </b-card-header>
         <b-card-body
           id="nav-scroller"
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;"
         >
-          <table class="table table--middle">
-            <tr v-for="idle in idles" :key="idle.id">
-              {{ idle.full_name }}
-            </tr>
+          <table>
+            <b-row v-for="idle in idles" :key="idle.id">
+              <td style="margin-left: 20px; margin-bottom: 4px">{{ idle.full_name }}</td>
+            </b-row>
           </table>
         </b-card-body>
       </b-card>
@@ -52,33 +52,6 @@ Vue.use(require('vue-moment'));
 
 
 export default {
-  // name: 'c-table',
-  //   props: {
-  //     caption: {
-  //       type: String,
-  //       default: 'Table'
-  //     },
-  //     hover: {
-  //       type: Boolean,
-  //       default: false
-  //     },
-  //     striped: {
-  //       type: Boolean,
-  //       default: false
-  //     },
-  //     bordered: {
-  //       type: Boolean,
-  //       default: false
-  //     },
-  //     small: {
-  //       type: Boolean,
-  //       default: false
-  //     },
-  //     fixed: {
-  //       type: Boolean,
-  //       default: false
-  //     }
-  //   },
   data :() => ({
     recents: [],
     idles: [],

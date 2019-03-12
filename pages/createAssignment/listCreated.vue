@@ -20,8 +20,11 @@
     </b-col>
     <b-col lg="12">
     <div class="animated fadeIn">
-    <b-card style="width: 100%">
-    <table class="table table-striped table--middle table-responsive">
+      <div class="card">
+        <b-card-header>
+          <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
+        </b-card-header>
+        <table class="table table-striped table--middle table-responsive">
           <thead>
             <tr align="center">
               <th>No</th>
@@ -36,6 +39,8 @@
               <th>Assignment status</th>
               <th>Action</th>
             </tr>
+          </thead>
+          <tbody>
             <tr v-for="ptl in ptls" :key="ptl.id" align="center">
               <td align="center" class="no"></td>
               <td align="center">{{ ptl.id}}</td>
@@ -43,21 +48,18 @@
               <td>{{ ptl.io_number}}</td>
               <td>{{ ptl.assignment_class}}</td>
               <td>{{ ptl.assignment_tittle}}</td>
-              <!-- <td>{{ ptl.team}}</td> -->
-              <!-- <td>{{ ptl.assignment_desc}}</td> -->
-              <!-- <td>{{ ptl.location}}</td> -->
               <td>{{ ptl.status}}</td>
               <td><button v-b-modal.update class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
                   <button v-b-modal.update class="btn btn-primary"><i class="fa fa-edit"></i></button>
                   <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></td>
             </tr>
-          </thead>
+          </tbody>
         </table>
         <br><br>
         <nav>
           <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
         </nav>
-        </b-card>
+      </div>
         </div>
     </b-col>
   </b-row>
@@ -93,6 +95,7 @@
 <style>
   table {
     counter-reset: section;
+    width: 1150px;
   }
 
   .no:before {

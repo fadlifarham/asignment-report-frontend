@@ -4,11 +4,11 @@
     <div class="app-body">
       <Sidebar :navItems="nav"/>
       <main class="main">
-        <breadcrumb :list="list"/>
         <div class="container-fluid">
           <nuxt />
         </div>
       </main>
+      <div></div>
       <!-- <AppAside/> -->
     </div>
     <AppFooter/>
@@ -26,7 +26,6 @@ export default {
     Sidebar,
     // AppAside,
     AppFooter,
-    Breadcrumb
   },
   data () {
     return {

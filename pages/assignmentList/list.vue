@@ -1,19 +1,21 @@
 <template>
   <b-row>
     <b-col lg="12">
-      <div>
-        <b-col cols="4">
-          <label><b>ASSIGNMENT LIST</b></label>
-        </b-col>
-      </div>
         <div class="animated fadeIn">
-          <div class="card" style="radius: 3px">
-            <div class="card-body">
-              <div id="people">
+          <div class="card">
+            <b-card-header>
+              <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
+            </b-card-header>
+            <b-card-body
+              id="nav-scroller"
+              ref="content"
+              style="position:relative; width: 100%; overflow-x:scroll"
+            >
+              <div id="people" style="width: 1500px">
                 <v-client-table :data="alls" :columns="columns" :options="options"></v-client-table>
               </div>
+              </b-card-body>
               <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
-            </div>
           </div>
         </div>
     </b-col>
@@ -21,14 +23,16 @@
 </template>
 <script>
   import Vue from 'vue';
+  Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
     data () {
         return {
+            name: 'people',
             alls: [],
             errors: [],
-            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'status', 'created_At', 'update_At'],
+            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Desc', 'status'],
             options: {
                 filterByColumn: true,
                 listColumns: {
@@ -44,12 +48,11 @@
                   IO_Number: 'IO_Number',
                   assignment_Class: 'assignment_Class',
                   assignment_Title: 'assignment_Title',
-                  status: 'status',
-                  created_At: 'created_At',
-                  update_At: 'update_At'
+                  assignment_Desc: 'assignment_Desc',
+                  status: 'status'
                 },
                 sortable: [
-                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'status', 'created_At', 'update_At'
+                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'status'
                 ],
                 texts: {
                   filterPlaceholder: 'filter'
@@ -67,18 +70,26 @@
               for(let i=0;i<response.data.length;i++){
                   temp = { ID: response.data[i].id, PTL: response.data[i].ptl.full_name, project_Number: response.data[i].project_number,
                   IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
-                  assignment_desc: response.data[i].assignment_desc, status: response.data[i].status, created_At: response.data[i].created_at, update_At: response.data[i].updated_at };
+                  assignment_Desc: response.data[i].assignment_desc, status: response.data[i].status};
                 this.alls.push(temp);
               }
             console.log(this.alls);
           })
-    },
+        },
           getBadge (status) {
           return status === 'On Progress' ? 'success'
             : status === 'Close' ? 'secondary'
               : status === 'Waiting Approvement' ? 'warning'
                 : status === 'Cancel' ? 'danger' : 'primary'
         },
+        scrollIntoView(evt) {
+          evt.preventDefault()
+          const href = evt.target.getAttribute('href')
+          const el = href ? document.querySelector(href) : null
+          if (el) {
+            this.$refs.content.scrollTop = el.offsetTop
+          }
+        }
       },
 
       exportToExcel() {
