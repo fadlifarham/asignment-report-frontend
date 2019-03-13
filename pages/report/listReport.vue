@@ -51,18 +51,6 @@
                 console.log(this.lists);
             })
         },
-        showReport(list){
-            this.showReports = true;
-            this.$axios.get('assignment/list/' + list.id)
-            .then(response => {
-                this.showReports = response.data;
-                console.log(response.data);
-                this.$router.push('/submitReport');
-            })
-            .catch(e => {
-                (error) => console.log(error)
-            });
-        },
     }
     }
 </script>
