@@ -6,12 +6,8 @@
             <b-card-header>
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
             </b-card-header>
-            <b-card-body
-              id="nav-scroller"
-              ref="content"
-              style="position:relative; width: 100%; overflow-x:scroll"
-            >
-              <div id="people" style="width: 1500px">
+            <b-card-body>
+              <div id="people">
                 <v-client-table :data="alls" :columns="columns" :options="options"></v-client-table>
               </div>
               </b-card-body>
@@ -36,10 +32,6 @@
             options: {
                 filterByColumn: true,
                 listColumns: {
-                  // name: [{
-                  //   ID: 'sample2',
-                  //   text: 'Spy'
-                  // }]
                 },
                 headings: {
                   ID: 'ID',
