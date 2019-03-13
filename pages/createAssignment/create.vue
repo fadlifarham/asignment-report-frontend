@@ -57,7 +57,7 @@
                 :horizontal="true">
                     <div id="app">
                         <star-rating
-                        v-model="rating"
+                        v-model="difficulty_level"
                         v-bind:increment="0.5"
                         v-bind:max-rating="5"
                         inactive-color="#000"
@@ -163,7 +163,7 @@
                 // { name: 'Javascript', code: 'js' },
                 // { name: 'Open Source', code: 'os' }
             ],
-            rating: 0
+            difficulty_level: 0
         };
     },
     mounted(){
@@ -178,6 +178,7 @@
           assignment_tittle: this.assignment_tittle,
           assignment_desc: this.assignment_desc,
           engineer: this.value,
+          difficulty_level: this.difficulty_level,
         //   sum_engineer: 1,
         //   user_id_0: 1,
         }).then(response => {
@@ -222,9 +223,9 @@
         this.value.push(tag)
         console.log(this.value);
       },
-      setRating: function(rating){
-        this.rating= rating;
-        console.log(this.rating);
+      setRating: function(difficulty_level){
+        this.difficulty_level= difficulty_level;
+        // console.log(this.rating);
       },
     },
 	}
