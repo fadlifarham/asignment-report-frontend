@@ -144,8 +144,6 @@
               label: "action",
               name: "action",
               filter: {
-                type: "simple",
-                placeholder: "action"
               },
               sort: false,
             }
@@ -190,7 +188,8 @@
               for(let i=0;i<response.data.length;i++){
                   temp = { ID: response.data[i].id, PTL_ID: response.data[i].ptl_id, project_Number: response.data[i].project_number,
                   IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
-                  assignment_Desc: response.data[i].assignment_desc, assignment_Status: response.data[i].status};
+                  assignment_Desc: response.data[i].assignment_desc, assignment_Status: response.data[i].status},
+                  <button class="btn btn-primary"><i class="fa fa-edit"></i></button>;
                 this.ptls.push(temp);
               }
             console.log(this.ptls);
