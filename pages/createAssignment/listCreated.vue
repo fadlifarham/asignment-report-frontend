@@ -17,33 +17,34 @@
           </b-input-group>
             <br><br>
         </div>
-    </b-col>
-    <b-col lg="12">
     <div class="animated fadeIn">
-      <div class="card">
+      <b-card>
         <b-card-header>
           <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
         </b-card-header>
-        <table class="table table-striped table--middle table-responsive">
+        <b-card-body>
+          <div id="demo">
+            <vue-bootstrap4-table :rows="ptls" :columns="columns" :config="config" style="width: auto">
+            </vue-bootstrap4-table>
+            <!-- <v-client-table :data="ptls" :columns="['ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status', 'action']" :options="options">
+              <a slot="action" slot-scope="props" class="fa fa-edit" :href="action(props.row.id)"></a>
+            </v-client-table> -->
+          </div>
+        <!-- <table class="table table-striped table--middle table-responsive">
           <thead>
             <tr align="center">
-              <th>No</th>
               <th>Assignment ID</th>
               <th>Project Number</th>
               <th>IO Number</th>
               <th>Assignment Class</th>
               <th>Assignment Title</th>
-              <!-- <th>Team</th> -->
-              <!-- <th>Assignment Description</th> -->
-              <!-- <th>Location</th> -->
               <th>Assignment status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="ptl in ptls" :key="ptl.id" align="center">
-              <td align="center" class="no"></td>
-              <td align="center">{{ ptl.id}}</td>
+              <td>{{ ptl.id}}</td>
               <td>{{ ptl.project_number}}</td>
               <td>{{ ptl.io_number}}</td>
               <td>{{ ptl.assignment_class}}</td>
@@ -58,44 +59,163 @@
         <br><br>
         <nav>
           <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
-        </nav>
-      </div>
+        </nav> -->
+        </b-card-body>
+      </b-card>
         </div>
     </b-col>
   </b-row>
 </template>
 <script>
+  import Vue from 'vue';
+  Vue.use(require('vue-moment'));
+  import VueBootstrap4Table from 'vue-bootstrap4-table'
     export default {
     data () {
         return {
-            ptls: [],
-            errors: [],
+          name: 'demo',
+          ptls: [],
+          errors: [],
+          columns: [
+            {
+              label: "ID",
+              name: "ID",
+              filter: {
+                type: "simple",
+                placeholder: "ID"
+              },
+              sort: true,
+            },
+            {
+              label: "PTL_ID",
+              name: "PTL_ID",
+              filter: {
+                type: "simple",
+                placeholder: "PTL_ID"
+              },
+              sort: true,
+            },
+            {
+              label: "project_Number",
+              name: "project_Number",
+              filter: {
+                type: "simple",
+                placeholder: "project_Number"
+              },
+              sort: true,
+            },
+            {
+              label: "IO_Number",
+              name: "IO_Number",
+              filter: {
+                type: "simple",
+                placeholder: "IO_Number"
+              },
+              sort: true,
+            },
+            {
+              label: "assignment_Class",
+              name: "assignment_Class",
+              filter: {
+                type: "simple",
+                placeholder: "assignment_Class"
+              },
+              sort: true,
+            },
+            {
+              label: "assignment_Title",
+              name: "assignment_Title",
+              filter: {
+                type: "simple",
+                placeholder: "assignment_Title"
+              },
+              sort: true,
+            },
+            {
+              label: "assignment_Status",
+              name: "assignment_Status",
+              filter: {
+                type: "simple",
+                placeholder: "assignment_Status"
+              },
+              sort: true,
+            },
+            {
+              label: "action",
+              name: "action",
+              filter: {
+                type: "simple",
+                placeholder: "action"
+              },
+              sort: false,
+            }
+          ],
+          config: {
+                checkbox_rows: true,
+                rows_selectable: true,
+          }
+          // options: {
+          //       filterByColumn: true,
+          //       listColumns: {
+          //       },
+          //       headings: {
+          //         ID: 'ID',
+          //         PTL_ID: 'PTL_ID',
+          //         project_Number: 'project_Number',
+          //         IO_Number: 'IO_Number',
+          //         assignment_Class: 'assignment_Class',
+          //         assignment_Title: 'assignment_Title',
+          //         assignment_Status: 'assignment_Status',
+          //         action: 'action'
+          //       },
+          //       sortable: [
+          //         'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
+          //       ],
+          //       texts: {
+          //         filterPlaceholder: 'filter'
+          //       }
+          //   }
         }
+    },
+    components: {
+        VueBootstrap4Table
     },
     mounted(){
         this.readPtls();
     },
     methods: {
         readPtls() {
-            this.$axios.get('assignment/ptl')
-            .then(response => {
-              this.ptls = response.data;
-              console.log(this.ptls);
-      })
-    },
+          var temp;
+          this.$axios.get('assignment/ptl').then(response => {
+              for(let i=0;i<response.data.length;i++){
+                  temp = { ID: response.data[i].id, PTL_ID: response.data[i].ptl_id, project_Number: response.data[i].project_number,
+                  IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
+                  assignment_Desc: response.data[i].assignment_desc, assignment_Status: response.data[i].status};
+                this.ptls.push(temp);
+              }
+            console.log(this.ptls);
+          })
+        },
         getBadge (status) {
         return status === 'On Progress' ? 'success'
           : status === 'Close' ? 'secondary'
             : status === 'Waiting Approvement' ? 'warning'
               : status === 'Cancel' ? 'danger' : 'primary'
-      },
+        },
+        scrollIntoView(evt) {
+          evt.preventDefault()
+          const href = evt.target.getAttribute('href')
+          const el = href ? document.querySelector(href) : null
+          if (el) {
+            this.$refs.content.scrollTop = el.offsetTop
+          }
+        }
     }
     }
 </script>
 <style>
   table {
     counter-reset: section;
-    width: 1150px;
   }
 
   .no:before {

@@ -8,7 +8,6 @@
           <nuxt />
         </div>
       </main>
-      <div></div>
       <!-- <AppAside/> -->
     </div>
     <AppFooter/>
