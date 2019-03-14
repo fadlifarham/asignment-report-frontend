@@ -10,8 +10,8 @@
               <div id="people">
                 <v-client-table :data="alls" :columns="columns" :options="options"></v-client-table>
               </div>
-              </b-card-body>
-              <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+            </b-card-body>
+            <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
           </div>
         </div>
     </b-col>
