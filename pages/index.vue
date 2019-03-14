@@ -8,8 +8,7 @@
         <b-card-body
           id="nav-scroller"
           ref="content"
-          style="position:relative; height:300px; overflow-y:scroll;"
-        > 
+          style="position:relative; height:300px; overflow-y:scroll;"> 
           <table>
             <b-row v-for="recent in recents" :key="recent.id">
               <td style="margin-left: 20px; margin-bottom: 4px"><strong>{{ recent.user.full_name }}</strong> {{ recent.action }} {{ recent.assignment.assignment_tittle }} at <span>{{ recent.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span></td>

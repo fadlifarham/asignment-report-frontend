@@ -49,8 +49,8 @@
               <td>{{ ptl.assignment_class}}</td>
               <td>{{ ptl.assignment_tittle}}</td>
               <td>{{ ptl.status}}</td>
-              <td><button v-b-modal.update class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
-                  <button v-b-modal.update class="btn btn-primary"><i class="fa fa-edit"></i></button>
+              <td><v-button class="btn btn-success btn-xs" v-for="detail in details" :key="detail.id" :to="'/createAssignment/viewReport/' + detail.assignment_user.assignment_id"><i class="fa fa-eye"></i></v-button>
+                  <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
                   <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></td>
             </tr>
           </tbody>
