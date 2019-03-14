@@ -22,45 +22,22 @@
         <b-card-header>
           <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
         </b-card-header>
-        <b-card-body>
-          <div id="demo">
-            <vue-bootstrap4-table :rows="ptls" :columns="columns" :config="config" style="width: auto">
-            </vue-bootstrap4-table>
-            <!-- <v-client-table :data="ptls" :columns="['ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status', 'action']" :options="options">
-              <a slot="action" slot-scope="props" class="fa fa-edit" :href="action(props.row.id)"></a>
-            </v-client-table> -->
+        <b-card-body
+        id="nav-scroller"
+          ref="content"
+          style="position:relative; height:300px; overflow-y:scroll;"
+        >
+          <div id="demo" style="width: 1500px">
+            <v-client-table :data="ptls" :columns="columns" :options="options">
+              <span slot="action" slot-scope="{row}"> 
+                  <button v-b-modal.update v-on:click="show(row.id)" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
+                  <button v-b-modal.update v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                  <button v-on:click="delete(row.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+              </span>
+            </v-client-table>
           </div>
-        <!-- <table class="table table-striped table--middle table-responsive">
-          <thead>
-            <tr align="center">
-              <th>Assignment ID</th>
-              <th>Project Number</th>
-              <th>IO Number</th>
-              <th>Assignment Class</th>
-              <th>Assignment Title</th>
-              <th>Assignment status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="ptl in ptls" :key="ptl.id" align="center">
-              <td>{{ ptl.id}}</td>
-              <td>{{ ptl.project_number}}</td>
-              <td>{{ ptl.io_number}}</td>
-              <td>{{ ptl.assignment_class}}</td>
-              <td>{{ ptl.assignment_tittle}}</td>
-              <td>{{ ptl.status}}</td>
-              <td><button v-b-modal.update class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
-                  <button v-b-modal.update class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                  <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></td>
-            </tr>
-          </tbody>
-        </table>
-        <br><br>
-        <nav>
-          <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
-        </nav> -->
         </b-card-body>
+        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
       </b-card>
         </div>
     </b-col>
@@ -69,7 +46,8 @@
 <script>
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
-  import VueBootstrap4Table from 'vue-bootstrap4-table'
+  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+    Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
     data () {
         return {
@@ -77,108 +55,31 @@
           ptls: [],
           errors: [],
           columns: [
-            {
-              label: "ID",
-              name: "ID",
-              filter: {
-                type: "simple",
-                placeholder: "ID"
-              },
-              sort: true,
-            },
-            {
-              label: "PTL_ID",
-              name: "PTL_ID",
-              filter: {
-                type: "simple",
-                placeholder: "PTL_ID"
-              },
-              sort: true,
-            },
-            {
-              label: "project_Number",
-              name: "project_Number",
-              filter: {
-                type: "simple",
-                placeholder: "project_Number"
-              },
-              sort: true,
-            },
-            {
-              label: "IO_Number",
-              name: "IO_Number",
-              filter: {
-                type: "simple",
-                placeholder: "IO_Number"
-              },
-              sort: true,
-            },
-            {
-              label: "assignment_Class",
-              name: "assignment_Class",
-              filter: {
-                type: "simple",
-                placeholder: "assignment_Class"
-              },
-              sort: true,
-            },
-            {
-              label: "assignment_Title",
-              name: "assignment_Title",
-              filter: {
-                type: "simple",
-                placeholder: "assignment_Title"
-              },
-              sort: true,
-            },
-            {
-              label: "assignment_Status",
-              name: "assignment_Status",
-              filter: {
-                type: "simple",
-                placeholder: "assignment_Status"
-              },
-              sort: true,
-            },
-            {
-              label: "action",
-              name: "action",
-              filter: {
-                type: "simple",
-                placeholder: "action"
-              },
-              sort: false,
+            'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title',
+            'assignment_Status', 'action'
+          ],   
+          options: {
+                filterByColumn: true,
+                listColumns: {
+                },
+                headings: {
+                  ID: 'ID',
+                  PTL_ID: 'PTL_ID',
+                  project_Number: 'project_Number',
+                  IO_Number: 'IO_Number',
+                  assignment_Class: 'assignment_Class',
+                  assignment_Title: 'assignment_Title',
+                  assignment_Status: 'assignment_Status',
+                  action: 'action'
+                },
+                sortable: [
+                  'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
+                ],
+                texts: {
+                  filterPlaceholder: 'filter'
+                }
             }
-          ],
-          config: {
-                checkbox_rows: true,
-                rows_selectable: true,
-          }
-          // options: {
-          //       filterByColumn: true,
-          //       listColumns: {
-          //       },
-          //       headings: {
-          //         ID: 'ID',
-          //         PTL_ID: 'PTL_ID',
-          //         project_Number: 'project_Number',
-          //         IO_Number: 'IO_Number',
-          //         assignment_Class: 'assignment_Class',
-          //         assignment_Title: 'assignment_Title',
-          //         assignment_Status: 'assignment_Status',
-          //         action: 'action'
-          //       },
-          //       sortable: [
-          //         'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
-          //       ],
-          //       texts: {
-          //         filterPlaceholder: 'filter'
-          //       }
-          //   }
         }
-    },
-    components: {
-        VueBootstrap4Table
     },
     mounted(){
         this.readPtls();
