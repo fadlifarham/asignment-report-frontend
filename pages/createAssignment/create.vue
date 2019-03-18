@@ -58,7 +58,7 @@
                     <div id="app">
                         <star-rating
                         v-model="difficulty_level"
-                        v-bind:increment="0.5"
+                        v-bind:increment="1"
                         v-bind:max-rating="5"
                         inactive-color="#000"
                         active-color="orange"

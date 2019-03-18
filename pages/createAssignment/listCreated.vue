@@ -43,7 +43,7 @@
                 The link to {{props.row.name}} is <a :href="props.row.action">{{props.row.action}}</a>
               </div> -->
               <span slot="action" slot-scope="props">
-                  <b-button :to="'/createAssignment/viewReport/' + ptls.id " class="btn btn-success btn-xs"><i class="fa fa-eye"></i></b-button>
+                  <b-button :to="'/createAssignment/viewReport/' + ptls.ID " class="btn btn-success btn-xs"><i class="fa fa-eye"></i></b-button>
                   <b-button v-on:click="edit(props.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button>
                   <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button>
               </span>
