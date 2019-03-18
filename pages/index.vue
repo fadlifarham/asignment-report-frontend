@@ -8,8 +8,7 @@
         <b-card-body
           id="nav-scroller"
           ref="content"
-          style="position:relative; height:300px; overflow-y:scroll;"
-        >
+          style="position:relative; height:300px; overflow-y:scroll;"> 
           <table>
             <b-row v-for="recent in recents" :key="recent.id">
               <b-col sm="2"><strong>{{ recent.user.full_name }}</strong></b-col>
