@@ -123,28 +123,28 @@ export default {
     //   ]
     // },
 
-    {
-      name: 'ex',
-      url: '/form',
-      icon: 'icon-puzzle',
-      children: [
-        {
-          name: 'in',
-          url: '/form/forms',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'tab',
-          url: '/form/table',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'tabs',
-          url: '/form/tables',
-          icon: 'icon-puzzle',
-        },
-      ]
-    },
+    // {
+    //   name: 'ex',
+    //   url: '/form',
+    //   icon: 'icon-puzzle',
+    //   children: [
+    //     {
+    //       name: 'in',
+    //       url: '/form/forms',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'tab',
+    //       url: '/form/table',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'tabs',
+    //       url: '/form/tables',
+    //       icon: 'icon-puzzle',
+    //     },
+    //   ]
+    // },
 
   ]
 }
