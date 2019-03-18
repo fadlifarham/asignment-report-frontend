@@ -19,9 +19,8 @@
             <br><br>
         </div>
         <div class="animated fadeIn">
-          <b-card style="width: 100%">
-            
-            <table class="table table-striped">
+          <b-card>
+            <!-- <table class="table table-striped">
               <thead>
                 <tr>
                   <th>No</th>
@@ -32,18 +31,23 @@
                   <th>Complite Assignment</th>
                   <th>Aksi</th>
                 </tr>
-                <!-- <tr v-for="user in users" :key="user.id">
+                <tr v-for="user in users" :key="user.id">
                   <td>{{ user.id }}</td>
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td><img :src="user.foto" width="100" height="100"></td>
-                </tr> -->
+                </tr>
               </thead>
             </table>
             <br><br>
             <nav>
               <b-pagination :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
-            </nav>
+            </nav> -->
+            <b-card-body>
+              <div id="people">
+                <v-client-table :data="users" :columns="columns" :options="options"></v-client-table>
+              </div>
+            </b-card-body>
           </b-card>
           <b-button variant="secondary" to="/form/toko" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
           <br><br><br>
@@ -103,6 +107,10 @@
   </b-row>
 </template>
 <script>
+import Vue from 'vue';
+  Vue.use(require('vue-moment'));
+  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+    Vue.use(ClientTable, {}, false, 'bootstrap4');
   const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1))
@@ -115,8 +123,30 @@
     export default {
     data () {
         return {
-            users: '',
+            name: 'people',
+            users: [],
             errors: [],
+            columns: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'action'],
+            options: {
+                filterByColumn: true,
+                listColumns: {
+                },
+                headings: {
+                  id: 'id',
+                  user_id: 'user_id',
+                  name: 'name',
+                  work_load: 'work_load',
+                  work_quality: 'work_quality',
+                  sppd: 'sppd',
+                  complite_assignment: 'complite_assignment',
+                  action: 'action',
+                },
+                sortable: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'action'],
+                // texts: {
+                //   filterPlaceholder: 'filter'
+                // }
+            }
+
         }
     },
     mounted(){
@@ -124,10 +154,20 @@
     },
     methods: {
         readUsers() {
-            this.$axios.get('/user')
-            .then(response => {
-                this.users = response.data.users;
-                console.log(response.data.users);
+            // this.$axios.get('/user')
+            // .then(response => {
+            //     this.users = response.data.users;
+            //     console.log(response.data.users);
+            // })
+            var temp;
+            this.$axios.get('/utilization/all').then(response => {
+                for(let i=0;i<response.data.length;i++){
+                    temp = { id: response.data[i].user.id, user_id: response.data[i].user_id, project_Number: response.data[i].project_number,
+                    IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
+                    assignment_Desc: response.data[i].assignment_desc, status: response.data[i].status};
+                  this.alls.push(temp);
+                }
+              console.log(this.alls);
             })
         },
         getBadge (status) {

@@ -30,8 +30,8 @@
           <div id="demo" style="width: 1500px">
             <v-client-table :data="ptls" :columns="columns" :options="options">
               <span slot="action" slot-scope="{row}"> 
-                  <button v-b-modal.update v-on:click="show(row.id)" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
-                  <button v-b-modal.update v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                  <button v-on:click="show(row.id)" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
+                  <button v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                   <button v-on:click="delete(row.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
               </span>
             </v-client-table>
