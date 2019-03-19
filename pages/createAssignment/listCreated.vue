@@ -37,12 +37,6 @@
           style="position:relative; height:300px; overflow-y:scroll;">
           <div id="demo" style="width: 1500px" >
             <v-client-table :data="ptls" :columns="columns" :options="options">
-<<<<<<< HEAD
-              <span slot="action" slot-scope="{row}"> 
-                  <button v-on:click="show(row.id)" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
-                  <button v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                  <button v-on:click="delete(row.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
-=======
               <!-- <a slot="ID" slot-scope="props" target="_blank" :href="props.row.action" class="glyphicon glyphicon-eye-open"></a>
 
               <div slot="child_row" slot-scope="props">
@@ -52,7 +46,6 @@
                   <b-button :to="'/createAssignment/viewReport/' + ptls.id " class="btn btn-success btn-xs"><i class="fa fa-eye"></i></b-button>
                   <b-button v-on:click="edit(props.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button>
                   <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button>
->>>>>>> b1b616a0583e544adeb6696f6f7d29e770c5fa0f
               </span>
             </v-client-table>
           </div>
