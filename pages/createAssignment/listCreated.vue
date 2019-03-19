@@ -132,27 +132,11 @@
             this.$refs.content.scrollTop = el.offsetTop
           }
         },
-<<<<<<< HEAD
-        show(rowId) {
-        // The id can be fetched from the slot-scope row object when id is in columns
-            this.showReports = true;
-            this.$axios.get('assignment/ptl' + ptls.id)
-            .then(response => {
-                this.showReports = response.data;
-                console.log(response.data);
-                this.$router.push('/viewReport/_id.vue');
-            })
-            .catch(e => {
-                (error) => console.log(error)
-            });
-        }   
-=======
         show: function (event, id) {
           // window.location.href="sample.html";
           // alert('Anda yakin ingin melihat detail ' + message + '?')
           console.log(id)
         }
->>>>>>> master
     }
     }
 </script>
