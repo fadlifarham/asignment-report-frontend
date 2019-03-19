@@ -35,17 +35,19 @@
         id="nav-scroller"
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;">
-          <div id="demo" style="width: 1500px" >
+          <div v-for="ptl in ptls" :key="ptl.id" id="demo" style="width: 1500px" >
             <v-client-table :data="ptls" :columns="columns" :options="options">
               <!-- <a slot="ID" slot-scope="props" target="_blank" :href="props.row.action" class="glyphicon glyphicon-eye-open"></a>
 
               <div slot="child_row" slot-scope="props">
                 The link to {{props.row.name}} is <a :href="props.row.action">{{props.row.action}}</a>
               </div> -->
+               <!-- v-for="ptl in ptls" :key="ptl.id"  -->
               <span slot="action" slot-scope="props">
-                  <b-button :to="'/createAssignment/viewReport/' + ptls.ID " class="btn btn-success btn-xs"><i class="fa fa-eye"></i></b-button>
-                  <b-button v-on:click="edit(props.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button>
-                  <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button>
+                  <b-button :to="'/createAssignment/viewReport/' + props.row.id" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></b-button>
+                  <!-- <a slot="edit" slot-scope="props" class="fa fa-edit" :href="edit(props.row.columns)"></a> -->
+                  <!-- <b-button v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button> -->
+                  <!-- <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button> -->
               </span>
             </v-client-table>
           </div>
@@ -91,6 +93,9 @@
                 ],
                 texts: {
                   filterPlaceholder: 'filter'
+                },
+                action: function(h, row) {
+                  // return <div>My custom content for row {row.ID}</div>
                 }
             }
         }
@@ -111,6 +116,13 @@
             console.log(this.ptls);
           })
         },
+        read() {
+            this.$axios.get('assignment/ptl')
+            .then(response => {
+                this.ptls = response.data;
+                console.log(this.ptls);
+            })
+        },
         getBadge (status) {
         return status === 'On Progress' ? 'success'
           : status === 'Close' ? 'secondary'
@@ -125,11 +137,18 @@
             this.$refs.content.scrollTop = el.offsetTop
           }
         },
-        show: function (event, id) {
-          // window.location.href="sample.html";
-          // alert('Anda yakin ingin melihat detail ' + message + '?')
-          console.log(id)
-        }
+        // show:function () {
+        //         this.ID = 'GET COW ID HERE'
+        //       var data = new FormData()
+        //       data.append('function','show')
+        //         data.append('ID',this.ID)
+        //       axios.post(this.url,data)
+        //           .then( function (response ) {
+        //       }.bind(this)).catch(function (error) {
+
+        //       })
+
+        //     },
     }
     }
 </script>
