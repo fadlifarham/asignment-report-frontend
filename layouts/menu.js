@@ -37,6 +37,11 @@ export default {
       url: '/utilization',
       icon: 'icon-chart',
     },
+    {
+      name: 'test ',
+      url: '/createAssignment/viewReport',
+      icon: 'icon-chart',
+    },
     // {
     //   name: 'Form',
     //   url: '/form',
