@@ -1,7 +1,3 @@
-// import Vue from 'vue';
-// import VueRouter from 'vue-router';
-// Vue.use(VueRouter);
-
 export default {
   items: [
     {
@@ -39,6 +35,11 @@ export default {
     {
       name: 'Team Utilization',
       url: '/utilization',
+      icon: 'icon-chart',
+    },
+    {
+      name: 'test ',
+      url: '/createAssignment/viewReport',
       icon: 'icon-chart',
     },
     // {
@@ -147,7 +148,3 @@ export default {
 
   ]
 }
-
-// let router = new VueRouter({
-//   items
-// });

@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col lg="12">
-        <div>
+        <!-- <div>
           <b-input-group>
             <b-col sm="4">
             <b-button variant="primary" to="/createAssignment/create" class="form-actions" > + Create New Assignment</b-button>
@@ -16,27 +16,48 @@
             </b-col>
           </b-input-group>
             <br><br>
-        </div>
+        </div> -->
     <div class="animated fadeIn">
       <b-card>
         <b-card-header>
-          <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
+          <b-input-group>
+            <b-col sm="4">
+              <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
+            </b-col>
+            <b-col sm="4">
+            </b-col>
+            <b-col sm="4">
+              <b-button variant="primary" to="/createAssignment/create" class="btn btn-primary btn-xs pull-right"> + Create New Assignment</b-button>
+            </b-col>
+          </b-input-group>
         </b-card-header>
         <b-card-body
         id="nav-scroller"
           ref="content"
-          style="position:relative; height:300px; overflow-y:scroll;"
-        >
-          <div id="demo" style="width: 1500px">
+          style="position:relative; height:300px; overflow-y:scroll;">
+          <div id="demo" style="width: 1500px" >
             <v-client-table :data="ptls" :columns="columns" :options="options">
+<<<<<<< HEAD
               <span slot="action" slot-scope="{row}"> 
                   <button v-on:click="show(row.id)" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></button>
                   <button v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                   <button v-on:click="delete(row.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+=======
+              <!-- <a slot="ID" slot-scope="props" target="_blank" :href="props.row.action" class="glyphicon glyphicon-eye-open"></a>
+
+              <div slot="child_row" slot-scope="props">
+                The link to {{props.row.name}} is <a :href="props.row.action">{{props.row.action}}</a>
+              </div> -->
+              <span slot="action" slot-scope="props">
+                  <b-button :to="'/createAssignment/viewReport/' + ptls.id " class="btn btn-success btn-xs"><i class="fa fa-eye"></i></b-button>
+                  <b-button v-on:click="edit(props.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button>
+                  <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button>
+>>>>>>> b1b616a0583e544adeb6696f6f7d29e770c5fa0f
               </span>
             </v-client-table>
           </div>
         </b-card-body>
+        <br>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
       </b-card>
         </div>
@@ -64,13 +85,13 @@
                 },
                 headings: {
                   ID: 'ID',
-                  PTL_ID: 'PTL_ID',
-                  project_Number: 'project_Number',
-                  IO_Number: 'IO_Number',
-                  assignment_Class: 'assignment_Class',
-                  assignment_Title: 'assignment_Title',
-                  assignment_Status: 'assignment_Status',
-                  action: 'action'
+                  PTL_ID: 'PTL ID',
+                  project_Number: 'Project Number',
+                  IO_Number: 'IO Number',
+                  assignment_Class: 'Assignment Class',
+                  assignment_Title: 'Assignment Title',
+                  assignment_Status: 'Assignment Status',
+                  action: 'Action'
                 },
                 sortable: [
                   'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
@@ -111,6 +132,7 @@
             this.$refs.content.scrollTop = el.offsetTop
           }
         },
+<<<<<<< HEAD
         show(rowId) {
         // The id can be fetched from the slot-scope row object when id is in columns
             this.showReports = true;
@@ -124,6 +146,13 @@
                 (error) => console.log(error)
             });
         }   
+=======
+        show: function (event, id) {
+          // window.location.href="sample.html";
+          // alert('Anda yakin ingin melihat detail ' + message + '?')
+          console.log(id)
+        }
+>>>>>>> master
     }
     }
 </script>
@@ -135,5 +164,10 @@
   .no:before {
     counter-increment: section;
     content: counter(section);
+  }
+  .glyphicon.glyphicon-eye-open {
+    width: 16px;
+    display: block;
+    margin: 0 auto;
   }
 </style>
