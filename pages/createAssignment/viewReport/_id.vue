@@ -5,20 +5,42 @@
             <b-card style="border-radius: 3px">
                 <b-row style="width: 100%; margin-left: auto; margin-right: auto">
                     <b-col>
-                        <b-row style="padding: 2px">
-                            <b-col cols="4"><strong> ID</strong></b-col>
+                        <b-row style="padding: 3px">
+                            <b-col cols="3"><strong>Assignment ID</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
+                            <b-col sm="4">{{projects.id}}</b-col>
                         </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col cols="4"><strong>Assignment Class</strong></b-col>
+                        <b-row style="padding: 3px">
+                            <b-col cols="3"><strong>Assignment Class</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
+                            <b-col sm="4">{{projects.assignment_class}}</b-col>
                         </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col cols="4"><strong>Assignment Title</strong></b-col>
+                        <b-row style="padding: 3px">
+                            <b-col cols="3"><strong>Assignment Title</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
+                            <b-col sm="4">{{projects.assignment_tittle}}</b-col>
+                        </b-row>
+                        <b-row style="padding: 3px">
+                            <b-col cols="3"><strong>Assignment Description</strong></b-col>
+                            <b-col cols="0">:</b-col>
+                            <b-col sm="4">{{projects.assignment_desc}}</b-col>
+                        </b-row>
+                        <b-row style="padding: 6px">
+                        </b-row>
+                        <b-row style="padding: 3px">
+                            <b-col cols="3"><strong>Project Number</strong></b-col>
+                            <b-col cols="0">:</b-col>
+                            <b-col sm="4">{{projects.project_number}}</b-col>
+                        </b-row>
+                        <b-row style="padding: 3px">
+                            <b-col cols="3"><strong>IO Number</strong></b-col>
+                            <b-col cols="0">:</b-col>
+                            <b-col sm="4">{{projects.io_number}}</b-col>
+                        </b-row>
+                        <b-row style="padding: 3px">
+                            <b-col cols="3"><strong>Difficulty Level</strong></b-col>
+                            <b-col cols="0">:</b-col>
+                            <b-col sm="4">{{projects.difficulty_level}}</b-col>
                         </b-row>
                     </b-col>
                 </b-row>
@@ -26,97 +48,19 @@
         </div>
         <div class="animated fadeIn" style="padding: 0px">
             <b-card style="border-radius: 3px">
-                <b-row style="width: 100%; margin-left: auto; margin-right: auto">
-                    <b-col>
-                        <b-row style="padding: 2px"><strong>System Status</strong></b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Assignment Type</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
+                <b-card-header align="center">
+                    <strong>TEAM</strong>
+                </b-card-header>
+                <b-card-body>
+                    <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                        <b-row v-for="project in projects" :key="project.assignment_user" style="padding: 2px">
+                            <b-col sm="4">
+                                <b-row>Gambar</b-row>
+                                <b-row>{{project.assignment_user.user_id}}</b-row>
+                            </b-col>
                         </b-row>
-                        <!-- <b-row style="padding: 2px">
-                            <b-col sm="4">Project Number</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">IO Number</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row> -->
-                    </b-col>
-                    <b-col>
-                        <b-row style="padding: 2px"><strong>Time record</strong></b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Working Date</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Start</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Arrived at location</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Job Finish</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">End</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                    </b-col>
-                </b-row>
-                <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 4px">
-                    <b-col>
-                        <b-row style="padding: 2px"><strong>Customer Information</strong></b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Company</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Address</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Contact Person</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">PIC Onsite</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                    </b-col>
-                    <b-col>
-                        <b-row style="padding: 2px"><br></b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4"><strong>SPPD Status</strong></b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding-top: 25px; padding-bottom: 25px; padding-left: 2px; padding-right: 2px">
-                            <b-col sm="4">Number of day</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Type</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                    </b-col>
-                </b-row>
+                    </b-row>
+                </b-card-body>
             </b-card>
         </div>
         <div class="animated fadeIn">
@@ -190,4 +134,44 @@
     </b-col>
   </b-row>
 </template>
-    
+<script>
+    export default {
+    data () {
+        return {
+          projects: [],
+          errors: [],
+        }
+    },
+    mounted(){
+        this.readProjects();
+    },
+    methods: {
+        readProjects() {
+          var temp;
+          this.$axios.get('assignment/detail').then(response => {
+                this.recents = response.data;
+                console.log(this.projects);
+            })
+        },
+        getBadge (status) {
+        return status === 'On Progress' ? 'success'
+          : status === 'Close' ? 'secondary'
+            : status === 'Waiting Approvement' ? 'warning'
+              : status === 'Cancel' ? 'danger' : 'primary'
+        },
+        scrollIntoView(evt) {
+          evt.preventDefault()
+          const href = evt.target.getAttribute('href')
+          const el = href ? document.querySelector(href) : null
+          if (el) {
+            this.$refs.content.scrollTop = el.offsetTop
+          }
+        },
+        show: function (event, id) {
+          // window.location.href="sample.html";
+          // alert('Anda yakin ingin melihat detail ' + message + '?')
+          console.log(id)
+        }
+    }
+    }
+</script>
