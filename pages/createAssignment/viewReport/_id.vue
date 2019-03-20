@@ -1,5 +1,5 @@
 <template>
-  <b-row>
+    <b-row>
     <b-col lg="12">
         <div class="animated fadeIn" style="padding: 0px">
             <b-card style="border-radius: 3px">
@@ -132,7 +132,7 @@
             </b-row>
         </div>
     </b-col>
-  </b-row>
+    </b-row>
 </template>
 <script>
     export default {
