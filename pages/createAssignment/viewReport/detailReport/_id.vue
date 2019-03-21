@@ -8,17 +8,17 @@
                         <b-row style="padding: 2px">
                             <b-col cols="4"><strong> ID</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4">{{ id }}</b-col>
+                            <b-col sm="4"></b-col>
                         </b-row>
                         <b-row style="padding: 2px">
                             <b-col cols="4"><strong>Assignment Class</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4">{{ assignment_class }}</b-col>
+                            <b-col sm="4"></b-col>
                         </b-row>
                         <b-row style="padding: 2px">
                             <b-col cols="4"><strong>Assignment Title</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4">{{ assignment_tittle }}</b-col>
+                            <b-col sm="4"></b-col>
                         </b-row>
                     </b-col>
                 </b-row>

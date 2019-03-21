@@ -42,7 +42,7 @@
                                 </b-form-select>
                             </b-col>
                         </b-row>
-                        <!-- <b-row style="padding: 2px">
+                        <b-row style="padding: 2px">
                             <b-col sm="4">Project Number</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
@@ -65,7 +65,7 @@
                                     style="border-radius: 5px">
                                 </b-form-input>
                             </b-col>
-                        </b-row> -->
+                        </b-row>
                     </b-col>
                     <b-col>
                         <b-row style="padding: 2px"><strong>Time record</strong></b-row>
