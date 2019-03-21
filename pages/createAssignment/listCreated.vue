@@ -89,6 +89,9 @@
                 sortable: [
                   'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
                 ],
+                filterable: [
+                  'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
+                ],
                 texts: {
                   filterPlaceholder: 'filter'
                 }

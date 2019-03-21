@@ -63,68 +63,60 @@
                 </b-card-body>
             </b-card>
         </div>
-        <div class="animated fadeIn">
-            <b-row>
-                <b-col sm="6">
-                    <b-card no-body style="width: 100%; height: 200px">
-                        <b-card-header>
-                            <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Brief of Work Carried Out</h5>
-                        </b-card-header>
-                        <b-card-body
-                            id="nav-scroller"
-                            ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
-                            <b-row style="padding: 2px">
-                                <b-col sm="12">isi </b-col>
-                            </b-row>
-                        </b-card-body>
-                    </b-card>
-                </b-col>
-                <b-col sm="6">
-                    <b-card no-body style="width: 100%; height: 200px">
-                        <b-card-header>
-                            <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Result of Assignment & Further Action</h5>
-                        </b-card-header>
-                        <b-card-body
-                            id="nav-scroller"
-                            ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
-                            <b-row style="padding: 2px">
-                                <b-col sm="12">isi </b-col>
-                            </b-row>
-                        </b-card-body>
-                    </b-card>
-                </b-col>
-            </b-row>
+        <div class="animated fadeIn" style="padding: 0px">
+            <b-card style="border-radius: 3px">
+                <b-card-header align="center">
+                    <strong>Assignment Report List</strong>
+                </b-card-header>
+                <b-card-body>
+                    <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                        <b-row v-for="project in projects" :key="project.assignment_user" style="padding: 2px">
+                            <b-col sm="4">
+                                <b-row>Gambar</b-row>
+                                <b-row>{{project.assignment_report.assignment_id}}</b-row>
+                            </b-col>
+                        </b-row>
+                    </b-row>
+                </b-card-body>
+            </b-card>
         </div>
         <div class="animated fadeIn" style="padding: 0px">
             <b-card style="border-radius: 3px">
-                <b-row style="width: 100%; margin-left: auto; margin-right: auto">
-                    <b-col>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">BAI</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
+                <b-card-header align="center">
+                    <strong>Team Rating</strong>
+                </b-card-header>
+                <b-card-body>
+                    <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                        <b-row v-for="project in projects" :key="project.assignment_user" style="padding: 2px">
+                            <b-col sm="4">
+                                <b-row>Gambar</b-row>
+                                <b-row>
+                                    <b-form-group
+                                    label="Score"
+                                    label-for="rating"
+                                    :label-cols="4"
+                                    :horizontal="true">
+                                        <div id="app">
+                                            <star-rating
+                                            v-model="difficulty_level"
+                                            v-bind:increment="0.5"
+                                            v-bind:max-rating="5"
+                                            inactive-color="#000"
+                                            active-color="orange"
+                                            v-bind:star-size="25"
+                                            @rating-selected ="setRating"
+                                            >
+                                            </star-rating>
+                                        </div>
+                                    </b-form-group>
+                                </b-row>
+                            </b-col>
                         </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">TNC</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                        <b-row style="padding: 2px">
-                            <b-col sm="4">Other</b-col>
-                            <b-col cols="0">:</b-col>
-                            <b-col sm="4">isi</b-col>
-                        </b-row>
-                    </b-col>
-                </b-row>
+                    </b-row>
+                </b-card-body>
             </b-card>
-            
+        </div>
+        <div class="animated fadeIn" style="padding: 0px">            
             <b-row>
                 <b-col style="padding: 10px" class="text-right">
                     <b-button @click="submit" size="lg" variant="primary" style="margin: 10px">Approve</b-button>

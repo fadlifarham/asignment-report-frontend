@@ -1,6 +1,5 @@
 <template>
   <div class="animated fadeIn">
-    <b-col sm="12">
       <b-card no-body style="width: 100%; height: 300px">
         <b-card-header>
           <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Recent Activity</h5>
@@ -10,17 +9,12 @@
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;"> 
           <table>
-            <b-row v-for="recent in recents" :key="recent.id">
-              <b-col sm="0"><strong>{{ recent.user.full_name }}</strong></b-col>
-              <b-col sm="4"> {{ recent.action }} </b-col>
-              <b-col sm="0"><strong>{{ recent.assignment.assignment_tittle }}</strong></b-col>
-              <!-- <b-col sm="0">at</b-col> -->
-              <b-col sm="6">at <strong><span>{{ recent.created_at | moment("MMMM Do YYYY, h:mm:ss a") }}</span></strong></b-col>
+            <b-row v-for="recent in recents" :key="recent.id" style="margin-left: 6px; margin-bottom: 4px">
+              {{ recent.user.full_name }} {{ recent.action }} {{ recent.assignment.assignment_tittle }} at {{ recent.created_at | moment("MMMM Do YYYY, h:mm:ss a") }}
             </b-row>
           </table>
         </b-card-body>
       </b-card>
-    </b-col>
     <b-card no-body style="width: 100%; height: 300px">
       <b-card-header>
         <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Idle Team This Day</h5>

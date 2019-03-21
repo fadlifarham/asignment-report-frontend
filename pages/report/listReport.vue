@@ -2,23 +2,23 @@
   <b-row>
         <div v-for="list in lists" :key="list.id" class="animated fadeIn" style="padding: 0px">
             <b-col lg="12" sm="6">
-                <b-card style="width: 525px">
+                <b-card style="width: 500px">
                         <b-col>
                             <b-row style="padding: 2px"><strong>{{list.assignment.assignment_class}}</strong></b-row><br>
                             <b-row style="padding: 2px">
                                 <b-col cols="4">Assignment ID  </b-col>
                                 <b-col cols="0">:</b-col>
-                                <b-col cols="7">{{list.assignment_id}}</b-col>
+                                <b-col cols="6">{{list.assignment_id}}</b-col>
                             </b-row>
                             <b-row style="padding: 2px">
                                 <b-col cols="4">Assignment Title</b-col>
                                 <b-col cols="0">:</b-col>
-                                <b-col sm="7">{{list.assignment.assignment_tittle}}</b-col>
+                                <b-col sm="6">{{list.assignment.assignment_tittle}}</b-col>
                             </b-row>
                             <b-row style="padding: 2px">
                                 <b-col cols="4">Assignment Desc</b-col>
                                 <b-col cols="0">:</b-col>
-                                <b-col cols="7">{{list.assignment.assignment_desc}}</b-col>
+                                <b-col cols="6">{{list.assignment.assignment_desc}}</b-col>
                             </b-row>
                             <b-col style="padding: 10px" class="text-right">
                                 <b-button :to="'/report/submitReport/' + list.assignment_id" size="sm" variant="primary" style="margin: 10px">
