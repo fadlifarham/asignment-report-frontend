@@ -32,23 +32,23 @@
           </b-input-group>
         </b-card-header>
         <b-card-body
-        id="nav-scroller"
+          id="nav-scroller"
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;">
-          <div v-for="ptl in ptls" :key="ptl.id" id="demo" style="width: 1500px" >
+          <div id="demo" style="width: 1500px" >
             <v-client-table :data="ptls" :columns="columns" :options="options">
-              <!-- <a slot="ID" slot-scope="props" target="_blank" :href="props.row.action" class="glyphicon glyphicon-eye-open"></a>
-
-              <div slot="child_row" slot-scope="props">
-                The link to {{props.row.name}} is <a :href="props.row.action">{{props.row.action}}</a>
-              </div> -->
-               <!-- v-for="ptl in ptls" :key="ptl.id"  -->
-              <span slot="action" slot-scope="props">
-                  <b-button :to="'/createAssignment/viewReport/' + props.row.id" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></b-button>
+                <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
+                  <i class="fa fa-eye"></i>
+                </a>
+                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a slot="delete" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
+                  <i class="fa fa-trash-o"></i>
+                </a>
                   <!-- <a slot="edit" slot-scope="props" class="fa fa-edit" :href="edit(props.row.columns)"></a> -->
                   <!-- <b-button v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button> -->
-                  <!-- <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button> -->
-              </span>
+                  <!-- <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button> --> 
             </v-client-table>
           </div>
         </b-card-body>
@@ -71,32 +71,34 @@
           ptls: [],
           errors: [],
           columns: [
-            'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title',
-            'assignment_Status', 'action'
+            'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle',
+            'assignment_status', 'view', 'edit', 'delete'
           ],   
           options: {
                 filterByColumn: true,
                 listColumns: {
                 },
                 headings: {
-                  ID: 'ID',
-                  PTL_ID: 'PTL ID',
-                  project_Number: 'Project Number',
-                  IO_Number: 'IO Number',
-                  assignment_Class: 'Assignment Class',
-                  assignment_Title: 'Assignment Title',
-                  assignment_Status: 'Assignment Status',
-                  action: 'Action'
+                  id: 'ID',
+                  ptl_id: 'PTL ID',
+                  project_number: 'Project Number',
+                  io_number: 'IO Number',
+                  assignment_class: 'Assignment Class',
+                  assignment_tittle: 'Assignment Title',
+                  assignment_status: 'Assignment Status',
+                  view: 'View',
+                  edit: 'Edit',
+                  delete: 'Delete',
                 },
                 sortable: [
-                  'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
+                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
+                ],
+                filterable: [
+                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
                 ],
                 texts: {
                   filterPlaceholder: 'filter'
                 },
-                action: function(h, row) {
-                  // return <div>My custom content for row {row.ID}</div>
-                }
             }
         }
     },
@@ -108,9 +110,9 @@
           var temp;
           this.$axios.get('assignment/ptl').then(response => {
               for(let i=0;i<response.data.length;i++){
-                  temp = { ID: response.data[i].id, PTL_ID: response.data[i].ptl_id, project_Number: response.data[i].project_number,
-                  IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
-                  assignment_Desc: response.data[i].assignment_desc, assignment_Status: response.data[i].status};
+                  temp = { id: response.data[i].id, ptl_id: response.data[i].ptl_id, project_number: response.data[i].project_number,
+                  IO_number: response.data[i].io_number, assignment_class: response.data[i].assignment_class, assignment_tittle: response.data[i].assignment_tittle,
+                  assignment_desc: response.data[i].assignment_desc, assignment_status: response.data[i].status};
                 this.ptls.push(temp);
               }
             console.log(this.ptls);
