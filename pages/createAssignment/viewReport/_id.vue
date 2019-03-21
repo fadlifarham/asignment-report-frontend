@@ -53,6 +53,7 @@
                             <!-- v-for="detail in details" :key="detail.id" -->
                             <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
                                 <b-col cols="4"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
+                                <!-- <b-col sm="2">{{detail.user_id}}</b-col> -->
                                 <b-col sm="0">{{detail.user.full_name}}</b-col>
                             </b-row>
                         </b-card-body>
@@ -75,7 +76,6 @@
                                 <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/viewReport/detailReport/'" aria-hidden="true"></a></b-col>
                                 <b-col sm="0">  {{detail.id}}</b-col>
                             </b-row>
-                            <!-- <b-col cols="4"><a class="fa fa-folder-open fa-3x" aria-hidden="true" :href="'/createAssignment/viewReport/detailReport/'"></a></b-col> -->
                         </b-card-body>
                     </b-card>
                 </b-col>
@@ -145,10 +145,10 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
-            // user_id:'',
             // details:[],
             assignment_user:[],
             assignment_report:[],
+            user_id:[],
             rating: 0,
             errors: [],
         }
@@ -173,19 +173,20 @@ export default {
             );
         },
         approve(){
-            this.$axios.post('/assignment/create', {
-                id_user: this.id_user,
+            this.$axios.post('/assignment/approve', {
                 assignment_id: this.assignment_id,
-                rating: this.rating,
+                user_id: this.user_id,
+                // rating: this.rating,
             }).then(response => {
-                // this.assignment.push(response.data.task);
                 this.status = 'Assignment Approved Success!';
                 console.log(this.status);
                 swal('Success', this.status, 'success');
                 this.reset();
             }, response => {
-                this.status = 'Please Fill In All Data';
-                console.log(this.status);
+                this.status = 'Failed';
+                console.log("ass : " + this.assignment_id);
+                console.log("user : " + this.user_id);
+                // console.log(this.status);
                 swal('Failed', this.status, 'warning');
             })
         },

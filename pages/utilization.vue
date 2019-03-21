@@ -2,7 +2,8 @@
   <b-row>
     <b-col lg="6">
       <div>
-          <b-input-group>
+        <h3>Team Utilization</h3>
+          <!-- <b-input-group>
             <b-col cols="4">
               <label><b>Team Utilization</b></label>
             </b-col>
@@ -15,7 +16,7 @@
                 </b-input-group-prepend>
                 </b-input-group>
             </b-col>
-          </b-input-group>
+          </b-input-group> -->
             <br><br>
         </div>
         <div class="animated fadeIn">
@@ -53,7 +54,6 @@
           <br><br><br>
         </div>
     </b-col>
-    
     <b-col lg="6">
       <b-card>
       <b-row>
@@ -126,22 +126,23 @@ import Vue from 'vue';
             name: 'people',
             users: [],
             errors: [],
-            columns: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'action'],
+            columns: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'show'],
             options: {
                 filterByColumn: true,
                 listColumns: {
                 },
                 headings: {
-                  id: 'id',
-                  user_id: 'user_id',
-                  name: 'name',
-                  work_load: 'work_load',
-                  work_quality: 'work_quality',
-                  sppd: 'sppd',
-                  complite_assignment: 'complite_assignment',
-                  action: 'action',
+                  id: 'ID',
+                  user_id: 'User ID',
+                  name: 'Name',
+                  work_load: 'Work Load',
+                  work_quality: 'Work Quality',
+                  sppd: 'SPPD',
+                  complite_assignment: 'Complite Assignment',
+                  show: 'Show',
                 },
-                sortable: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'action'],
+                sortable: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'show'],
+                filterable: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', ],
                 // texts: {
                 //   filterPlaceholder: 'filter'
                 // }
