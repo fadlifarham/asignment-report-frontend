@@ -15,7 +15,8 @@
                             <b-col cols="0">:</b-col>
                             <b-col sm="4">{{assignment_class}}</b-col>
                         </b-row>
-                        <b-row style="padding: 2px">
+
+                        <!-- <b-row style="padding: 2px">
                             <b-col cols="4"><strong>Assignment Description</strong></b-col>
                             <b-col cols="0">:</b-col>
                             <b-col sm="4">{{assignment_desc}}</b-col>
@@ -33,10 +34,62 @@
                         <b-row style="padding: 2px">
                             <b-col cols="4"><strong>Difficulty Level</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4"></b-col>
+                            <b-col sm="4"></b-col> -->
+                    <!-- </b-row>
+                </b-card-body> -->
+            </b-card>
+        </div>
+        <div class="animated fadeIn" style="padding: 0px">
+            <b-card style="border-radius: 3px">
+                <b-card-header align="center">
+                    <strong>Assignment Report List</strong>
+                </b-card-header>
+                <b-card-body>
+                    <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                        <b-row v-for="project in projects" :key="project.assignment_user" style="padding: 2px">
+                            <b-col sm="4">
+                                <b-row>Gambar</b-row>
+                                <b-row>{{project.assignment_report.assignment_id}}</b-row>
+                            </b-col>
                         </b-row>
-                    </b-col>
-                </b-row>
+                    </b-row>
+                </b-card-body>
+            </b-card>
+        </div>
+        <div class="animated fadeIn" style="padding: 0px">
+            <b-card style="border-radius: 3px">
+                <b-card-header align="center">
+                    <strong>Team Rating</strong>
+                </b-card-header>
+                <b-card-body>
+                    <b-row style="width: 100%; margin-left: auto; margin-right: auto">
+                        <b-row v-for="project in projects" :key="project.assignment_user" style="padding: 2px">
+                            <b-col sm="4">
+                                <b-row>Gambar</b-row>
+                                <b-row>
+                                    <b-form-group
+                                    label="Score"
+                                    label-for="rating"
+                                    :label-cols="4"
+                                    :horizontal="true">
+                                        <div id="app">
+                                            <star-rating
+                                            v-model="difficulty_level"
+                                            v-bind:increment="0.5"
+                                            v-bind:max-rating="5"
+                                            inactive-color="#000"
+                                            active-color="orange"
+                                            v-bind:star-size="25"
+                                            @rating-selected ="setRating"
+                                            >
+                                            </star-rating>
+                                        </div>
+                                    </b-form-group>
+                                </b-row>
+                            </b-col>
+                        </b-row>
+                    </b-row>
+                </b-card-body>
             </b-card>
         </div>
     </b-col>

@@ -96,6 +96,9 @@
                 filterable: [
                   'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
                 ],
+                filterable: [
+                  'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
+                ],
                 texts: {
                   filterPlaceholder: 'filter'
                 },
