@@ -8,17 +8,17 @@
                         <b-row style="padding: 2px">
                             <b-col cols="4"><strong> ID</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4"></b-col>
+                            <b-col sm="4">isi</b-col>
                         </b-row>
                         <b-row style="padding: 2px">
                             <b-col cols="4"><strong>Assignment Class</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4"></b-col>
+                            <b-col sm="4">isi</b-col>
                         </b-row>
                         <b-row style="padding: 2px">
                             <b-col cols="4"><strong>Assignment Title</strong></b-col>
                             <b-col cols="0">:</b-col>
-                            <b-col sm="4"></b-col>
+                            <b-col sm="4">isi</b-col>
                         </b-row>
                     </b-col>
                 </b-row>
@@ -34,7 +34,7 @@
                             <b-col cols="0">:</b-col>
                             <b-col sm="4">isi</b-col>
                         </b-row>
-                        <b-row style="padding: 2px">
+                        <!-- <b-row style="padding: 2px">
                             <b-col sm="4">Project Number</b-col>
                             <b-col cols="0">:</b-col>
                             <b-col sm="4">isi</b-col>
@@ -43,7 +43,7 @@
                             <b-col sm="4">IO Number</b-col>
                             <b-col cols="0">:</b-col>
                             <b-col sm="4">isi</b-col>
-                        </b-row>
+                        </b-row> -->
                     </b-col>
                     <b-col>
                         <b-row style="padding: 2px"><strong>Time record</strong></b-row>
@@ -183,81 +183,11 @@
             
             <b-row>
                 <b-col style="padding: 10px" class="text-right">
-                    <b-button v-b-modal.rating @click="submit" size="lg" variant="primary" style="margin: 10px">Approve</b-button>
+                    <b-button @click="submit" size="lg" variant="primary" style="margin: 10px">Approve</b-button>
                 </b-col>
             </b-row>
-            <div>
-                <b-modal id="rating" size="lg" title="Rating" @ok="rating()">
-                    <form @submit.prevent ="rating()">
-                        <b-form-group
-                        style=""
-                            label-for="rating"
-                            :label-cols="4"
-                            :horizontal="true">
-                                <div id="app">
-                                    <star-rating
-                                        v-model="rating"
-                                        v-bind:increment="0.5"
-                                        v-bind:max-rating="5"
-                                        inactive-color="#000"
-                                        active-color="orange"
-                                        v-bind:star-size="70"
-                                        @rating-selected ="setRating">
-                                    </star-rating>
-                                </div>
-                        </b-form-group>
-                    </form>
-                </b-modal>
-            </div>
         </div>
     </b-col>
   </b-row>
 </template>
-<script>
-    import StarRating from 'vue-star-rating'
-    export default {
-        components: {
-            StarRating,
-        },
-    validate(params) {
-      // return /^\d+$/.test(params.id)]
-      // console.log("params " + params)
-      return true
-    },
-
-    name: 'approveReport',
-
-    props: ['id'],
-
-    data () {
-        return {
-            assignment_id: null,
-            assignment_class: null,
-            assignment_tittle: null,
-            errors: [],
-        }
-    },
-    mounted(){
-        this.getAssignment();
-    },
-    methods: {
-        getAssignment() {
-          console.log("id : " + this.$route.params.id);
-          this.$axios.get('/assignment/detail/' + this.$route.params.id).then( response => {
-            // console.log(response.data);
-            this.assignment_id = response.data.id;
-            this.assignment_class = response.data.assignment_class;
-            this.assignment_tittle = response.data.assignment_tittle;
-          })
-        },
-        submit(){
-
-        },
-        setRating: function(rating){
-            this.rating= rating;
-            console.log(this.rating);
-        },
-    }
-    }
-</script>
     

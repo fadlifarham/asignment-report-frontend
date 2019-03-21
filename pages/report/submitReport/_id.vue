@@ -6,7 +6,6 @@
             label-for="assignment_id"
             :label-cols="4"
             :horizontal="true"> :
-            <!-- <b-form-input v-model="assignment_id"  id="assignmentId" type="text"></b-form-input> -->
             {{ assignment_id }}
           </b-form-group>
         <b-form-group
@@ -15,7 +14,6 @@
             :label-cols="4"
             :horizontal="true"> :
             {{ assignment_class }}
-            <!-- <b-form-input v-model="assignment_id" id="assignmentClass" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Title"
@@ -23,7 +21,6 @@
             :label-cols="4"
             :horizontal="true">  :
             {{ assignment_tittle }}
-            <!-- <b-form-input v-model="assignment_id" id="assignmentTitle" type="text"></b-form-input> -->
           </b-form-group>
     </b-col>
     <b-col lg="12">
@@ -45,7 +42,7 @@
                                 </b-form-select>
                             </b-col>
                         </b-row>
-                        <!-- <b-row style="padding: 2px">
+                        <b-row style="padding: 2px">
                             <b-col sm="4">Project Number</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
@@ -68,7 +65,7 @@
                                     style="border-radius: 5px">
                                 </b-form-input>
                             </b-col>
-                        </b-row> -->
+                        </b-row>
                     </b-col>
                     <b-col>
                         <b-row style="padding: 2px"><strong>Time record</strong></b-row>
