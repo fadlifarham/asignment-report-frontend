@@ -6,7 +6,6 @@
             label-for="assignment_id"
             :label-cols="4"
             :horizontal="true"> :
-            <!-- <b-form-input v-model="assignment_id"  id="assignmentId" type="text"></b-form-input> -->
             {{ assignment_id }}
           </b-form-group>
         <b-form-group
@@ -15,7 +14,6 @@
             :label-cols="4"
             :horizontal="true"> :
             {{ assignment_class }}
-            <!-- <b-form-input v-model="assignment_id" id="assignmentClass" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Title"
@@ -23,7 +21,6 @@
             :label-cols="4"
             :horizontal="true">  :
             {{ assignment_tittle }}
-            <!-- <b-form-input v-model="assignment_id" id="assignmentTitle" type="text"></b-form-input> -->
           </b-form-group>
     </b-col>
     <b-col lg="12">
@@ -45,7 +42,7 @@
                                 </b-form-select>
                             </b-col>
                         </b-row>
-                        <!-- <b-row style="padding: 2px">
+                        <b-row style="padding: 2px">
                             <b-col sm="4">Project Number</b-col>
                             <b-col sm="0">:</b-col>
                             <b-col>
@@ -68,7 +65,7 @@
                                     style="border-radius: 5px">
                                 </b-form-input>
                             </b-col>
-                        </b-row> -->
+                        </b-row>
                     </b-col>
                     <b-col>
                         <b-row style="padding: 2px"><strong>Time record</strong></b-row>
@@ -246,15 +243,15 @@
                     <b-row style="padding: 6px"><strong>Attachment</strong></b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">BAI</b-col>
-                        <b-col sm="5"><b-form-file id="bai" accept=".pdf" :plain="true" v-model="bai" @change="baiHandler"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="bai" multiple="" accept=".pdf" :plain="true" v-model="bai" @change="baiHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">TNC</b-col>
-                        <b-col sm="5"><b-form-file accept=".pdf" id="tnc" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file accept=".pdf" id="tnc" multiple="" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                        <b-col sm="5"><b-form-file id="photo"  accept=".jpg" :plain="true" v-model="photos" @change="photoHandler"></b-form-file></b-col>
+                        <b-col sm="5"><b-form-file id="photo" multiple="" accept=".jpg" :plain="true" v-model="photos" @change="photoHandler"></b-form-file></b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Other</b-col>
@@ -290,31 +287,31 @@ import moment from 'moment'
 
     data () {
         return {
-            assignment_id: null,
-            assignment_class: null,
-            assignment_tittle: null,
-            assignment_type: null,
-            // project_number: null,
-            // io_number: null,
-            date_work: null,
-            time_start: null,
-            time_at: null,
-            time_job_finish: null,
-            time_end: null,
-            company: null,
-            address: null,
-            cp: null,
-            pic: null,
-            sppd_status: null,
-            day_number: null,
-            type_sppd: null,
-            brief_work: null,
-            result: null,
-            bai: '',
-            tnc: '',
-            photos: '',
-            other: '',
-            errors: [],
+          assignment_id: null,
+          assignment_class: null,
+          assignment_tittle: null,
+          assignment_type: null,
+          // project_number: null,
+          // io_number: null,
+          date_work: null,
+          time_start: null,
+          time_at: null,
+          time_job_finish: null,
+          time_end: null,
+          company: null,
+          address: null,
+          cp: null,
+          pic: null,
+          sppd_status: null,
+          day_number: null,
+          type_sppd: null,
+          brief_work: null,
+          result: null,
+          bai: [],
+          tnc: [],
+          photos: [],
+          other: '',
+          errors: [],
         }
     },
     mounted(){
@@ -331,79 +328,81 @@ import moment from 'moment'
           })
         },
         submit(){
-            let formData = new FormData();
-            formData.append('bai', this.file);
-            formData.append('tnc', this.file);
-            formData.append('photos', this.file);
-            formData.append('other', this.file);
+          let formData = new FormData();
+          formData.append('bai', this.file);
+          formData.append('tnc', this.file);
+          formData.append('photos', this.file);
+          formData.append('other', this.file);
 
-            this.$axios.post('/ar/submit', {
-                assignment_id: this.assignment_id,
-                assignment_type: this.assignment_type, //1
-                // project_number: this.project_number, //2
-                // io_number: this.io_number, //3
-                date_work: this.date_work, //4
-                time_start: this.time_start, //5
-                time_at: this.time_at, //6
-                time_job_finish: this.time_job_finish, //7
-                time_end: this.time_end, //8
-                company: this.company, //9
-                address: this.address, //10
-                cp: this.cp, //11
-                pic: this.pic, //12
-                sppd_status: this.sppd_status, //13
-                day_number: this.day_number, //14
-                type_sppd: this.type_sppd, //15
-                brief_work: this.brief_work, //16
-                result: this.result, //17
-                bai: this.bai, //18
-                tnc: this.tnc, //19
-                photos: this.photos, //20
-                other: this.other, //21
+          this.$axios.post('/ar/submit', {
+            assignment_id: this.assignment_id,
+            assignment_type: this.assignment_type, //1
+            // project_number: this.project_number, //2
+            // io_number: this.io_number, //3
+            date_work: this.date_work, //4
+            time_start: this.time_start, //5
+            time_at: this.time_at, //6
+            time_job_finish: this.time_job_finish, //7
+            time_end: this.time_end, //8
+            company: this.company, //9
+            address: this.address, //10
+            cp: this.cp, //11
+            pic: this.pic, //12
+            sppd_status: this.sppd_status, //13
+            day_number: this.day_number, //14
+            type_sppd: this.type_sppd, //15
+            brief_work: this.brief_work, //16
+            result: this.result, //17
+            bai: this.bai, //18
+            tnc: this.tnc, //19
+            photos: this.photos, //20
+            other: this.other, //21
 
-                }).then(response => {
-                    // this.assignment.push(response.data.task);
-                    this.status = 'Submit Assignment Report Success!';
-                    console.log(this.status);
-                    swal('Success', this.status, 'success');
-                    this.reset();
-                }, response => {
-                    console.log("BAI \t: " + this.bai);
-                    console.log("TnC \t: " + this.tnc);
-                    console.log("Photo \t: " + this.photos);
-                    console.log("Others \t: " + this.other);
-
-                    // console.log(response);
-                    // console.log(this.value);
-            })
+          }).then(response => {
+              // this.assignment.push(response.data.task);
+              this.status = 'Submit Assignment Report Success!';
+              console.log(this.status);
+              swal('Success', this.status, 'success');
+              this.reset();
+          }, response => {
+              // console.log("BAI")
+              // console.log(this.bai);
+              // console.log("TnC \t: " + this.tnc);
+              // console.log("Photo \t: " + this.photos);
+              // console.log("Others \t: " + this.other);
+          })
         },
-        handleFileBai(){
-            this.bai = this.$refs.bai.files[0];
-        },
-        handleFileTnc(){
-            this.tnc = this.$refs.tnc.files[0];
-        },
-        handleFilePhotos(){
-            this.photos = this.$refs.photos.files[0];
-        },
-        handleFileOther(){
-            this.other = this.$refs.other.files[0];
-        },
-        onFileSelected(event) {
-            this.selectedFile = event.target.files[0]
-        },
+        // handleFileBai(){
+        //     this.bai = this.$refs.bai.files[0];
+        // },
+        // handleFileTnc(){
+        //     this.tnc = this.$refs.tnc.files[0];
+        // },
+        // handleFilePhotos(){
+        //     this.photos = this.$refs.photos.files[0];
+        // },
+        // handleFileOther(){
+        //     this.other = this.$refs.other.files[0];
+        // },
+        // onFileSelected(event) {
+        //     this.selectedFile = event.target.files[0]
+        // },
 
         baiHandler(e) {
-          let files = e.target.files || e.dataTransfer.files;
+          let files = e.target.files || e.dataTransfer.files
           if (!files.length)
-            return;
-          this.createBai(files[0]);
+            return
+          for(let i = 0; i < files.length; i++) {
+            this.createBai(files[i])
+          }
         },
 
         createBai(file) {
           let reader = new FileReader();
           reader.onload = (e) => {
-            this.bai = e.target.result;
+            let bai = e.target.result;
+            this.bai.push(bai)
+            console.log(this.bai);
           };
           reader.readAsDataURL(file);
         },
@@ -411,29 +410,37 @@ import moment from 'moment'
         tncHandler(e) {
           let files = e.target.files || e.dataTransfer.files;
           if (!files.length)
-            return;
-          this.createTnc(files[0]);
+            return
+          for(let i = 0; i < files.length; i++) {
+            this.createTnc(files[i])
+          }
         },
 
         createTnc(file) {
           let reader = new FileReader();
           reader.onload = (e) => {
-            this.tnc = e.target.result;
-          };
-          reader.readAsDataURL(file);
+            let tnc = e.target.result
+            this.tnc.push(tnc)
+            console.log(this.tnc)
+          }
+          reader.readAsDataURL(file)
         },
 
         photoHandler(e) {
           let files = e.target.files || e.dataTransfer.files;
           if (!files.length)
             return;
-          this.createPhoto(files[0]);
+          for(let i = 0; i < files.length; i++) {
+            this.createPhoto(files[i])
+          }
         },
 
         createPhoto(file) {
           let reader = new FileReader();
           reader.onload = (e) => {
-            this.photos = e.target.result;
+            let photos = e.target.result;
+            this.photos.push(photos);
+            console.log(this.photos)
           };
           reader.readAsDataURL(file);
         },
@@ -471,9 +478,9 @@ import moment from 'moment'
             this.type_sppd = ""; //15
             this.brief_work = "";  //16
             this.result = "";  //17
-            this.bai = ""; //18
-            this.tnc = ""; //19
-            this.photos = ""; //20
+            this.bai = []; //18
+            this.tnc = []; //19
+            this.photos = []; //20
             this.other = ""; //21
         },
         format_date(value){
