@@ -18,7 +18,7 @@ export default {
         {
           name: 'Assignment List',
           url: '/createAssignment/listCreated',
-          icon: 'icon-list'
+          icon: 'icon-list',
         },
         {
           name: 'Create Assignment',
@@ -146,5 +146,5 @@ export default {
     //   ]
     // },
 
-  ]
+  ],
 }
