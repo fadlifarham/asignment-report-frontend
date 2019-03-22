@@ -40,7 +40,7 @@
                 <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
                 </a>
-                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
+                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
                   <i class="fa fa-edit"></i>
                 </a>
                 <a slot="delete" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
@@ -95,9 +95,6 @@
                 ],
                 filterable: [
                   'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
-                ],
-                filterable: [
-                  'ID', 'PTL_ID', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Status'
                 ],
                 texts: {
                   filterPlaceholder: 'filter'
