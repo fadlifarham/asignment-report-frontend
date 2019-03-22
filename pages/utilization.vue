@@ -72,7 +72,16 @@
           </b-button-toolbar>
         </b-col>
       </b-row>
-      <main-chart-example class="chart-wrapper" style="height:300px;margin-top:40px;" height="300"></main-chart-example>
+      <div id="app">
+        <fusioncharts
+            :type="type"
+            :width="width"
+            :height="height"
+            :dataFormat="dataFormat"
+            :dataSource="dataSource">
+        </fusioncharts>
+    </div>
+      <!-- <main-chart-example class="chart-wrapper" style="height:300px;margin-top:40px;" height="300"></main-chart-example>
       <div slot="footer">
         <ul>
           <li>
@@ -101,13 +110,80 @@
             <b-progress height={} class="progress-xs mt-2" :precision="1" :value="40"></b-progress>
           </li>
         </ul>
-      </div>
+      </div> -->
     </b-card>
     </b-col>
   </b-row>
 </template>
 <script>
-import Vue from 'vue';
+  import Vue from 'vue';
+  import VueFusionCharts from 'vue-fusioncharts';
+  import FusionCharts from 'fusioncharts';
+  import Charts from 'fusioncharts/fusioncharts.charts';
+
+  //import the theme
+  import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
+
+  // register VueFusionCharts component
+  Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
+
+  var dataSource = {
+    "chart": {
+      "caption": "Countries With Most Oil Reserves [2017-18]",
+      "subCaption": "In MMbbl = One Million barrels",
+      "xAxisName": "Country",
+      "yAxisName": "Reserves (MMbbl)",
+      "numberSuffix": "K",
+      "theme": "gammel"
+    },
+    "data": [
+      {
+        "label": "Venezuela",
+        "value": "290"
+      },
+      {
+        "label": "Saudi",
+        "value": "260"
+      },
+      {
+        "label": "Canada",
+        "value": "180"
+      },
+      {
+        "label": "Iran",
+        "value": "140"
+      },
+      {
+        "label": "Russia",
+        "value": "115"
+      },
+      {
+        "label": "UAE",
+        "value": "100"
+      },
+      {
+        "label": "US",
+        "value": "30"
+      },
+      {
+        "label": "China",
+        "value": "30"
+      }
+    ]
+  };
+
+  var app = new Vue({
+      el: '#app',
+      data: {
+          width: '100%',
+          height: '400',
+          type: 'column2d',
+          dataFormat: 'json',
+          dataSource: dataSource
+      }
+  });
+
+  // import Vue from 'vue';
   Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
@@ -146,8 +222,7 @@ import Vue from 'vue';
                 // texts: {
                 //   filterPlaceholder: 'filter'
                 // }
-            }
-
+            },
         }
     },
     mounted(){
