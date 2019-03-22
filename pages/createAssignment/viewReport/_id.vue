@@ -49,7 +49,7 @@
                         <b-card-body
                             id="nav-scroller"
                             ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
+                            style="position:relative; height:300px; overflow-y:scroll;">
                             <!-- v-for="detail in details" :key="detail.id" -->
                             <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
                                 <b-col cols="4"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
@@ -66,7 +66,7 @@
                         <b-card-body
                             id="nav-scroller"
                             ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
+                            style="position:relative; height:300px; overflow-y:scroll;">
                             <b-row>
                                 <b-col cols="4"></b-col>
                                 <b-col sm="0"><strong>AR ID </strong></b-col>
@@ -91,7 +91,7 @@
                         <b-card-body
                             id="nav-scroller"
                             ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
+                            style="position:relative; height:300px; overflow-y:scroll;">
                             <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
                                 <b-col cols="2"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
                                 <b-col sm="0"><strong>{{detail.user.full_name}}</strong></b-col>
@@ -101,7 +101,7 @@
                                             <star-rating
                                                 v-model="rating"
                                                 v-bind:increment="0.5"
-                                                v-bind:max-rating="5"
+                                                v-bind:max-rating="10"
                                                 inactive-color="#111"
                                                 active-color="orange"
                                                 v-bind:star-size="25"
@@ -145,6 +145,7 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
+            user: [],
             // user_id:'',
             // details:[],
             assignment_user:[],
@@ -198,5 +199,4 @@ export default {
 </script>
 
 
-            
-            
+
