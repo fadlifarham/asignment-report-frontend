@@ -105,7 +105,7 @@
                                                 inactive-color="#111"
                                                 active-color="orange"
                                                 v-bind:star-size="25"
-                                                @rating-selected ="setRating">
+                                                @rating-selected ="setRating(rating, detail.id)">
                                             </star-rating>
                                         </div>
                                     </b-form-group>
@@ -145,7 +145,7 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
-            user: [],
+            engineers: [],
             // user_id:'',
             // details:[],
             assignment_user:[],
@@ -174,26 +174,38 @@ export default {
             );
         },
         approve(){
-            this.$axios.post('/assignment/create', {
-                id_user: this.id_user,
-                assignment_id: this.assignment_id,
-                rating: this.rating,
-            }).then(response => {
-                // this.assignment.push(response.data.task);
-                this.status = 'Assignment Approved Success!';
-                console.log(this.status);
-                swal('Success', this.status, 'success');
-                this.reset();
-            }, response => {
-                this.status = 'Please Fill In All Data';
-                console.log(this.status);
-                swal('Failed', this.status, 'warning');
-            })
+          this.setEngineers();
+          this.$axios.post('/assignment/approve', {
+              engineers: this.engineers,
+              assignment_id: this.assignment_id,
+              rating: this.rating,
+          }).then(response => {
+              // this.assignment.push(response.data.task);
+              this.status = 'Assignment Approved Success!';
+              console.log(this.status);
+              swal('Success', this.status, 'success');
+              // this.reset();
+          }, response => {
+              this.status = 'Please Fill In All Data';
+              console.log(this.status);
+              swal('Failed', this.status, 'warning');
+          })
         },
-        setRating: function(rating){
-            this.rating= rating;
-            // console.log(this.rating);
+        setRating: function(rating, id){
+          // this.rating= rating;
+          console.log("id : " + id);
+          console.log("rating : " + rating);
+
+          this.engineers.push({
+            'id'      : id,
+            'rating'  : rating
+          });
+
+          console.log(this.engineers);
       },
+      setEngineers() {
+
+      }
     }
 }
 </script>
