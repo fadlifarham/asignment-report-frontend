@@ -100,7 +100,7 @@
                                         <div id="app">
                                             <star-rating
                                                 v-model="rating"
-                                                v-bind:increment="0.5"
+                                                v-bind:increment="1"
                                                 v-bind:max-rating="10"
                                                 inactive-color="#111"
                                                 active-color="orange"

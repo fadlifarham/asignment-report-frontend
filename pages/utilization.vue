@@ -1,10 +1,17 @@
 <template>
 <div class="animated fadeIn">
     <b-card-group columns class="card-columns cols-2">
-          <b-card header="Team Utilization">
-            <b-card-body>
-              <div id="people">
-                <v-client-table :data="users" :columns="columns" :options="options"></v-client-table>
+          <b-card header="Team Utilzation">
+            <b-card-body
+            id="nav-scroller"
+            ref="content"
+            style="position:relative; height:500px; overflow-y:scroll;">
+              <div id="utils" style="width: 800px">
+                <v-client-table :data="utils" :columns="columns" :options="options">
+                  <!-- <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id"> -->
+                    <i class="fa fa-eye"></i>
+                  <!-- </a> -->
+                </v-client-table>
               </div>
             </b-card-body>
           </b-card>
@@ -15,6 +22,7 @@
                 :chartdata="chartdata"
                 :options="options" -->
               <bar-example
+                :chartData="chartData"
               />
             </div>
           </b-card>
@@ -23,73 +31,90 @@
 </template>
 <script>
   import BarExample from '~/components/charts/BarExample'
+  // import { Bar } from 'vue-chartjs'
+  // import VueCharts from 'vue-chartjs'
+  // import { Pie, Bar, mixins } from 'vue-chartjs'
+
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
-  const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1))
-        let temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-      }
-      return array
-    }
+  
     export default {
+      // extends: Bar,
+      // mixins: [mixins.reactiveData],
       name: 'charts',
       components: {
         BarExample,
       },
     data () {
         return {
-            name: 'people',
-            users: [],
+            chartData: '',
+            name: 'utils',
+            utils: [],
             errors: [],
-            columns: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'show'],
+            columns: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
             options: {
                 filterByColumn: true,
                 listColumns: {
                 },
                 headings: {
-                  id: 'ID',
+                  // id: 'ID',
                   user_id: 'User ID',
-                  name: 'Name',
+                  full_name: 'Name',
                   work_load: 'Work Load',
                   work_quality: 'Work Quality',
                   sppd: 'SPPD',
-                  complite_assignment: 'Complite Assignment',
+                  complete_assignment: 'Complete Assignment',
                   show: 'Show',
                 },
-                sortable: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', 'show'],
-                filterable: ['id', 'user_id', 'name', 'work_load', 'work_quality', 'sppd', 'complite_assignment', ],
+                sortable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
+                filterable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', ],
                 // texts: {
                 //   filterPlaceholder: 'filter'
                 // }
+                // chartdata: null,
+                // responsive: true,
+                // maintainAspectRatio: false
             },
         }
     },
+    // extends: Bar,
     mounted(){
         this.readUsers();
+        // this.renderChart(this.chartData)
     },
     methods: {
         readUsers() {
-            // this.$axios.get('/user')
-            // .then(response => {
-            //     this.users = response.data.users;
-            //     console.log(response.data.users);
-            // })
             var temp;
             this.$axios.get('/utilization/all').then(response => {
                 for(let i=0;i<response.data.length;i++){
-                    temp = { id: response.data[i].user.id, user_id: response.data[i].user_id, project_Number: response.data[i].project_number,
-                    IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
-                    assignment_Desc: response.data[i].assignment_desc, status: response.data[i].status};
-                  this.alls.push(temp);
+                    temp = { user_id: response.data[i].user_id, full_name: response.data[i].user.full_name,
+                    work_load: response.data[i].work_load +' %', work_quality: response.data[i].work_quality +' %', sppd: response.data[i].sppd,
+                    complete_assignment: response.data[i].complete_assignment};
+                  this.utils.push(temp);
                 }
-              console.log(this.alls);
+              console.log(this.utils);
             })
         },
+        // chart(){
+        //   axios.get('https://localhost:44379/api/DailyStudents')
+        //   .then(response => {
+        //     // JSON responses are automatically parsed.
+        //     const responseData = response.data
+        //     this.chartData = {
+        //       labels: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
+        //       datasets: [
+        //         label: 'Performance',
+        //         backgroundColor: '#538cc6',
+        //         data: responseData.map(item => item.totalStudents)
+        //       ]
+        //     }
+        //   })
+        //   .catch(e => {
+        //     this.errors.push(e)
+        //   })
+        // },
         getBadge (status) {
         return status === 'Approve' ? 'success'
           : status === 'Done' ? 'secondary'
