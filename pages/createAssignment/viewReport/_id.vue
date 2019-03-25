@@ -49,7 +49,7 @@
                         <b-card-body
                             id="nav-scroller"
                             ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
+                            style="position:relative; height:300px; overflow-y:scroll;">
                             <!-- v-for="detail in details" :key="detail.id" -->
                             <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
                                 <b-col cols="4"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
@@ -67,7 +67,7 @@
                         <b-card-body
                             id="nav-scroller"
                             ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
+                            style="position:relative; height:300px; overflow-y:scroll;">
                             <b-row>
                                 <b-col cols="4"></b-col>
                                 <b-col sm="0"><strong>AR ID </strong></b-col>
@@ -91,7 +91,7 @@
                         <b-card-body
                             id="nav-scroller"
                             ref="content"
-                            style="position:relative; height:300px; overflow-y:scroll;"> 
+                            style="position:relative; height:300px; overflow-y:scroll;">
                             <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
                                 <b-col cols="2"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
                                 <b-col sm="0"><strong>{{detail.user.full_name}}</strong></b-col>
@@ -101,11 +101,11 @@
                                             <star-rating
                                                 v-model="rating"
                                                 v-bind:increment="0.5"
-                                                v-bind:max-rating="5"
+                                                v-bind:max-rating="10"
                                                 inactive-color="#111"
                                                 active-color="orange"
                                                 v-bind:star-size="25"
-                                                @rating-selected ="setRating">
+                                                @rating-selected ="setRating(rating, detail.id)">
                                             </star-rating>
                                         </div>
                                     </b-form-group>
@@ -145,6 +145,8 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
+            engineers: [],
+            // user_id:'',
             // details:[],
             assignment_user:[],
             assignment_report:[],
@@ -173,31 +175,41 @@ export default {
             );
         },
         approve(){
-            this.$axios.post('/assignment/approve', {
-                assignment_id: this.assignment_id,
-                user_id: this.user_id,
-                // rating: this.rating,
-            }).then(response => {
-                this.status = 'Assignment Approved Success!';
-                console.log(this.status);
-                swal('Success', this.status, 'success');
-                this.reset();
-            }, response => {
-                this.status = 'Failed';
-                console.log("ass : " + this.assignment_id);
-                console.log("user : " + this.user_id);
-                // console.log(this.status);
-                swal('Failed', this.status, 'warning');
-            })
+          this.setEngineers();
+          this.$axios.post('/assignment/approve', {
+              engineers: this.engineers,
+              assignment_id: this.assignment_id,
+              rating: this.rating,
+          }).then(response => {
+              // this.assignment.push(response.data.task);
+              this.status = 'Assignment Approved Success!';
+              console.log(this.status);
+              swal('Success', this.status, 'success');
+              // this.reset();
+          }, response => {
+              this.status = 'Please Fill In All Data';
+              console.log(this.status);
+              swal('Failed', this.status, 'warning');
+          })
         },
-        setRating: function(rating){
-            this.rating= rating;
-            // console.log(this.rating);
+        setRating: function(rating, id){
+          // this.rating= rating;
+          console.log("id : " + id);
+          console.log("rating : " + rating);
+
+          this.engineers.push({
+            'id'      : id,
+            'rating'  : rating
+          });
+
+          console.log(this.engineers);
       },
+      setEngineers() {
+
+      }
     }
 }
 </script>
 
 
-            
-            
+

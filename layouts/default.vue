@@ -17,6 +17,11 @@
 <script>
 import nav from './menu'
 import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
+// function requireAuth() {
+//   function proceed() {
+//     if (store.getters.get)
+//   }
+// }
 
 export default {
   name: 'full',
@@ -38,6 +43,6 @@ export default {
     list () {
       return this.$route.matched
     }
-  }
+  },
 }
 </script>
