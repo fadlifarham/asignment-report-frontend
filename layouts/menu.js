@@ -19,6 +19,9 @@ export default {
           name: 'Assignment List',
           url: '/createAssignment/listCreated',
           icon: 'icon-list',
+          meta: {
+            engineer: true,
+          }
         },
         {
           name: 'Create Assignment',
