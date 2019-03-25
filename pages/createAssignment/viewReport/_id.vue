@@ -53,6 +53,7 @@
                             <!-- v-for="detail in details" :key="detail.id" -->
                             <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
                                 <b-col cols="4"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
+                                <!-- <b-col sm="2">{{detail.user_id}}</b-col> -->
                                 <b-col sm="0">{{detail.user.full_name}}</b-col>
                             </b-row>
                         </b-card-body>
@@ -75,7 +76,6 @@
                                 <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/viewReport/detailReport/'" aria-hidden="true"></a></b-col>
                                 <b-col sm="0">  {{detail.id}}</b-col>
                             </b-row>
-                            <!-- <b-col cols="4"><a class="fa fa-folder-open fa-3x" aria-hidden="true" :href="'/createAssignment/viewReport/detailReport/'"></a></b-col> -->
                         </b-card-body>
                     </b-card>
                 </b-col>
@@ -100,7 +100,7 @@
                                         <div id="app">
                                             <star-rating
                                                 v-model="rating"
-                                                v-bind:increment="0.5"
+                                                v-bind:increment="1"
                                                 v-bind:max-rating="10"
                                                 inactive-color="#111"
                                                 active-color="orange"
@@ -150,6 +150,7 @@ export default {
             // details:[],
             assignment_user:[],
             assignment_report:[],
+            user_id:[],
             rating: 0,
             errors: [],
         }

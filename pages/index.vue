@@ -8,11 +8,15 @@
           id="nav-scroller"
           ref="content"
           style="position:relative; height:300px; overflow-y:scroll;"> 
-          <table>
+          <b-col lg="12">
             <b-row v-for="recent in recents" :key="recent.id" style="margin-left: 6px; margin-bottom: 4px">
-              {{ recent.user.full_name }} {{ recent.action }} {{ recent.assignment.assignment_tittle }} at {{ recent.created_at | moment("MMMM Do YYYY, h:mm:ss a") }}
+              <b-col><strong>{{ recent.user.full_name }}</strong></b-col>
+              <b-col>{{ recent.action }}</b-col>
+              <b-col><strong> {{ recent.assignment.assignment_tittle }}</strong></b-col>
+              <b-col>at {{ recent.created_at | moment("MMMM Do YYYY, h:mm:ss a") }}</b-col>
+              <!-- <strong>{{ recent.user.full_name }}</strong> {{ recent.action }} <strong> {{ recent.assignment.assignment_tittle }}</strong> at {{ recent.created_at | moment("MMMM Do YYYY, h:mm:ss a") }} -->
             </b-row>
-          </table>
+          </b-col>
         </b-card-body>
       </b-card>
     <b-card no-body style="width: 100%; height: 300px">

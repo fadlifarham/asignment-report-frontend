@@ -42,7 +42,7 @@ export default {
     },
     {
       name: 'test ',
-      url: '/createAssignment/viewReport',
+      url: '/charts',
       icon: 'icon-chart',
     },
     // {
