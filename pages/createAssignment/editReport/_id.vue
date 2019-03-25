@@ -1,48 +1,60 @@
 <template>
-    <div id="update">
-        <b-form v-on:submit="updateProduct">
-            <b-row>
+      <b-row>
             <b-col lg="12">
                 <div class="animated fadeIn" style="padding: 0px">
                     <b-card style="border-radius: 3px">
                         <b-row style="width: 100%; margin-left: auto; margin-right: auto">
-                            <b-col lg="12">
+                            <b-col>
                                 <b-row style="padding: 2px">
-                                    <b-form-group
-                                        label="Assignment ID"
-                                        label-for="assignment_id"
-                                        :label-cols="6"
-                                        :horizontal="true">
-                                        <b-form-input v-model="assignments.assignment_id" id="assignment_id" type="text" ></b-form-input>
-                                    </b-form-group>
-                                    <!-- <b-col cols="6"><strong> Assignment ID</strong></b-col>
+                                    <b-col cols="6"><strong> Assignment ID</strong></b-col>
                                     <b-col cols="0">:</b-col>
-                                    <b-col sm="4">{{assignment_id}}</b-col> -->
+                                    <b-col sm="4"><b-form-input v-model="assignment_id" id="assignment_id" type="text" style="border-radius: 5px"></b-form-input></b-col>
                                 </b-row>
                                 <b-row style="padding: 2px">
                                     <b-col cols="6"><strong>Assignment Class</strong></b-col>
                                     <b-col cols="0">:</b-col>
-                                    <b-col sm="4">{{assignment_class}}</b-col>
+                                    <b-col sm="4"><b-form-select id="assignment_class"
+                                        :plain="true"
+                                        :options="['Testcomm','Survey','Installation','QC','BERTest','Supervise Vendor','Migration','Integration',
+                                        'Integration','Technical Meeting','Sales Activity','Asplan Drawing','Administration']"
+                                        value="Assignment Class"
+                                        style="border-radius: 5px"
+                                        v-model="assignment_class">
+                                    </b-form-select></b-col>
                                 </b-row>
                                 <b-row style="padding: 2px">
                                     <b-col cols="6"><strong>Assignment Description</strong></b-col>
                                     <b-col cols="0">:</b-col>
-                                    <b-col sm="4">{{assignment_desc}}</b-col>
+                                    <b-col sm="4">
+                                        <textarea v-model="assignment_desc" class="form-control" rows="6" id="detail" style="border-radius: 5px"></textarea>
+                                    </b-col>
                                 </b-row>
                                 <b-row style="padding: 2px">
                                     <b-col cols="6"><strong>Project Number</strong></b-col>
                                     <b-col cols="0">:</b-col>
-                                    <b-col sm="4">{{project_number}}</b-col>
+                                    <b-col sm="4"><b-form-input v-model="project_number" id="project_number" type="text" style="border-radius: 5px"></b-form-input></b-col>
                                 </b-row>
                                 <b-row style="padding: 2px">
                                     <b-col cols="6"><strong>IO Number</strong></b-col>
                                     <b-col cols="0">:</b-col>
-                                    <b-col sm="4">{{io_number}}</b-col>
+                                    <b-col sm="4"><b-form-input v-model="io_number" id="io_number" type="text" style="border-radius: 5px"></b-form-input></b-col>
                                 </b-row>
                                 <b-row style="padding: 2px">
-                                    <b-col cols="6"><strong>Difficulty Level</strong></b-col>
+                                    <b-col cols="6" align-horizontal="center"><strong>Difficulty Level</strong></b-col>
                                     <b-col cols="0">:</b-col>
-                                    <b-col sm="4"><strong>{{difficulty_level}} </strong>/5</b-col>
+                                    <b-col sm="4">
+                                        <div id="app">
+                                            <star-rating
+                                            v-model="difficulty_level"
+                                            v-bind:increment="1"
+                                            v-bind:max-rating="10"
+                                            inactive-color="#000"
+                                            active-color="orange"
+                                            v-bind:star-size="20"
+                                            @rating-selected ="setRating"
+                                            >
+                                            </star-rating>
+                                        </div></b-col>
                                 </b-row>
                             </b-col>
                         </b-row>
@@ -131,9 +143,7 @@
                         </b-col>
                     </b-input-group>
             </b-col>
-            </b-row>
-        </b-form>
-    </div>
+        </b-row>
 </template>
 <script>
 import StarRating from 'vue-star-rating'
@@ -158,7 +168,7 @@ export default {
             assignment_user:[],
             assignment_report:[],
             user_id:[],
-            rating: 0,
+            // rating: 0,
             errors: [],
         }
     },
