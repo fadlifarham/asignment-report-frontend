@@ -1,154 +1,106 @@
 <template>
-      <b-row>
-            <b-col lg="12">
-                <div class="animated fadeIn" style="padding: 0px">
-                    <b-card style="border-radius: 3px">
-                        <b-row style="width: 100%; margin-left: auto; margin-right: auto">
-                            <b-col>
-                                <b-row style="padding: 2px">
-                                    <b-col cols="6"><strong> Assignment ID</strong></b-col>
-                                    <b-col cols="0">:</b-col>
-                                    <b-col sm="4"><b-form-input v-model="assignment_id" id="assignment_id" type="text" style="border-radius: 5px"></b-form-input></b-col>
-                                </b-row>
-                                <b-row style="padding: 2px">
-                                    <b-col cols="6"><strong>Assignment Class</strong></b-col>
-                                    <b-col cols="0">:</b-col>
-                                    <b-col sm="4"><b-form-select id="assignment_class"
-                                        :plain="true"
-                                        :options="['Testcomm','Survey','Installation','QC','BERTest','Supervise Vendor','Migration','Integration',
-                                        'Integration','Technical Meeting','Sales Activity','Asplan Drawing','Administration']"
-                                        value="Assignment Class"
-                                        style="border-radius: 5px"
-                                        v-model="assignment_class">
-                                    </b-form-select></b-col>
-                                </b-row>
-                                <b-row style="padding: 2px">
-                                    <b-col cols="6"><strong>Assignment Description</strong></b-col>
-                                    <b-col cols="0">:</b-col>
-                                    <b-col sm="4">
-                                        <textarea v-model="assignment_desc" class="form-control" rows="6" id="detail" style="border-radius: 5px"></textarea>
-                                    </b-col>
-                                </b-row>
-                                <b-row style="padding: 2px">
-                                    <b-col cols="6"><strong>Project Number</strong></b-col>
-                                    <b-col cols="0">:</b-col>
-                                    <b-col sm="4"><b-form-input v-model="project_number" id="project_number" type="text" style="border-radius: 5px"></b-form-input></b-col>
-                                </b-row>
-                                <b-row style="padding: 2px">
-                                    <b-col cols="6"><strong>IO Number</strong></b-col>
-                                    <b-col cols="0">:</b-col>
-                                    <b-col sm="4"><b-form-input v-model="io_number" id="io_number" type="text" style="border-radius: 5px"></b-form-input></b-col>
-                                </b-row>
-                                <b-row style="padding: 2px">
-                                    <b-col cols="6" align-horizontal="center"><strong>Difficulty Level</strong></b-col>
-                                    <b-col cols="0">:</b-col>
-                                    <b-col sm="4">
-                                        <div id="app">
-                                            <star-rating
-                                            v-model="difficulty_level"
-                                            v-bind:increment="1"
-                                            v-bind:max-rating="10"
-                                            inactive-color="#000"
-                                            active-color="orange"
-                                            v-bind:star-size="20"
-                                            @rating-selected ="setRating"
-                                            >
-                                            </star-rating>
-                                        </div></b-col>
-                                </b-row>
-                            </b-col>
-                        </b-row>
-                    </b-card>
+    <b-row>
+    <b-col lg="12">
+        <div class="animated fadeIn">
+            <b-col sm="0"><h4>General Assignment Information</h4></b-col>
+        </div>
+    </b-col>
+    <b-col lg="8">
+        <div class="animated fadeIn">
+            <b-form-group
+                label="Project Number"
+                label-for="project_number"
+                :label-cols="4"
+                :horizontal="true">
+                <b-form-input v-model="project_number" id="project_number" type="text" style="border-radius: 5px"></b-form-input>
+            </b-form-group>
+            <b-form-group
+                label="IO Number"
+                label-for="io_number"
+                :label-cols="4"
+                :horizontal="true">
+                <b-form-input v-model="io_number" id="io_number" type="text" style="border-radius: 5px"></b-form-input>
+            </b-form-group>
+            <b-form-group
+                label="Assigment Class"
+                label-for="assignment_class"
+                :label-cols="4"
+                :horizontal="true">
+                <b-form-select id="assignment_class"
+                    :plain="true"
+                    :options="['Testcomm','Survey','Installation','QC','BERTest','Supervise Vendor','Migration','Integration',
+                    'Integration','Technical Meeting','Sales Activity','Asplan Drawing','Administration']"
+                    value="Assignment Class"
+                    style="border-radius: 5px"
+                    v-model="assignment_class">
+                </b-form-select>
+            </b-form-group>
+            <b-form-group
+                label="Assignment Title"
+                label-for="assignment_tittle"
+                :label-cols="4"
+                :horizontal="true">
+                <b-form-input v-model="assignment_tittle" id="assignment_tittle" type="text" style="border-radius: 5px"></b-form-input>
+            </b-form-group>
+            <b-form-group
+                label="Assignment Description"
+                label-for="assignment_desc"
+                :label-cols="4"
+                :horizontal="true">
+                <textarea v-model="assignment_desc" id="assignment_desc" type="text" style="border-radius: 5px" class="form-control" rows="6"></textarea>
+            </b-form-group>
+            <b-form-group
+                label="Difficult Level"
+                label-for="difficulty_level"
+                :label-cols="4"
+                :horizontal="true">
+                    <div id="app">
+                        <star-rating
+                        v-model="difficulty_level"
+                        v-bind:increment="1"
+                        v-bind:max-rating="5"
+                        inactive-color="#000"
+                        active-color="orange"
+                        v-bind:star-size="50"
+                        @rating-selected ="setRating"
+                        >
+                        </star-rating>
+                    </div>
+            </b-form-group>
+            <!-- <b-form-group
+                label="Dispose Team"
+                label-for="disposeTeam"
+                :label-cols="4"
+                :horizontal="true">
+                <div>
+                    <multiselect
+                        v-model="assignment_user.user_id"
+                        tag-placeholder="Add this as new tag"
+                        placeholder="Search or add a tag"
+                        label="name"
+                        track-by="id"
+                        :options="options"
+                        :multiple="true"
+                        :taggable="true"
+                        @tag="addTag">
+                    </multiselect>
                 </div>
-                <div class="animated fadeIn">
-                    <b-row>
-                        <b-col sm="6">
-                            <b-card no-body style="width: 100%; height: 200px">
-                                <b-card-header align="center">
-                                    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">TEAM</h5>
-                                </b-card-header>
-                                <b-card-body
-                                    id="nav-scroller"
-                                    ref="content"
-                                    style="position:relative; height:300px; overflow-y:scroll;"> 
-                                    <!-- v-for="detail in details" :key="detail.id" -->
-                                    <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
-                                        <b-col cols="4"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
-                                        <!-- <b-col sm="2">{{detail.user_id}}</b-col> -->
-                                        <b-col sm="0">{{detail.user.full_name}}</b-col>
-                                    </b-row>
-                                </b-card-body>
-                            </b-card>
-                        </b-col>
-                        <b-col sm="6">
-                            <b-card no-body style="width: 100%; height: 200px">
-                                <b-card-header>
-                                    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Assignment Report List</h5>
-                                </b-card-header>
-                                <b-card-body
-                                    id="nav-scroller"
-                                    ref="content"
-                                    style="position:relative; height:300px; overflow-y:scroll;"> 
-                                    <b-row>
-                                        <b-col cols="4"></b-col>
-                                        <b-col sm="0"><strong>AR ID </strong></b-col>
-                                    </b-row>
-                                    <b-row v-for="detail in assignment_report" :key="detail.id" style="padding: 5px">
-                                        <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/viewReport/detailReport/'" aria-hidden="true"></a></b-col>
-                                        <b-col sm="0">  {{detail.id}}</b-col>
-                                    </b-row>
-                                </b-card-body>
-                            </b-card>
-                        </b-col>
-                    </b-row>
-                </div>
-                <div class="animated fadeIn">
-                    <b-row>
-                        <b-col sm="12">
-                            <b-card no-body style="width: 100%; height: 200px">
-                                <b-card-header align="center">
-                                    <h5 id="traffic" class="card-title mb-0" style="padding : 5px">TEAM RATING</h5>
-                                </b-card-header>
-                                <b-card-body
-                                    id="nav-scroller"
-                                    ref="content"
-                                    style="position:relative; height:300px; overflow-y:scroll;"> 
-                                    <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
-                                        <b-col cols="2"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
-                                        <b-col sm="0"><strong>{{detail.user.full_name}}</strong></b-col>
-                                        <b-col sm="2"></b-col>
-                                        <b-col sm="6"><b-form-group>
-                                                <div id="app">
-                                                    <star-rating
-                                                        v-model="rating"
-                                                        v-bind:increment="0.5"
-                                                        v-bind:max-rating="5"
-                                                        inactive-color="#111"
-                                                        active-color="orange"
-                                                        v-bind:star-size="25"
-                                                        @rating-selected ="setRating">
-                                                    </star-rating>
-                                                </div>
-                                            </b-form-group>
-                                        </b-col>
-                                    </b-row>
-                                </b-card-body>
-                            </b-card>
-                        </b-col>
-                    </b-row>
-                </div>
-                <b-input-group>
-                        <b-col cols="12" class="text-right" style="padding: 10px">
-                            <b-button @click="approve" size="lg" variant="primary" style="margin: 10px">Approve & Save</b-button>
-                        </b-col>
-                    </b-input-group>
-            </b-col>
-        </b-row>
+            </b-form-group> -->
+            <b-input-group>
+                <b-button @click="approve" size="lg" variant="primary" style="margin: 10px">Approve & Save</b-button>
+            </b-input-group>
+        </div>
+    </b-col>
+    </b-row>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <script>
-import StarRating from 'vue-star-rating'
+import StarRating from 'vue-star-rating';
+import Multiselect from 'vue-multiselect';
+
 export default {
     components: {
+        Multiselect,
         StarRating
     },
     validate(params) {
@@ -158,13 +110,13 @@ export default {
     data () {
         return {
             assignments:[],
-            // assignment_id: '',
-            // assignment_class: '',
-            // assignment_desc: '',
-            // project_number: '',
-            // io_number: '',
-            // difficulty_level: '',
-            // details:[],
+            assignment_id: '',
+            assignment_class: '',
+            assignment_desc: '',
+            project_number: '',
+            io_number: '',
+            difficulty_level: '',
+            details:[],
             assignment_user:[],
             assignment_report:[],
             user_id:[],
@@ -181,6 +133,7 @@ export default {
             this.$axios.get('assignment/detail/' + this.$route.params.id).then(response => {
                 this.assignment_id = response.data.id
                 this.assignment_class = response.data.assignment_class
+                this.assignment_tittle = response.data.assignment_tittle
                 this.assignment_desc = response.data.assignment_desc
                 this.project_number = response.data.project_number
                 this.io_number = response.data.io_number
@@ -192,10 +145,16 @@ export default {
             );
         },
         approve(){
-            this.$axios.post('/assignment/approve', {
-                assignment_id: this.assignment_id,
-                user_id: this.user_id,
-                // rating: this.rating,
+            this.$axios.post('/assignment/edit', {
+                id: this.$route.params.id,
+                project_number: this.project_number,
+                assignment_class: this.assignment_class,
+                assignment_tittle: this.assignment_tittle,
+                assignment_desc: this.assignment_desc,
+                io_number: this.io_number,
+                
+                difficulty_level: this.difficulty_level,
+               
             }).then(response => {
                 this.status = 'Assignment Approved Success!';
                 console.log(this.status);
@@ -204,15 +163,24 @@ export default {
             }, response => {
                 this.status = 'Failed';
                 console.log("ass : " + this.assignment_id);
-                console.log("user : " + this.user_id);
-                // console.log(this.status);
+                console.log(this.project_number);
                 swal('Failed', this.status, 'warning');
             })
         },
-        setRating: function(rating){
-            this.rating= rating;
+        addTag (newTag) {
+            const tag = {
+                id: newTag,
+                name: newTag,
+                code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+            }
+            this.options.push(tag)
+            this.value.push(tag)
+            console.log(this.value);
+        },
+        setRating: function(difficulty_level){
+            this.difficulty_level= difficulty_level;
             // console.log(this.rating);
-      },
+        },
     }
 }
 </script>
