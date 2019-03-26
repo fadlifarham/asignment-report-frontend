@@ -1,28 +1,11 @@
 <template>
   <b-row>
     <b-col lg="12">
-        <!-- <div>
-          <b-input-group>
-            <b-col sm="4">
-            <b-button variant="primary" to="/createAssignment/create" class="form-actions" > + Create New Assignment</b-button>
-            </b-col>
-            <b-col sm="8">
-              <b-input-group>
-                <b-form-input type="text" placeholder="Search"></b-form-input>
-                <b-input-group-prepend>
-                  <b-button variant="primary"><i class="fa fa-search"></i></b-button>
-                </b-input-group-prepend>
-              </b-input-group>
-            </b-col>
-          </b-input-group>
-            <br><br>
-        </div> -->
     <div class="animated fadeIn">
-      <b-card>
         <b-card-header>
           <b-input-group>
             <b-col sm="4">
-              <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
+              <h5 id="label" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
             </b-col>
             <b-col sm="4">
             </b-col>
@@ -32,9 +15,10 @@
           </b-input-group>
         </b-card-header>
         <b-card-body
+          class="card"
           id="nav-scroller"
           ref="content"
-          style="position:relative; height:300px; overflow-y:scroll;">
+          style="position:relative; height:500px; overflow-y:scroll;">
           <div id="demo" style="width: 1500px" >
             <v-client-table :data="ptls" :columns="columns" :options="options">
                 <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
@@ -52,9 +36,7 @@
             </v-client-table>
           </div>
         </b-card-body>
-        <br>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
-      </b-card>
         </div>
     </b-col>
   </b-row>

@@ -18,7 +18,10 @@ export default {
         {
           name: 'Assignment List',
           url: '/createAssignment/listCreated',
-          icon: 'icon-list'
+          icon: 'icon-list',
+          meta: {
+            engineer: true,
+          }
         },
         {
           name: 'Create Assignment',
@@ -39,7 +42,7 @@ export default {
     },
     {
       name: 'test ',
-      url: '/createAssignment/viewReport',
+      url: '/charts',
       icon: 'icon-chart',
     },
     // {
@@ -146,5 +149,5 @@ export default {
     //   ]
     // },
 
-  ]
+  ],
 }

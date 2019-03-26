@@ -6,15 +6,17 @@
             <b-card-header>
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
             </b-card-header>
-            <b-card-body>
-              <div id="people">
+            <b-card-body
+              id="nav-scroller"
+              ref="content"
+              style="position:relative; height:500px; overflow-y:scroll;">
+              <div id="people" style="width: 1500px">
                 <v-client-table :data="alls" :columns="columns" :options="options"></v-client-table>
               </div>
-              <br>
-              <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
             </b-card-body>
           </div>
         </div>
+        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
     </b-col>
   </b-row>
 </template>

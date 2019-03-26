@@ -17,6 +17,15 @@
 <script>
 import nav from './menu'
 import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
+// import store from './store/index.js'
+
+// function requireAuth() {
+//   function proceed() {
+//     if (store.getters.getUserLoadStatus() == 2) {
+
+//     }
+//   }
+// }
 
 export default {
   name: 'full',
@@ -28,8 +37,14 @@ export default {
   },
   data () {
     return {
-      nav: nav.items
+      nav: nav.items,
+      user: null,
+      role: null,
     }
+  },
+
+  mounted() {
+    this.getUserInfo()
   },
   computed: {
     name () {
@@ -37,7 +52,17 @@ export default {
     },
     list () {
       return this.$route.matched
-    }
-  }
+    },
+  },
+  methods: {
+    getUserInfo() {
+      this.$axios.get('profile').then(response => {
+        this.user = response;
+        this.role = response.data.role_id;
+        // console.log('role : ' + this.role);
+        $store.state.role = response.data.role_id
+      });
+    },
+  },
 }
 </script>
