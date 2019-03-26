@@ -88,6 +88,7 @@
             </b-form-group> -->
             <b-input-group>
                 <b-button @click="approve" size="lg" variant="primary" style="margin: 10px">Approve & Save</b-button>
+                <b-button variant="danger" to="/createAssignment/listCreated" size="lg" style="margin: 10px">Back</b-button>
             </b-input-group>
         </div>
     </b-col>
