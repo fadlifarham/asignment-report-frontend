@@ -8,9 +8,9 @@
             style="position:relative; height:500px; overflow-y:scroll;">
               <div id="utils" style="width: 800px">
                 <v-client-table :data="utils" :columns="columns" :options="options">
-                  <!-- <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id"> -->
-                    <i class="fa fa-eye"></i>
-                  <!-- </a> -->
+                  <a slot="show" slot-scope="props" :href="'/chartUtils/' + props.row.id">
+                    <i class="fa fa-bar-chart"></i>
+                  </a>
                 </v-client-table>
               </div>
             </b-card-body>
@@ -51,6 +51,7 @@
         return {
             chartData: '',
             name: 'utils',
+            id:'',
             utils: [],
             errors: [],
             columns: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
@@ -59,7 +60,7 @@
                 listColumns: {
                 },
                 headings: {
-                  // id: 'ID',
+                  id: '',
                   user_id: 'User ID',
                   full_name: 'Name',
                   work_load: 'Work Load',
@@ -89,7 +90,7 @@
             var temp;
             this.$axios.get('/utilization/all').then(response => {
                 for(let i=0;i<response.data.length;i++){
-                    temp = { user_id: response.data[i].user_id, full_name: response.data[i].user.full_name,
+                    temp = { id: response.data[i].id, user_id: response.data[i].user_id, full_name: response.data[i].user.full_name,
                     work_load: response.data[i].work_load +' %', work_quality: response.data[i].work_quality +' %', sppd: response.data[i].sppd,
                     complete_assignment: response.data[i].complete_assignment};
                   this.utils.push(temp);

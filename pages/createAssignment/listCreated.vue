@@ -93,7 +93,7 @@
           this.$axios.get('assignment/ptl').then(response => {
               for(let i=0;i<response.data.length;i++){
                   temp = { id: response.data[i].id, ptl_id: response.data[i].ptl_id, project_number: response.data[i].project_number,
-                  IO_number: response.data[i].io_number, assignment_class: response.data[i].assignment_class, assignment_tittle: response.data[i].assignment_tittle,
+                  io_number: response.data[i].io_number, assignment_class: response.data[i].assignment_class, assignment_tittle: response.data[i].assignment_tittle,
                   assignment_desc: response.data[i].assignment_desc, assignment_status: response.data[i].status};
                 this.ptls.push(temp);
               }
