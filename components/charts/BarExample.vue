@@ -16,7 +16,7 @@ export default {
         {
           label: 'Performance',
           backgroundColor: '#538cc6',
-          data: [40, 20, 12, 30],
+          data: [150, 20, 12, 30],
           // data: () => ({
           //   loaded: false,
           //   chartdata: null

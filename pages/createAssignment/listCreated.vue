@@ -32,7 +32,7 @@
                 </a>
                   <!-- <a slot="edit" slot-scope="props" class="fa fa-edit" :href="edit(props.row.columns)"></a> -->
                   <!-- <b-button v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button> -->
-                  <!-- <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button> --> 
+                  <!-- <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button> -->
             </v-client-table>
           </div>
         </b-card-body>
@@ -55,7 +55,7 @@
           columns: [
             'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle',
             'assignment_status', 'view', 'edit', 'delete'
-          ],   
+          ],
           options: {
                 filterByColumn: true,
                 listColumns: {
@@ -84,6 +84,7 @@
             }
         }
     },
+
     mounted(){
         this.readPtls();
     },
@@ -133,7 +134,10 @@
         //       })
 
         //     },
-    }
+    },
+
+    middleware: "forPtl"
+
     }
 </script>
 <style>

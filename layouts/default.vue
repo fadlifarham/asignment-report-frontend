@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import nav from './menu'
+import navAll from './menu'
+import navEngineer from './menuEngineer'
 import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
 // import store from './store/index.js'
 
@@ -37,7 +38,9 @@ export default {
   },
   data () {
     return {
-      nav: nav.items,
+      nav: null,
+      navEngineer: navEngineer.items,
+      navAll: navAll.items,
       user: null,
       role: null,
     }
@@ -45,6 +48,7 @@ export default {
 
   mounted() {
     this.getUserInfo()
+    // this.defineRoutes()
   },
   computed: {
     name () {
@@ -59,10 +63,17 @@ export default {
       this.$axios.get('profile').then(response => {
         this.user = response;
         this.role = response.data.role_id;
-        // console.log('role : ' + this.role);
-        $store.state.role = response.data.role_id
+        this.defineRoutes()
       });
     },
+
+    defineRoutes() {
+      console.log('Role : ' + this.role)
+      if (this.role == 4)
+        this.nav = this.navEngineer
+      else
+        this.nav = this.navAll
+    }
   },
 }
 </script>

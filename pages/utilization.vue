@@ -8,9 +8,10 @@
             style="position:relative; height:500px; overflow-y:scroll;">
               <div id="utils" style="width: 800px">
                 <v-client-table :data="utils" :columns="columns" :options="options">
-                  <!-- <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id"> -->
-                    <i class="fa fa-eye"></i>
-                  <!-- </a> -->
+                  <a slot="show" @click="setGraph(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
+                    slot-scope="props">
+                    <i class="fa fa-bar-chart"></i>
+                  </a>
                 </v-client-table>
               </div>
             </b-card-body>
@@ -39,7 +40,7 @@
   Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
-  
+
     export default {
       // extends: Bar,
       // mixins: [mixins.reactiveData],
@@ -120,7 +121,11 @@
           : status === 'Done' ? 'secondary'
             : status === 'On Progress' ? 'warning'
               : status === 'Cancel' ? 'danger' : 'primary'
-      },
-    }
+        },
+
+        setGraph(work_load, work_quality, sppd, complete_assignment) {
+          console.log("WL : " + work_load)
+        }
+      }
     }
 </script>
