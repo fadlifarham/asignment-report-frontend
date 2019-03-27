@@ -207,7 +207,9 @@ export default {
       setEngineers() {
 
       }
-    }
+    },
+
+    middleware: 'forPtl'
 }
 </script>
 

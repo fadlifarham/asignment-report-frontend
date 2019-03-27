@@ -195,5 +195,6 @@
         // console.log(this.rating);
       },
     },
+    middleware: "forPtl"
 	}
 </script>
