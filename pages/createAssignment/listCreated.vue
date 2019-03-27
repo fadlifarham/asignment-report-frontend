@@ -24,7 +24,7 @@
                 <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
                 </a>
-                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
+                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
                   <i class="fa fa-edit"></i>
                 </a>
                 <a slot="delete" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
@@ -81,6 +81,8 @@
                 texts: {
                   filterPlaceholder: 'filter'
                 },
+                perPage: 10,
+                perPageValues: [10,25,50,100]
             }
         }
     },
@@ -94,7 +96,7 @@
           this.$axios.get('assignment/ptl').then(response => {
               for(let i=0;i<response.data.length;i++){
                   temp = { id: response.data[i].id, ptl_id: response.data[i].ptl_id, project_number: response.data[i].project_number,
-                  IO_number: response.data[i].io_number, assignment_class: response.data[i].assignment_class, assignment_tittle: response.data[i].assignment_tittle,
+                  io_number: response.data[i].io_number, assignment_class: response.data[i].assignment_class, assignment_tittle: response.data[i].assignment_tittle,
                   assignment_desc: response.data[i].assignment_desc, assignment_status: response.data[i].status};
                 this.ptls.push(temp);
               }
