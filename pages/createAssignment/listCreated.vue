@@ -24,7 +24,7 @@
                 <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
                 </a>
-                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
+                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
                   <i class="fa fa-edit"></i>
                 </a>
                 <a slot="delete" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
@@ -81,6 +81,8 @@
                 texts: {
                   filterPlaceholder: 'filter'
                 },
+                perPage: 10,
+                perPageValues: [10,25,50,100]
             }
         }
     },
