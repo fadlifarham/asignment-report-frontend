@@ -131,8 +131,6 @@ export default {
         StarRating
     },
     validate(params) {
-      // return /^\d+$/.test(params.id)]
-      // console.log("params " + params)
       return true
     },
     props: ['id'],
@@ -145,13 +143,11 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
-            engineers: [],
-            // user_id:'',
-            // details:[],
+            
             assignment_user:[],
             assignment_report:[],
             user_id:[],
-            rating: 0,
+            
             errors: [],
         }
     },
@@ -175,34 +171,23 @@ export default {
             );
         },
         approve(){
-          this.setEngineers();
-          this.$axios.post('/assignment/approve', {
-              engineers: this.engineers,
-              assignment_id: this.assignment_id,
-              rating: this.rating,
-          }).then(response => {
-              // this.assignment.push(response.data.task);
-              this.status = 'Assignment Approved Success!';
-              console.log(this.status);
-              swal('Success', this.status, 'success');
-              // this.reset();
-          }, response => {
-              this.status = 'Please Fill In All Data';
-              console.log(this.status);
-              swal('Failed', this.status, 'warning');
-          })
+            this.$axios.post('/assignment/approve', {
+                assignment_id: this.assignment_id,
+                user_id: this.user_id,
+            }).then(response => {
+                this.status = 'Assignment Approved Success!';
+                console.log(this.status);
+                swal('Success', this.status, 'success');
+                this.reset();
+            }, response => {
+                this.status = 'Failed';
+                console.log("ass : " + this.assignment_id);
+                console.log("user : " + this.user_id);
+                swal('Failed', this.status, 'warning');
+            })
         },
-        setRating: function(rating, id){
-          // this.rating= rating;
-          console.log("id : " + id);
-          console.log("rating : " + rating);
-
-          this.engineers.push({
-            'id'      : id,
-            'rating'  : rating
-          });
-
-          console.log(this.engineers);
+        setRating: function(rating){
+            this.rating= rating;
       },
       setEngineers() {
 
@@ -211,7 +196,4 @@ export default {
 
     middleware: 'forPtl'
 }
-</script>
-
-
-
+</script>   

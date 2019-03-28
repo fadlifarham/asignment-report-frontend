@@ -18,8 +18,8 @@
           class="card"
           id="nav-scroller"
           ref="content"
-          style="position:relative; height:500px; overflow-y:scroll;">
-          <div id="demo" style="width: 1500px" >
+          style="position:relative; height:300px;">
+          <div id="demo">
             <v-client-table :data="ptls" :columns="columns" :options="options">
                 <b-button variant="success" style="border-radius: 5px" slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
