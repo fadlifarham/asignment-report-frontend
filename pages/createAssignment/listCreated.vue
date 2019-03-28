@@ -103,13 +103,13 @@
             console.log(this.ptls);
           })
         },
-        read() {
-            this.$axios.get('assignment/ptl')
-            .then(response => {
-                this.ptls = response.data;
-                console.log(this.ptls);
-            })
-        },
+        // read() {
+        //     this.$axios.get('assignment/ptl')
+        //     .then(response => {
+        //         this.ptls = response.data;
+        //         console.log(this.ptls);
+        //     })
+        // },
         getBadge (status) {
         return status === 'On Progress' ? 'success'
           : status === 'Close' ? 'secondary'
@@ -127,7 +127,7 @@
         deleteAss(id){
           console.log("id : " + id)
           if (confirm("Are you sure you want to delete this item?")) {
-                this.$axios.post('assignment/delete/', + id)
+                this.$axios.post('assignment/delete/' + id)
                 .then(response => {
                     this.status = 'Delete Success!';
                     console.log(this.status);

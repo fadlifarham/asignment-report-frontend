@@ -1,34 +1,34 @@
 <template>
 <div class="animated fadeIn">
-    <b-card-group columns class="card-columns cols-2">
           <b-card header="Team Utilzation">
             <b-card-body
             id="nav-scroller"
             ref="content"
             style="position:relative; height:500px; overflow-y:scroll;">
-              <div id="utils" style="width: 800px">
+              <div id="utils">
                 <v-client-table :data="utils" :columns="columns" :options="options">
-                  <a slot="show" @click="setData(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
+                  <b-button v-b-modal.chart variant="primary" style="border-radius: 5px" slot="show" @click="setData(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
                     slot-scope="props">
                     <i class="fa fa-bar-chart"></i>
-                  </a>
+                  </b-button>
                 </v-client-table>
               </div>
             </b-card-body>
           </b-card>
           <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
-          <b-card header="Performance Member">
+    <div>
+      <b-modal id="chart" size="md" title="Performance Member">
+        <b-card> 
             <div class="chart-wrapper">
-                <!-- v-if="loaded"
-                :chartdata="chartdata"
-                :options="options" -->
               <utilization-bar
                 :chart-data="dataCollection"
               />
             </div>
           </b-card>
-    </b-card-group>
+      </b-modal>
+    </div>
 </div>
+
 </template>
 <script>
   // import BarExample from '~/components/charts/BarExample'

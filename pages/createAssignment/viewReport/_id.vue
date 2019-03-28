@@ -73,7 +73,7 @@
                                 <b-col sm="0"><strong>AR ID </strong></b-col>
                             </b-row>
                             <b-row v-for="detail in assignment_report" :key="detail.id" style="padding: 5px">
-                                <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/viewReport/detailReport/'" aria-hidden="true"></a></b-col>
+                                <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/viewReport/detailReport/'+ detail.id" aria-hidden="true"><i></i></a></b-col>
                                 <b-col sm="0">  {{detail.id}}</b-col>
                             </b-row>
                         </b-card-body>

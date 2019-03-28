@@ -1,6 +1,7 @@
 <template>
-    <div class="animated fadeIn">
-        <b-row class="justify-content-center">
+  <div class="app flex-row align-items-center">
+    <div class="container">
+      <b-row class="justify-content-center">
         <b-col md="6" sm="8">
           <b-card no-body class="mx-4">
             <b-card-body class="p-4">
@@ -36,7 +37,7 @@
 
               <b-input-group class="mb-3">
                 <b-input-group-prepend>
-                  <b-input-group-text>ID</b-input-group-text>
+                  <b-input-group-text><i class="icon-trophy"></i></b-input-group-text>
                 </b-input-group-prepend>
                 <b-form-select id="role_id"
                   :plain="true"
@@ -51,4 +52,12 @@
         </b-col>
       </b-row>
     </div>
+  </div>
 </template>
+
+<script>
+export default {
+  name: 'Register',
+  layout: 'clean'
+}
+</script>
