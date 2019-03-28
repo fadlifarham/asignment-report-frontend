@@ -39,12 +39,12 @@
                 headings: {
                   ID: 'ID',
                   PTL: 'PTL',
-                  project_Number: 'project_Number',
-                  IO_Number: 'IO_Number',
-                  assignment_Class: 'assignment_Class',
-                  assignment_Title: 'assignment_Title',
-                  assignment_Desc: 'assignment_Desc',
-                  status: 'status'
+                  project_Number: 'Project Number',
+                  IO_Number: 'IO Number',
+                  assignment_Class: 'Assignment Class',
+                  assignment_Title: 'Assignment Title',
+                  assignment_Desc: 'Assignment Description',
+                  status: 'Status'
                 },
                 sortable: [
                   'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'status'
