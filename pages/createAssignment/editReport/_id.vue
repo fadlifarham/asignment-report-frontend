@@ -67,25 +67,6 @@
                         </star-rating>
                     </div>
             </b-form-group>
-            <!-- <b-form-group
-                label="Dispose Team"
-                label-for="disposeTeam"
-                :label-cols="4"
-                :horizontal="true">
-                <div>
-                    <multiselect
-                        v-model="assignment_user.user_id"
-                        tag-placeholder="Add this as new tag"
-                        placeholder="Search or add a tag"
-                        label="name"
-                        track-by="id"
-                        :options="options"
-                        :multiple="true"
-                        :taggable="true"
-                        @tag="addTag">
-                    </multiselect>
-                </div>
-            </b-form-group> -->
             <b-input-group>
                 <b-button @click="approve" size="lg" variant="primary" style="margin: 10px">Approve & Save</b-button>
                 <b-button variant="danger" to="/createAssignment/listCreated" size="lg" style="margin: 10px">Back</b-button>
@@ -94,14 +75,11 @@
     </b-col>
     </b-row>
 </template>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <script>
 import StarRating from 'vue-star-rating';
-import Multiselect from 'vue-multiselect';
 
 export default {
     components: {
-        Multiselect,
         StarRating
     },
     validate(params) {
@@ -121,7 +99,6 @@ export default {
             assignment_user:[],
             assignment_report:[],
             user_id:[],
-            // rating: 0,
             errors: [],
         }
     },
@@ -146,27 +123,26 @@ export default {
             );
         },
         approve(){
-            this.$axios.post('/assignment/edit', {
-                id: this.$route.params.id,
-                project_number: this.project_number,
-                assignment_class: this.assignment_class,
-                assignment_tittle: this.assignment_tittle,
-                assignment_desc: this.assignment_desc,
-                io_number: this.io_number,
-                
-                difficulty_level: this.difficulty_level,
+            // this.$axios.post('/assignment/edit', {
+            //     id: this.$route.params.id,
+            //     project_number: this.project_number,
+            //     assignment_class: this.assignment_class,
+            //     assignment_tittle: this.assignment_tittle,
+            //     assignment_desc: this.assignment_desc,
+            //     io_number: this.io_number,
+            //     difficulty_level: this.difficulty_level,
                
-            }).then(response => {
-                this.status = 'Assignment Approved Success!';
-                console.log(this.status);
-                swal('Success', this.status, 'success');
-                this.reset();
-            }, response => {
-                this.status = 'Failed';
-                console.log("ass : " + this.assignment_id);
-                console.log(this.project_number);
-                swal('Failed', this.status, 'warning');
-            })
+            // }).then(response => {
+            //     this.status = 'Assignment Approved Success!';
+            //     console.log(this.status);
+            //     swal('Success', this.status, 'success');
+            //     this.reset();
+            // }, response => {
+            //     this.status = 'Failed';
+            //     console.log("ass : " + this.assignment_id);
+            //     console.log(this.project_number);
+            //     swal('Failed', this.status, 'warning');
+            // })
         },
         addTag (newTag) {
             const tag = {

@@ -73,8 +73,8 @@
                                 <b-col sm="0"><strong>AR ID </strong></b-col>
                             </b-row>
                             <b-row v-for="detail in assignment_report" :key="detail.id" style="padding: 5px">
-                                <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/viewReport/detailReport/'" aria-hidden="true"></a></b-col>
-                                <b-col sm="0">  {{detail.id}}</b-col>
+                                <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/detailReport/' + detail.id" aria-hidden="true"></a></b-col>
+                                <b-col sm="0"> {{detail.id}}</b-col>
                             </b-row>
                         </b-card-body>
                     </b-card>
@@ -131,8 +131,6 @@ export default {
         StarRating
     },
     validate(params) {
-      // return /^\d+$/.test(params.id)]
-      // console.log("params " + params)
       return true
     },
     props: ['id'],
@@ -145,11 +143,11 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
-            // details:[],
+            
             assignment_user:[],
             assignment_report:[],
             user_id:[],
-            rating: 0,
+            
             errors: [],
         }
     },
@@ -176,7 +174,6 @@ export default {
             this.$axios.post('/assignment/approve', {
                 assignment_id: this.assignment_id,
                 user_id: this.user_id,
-                // rating: this.rating,
             }).then(response => {
                 this.status = 'Assignment Approved Success!';
                 console.log(this.status);
@@ -186,18 +183,12 @@ export default {
                 this.status = 'Failed';
                 console.log("ass : " + this.assignment_id);
                 console.log("user : " + this.user_id);
-                // console.log(this.status);
                 swal('Failed', this.status, 'warning');
             })
         },
         setRating: function(rating){
             this.rating= rating;
-            // console.log(this.rating);
       },
     }
 }
-</script>
-
-
-            
-            
+</script>   
