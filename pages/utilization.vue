@@ -8,10 +8,10 @@
             style="position:relative; height:500px; overflow-y:scroll;">
               <div id="utils" style="width: 800px">
                 <v-client-table :data="utils" :columns="columns" :options="options">
-                  <b-button variant="primary" style="border-radius: 5px" slot="show" @click="setGraph(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
+                  <a slot="show" @click="setData(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
                     slot-scope="props">
                     <i class="fa fa-bar-chart"></i>
-                  </b-button>
+                  </a>
                 </v-client-table>
               </div>
             </b-card-body>
@@ -22,7 +22,8 @@
                 <!-- v-if="loaded"
                 :chartdata="chartdata"
                 :options="options" -->
-              <bar-example
+              <utilization-bar
+                :chart-data="dataCollection"
               />
             </div>
           </b-card>
@@ -30,7 +31,8 @@
 </div>
 </template>
 <script>
-  import BarExample from '~/components/charts/BarExample'
+  // import BarExample from '~/components/charts/BarExample'
+  import UtilizationBar from '~/components/charts/UtilizationBar'
   // import { Bar } from 'vue-chartjs'
   // import VueCharts from 'vue-chartjs'
   // import { Pie, Bar, mixins } from 'vue-chartjs'
@@ -38,14 +40,14 @@
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    Vue.use(ClientTable, {}, false, 'bootstrap4');
+  Vue.use(ClientTable, {}, false, 'bootstrap4');
 
     export default {
       // extends: Bar,
       // mixins: [mixins.reactiveData],
       name: 'charts',
       components: {
-        BarExample,
+        UtilizationBar,
       },
     data () {
         return {
@@ -54,6 +56,8 @@
             id:'',
             utils: [],
             errors: [],
+            dataCollection: [],
+            opsi: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
             columns: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
             options: {
                 filterByColumn: true,
@@ -90,10 +94,16 @@
             var temp;
             this.$axios.get('/utilization/all').then(response => {
                 for(let i=0;i<response.data.length;i++){
-                    temp = { id: response.data[i].id, user_id: response.data[i].user_id, full_name: response.data[i].user.full_name,
-                    work_load: response.data[i].work_load +' %', work_quality: response.data[i].work_quality +' %', sppd: response.data[i].sppd,
-                    complete_assignment: response.data[i].complete_assignment};
-                  this.utils.push(temp);
+                    temp = {
+                      id: response.data[i].id,
+                      user_id: response.data[i].user_id,
+                      full_name: response.data[i].user.full_name,
+                      work_load: response.data[i].work_load,
+                      work_quality: response.data[i].work_quality,
+                      sppd: response.data[i].sppd,
+                      complete_assignment: response.data[i].complete_assignment
+                    };
+                    this.utils.push(temp);
                 }
               console.log(this.utils);
             })
@@ -123,19 +133,34 @@
               : status === 'Cancel' ? 'danger' : 'primary'
         },
 
-        setGraph(work_load, work_quality, sppd, complete_assignment) {
-          
-          // this.tload = response.data.work_load;
-          // this.tquality = response.data.work_quality;
-          // this.tsppd = response.data.sppd;
-          // this.tcomplete = response.data.complete_assignment;
-          
-          // this.temp = [response.data.work_load, response.data.work_quality, response.data.sppd, response.data.complete_assignment]
-          // console.log("temp : "+temp)
-          console.log("WL : " + work_load)
-          // console.log("WL : " + work_quality)
-          // console.log("WL : " + sppd)
-          // console.log("WL : " + complete_assignment)
+        setData(work_load, work_quality, sppd, complete_assignment) {
+          // console.log("WL : " + work_load)
+          this.dataCollection = {
+            // labels: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
+            datasets: [
+              {
+                label: 'Work Load',
+                backgroundColor: '#ff0000',
+                data: [work_load]
+              },
+              {
+                label: 'Work Quality',
+                backgroundColor: '#00ff00',
+                data: [work_quality]
+              },
+              {
+                label: 'SPPD',
+                backgroundColor: '#0000ff',
+                data: [sppd]
+              },
+              {
+                label: 'Complete Assignment',
+                backgroundColor: '#ffff00',
+                data: [complete_assignment]
+              }
+
+            ]
+          }
         }
       }
     }
