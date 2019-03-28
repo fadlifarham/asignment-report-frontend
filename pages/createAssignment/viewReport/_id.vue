@@ -73,8 +73,8 @@
                                 <b-col sm="0"><strong>AR ID </strong></b-col>
                             </b-row>
                             <b-row v-for="detail in assignment_report" :key="detail.id" style="padding: 5px">
-                                <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/detailReport/' + detail.id" aria-hidden="true"></a></b-col>
-                                <b-col sm="0"> {{detail.id}}</b-col>
+                                <b-col cols="4"><a class="fa fa-folder-open fa-3x" :href="'/createAssignment/viewReport/detailReport/'+ detail.id" aria-hidden="true"><i></i></a></b-col>
+                                <b-col sm="0">  {{detail.id}}</b-col>
                             </b-row>
                         </b-card-body>
                     </b-card>
@@ -143,13 +143,7 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
-<<<<<<< HEAD
-            engineers: [],
-            // user_id:'',
-            // details:[],
-=======
             
->>>>>>> dita
             assignment_user:[],
             assignment_report:[],
             user_id:[],
@@ -177,36 +171,6 @@ export default {
             );
         },
         approve(){
-<<<<<<< HEAD
-          this.setEngineers();
-          this.$axios.post('/assignment/approve', {
-              engineers: this.engineers,
-              assignment_id: this.assignment_id,
-              rating: this.rating,
-          }).then(response => {
-              // this.assignment.push(response.data.task);
-              this.status = 'Assignment Approved Success!';
-              console.log(this.status);
-              swal('Success', this.status, 'success');
-              // this.reset();
-          }, response => {
-              this.status = 'Please Fill In All Data';
-              console.log(this.status);
-              swal('Failed', this.status, 'warning');
-          })
-        },
-        setRating: function(rating, id){
-          // this.rating= rating;
-          console.log("id : " + id);
-          console.log("rating : " + rating);
-
-          this.engineers.push({
-            'id'      : id,
-            'rating'  : rating
-          });
-
-          console.log(this.engineers);
-=======
             this.$axios.post('/assignment/approve', {
                 assignment_id: this.assignment_id,
                 user_id: this.user_id,
@@ -224,7 +188,6 @@ export default {
         },
         setRating: function(rating){
             this.rating= rating;
->>>>>>> dita
       },
       setEngineers() {
 
@@ -233,11 +196,4 @@ export default {
 
     middleware: 'forPtl'
 }
-<<<<<<< HEAD
-</script>
-
-
-
-=======
 </script>   
->>>>>>> dita

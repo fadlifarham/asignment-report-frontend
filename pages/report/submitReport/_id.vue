@@ -243,19 +243,30 @@
                     <b-row style="padding: 6px"><strong>Attachment</strong></b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">BAI</b-col>
-                        <b-col sm="5"><b-form-file id="bai" multiple="" accept=".pdf" :plain="true" v-model="bai" @change="baiHandler"></b-form-file></b-col>
+                        <b-col sm="8">
+                            <b-row><b-form-file id="bai" multiple="" accept=".pdf" :plain="true" v-model="bai" @change="baiHandler" ></b-form-file></b-row>
+                            <b-row style="color : red">*.pdf</b-row>
+                        </b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">TNC</b-col>
-                        <b-col sm="5"><b-form-file accept=".pdf" id="tnc" multiple="" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-col>
+                        <b-col sm="5">
+                            <b-row><b-form-file accept=".pdf" id="tnc" multiple="" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-row>
+                            <b-row style="color : red">*.pdf</b-row>
+                        </b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                        <b-col sm="5"><b-form-file id="photo" multiple="" accept=".jpg" :plain="true" v-model="photos" @change="photoHandler"></b-form-file></b-col>
+                        <b-col sm="5">
+                            <b-row><b-form-file id="photo" multiple="" accept=".jpg" :plain="true" v-model="photos" @change="photoHandler"></b-form-file></b-row>
+                            <b-row style="color : red">*.jpg/.PNG</b-row>
+                        </b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">Other</b-col>
-                        <b-col sm="5"><b-form-file id="other" v-model="other" :plain="true" ref="other" @change="otherHandler"></b-form-file></b-col>
+                        <b-col sm="5">
+                            <b-row><b-form-file id="other" v-model="other" :plain="true" ref="other" @change="otherHandler"></b-form-file></b-row>
+                        </b-col>
                     </b-row>
                 </b-col>
             </b-row>
@@ -337,8 +348,6 @@ import moment from 'moment'
           this.$axios.post('/ar/submit', {
             assignment_id: this.assignment_id,
             assignment_type: this.assignment_type, //1
-            // project_number: this.project_number, //2
-            // io_number: this.io_number, //3
             date_work: this.date_work, //4
             time_start: this.time_start, //5
             time_at: this.time_at, //6
@@ -462,8 +471,6 @@ import moment from 'moment'
 
         reset() {
             this.assignment_type = ""; //1
-            // this.project_number = ""; //2
-            // this.io_number = ""; //3
             this.date_work = ""; //4
             this.time_start = ""; //5
             this.time_at = ""; //6

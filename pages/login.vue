@@ -23,10 +23,10 @@
                 </b-input-group>
                 <b-row>
                   <b-col cols="6">
-                    <b-button variant="link" class="px-0">Lupa Kata Sandi?</b-button>
+                    <!-- <b-button variant="link" class="px-0">Lupa Kata Sandi?</b-button> -->
                   </b-col>
                   <b-col cols="6" class="text-right">
-                    <b-button variant="link" to="/admin/register" class="px-0">Daftar</b-button> or 
+                    <b-button variant="link" to="/admin/pageRegist" class="px-0">Daftar</b-button> or 
                     <b-button @click="loginUser" variant="primary" class="px-4">Login</b-button>
                   </b-col>
                 </b-row>
