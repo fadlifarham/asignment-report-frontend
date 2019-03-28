@@ -8,22 +8,21 @@
             style="position:relative; height:500px; overflow-y:scroll;">
               <div id="utils" style="width: 800px">
                 <v-client-table :data="utils" :columns="columns" :options="options">
-                  <a slot="show" @click="setGraph(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
+                  <b-button variant="primary" style="border-radius: 5px" slot="show" @click="setGraph(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
                     slot-scope="props">
                     <i class="fa fa-bar-chart"></i>
-                  </a>
+                  </b-button>
                 </v-client-table>
               </div>
             </b-card-body>
           </b-card>
-          <b-button variant="secondary" to="/form/toko" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+          <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
           <b-card header="Performance Member">
             <div class="chart-wrapper">
                 <!-- v-if="loaded"
                 :chartdata="chartdata"
                 :options="options" -->
               <bar-example
-                :chartData="chartData"
               />
             </div>
           </b-card>
@@ -125,7 +124,18 @@
         },
 
         setGraph(work_load, work_quality, sppd, complete_assignment) {
+          
+          // this.tload = response.data.work_load;
+          // this.tquality = response.data.work_quality;
+          // this.tsppd = response.data.sppd;
+          // this.tcomplete = response.data.complete_assignment;
+          
+          // this.temp = [response.data.work_load, response.data.work_quality, response.data.sppd, response.data.complete_assignment]
+          // console.log("temp : "+temp)
           console.log("WL : " + work_load)
+          // console.log("WL : " + work_quality)
+          // console.log("WL : " + sppd)
+          // console.log("WL : " + complete_assignment)
         }
       }
     }
