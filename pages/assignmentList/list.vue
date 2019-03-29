@@ -31,7 +31,7 @@
             name: 'people',
             alls: [],
             errors: [],
-            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Desc', 'status'],
+            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Desc', 'team_name','status'],
             options: {
                 filterByColumn: true,
                 listColumns: {
@@ -44,12 +44,13 @@
                   assignment_Class: 'Assignment Class',
                   assignment_Title: 'Assignment Title',
                   assignment_Desc: 'Assignment Description',
+                  team_name: 'Team Name',
                   status: 'Status'
                 },
                 sortable: [
-                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'status'
+                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'team_name','status'
                 ],
-                filterable:['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'status'],
+                filterable:['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'team_name', 'status'],
                 texts: {
                   filterPlaceholder: 'filter'
                 }
@@ -63,10 +64,20 @@
         readAlls() {
           var temp;
           this.$axios.get('assignment/all').then(response => {
-              for(let i=0;i<response.data.length;i++){
-                  temp = { ID: response.data[i].id, PTL: response.data[i].ptl.full_name, project_Number: response.data[i].project_number,
-                  IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
-                  assignment_Desc: response.data[i].assignment_desc, status: response.data[i].status};
+            for(let i=0;i<response.data.length;i++){
+                  let teams = ''
+                  for(let j=0; j<response.data[i].user.length;j++){
+                      teams += response.data[i].user[j].full_name+', ';
+              }
+                  temp = { ID: response.data[i].id, 
+                            PTL: response.data[i].ptl.full_name, 
+                            project_Number: response.data[i].project_number,
+                            IO_Number: response.data[i].io_number, 
+                            assignment_Class: response.data[i].assignment_class, 
+                            assignment_Title: response.data[i].assignment_tittle,
+                            assignment_Desc: response.data[i].assignment_desc,
+                            team_name: teams, 
+                            status: response.data[i].status};
                 this.alls.push(temp);
               }
             console.log(this.alls);

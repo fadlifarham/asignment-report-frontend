@@ -45,10 +45,44 @@
                 </b-form-select>
               </b-input-group>
 
-              <b-button variant="success" block>Create Account</b-button>
+              <b-button variant="success" block @click="register()">Create Account</b-button>
             </b-card-body>
           </b-card>
         </b-col>
       </b-row>
     </div>
 </template>
+<script>
+export default {
+  data () {
+        return{
+            full_name: '',
+            email: '',
+            password: '',
+            phone_number: '',
+            role_id: '',
+        }
+    },
+    mounted() {
+    },
+    methods: {
+      register(){
+        this.$axios.post('/register', {
+                full_name: this.full_name,
+                email: this.email,
+                
+                }).then(response => {
+                    this.status = 'Create Assignment Success!';
+                    console.log(this.status);
+                    swal('Success', this.status, 'success');
+                    this.reset();
+                }, response => {
+                    this.status = 'Please Fill In All Data';
+                    console.log(this.status);
+                    swal('Failed', this.status, 'warning');
+            })
+      }
+    }
+}
+</script>
+
