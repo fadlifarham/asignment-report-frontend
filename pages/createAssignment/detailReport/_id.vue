@@ -165,22 +165,35 @@
             <b-row style="width: 100%; margin-left: auto; margin-right: auto; padding-top: 10px">
                 <b-col>
                     <b-row style="padding: 6px"><strong>Attachment</strong></b-row>
-                    <b-row style="padding: 6px">
-                        <b-col sm="4">BAI</b-col>
+                    <b-row v-for="file in files" :key="file.id">
                         <b-col>
-                             <b-button @click="download" size="sm" style="margin: 10px">Download</b-button>
+                            <b-row v-if="file.type=='bai'" style="padding: 6px">
+                                <b-col sm="4">BAI</b-col>
+                                <b-col>
+                                    <b-button :href="'//' + file.filename" target="_blank" size="sm" style="margin: 10px">Open</b-button>
+                                </b-col>
+                            </b-row>
+                            <b-row v-if="file.type=='tnc'" style="padding: 6px">
+                                <b-col sm="4">TNC</b-col>
+                                <b-col>
+                                    <b-button :href="'//' + file.filename" target="_blank" size="sm" style="margin: 10px">Open</b-button>
+                                </b-col>
+                                <!-- <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="onFileSelected"></b-form-file></b-col> -->
+                            </b-row>
+                            <b-row  v-if="file.type=='selfie'" style="padding: 6px">
+                                <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
+                                <b-col>
+                                    <b-button :href="'//' + file.filename" target="_blank" size="sm" style="margin: 10px">Open</b-button>
+                                </b-col>
+                                <!-- <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col> -->
+                            </b-row>
                         </b-col>
                     </b-row>
                     <b-row style="padding: 6px">
-                        <b-col sm="4">TNC</b-col>
-                        <!-- <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="onFileSelected"></b-form-file></b-col> -->
-                    </b-row>
-                    <b-row style="padding: 6px">
-                        <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
-                        <!-- <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col> -->
-                    </b-row>
-                    <b-row style="padding: 6px">
                         <b-col sm="4">Other</b-col>
+                        <b-col>
+                            <b-button :href="'//' + other" target="_blank" size="sm" style="margin: 10px">Open</b-button>
+                        </b-col>
                         <!-- <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col> -->
                     </b-row>
                 </b-col>
@@ -233,6 +246,7 @@ export default {
             address: '',
             cp: '',
             pic: '',
+            files: [],
             // assignment_user:[],
             // assignment_report:[],
             // user_id:[],
@@ -274,21 +288,10 @@ export default {
                 this.address = response.data.customer_info.address
                 this.pic = response.data.customer_info.pic
                 this.cp = response.data.customer_info.cp
+                this.files = response.data.file
                 console.log(response.data)
             }
             );
-        },
-        approve(){
-            this.$axios.get('/ar/' + this.$route.params.id, {
-                responseType: 'blob'
-            }).then(response => {
-                const url = window.URL.createObjectURL(new Blob([response.data]));
-                const link = document.createElement('a');
-                link.href = url;
-                link.setAttribute('download', 'file.pdf');
-                document.body.appendChild(link);
-                link.click();
-            });
         },
         setRating: function(rating){
             this.rating= rating;
