@@ -17,6 +17,7 @@
 <script>
 import navAll from './menu'
 import navEngineer from './menuEngineer'
+import navAdmin from './menuAdmin'
 import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
 // import store from './store/index.js'
 
@@ -41,6 +42,7 @@ export default {
       nav: null,
       navEngineer: navEngineer.items,
       navAll: navAll.items,
+      navAdmin: navAdmin.items,
       user: null,
       role: null,
     }

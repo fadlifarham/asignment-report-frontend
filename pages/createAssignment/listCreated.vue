@@ -18,18 +18,18 @@
           class="card"
           id="nav-scroller"
           ref="content"
-          style="position:relative; height:500px; overflow-y:scroll;">
-          <div id="demo" style="width: 1500px" >
+          style="position:relative; height:300px;">
+          <div id="demo">
             <v-client-table :data="ptls" :columns="columns" :options="options">
-                <a slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
+                <b-button variant="success" style="border-radius: 5px" slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
-                </a>
-                <a slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
+                </b-button>
+                <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
                   <i class="fa fa-edit"></i>
-                </a>
-                <a slot="delete" slot-scope="props" target="_blank" :href="'/createAssignment/viewReport/' + props.row.id">
+                </b-button>
+                <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
-                </a>
+                </b-button>
                   <!-- <a slot="edit" slot-scope="props" class="fa fa-edit" :href="edit(props.row.columns)"></a> -->
                   <!-- <b-button v-on:click="edit(row.id)" class="btn btn-primary"><i class="fa fa-edit"></i></b-button> -->
                   <!-- <b-button v-on:click="delete(props.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></b-button> -->
@@ -103,13 +103,13 @@
             console.log(this.ptls);
           })
         },
-        read() {
-            this.$axios.get('assignment/ptl')
-            .then(response => {
-                this.ptls = response.data;
-                console.log(this.ptls);
-            })
-        },
+        // read() {
+        //     this.$axios.get('assignment/ptl')
+        //     .then(response => {
+        //         this.ptls = response.data;
+        //         console.log(this.ptls);
+        //     })
+        // },
         getBadge (status) {
         return status === 'On Progress' ? 'success'
           : status === 'Close' ? 'secondary'
@@ -123,6 +123,20 @@
           if (el) {
             this.$refs.content.scrollTop = el.offsetTop
           }
+        },
+        deleteAss(id){
+          console.log("id : " + id)
+          if (confirm("Are you sure you want to delete this item?")) {
+                this.$axios.post('assignment/delete/' + id)
+                .then(response => {
+                    this.status = 'Delete Success!';
+                    console.log(this.status);
+                    swal('Success', this.status, 'success');
+                    this.readPtls();
+                }).catch(error => {
+                    console.log(error.response.data.error);
+                })
+            }
         },
         // show:function () {
         //         this.ID = 'GET COW ID HERE'
