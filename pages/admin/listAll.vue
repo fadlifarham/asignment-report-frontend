@@ -10,7 +10,7 @@
               id="nav-scroller"
               ref="content"
               style="position:relative; height:500px; overflow-y:scroll;">
-              <div id="people" style="width: 1500px">
+              <div id="admin" style="width: 1500px">
                 <v-client-table :data="assignments" :columns="columns" :options="options">
                     <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
                         <i class="fa fa-edit"></i>
@@ -35,7 +35,7 @@
     export default {
     data () {
         return {
-            name: 'people',
+            name: 'admin',
             assignments: [],
             errors: [],
             columns: ['id', 
@@ -93,7 +93,6 @@
     },
     mounted(){
         this.readAssignment();
-        // this.readTeam();
     },
     methods: {
         readAssignment() {
@@ -104,13 +103,6 @@
                   for(let j=0; j<response.data[i].user.length;j++){
                       teams += response.data[i].user[j].full_name+', ';
                   }
-                //   response.data.forEach(element=>{
-                //     element.user.forEach(item => {
-                //         teams += item.full_name + ', '
-                //     })
-                // })
-                // this.assignments.push(teams)
-
                   temp = { id: response.data[i].id,
                             project_number: response.data[i].project_number,
                             io_number: response.data[i].io_number, 
@@ -128,24 +120,7 @@
             console.log(this.assignments);
           })
         },
-        readTeam(){
-            var teams='';
-            this.$axios.get('admin/assignment').then(response => {
-                response.data.forEach(element=>{
-                    element.user.forEach(item => {
-                        teams += item.full_name + ', '
-                    })
-                })
-                this.assignments.push(teams)
-            //   for(let i=0; i<response.data.user.length; i++){
-            //       teams={team_name: response.data.user[i].user.full_name +' '};
-            //       console.log(i)
-            //   this.assignments.push(teams);
-            //   }
-            // console.log(this.assignments);
-          })
-        },
-          getBadge (status) {
+        getBadge (status) {
           return status === 'On Progress' ? 'success'
             : status === 'Close' ? 'secondary'
               : status === 'Waiting Approvement' ? 'warning'

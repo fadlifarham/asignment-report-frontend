@@ -68,19 +68,21 @@ export default {
     methods: {
       register(){
         this.$axios.post('/register', {
-                full_name: this.full_name,
-                email: this.email,
-                
-                }).then(response => {
-                    this.status = 'Create Assignment Success!';
-                    console.log(this.status);
-                    swal('Success', this.status, 'success');
-                    this.reset();
-                }, response => {
-                    this.status = 'Please Fill In All Data';
-                    console.log(this.status);
-                    swal('Failed', this.status, 'warning');
-            })
+          full_name: this.full_name,
+          email: this.email,
+          password: this.password,
+          phone_number: this.phone_number,
+          role_id: this.role_id,                
+        }).then(response => {
+            this.status = 'Create Account Success!';
+            console.log(this.status);
+            swal('Create Account Success', this.status, 'Create Account Success');
+            this.reset();
+        }, response => {
+            this.status = 'Please Fill In All Data';
+            console.log(this.status);
+            swal('Failed', this.status, 'warning');
+        })
       }
     }
 }

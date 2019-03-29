@@ -55,6 +55,11 @@ export default {
       url: '/admin/listAll',
       icon: 'icon-list',
     },
+    {
+      name: 'Users',
+      url: '/admin/listAll',
+      icon: 'icon-list',
+    },
     // {
     //   name: 'form',
     //   url: '/form/forms',
