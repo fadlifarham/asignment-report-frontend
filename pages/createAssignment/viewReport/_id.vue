@@ -171,8 +171,11 @@ export default {
                 this.assignment_user = response.data.assignment_user
                 this.assignment_report = response.data.assignment_report
                 console.log(response.data)
-            }
-            );
+            }, response => {
+              this.status = response.data;
+              console.log(this.status);
+              swal('Failed', "this.status", 'warning');
+            });
         },
         approve(){
           this.setEngineers();
@@ -209,7 +212,7 @@ export default {
       }
     },
 
-    middleware: 'forPtl'
+    middleware: ['viewReport', 'forPtl']
 }
 </script>
 
