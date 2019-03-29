@@ -37,34 +37,35 @@
 </template>
 <script>
     export default {
-    data :() => ({
-        lists: [],
-        errors: [],
-        showReports: false,
-    }),
-    mounted(){
-        this.readList();
-    },
-    methods: {
-        readList() {
-            this.$axios.get('assignment/list')
-            .then(response => {
-                this.lists = response.data;
-                console.log(this.lists);
-            })
+        data :() => ({
+            lists: [],
+            errors: [],
+            showReports: false,
+        }),
+        mounted(){
+            this.readList();
         },
-        // showReport(list){
-        //     this.showReports = true;
-        //     this.$axios.get('assignment/list/' + list.id)
-        //     .then(response => {
-        //         this.showReports = response.data;
-        //         console.log(response.data);
-        //         this.$router.push('/submitReport');
-        //     })
-        //     .catch(e => {
-        //         (error) => console.log(error)
-        //     });
-        // },
-    }
+        methods: {
+            readList() {
+                this.$axios.get('assignment/list')
+                .then(response => {
+                    this.lists = response.data;
+                    console.log(this.lists);
+                })
+            },
+            // showReport(list){
+            //     this.showReports = true;
+            //     this.$axios.get('assignment/list/' + list.id)
+            //     .then(response => {
+            //         this.showReports = response.data;
+            //         console.log(response.data);
+            //         this.$router.push('/submitReport');
+            //     })
+            //     .catch(e => {
+            //         (error) => console.log(error)
+            //     });
+            // },
+        },
+        // middleware: 'report'
     }
 </script>
