@@ -60,6 +60,11 @@ export default {
       url: '/admin/user',
       icon: 'icon-list',
     },
+    {
+      name: 'All Report',
+      url: '/admin/allReport',
+      icon: 'icon-list',
+    },
     // {
     //   name: 'form',
     //   url: '/form/forms',
