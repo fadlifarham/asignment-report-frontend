@@ -57,7 +57,7 @@ export default {
     },
     {
       name: 'Users',
-      url: '/admin/listAll',
+      url: '/admin/user',
       icon: 'icon-list',
     },
     // {

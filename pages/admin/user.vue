@@ -28,25 +28,28 @@
   </b-row>
 </template>
 <script>
-export default {
-    data(){
-        return{
+  import Vue from 'vue';
+  Vue.use(require('vue-moment'));
+  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+    Vue.use(ClientTable, {}, false, 'bootstrap4');
+    export default {
+    data () {
+        return {
             name: 'admin',
-            users:[],
+            users: [],
             errors: [],
-            columns: ['id',
-                        'email',
-                        'full_name',
-                        'position',
-                        'phone_number',
-                        'address',
-                        'place_birth',
+            columns: ['id', 
+                        'email', 
+                        'full_name', 
+                        'phone_number', 
+                        'address', 
+                        'place_birth', 
                         'date_birth',
                         'motto',
-                        'picture',
+                        'role_id',
                         'edit',
                         'delete',
-                    ],
+                        ],
             options: {
                 filterByColumn: true,
                 listColumns: {
@@ -54,65 +57,99 @@ export default {
                 headings: {
                   id: 'ID',
                   email: 'Email',
-                  full_name: 'Full Name',
-                  position: 'Position',
                   phone_number: 'Phone Number',
                   address: 'Address',
                   place_birth: 'Place Birth',
                   date_birth: 'Date Birth',
                   motto: 'Motto',
-                  picture: 'Picture',
+                  role_id: 'Role ID',
                   edit: 'edit',
                   delete: 'delete'
                 },
                 sortable: [
-                    'id','email','full_name','position',
-                    'phone_number','address','place_birth',
-                    'date_birth','motto','picture'
+                  'id', 'email', 'full_name', 
+                  'phone_number', 'address', 'place_birth', 
+                  'date_birth', 'motto', 'role_id',
                 ],
-                filterable: [
-                    'id','email','full_name','position',
-                    'phone_number','address','place_birth',
-                    'date_birth','motto','picture'
+                filterable:[
+                  'id', 'email', 'full_name', 
+                  'phone_number', 'address', 'place_birth', 
+                  'date_birth', 'motto', 'role_id',
                 ],
                 texts: {
                 //   filterPlaceholder: 'filter'
                 }
-            },
-            mounted(){
-                this.readUsers();
-            },
-            methods: {
-              readUsers(){
-                var temp;
-                this.$axios.get('admin/users').then(response => {
-                    for(let i=0;i<response.data.length;i++){
-                        temp = { id: response.data[i].id,
-                                  email: response.data[i].email,
-                                  full_name: response.data[i].full_name, 
-                                  position: response.data[i].role.name,
-                                  phone_number: response.data[i].phone_number,
-                                  address: response.data[i].address,
-                                  place_birth: response.data[i].place_birth,
-                                  date_birth: response.data[i].date_birth,
-                                  motto: response.data[i].motto,
-                                  picture: response.data[i].picture,
-                                  status: response.data[i].status};
-                      this.users.push(temp);
-                    }
-                  console.log(this.users);
-                })
-              },
-              scrollIntoView(evt) {
-                evt.preventDefault()
-                const href = evt.target.getAttribute('href')
-                const el = href ? document.querySelector(href) : null
-                if (el) {
-                  this.$refs.content.scrollTop = el.offsetTop
-                }
-              }
-            },
+            }
         }
+    },
+    mounted(){
+        this.readUser();
+    },
+    methods: {
+        readUser() {
+          var temp;
+          this.$axios.get('admin/users').then(response => {
+              for(let i=0;i<response.data.length;i++){
+                  temp = { id: response.data[i].id,
+                            email: response.data[i].email, 
+                            full_name: response.data[i].full_name, 
+                            phone_number: response.data[i].phone_number,
+                            address: response.data[i].address,
+                            place_birth: response.data[i].place_birth,
+                            date_birth: response.data[i].ptl.date_birth,
+                            motto: response.data[i].motto,
+                            role_id: response.data[i].role_id,
+                          };
+                this.users.push(temp);
+              }
+            console.log(this.users);
+          })
+        },
+        scrollIntoView(evt) {
+          evt.preventDefault()
+          const href = evt.target.getAttribute('href')
+          const el = href ? document.querySelector(href) : null
+          if (el) {
+            this.$refs.content.scrollTop = el.offsetTop
+          }
+        }
+      },
+      deleteAss(id){
+          console.log("id : " + id)
+          if (confirm("Are you sure you want to delete this item?")) {
+                this.$axios.post('assignment/delete/' + id)
+                .then(response => {
+                    this.status = 'Delete Success!';
+                    console.log(this.status);
+                    swal('Success', this.status, 'success');
+                    this.readPtls();
+                }).catch(error => {
+                    console.log(error.response.data.error);
+                })
+            }
+        },
+
+      exportToExcel() {
+        this.$axios.get('assignment/all/export').then(response => {
+          this.apply = response.data
+          let blob = new Blob([response.data], { type: 'application/xlsx'})
+          let link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = 'All_Assignment.xlsx'
+          link.click()
+          // console.log(response.data)
+        });
+      }
     }
-}
 </script>
+<style>
+  table {
+    counter-reset: section;
+  }
+
+  .no:before {
+    counter-increment: section;
+    content: counter(section);
+  }
+</style>
+
