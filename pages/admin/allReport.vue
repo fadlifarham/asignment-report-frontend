@@ -5,7 +5,7 @@
         <b-card-header>
           <b-input-group>
             <b-col sm="4">
-              <h5 id="label" class="card-title mb-0" style="padding : 5px">Assignment List</h5>
+              <h5 id="label" class="card-title mb-0" style="padding : 5px">List Report</h5>
             </b-col>
             <b-col sm="4">
             </b-col>
@@ -18,13 +18,10 @@
           class="card"
           id="nav-scroller"
           ref="content"
-          style="position:relative; height:300px;">
+          style="position:relative; height:600px;">
           <div id="demo">
-            <v-client-table :data="ptls" :columns="columns" :options="options">
-                <b-button variant="success" style="border-radius: 5px" slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
-                  <i class="fa fa-eye"></i>
-                </b-button>
-                <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
+            <v-client-table :data="ars" :columns="columns" :options="options">
+                <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.assignment_id">
                   <i class="fa fa-edit"></i>
                 </b-button>
                 <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
@@ -33,7 +30,7 @@
             </v-client-table>
           </div>
         </b-card-body>
-        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right">Export to Excel</b-button>
+        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
         </div>
     </b-col>
   </b-row>
@@ -46,12 +43,14 @@
     export default {
     data () {
         return {
+          files: [],
           name: 'demo',
-          ptls: [],
+          ars: [],
           errors: [],
           columns: [
-            'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle',
-            'assignment_status', 'view', 'edit', 'delete'
+            'id', 'assignment_id', 'assignment_type', 'sppd_status', 'day_number', 'brief_work', 'result',
+            'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_desc',
+            'difficulty_level', 'status', 'edit', 'delete'
           ],
           options: {
                 filterByColumn: true,
@@ -59,45 +58,76 @@
                 },
                 headings: {
                   id: 'ID',
+                  assignment_id: 'Assignment ID',
+                  assignment_type: 'Assignment Type',
+                  sppd_status: 'SPPD Status',
+                  day_number: 'Number of Days',
+                  brief_work: 'Brief Work',
+                  result: 'result',
                   ptl_id: 'PTL ID',
                   project_number: 'Project Number',
                   io_number: 'IO Number',
                   assignment_class: 'Assignment Class',
                   assignment_tittle: 'Assignment Title',
-                  assignment_status: 'Assignment Status',
+                  assignment_desc: 'Assignment Description',
+                  difficulty_level: 'Difficulty Level',
                   view: 'View',
                   edit: 'Edit',
                   delete: 'Delete',
                 },
                 sortable: [
-                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
+                    'id', 'assignment_id', 'assignment_type', 'sppd_status', 'day_number', 'brief_work', 'result',
+                    'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_desc',
+                    'difficulty_level', 'status',
                 ],
                 filterable: [
-                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
+                    'id', 'assignment_id', 'assignment_type', 'sppd_status', 'day_number', 'brief_work', 'result',
+                    'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_desc',
+                    'difficulty_level', 'status',
                 ],
                 texts: {
                   filterPlaceholder: 'filter'
                 },
-                perPage: 10,
-                perPageValues: [10,25,50,100]
+                perPage: 4
             }
         }
     },
 
     mounted(){
-        this.readPtls();
+        this.readArs();
     },
     methods: {
-        readPtls() {
+        readArs() {
           var temp;
-          this.$axios.get('assignment/ptl').then(response => {
+          this.$axios.get('admin/ar/').then(response => {
+              
               for(let i=0;i<response.data.length;i++){
-                  temp = { id: response.data[i].id, ptl_id: response.data[i].ptl_id, project_number: response.data[i].project_number,
-                  io_number: response.data[i].io_number, assignment_class: response.data[i].assignment_class, assignment_tittle: response.data[i].assignment_tittle,
-                  assignment_desc: response.data[i].assignment_desc, assignment_status: response.data[i].status};
-                this.ptls.push(temp);
+                  console.log("saya oke")
+                  let files = ''
+                //   for(let j=0; j<response.data[i].user.length;j++){
+                //       teams += response.data[i].file[j].filename + '<br>';
+                //   }
+                  temp = { 
+                    id: response.data[i].id,
+                    assignment_id: response.data[i].assignment_id, 
+                    assignment_type: response.data[i].assignment_type,
+                    sppd_status: response.data[i].sppd_status, 
+                    day_number: response.data[i].day_number, 
+                    brief_work: response.data[i].brief_work,
+                    other: response.data[i].other,
+                    result: response.data[i].result,
+                    ptl_id: response.data[i].assignment.ptl_id,
+                    project_number: response.data[i].assignment.project_number,
+                    io_number: response.data[i].assignment.io_number,
+                    assignment_class: response.data[i].assignment.assignment_class,
+                    assignment_tittle: response.data[i].assignment.assignment_tittle,
+                    assignment_desc: response.data[i].assignment.assignment_desc,
+                    status: response.data[i].assignment.status,
+                    difficulty_level: response.data[i].assignment.difficulty_level,
+                    files: response.data[i].file };
+                this.ars.push(temp);
               }
-            console.log(this.ptls);
+            console.log(this.ars);
           })
         },
         // read() {
