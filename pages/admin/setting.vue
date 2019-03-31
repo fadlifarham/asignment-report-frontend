@@ -25,8 +25,7 @@
                             <b-col>
                                 <b-form-input type="date"
                                     id="start_date"
-                                    style="border-radius: 5px; vertical-align: center"
-                                    v-model="start_date">
+                                    style="border-radius: 5px; vertical-align: center">
                                 </b-form-input>
                             </b-col>
                         </b-row>
@@ -38,8 +37,7 @@
                             <b-col>
                                 <b-form-input type="date"
                                     id="date"
-                                    style="border-radius: 5px; vertical-align: center"
-                                    v-model="end_date">
+                                    style="border-radius: 5px; vertical-align: center">
                                 </b-form-input>
                             </b-col>
                         </b-row>
@@ -59,7 +57,7 @@
                                 <b-form-input type="date"
                                     id="date"
                                     style="border-radius: 5px; vertical-align: center"
-                                    v-model="date">
+                                    v-model="start_date">
                                 </b-form-input>
                             </b-col>
                         </b-row>
@@ -101,7 +99,7 @@ export default {
             });
             })
         },
-        submitPermission(){
+        submitApp(){
             this.$axios.post('/admin/start_date', {
                 start_date: this.start_date,
                 }).then(response => {
@@ -115,7 +113,7 @@ export default {
                     swal('Failed', this.status, 'warning');
             })
         },
-        submitApp(){
+        submitPermission(){
 
         },
         reset(){

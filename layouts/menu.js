@@ -40,21 +40,21 @@ export default {
       url: '/utilization',
       icon: 'icon-chart',
     },
-    {
-      name: 'Register',
-      url: '/admin/Register',
-      icon: 'icon-user',
-    },
-    {
-      name: 'Setting',
-      url: '/admin/setting',
-      icon: 'icon-settings',
-    },
-    {
-      name: 'All Assignment',
-      url: '/admin/listAll',
-      icon: 'icon-list',
-    },
+    // {
+    //   name: 'Register',
+    //   url: '/admin/Register',
+    //   icon: 'icon-user',
+    // },
+    // {
+    //   name: 'Setting',
+    //   url: '/admin/setting',
+    //   icon: 'icon-settings',
+    // },
+    // {
+    //   name: 'All Assignment',
+    //   url: '/admin/listAll',
+    //   icon: 'icon-list',
+    // },
     // {
     //   name: 'form',
     //   url: '/form/forms',

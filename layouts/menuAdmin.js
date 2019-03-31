@@ -60,6 +60,11 @@ export default {
         url: '/admin/setting',
         icon: 'icon-setting',
       },
+      {
+        name: 'All User',
+        url: '/admin/user',
+        icon: 'icon-list',
+      },
   
       // {
       //   name: 'ex',

@@ -4,14 +4,14 @@
         <div class="animated fadeIn">
           <div class="card">
             <b-card-header>
-              <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
+              <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All User</h5>
             </b-card-header>
             <b-card-body
               id="nav-scroller"
               ref="content"
               style="position:relative; height:500px; overflow-y:scroll;">
               <div id="people" style="width: 1500px">
-                <v-client-table :data="assignments" :columns="columns" :options="options">
+                <v-client-table :data="users" :columns="columns" :options="options">
                     <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
                         <i class="fa fa-edit"></i>
                     </b-button>
@@ -36,20 +36,18 @@
     data () {
         return {
             name: 'people',
-            assignments: [],
+            users: [],
             errors: [],
             columns: ['id', 
-                        'project_number', 
-                        'io_number', 
-                        'assignment_class', 
-                        'assignment_tittle', 
-                        'assignment_desc', 
-                        'difficulty_level',
-                        'name_created',
-                        'created_at',
-                        'update_at',
-                        'team_name',
-                        'status',
+                        'email', 
+                        'full_name', 
+                        'phone_number', 
+                        'address', 
+                        'place_birth', 
+                        'date_birth',
+                        'motto',
+                        'picture',
+                        'position',
                         'edit',
                         'delete',
                         ],
@@ -59,31 +57,27 @@
                 },
                 headings: {
                   id: 'ID',
-                  project_number: 'Project Number',
-                  io_number: 'IO Number',
-                  assignment_class: 'Assignment Class',
-                  assignment_tittle: 'Assignment Title',
-                  assignment_desc: 'Assignment Description',
-                  difficulty_level: 'Difficulty Level',
-                  name_created: 'Name Created',
-                  created_at: 'Created Add',
-                  update_at: 'Update at',
-                  team_name: 'Team Name',
-                  status: 'Status',
+                  email: 'Email',
+                  full_name: 'Name',
+                  phone_number: 'Phone Number',
+                  address: 'Address',
+                  place_birth: 'Place Birth',
+                  date_birth: 'Date Birth',
+                  motto: 'Motto',
+                  picture: 'Picture',
+                  position: 'Position',
                   edit: 'edit',
                   delete: 'delete'
                 },
                 sortable: [
-                  'id', 'project_number', 'io_number', 
-                  'assignment_class', 'assignment_tittle', 'assignment_desc', 
-                  'difficulty_level','name_created','created_at',
-                  'update_at','team_name','status'
+                  'id', 'email', 'full_name', 
+                  'phone_number', 'address', 'place_birth', 
+                  'date_birth','motto','picture','position'
                 ],
                 filterable:[
-                    'id', 'project_number', 'io_number', 
-                    'assignment_class', 'assignment_tittle', 'assignment_desc', 
-                    'difficulty_level','name_created','created_at',
-                    'update_at','team_name','status'
+                    'id', 'email', 'full_name', 
+                  'phone_number', 'address', 'place_birth', 
+                  'date_birth','position'
                 ],
                 texts: {
                 //   filterPlaceholder: 'filter'
@@ -92,40 +86,27 @@
         }
     },
     mounted(){
-        this.readAssignment();
-        // this.readTeam();
+        this.readUsers();
     },
     methods: {
-        readAssignment() {
+        readUsers() {
           var temp;
-          this.$axios.get('admin/assignment').then(response => {
+          this.$axios.get('admin/users').then(response => {
               for(let i=0;i<response.data.length;i++){
-                  let teams = ''
-                  for(let j=0; j<response.data[i].user.length;j++){
-                      teams += response.data[i].user[j].full_name+', ';
-                  }
                   temp = { id: response.data[i].id,
-                            project_number: response.data[i].project_number,
-                            io_number: response.data[i].io_number, 
-                            assignment_class: response.data[i].assignment_class, 
-                            assignment_tittle: response.data[i].assignment_tittle,
-                            assignment_desc: response.data[i].assignment_desc,
-                            difficulty_level: response.data[i].difficulty_level,
-                            name_created: response.data[i].ptl.full_name,
-                            created_at: response.data[i].created_at,
-                            update_at: response.data[i].update_at,
-                            team_name: teams,
-                            status: response.data[i].status};
-                this.assignments.push(temp);
+                            email: response.data[i].email,
+                            full_name: response.data[i].full_name, 
+                            phone_number: response.data[i].phone_number, 
+                            address: response.data[i].address,
+                            place_birth: response.data[i].place_birth,
+                            date_birth: response.data[i].date_birth,
+                            motto: response.data[i].motto,
+                            picture: response.data[i].picture,
+                            position: response.data[i].role.name};
+                this.users.push(temp);
               }
-            console.log(this.assignments);
+            console.log(this.users);
           })
-        },
-          getBadge (status) {
-          return status === 'On Progress' ? 'success'
-            : status === 'Close' ? 'secondary'
-              : status === 'Waiting Approvement' ? 'warning'
-                : status === 'Cancel' ? 'danger' : 'primary'
         },
         scrollIntoView(evt) {
           evt.preventDefault()
