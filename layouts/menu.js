@@ -51,6 +51,21 @@ export default {
     //   icon: 'icon-settings',
     // },
     // {
+    //   name: 'All Assignment',
+    //   url: '/admin/listAll',
+    //   icon: 'icon-list',
+    // },
+    // {
+    //   name: 'Users',
+    //   url: '/admin/user',
+    //   icon: 'icon-list',
+    // },
+    // {
+    //   name: 'All Report',
+    //   url: '/admin/allReport',
+    //   icon: 'icon-list',
+    // },
+    // {
     //   name: 'form',
     //   url: '/form/forms',
     //   icon: 'icon-chart',

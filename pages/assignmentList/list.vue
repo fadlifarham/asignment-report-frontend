@@ -60,7 +60,7 @@
                 'Status'                  : 'status'
             },
             errors: [],
-            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Desc', 'status'],
+            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Desc', 'team_name','status'],
             options: {
                 filterByColumn: true,
                 listColumns: {
@@ -73,12 +73,13 @@
                   assignment_Class: 'Assignment Class',
                   assignment_Title: 'Assignment Title',
                   assignment_Desc: 'Assignment Description',
+                  team_name: 'Team Name',
                   status: 'Status'
                 },
                 sortable: [
-                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'status'
+                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'team_name','status'
                 ],
-                filterable:['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'status'],
+                filterable:['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'team_name', 'status'],
                 texts: {
                   filterPlaceholder: 'filter'
                 }

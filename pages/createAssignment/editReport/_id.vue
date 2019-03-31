@@ -28,11 +28,12 @@
                 :horizontal="true">
                 <b-form-select id="assignment_class"
                     :plain="true"
+                    v-model="assignment_class"
                     :options="['Testcomm','Survey','Installation','QC','BERTest','Supervise Vendor','Migration','Integration',
                     'Integration','Technical Meeting','Sales Activity','Asplan Drawing','Administration']"
                     value="Assignment Class"
                     style="border-radius: 5px"
-                    v-model="assignment_class">
+                    >
                 </b-form-select>
             </b-form-group>
             <b-form-group
@@ -123,26 +124,26 @@ export default {
             );
         },
         approve(){
-            // this.$axios.post('/assignment/edit', {
-            //     id: this.$route.params.id,
-            //     project_number: this.project_number,
-            //     assignment_class: this.assignment_class,
-            //     assignment_tittle: this.assignment_tittle,
-            //     assignment_desc: this.assignment_desc,
-            //     io_number: this.io_number,
-            //     difficulty_level: this.difficulty_level,
+            this.$axios.post('/assignment/edit', {
+                id: this.$route.params.id,
+                project_number: this.project_number,
+                assignment_class: this.assignment_class,
+                assignment_tittle: this.assignment_tittle,
+                assignment_desc: this.assignment_desc,
+                io_number: this.io_number,
+                difficulty_level: this.difficulty_level,
                
-            // }).then(response => {
-            //     this.status = 'Assignment Approved Success!';
-            //     console.log(this.status);
-            //     swal('Success', this.status, 'success');
-            //     this.reset();
-            // }, response => {
-            //     this.status = 'Failed';
-            //     console.log("ass : " + this.assignment_id);
-            //     console.log(this.project_number);
-            //     swal('Failed', this.status, 'warning');
-            // })
+            }).then(response => {
+                this.status = 'Assignment Approved Success!';
+                console.log(this.status);
+                swal('Success', this.status, 'success');
+                this.reset();
+            }, response => {
+                this.status = 'Failed';
+                console.log("ass : " + this.assignment_id);
+                console.log(this.project_number);
+                swal('Failed', this.status, 'warning');
+            })
         },
         addTag (newTag) {
             const tag = {
