@@ -30,11 +30,11 @@ export default {
           },
         ]
       },
-      {
-          name: 'Assignment Report',
-          url: '/report/listReport',
-          icon: 'icon-book-open',
-      },
+      // {
+      //     name: 'Assignment Report',
+      //     url: '/report/listReport',
+      //     icon: 'icon-book-open',
+      // },
       {
         name: 'Team Utilization',
         url: '/utilization',
@@ -42,17 +42,7 @@ export default {
       },
       {
         name: 'Register',
-        url: '/utilization',
-        icon: 'icon-chart',
-      },
-      {
-        name: 'Register',
-        url: '/utilization',
-        icon: 'icon-chart',
-      },
-      {
-        name: 'Register',
-        url: '/Register',
+        url: '/admin/register',
         icon: 'icon-user',
       },
       {

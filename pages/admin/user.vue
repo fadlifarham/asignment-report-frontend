@@ -12,7 +12,7 @@
               style="position:relative; height:500px; overflow-y:scroll;">
               <div id="people" style="width: 1500px">
                 <v-client-table :data="users" :columns="columns" :options="options">
-                    <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
+                    <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="show(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
                     <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
@@ -22,8 +22,49 @@
               </div>
             </b-card-body>
           </div>
-        </div>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+        </div>
+        <b-modal id="show" size="lg" title="Edit Assignmnet"  @ok="edit()">
+           <form @submit.prevent ="edit()">
+             <div class="form-group">
+                <label>Full Name :</label>
+                <input type="text" style="border-radius: 5px" placeholder="Full Name" class="form-control" v-model="full_name">
+            </div>
+            <div class="form-group">
+                <label>Email :</label>
+                <input type="text" style="border-radius: 5px" placeholder="IO Number" class="form-control" v-model="email">
+            </div>
+            <div class="form-group">
+                <label>Position :</label>
+                <b-form-select id="role_id"
+                  :plain="true"
+                  :options="select"
+                  value="Select Position"
+                  v-model="role_id">
+                </b-form-select>
+            </div>
+            <div class="form-group">
+                <label>Phone Number :</label>
+                <input type="text" style="border-radius: 5px" placeholder="Phone Number" class="form-control" v-model="phone_number">
+            </div>
+            <div class="form-group">
+                <label>Address :</label>
+                <input type="text" style="border-radius: 5px" placeholder="Address" class="form-control" v-model="address">
+            </div>
+            <div class="form-group">
+                <label>Date Birth :</label>
+                <input type="date" style="border-radius: 5px" placeholder="Date Birth" class="form-control" v-model="date_birth">
+            </div>
+            <div class="form-group">
+                <label>Place Birth :</label>
+                <input type="text" style="border-radius: 5px" placeholder="Place Birth" class="form-control" v-model="place_birth">
+            </div>
+            <div class="form-group">
+                <label>Motto :</label>
+                <textarea v-model="motto" class="form-control" rows="4" id="motto"></textarea>
+            </div>
+           </form>
+         </b-modal>
     </b-col>
   </b-row>
 </template>
@@ -38,6 +79,12 @@
             name: 'people',
             users: [],
             errors: [],
+            roles:[],
+            role_id: null,
+            selected: null,
+            select: [
+                { value: null, text: 'Select Position', disabled: true },
+            ],
             columns: ['id', 
                         'email', 
                         'full_name', 
@@ -87,6 +134,7 @@
     },
     mounted(){
         this.readUser();
+        this.getRole();
     },
     methods: {
         readUser() {
@@ -108,6 +156,19 @@
             console.log(this.users);
           })
         },
+        getRole() {
+            this.$axios.get('/admin/role')
+            .then(response => {
+              console.log(response.data)
+                response.data.forEach(element => {
+                    this.select.push({
+                        value: element.id,
+                        text: element.name
+                    })
+                });
+                console.log("ll : " + this.select)
+            })
+        },
         scrollIntoView(evt) {
           evt.preventDefault()
           const href = evt.target.getAttribute('href')
@@ -115,9 +176,8 @@
           if (el) {
             this.$refs.content.scrollTop = el.offsetTop
           }
-        }
-      },
-      deleteAss(id){
+        },
+        deleteAss(id){
           console.log("id : " + id)
           if (confirm("Are you sure you want to delete this item?")) {
                 this.$axios.post('assignment/delete/' + id)
@@ -131,6 +191,8 @@
                 })
             }
         },
+      },
+      
 
       exportToExcel() {
         this.$axios.get('assignment/all/export').then(response => {
