@@ -71,8 +71,10 @@ export default {
 
     defineRoutes() {
       console.log('Role : ' + this.role)
-      if (this.role == 4)
+      if (this.role == 5 || this.role == 6)
         this.nav = this.navEngineer
+      else if (this.role == 1)
+        this.nav = this.navAdmin
       else
         this.nav = this.navAll
     }

@@ -18,7 +18,7 @@
           <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
     <div>
       <b-modal id="chart" size="md" title="Performance Member">
-        <b-card> 
+        <b-card>
             <div class="chart-wrapper">
               <utilization-bar
                 :chart-data="dataCollection"
@@ -158,7 +158,6 @@
                 backgroundColor: '#ffff00',
                 data: [complete_assignment]
               }
-
             ]
           }
         }

@@ -16,20 +16,49 @@
             </b-card-body>
           </div>
         </div>
-        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" > -->
+
+          <download-excel
+            class="btn btn-primary btn-xs pull-right"
+            :data="alls"
+            :fields="json_fields"
+            worksheet="Data"
+            name="AllAssignment.xls">
+
+            Export to Excel
+          </download-excel>
+
+
+        <!-- </b-button> -->
     </b-col>
   </b-row>
 </template>
 <script>
-  import Vue from 'vue';
-  Vue.use(require('vue-moment'));
-  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+    import Vue from 'vue';
+    Vue.use(require('vue-moment'));
+    import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
+    import JsonExcel from 'vue-json-excel'
+    Vue.component('downloadExcel', JsonExcel)
+
     export default {
     data () {
         return {
             name: 'people',
+            // components: {
+            //     JsonExcel
+            // },
             alls: [],
+            json_fields: {
+                'ID'                      : 'ID',
+                'PTL'                     : 'PTL',
+                'Project Number'          : 'project_Number',
+                'IO Number'               : 'IO_Number',
+                'Assignment Class'        : 'assignment_Class',
+                'Assignment Title'        : 'assignment_Title',
+                'Assignment Description'  : 'assignment_Desc',
+                'Status'                  : 'status'
+            },
             errors: [],
             columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Desc', 'status'],
             options: {
@@ -64,12 +93,19 @@
           var temp;
           this.$axios.get('assignment/all').then(response => {
               for(let i=0;i<response.data.length;i++){
-                  temp = { ID: response.data[i].id, PTL: response.data[i].ptl.full_name, project_Number: response.data[i].project_number,
-                  IO_Number: response.data[i].io_number, assignment_Class: response.data[i].assignment_class, assignment_Title: response.data[i].assignment_tittle,
-                  assignment_Desc: response.data[i].assignment_desc, status: response.data[i].status};
-                this.alls.push(temp);
+                  temp = {
+                      'ID'              : response.data[i].id,
+                      'PTL'             : response.data[i].ptl.full_name,
+                      'project_Number'  : response.data[i].project_number,
+                      'IO_Number'       : response.data[i].io_number,
+                      'assignment_Class': response.data[i].assignment_class,
+                      'assignment_Title': response.data[i].assignment_tittle,
+                      'assignment_Desc' : response.data[i].assignment_desc,
+                      'status'          : response.data[i].status
+                  };
+                  this.alls.push(temp);
               }
-            console.log(this.alls);
+              console.log(this.alls);
           })
         },
           getBadge (status) {

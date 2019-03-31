@@ -11,7 +11,7 @@
         <b-dropdown-item><i class="fa fa-tasks"></i> My Performance</b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>
-      </b-nav-item-dropdown>   
+      </b-nav-item-dropdown>
 </template>
 <script>
 

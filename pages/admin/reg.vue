@@ -58,6 +58,7 @@
 <script>
 export default {
   name: 'Register',
-  layout: 'clean'
+  layout: 'clean',
+  // middleware: 'admin'
 }
 </script>
