@@ -89,14 +89,14 @@ export default {
     },
     methods: {
         getName() {
-        this.$axios.get('/engineers')
-        .then(response => {
-            response.data.forEach(element => {
-                this.options.push({
-                    value: element.id,
-                    text: element.full_name
-                })
-            });
+            this.$axios.get('/engineers')
+            .then(response => {
+                response.data.forEach(element => {
+                    this.options.push({
+                        value: element.id,
+                        text: element.full_name
+                    })
+                });
             })
         },
         submitApp(){
@@ -122,4 +122,3 @@ export default {
     }
 }
 </script>
-

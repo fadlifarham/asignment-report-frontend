@@ -73,6 +73,8 @@ export default {
       console.log('Role : ' + this.role)
       if (this.role == 4)
         this.nav = this.navEngineer
+      else if(this.role == 1)
+        this.nav = this.navAdmin
       else
         this.nav = this.navAll
     }

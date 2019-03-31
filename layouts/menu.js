@@ -56,6 +56,16 @@ export default {
     //   icon: 'icon-list',
     // },
     // {
+    //   name: 'Users',
+    //   url: '/admin/user',
+    //   icon: 'icon-list',
+    // },
+    // {
+    //   name: 'All Report',
+    //   url: '/admin/allReport',
+    //   icon: 'icon-list',
+    // },
+    // {
     //   name: 'form',
     //   url: '/form/forms',
     //   icon: 'icon-chart',

@@ -58,11 +58,21 @@ export default {
       {
         name: 'Setting',
         url: '/admin/setting',
-        icon: 'icon-setting',
+        icon: 'icon-settings',
+      },
+      {
+        name: 'All Assignment',
+        url: '/admin/listAll',
+        icon: 'icon-list',
       },
       {
         name: 'All User',
         url: '/admin/user',
+        icon: 'icon-list',
+      },
+      {
+        name: 'All Report',
+        url: '/admin/allReport',
         icon: 'icon-list',
       },
   

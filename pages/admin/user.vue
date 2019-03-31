@@ -41,13 +41,13 @@
             columns: ['id', 
                         'email', 
                         'full_name', 
+                        'position',
                         'phone_number', 
                         'address', 
                         'place_birth', 
                         'date_birth',
                         'motto',
                         'picture',
-                        'position',
                         'edit',
                         'delete',
                         ],
@@ -59,25 +59,25 @@
                   id: 'ID',
                   email: 'Email',
                   full_name: 'Name',
+                  position: 'Position',
                   phone_number: 'Phone Number',
                   address: 'Address',
                   place_birth: 'Place Birth',
                   date_birth: 'Date Birth',
                   motto: 'Motto',
                   picture: 'Picture',
-                  position: 'Position',
                   edit: 'edit',
                   delete: 'delete'
                 },
                 sortable: [
                   'id', 'email', 'full_name', 
-                  'phone_number', 'address', 'place_birth', 
-                  'date_birth','motto','picture','position'
+                  'position','phone_number', 'address', 
+                  'place_birth', 'date_birth','motto','picture',
                 ],
                 filterable:[
-                    'id', 'email', 'full_name', 
-                  'phone_number', 'address', 'place_birth', 
-                  'date_birth','position'
+                  'id', 'email', 'full_name', 
+                  'position','phone_number', 'address', 
+                  'place_birth',  'date_birth'
                 ],
                 texts: {
                 //   filterPlaceholder: 'filter'
@@ -86,23 +86,23 @@
         }
     },
     mounted(){
-        this.readUsers();
+        this.readUser();
     },
     methods: {
-        readUsers() {
+        readUser() {
           var temp;
           this.$axios.get('admin/users').then(response => {
               for(let i=0;i<response.data.length;i++){
                   temp = { id: response.data[i].id,
                             email: response.data[i].email,
-                            full_name: response.data[i].full_name, 
+                            full_name: response.data[i].full_name,
+                            position: response.data[i].role.name, 
                             phone_number: response.data[i].phone_number, 
                             address: response.data[i].address,
                             place_birth: response.data[i].place_birth,
                             date_birth: response.data[i].date_birth,
                             motto: response.data[i].motto,
-                            picture: response.data[i].picture,
-                            position: response.data[i].role.name};
+                            picture: response.data[i].picture,};
                 this.users.push(temp);
               }
             console.log(this.users);

@@ -10,7 +10,7 @@
               id="nav-scroller"
               ref="content"
               style="position:relative; height:500px; overflow-y:scroll;">
-              <div id="people" style="width: 1500px">
+              <div id="admin" style="width: 1500px">
                 <v-client-table :data="assignments" :columns="columns" :options="options">
                     <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
                         <i class="fa fa-edit"></i>
@@ -35,7 +35,7 @@
     export default {
     data () {
         return {
-            name: 'people',
+            name: 'admin',
             assignments: [],
             errors: [],
             columns: ['id', 
@@ -93,7 +93,6 @@
     },
     mounted(){
         this.readAssignment();
-        // this.readTeam();
     },
     methods: {
         readAssignment() {
@@ -121,7 +120,7 @@
             console.log(this.assignments);
           })
         },
-          getBadge (status) {
+        getBadge (status) {
           return status === 'On Progress' ? 'success'
             : status === 'Close' ? 'secondary'
               : status === 'Waiting Approvement' ? 'warning'
