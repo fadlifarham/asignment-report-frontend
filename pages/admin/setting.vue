@@ -119,6 +119,8 @@ export default {
         reset(){
             this.start_date = "";
         }
-    }
+    },
+
+    middleware: "admin"
 }
 </script>

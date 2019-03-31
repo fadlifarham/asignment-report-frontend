@@ -85,13 +85,13 @@
             select: [
                 { value: null, text: 'Select Position', disabled: true },
             ],
-            columns: ['id', 
-                        'email', 
-                        'full_name', 
+            columns: ['id',
+                        'email',
+                        'full_name',
                         'position',
-                        'phone_number', 
-                        'address', 
-                        'place_birth', 
+                        'phone_number',
+                        'address',
+                        'place_birth',
                         'date_birth',
                         'motto',
                         'picture',
@@ -117,13 +117,13 @@
                   delete: 'delete'
                 },
                 sortable: [
-                  'id', 'email', 'full_name', 
-                  'position','phone_number', 'address', 
+                  'id', 'email', 'full_name',
+                  'position','phone_number', 'address',
                   'place_birth', 'date_birth','motto','picture',
                 ],
                 filterable:[
-                  'id', 'email', 'full_name', 
-                  'position','phone_number', 'address', 
+                  'id', 'email', 'full_name',
+                  'position','phone_number', 'address',
                   'place_birth',  'date_birth'
                 ],
                 texts: {
@@ -144,8 +144,8 @@
                   temp = { id: response.data[i].id,
                             email: response.data[i].email,
                             full_name: response.data[i].full_name,
-                            position: response.data[i].role.name, 
-                            phone_number: response.data[i].phone_number, 
+                            position: response.data[i].role.name,
+                            phone_number: response.data[i].phone_number,
                             address: response.data[i].address,
                             place_birth: response.data[i].place_birth,
                             date_birth: response.data[i].date_birth,
@@ -192,7 +192,6 @@
             }
         },
       },
-      
 
       exportToExcel() {
         this.$axios.get('assignment/all/export').then(response => {
@@ -204,7 +203,9 @@
           link.click()
           // console.log(response.data)
         });
-      }
+      },
+
+      middleware: "admin"
     }
 </script>
 <style>

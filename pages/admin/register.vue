@@ -90,7 +90,7 @@ export default {
           email: this.email,
           password: this.password,
           phone_number: this.phone_number,
-          role_id: this.role_id,                
+          role_id: this.role_id,
         }).then(response => {
             this.status = 'Create Account Success!';
             console.log(this.status);
@@ -109,7 +109,9 @@ export default {
         this.phone_number = "";
         this.role_id = "";
       }
-    }
+    },
+
+    middleware: "admin"
 }
 </script>
 

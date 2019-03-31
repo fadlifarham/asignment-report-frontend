@@ -40,11 +40,11 @@ export default {
       url: '/utilization',
       icon: 'icon-chart',
     },
-    {
-      name: 'test ',
-      url: '/charts',
-      icon: 'icon-chart',
-    },
+    // {
+    //   name: 'test ',
+    //   url: '/charts',
+    //   icon: 'icon-chart',
+    // },
     // {
     //   name: 'ex',
     //   url: '/form',
