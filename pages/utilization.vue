@@ -140,22 +140,22 @@
             datasets: [
               {
                 label: 'Work Load',
-                backgroundColor: '#ff0000',
+                backgroundColor: '#9999ff',
                 data: [work_load]
               },
               {
                 label: 'Work Quality',
-                backgroundColor: '#00ff00',
+                backgroundColor: '#79d2a6',
                 data: [work_quality]
               },
               {
                 label: 'SPPD',
-                backgroundColor: '#0000ff',
+                backgroundColor: '#ff8080',
                 data: [sppd]
               },
               {
                 label: 'Complete Assignment',
-                backgroundColor: '#ffff00',
+                backgroundColor: '#ffff4d',
                 data: [complete_assignment]
               }
 

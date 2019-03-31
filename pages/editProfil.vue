@@ -49,13 +49,13 @@
                     </b-col>
              </b-row>
              <br><br>
-             <b-col style="padding: 10px" class="text-center">
+             <b-col style="padding: 10px" class="text-right">
                 <b-button v-b-modal.update size="md" variant="primary" style="margin: 10px" @click="showItem()">
                     Edit
                 </b-button>
-                <b-button size="md" variant="danger" style="margin: 10px" >
+                <!-- <b-button size="md" variant="danger" style="margin: 10px" >
                     Kembali
-                </b-button>
+                </b-button> -->
             </b-col>
             </b-card>
             
