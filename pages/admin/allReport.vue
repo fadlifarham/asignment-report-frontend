@@ -21,7 +21,7 @@
           style="position:relative; height:600px;">
           <div id="demo">
             <v-client-table :data="ars" :columns="columns" :options="options">
-                <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.assignment_id">
+                <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/admin/editReportAdmin/' + props.row.assignment_id">
                   <i class="fa fa-edit"></i>
                 </b-button>
                 <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">

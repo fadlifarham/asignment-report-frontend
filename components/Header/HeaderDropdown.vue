@@ -1,7 +1,7 @@
 <template>
       <b-nav-item-dropdown right no-caret>
         <template slot="button-content">
-          <img :src="picture" class="img-avatar" alt="admin@bootstrapmaster.com">
+          <img :src="'//' + picture" class="img-avatar" alt="admin@bootstrapmaster.com">
         </template>
         <b-dropdown-header tag="div" class="text-center"><strong>{{full_name}}</strong>
         <br>{{position}}
