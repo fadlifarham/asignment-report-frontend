@@ -9,7 +9,9 @@
     <b-col>
         <div class="animated fadeIn" style="padding: 0px">
             <br><br>
-            <center><img :src="picture" class="rounded-circle" alt="Cinque Terre" width="204" height="136">
+            <center>
+                <b-form-file id="other" v-model="other" :plain="true" ref="other" @change="otherHandler"></b-form-file>
+                <b-button @click="submit" size="lg" variant="primary" style="margin: 10px">Submit</b-button>
             <!-- <button v-b-modal.picture class="btn btn-default" @click="showPicture()"><i class="fa fa-pencil" style="font-size: 24px; color: blue"></i></button> -->
             </center>  
             <br><br>
@@ -163,6 +165,22 @@ import VModal from 'vue-js-modal'
                 (error) => console.log(error)
             });
         },
+        submit(){
+          let formData = new FormData();
+        //   formData.append('picture', this.picture);
+
+          this.$axios.post('/dp', {
+              picture: this.other
+
+          }).then(response => {
+              // this.assignment.push(response.data.task);
+              this.status = 'Upload success';
+              console.log(this.status);
+              swal('Success', this.status, 'success');
+              this.reset();
+          }, response => {
+          })
+        },
         editProfile(profiles) {
             const fd = new FormData();
             fd.append('_method', 'POST');
@@ -207,6 +225,21 @@ import VModal from 'vue-js-modal'
                 // console.log(this.status);
                 swal('Success', this.status, 'success');
             })
+        },
+        otherHandler(e) {
+          let files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+            return;
+          this.createOther(files[0]);
+        },
+
+        createOther(file) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            this.other = e.target.result;
+            // console.log(this.other)
+          };
+          reader.readAsDataURL(file);
         },
     },
     }
