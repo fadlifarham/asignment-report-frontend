@@ -7,7 +7,17 @@ export default {
       },
       {
         name: 'All Assignment',
-        url: '/assignmentList/list',
+        url: '/admin/listAll',
+        icon: 'icon-list',
+      },
+      {
+        name: 'All User',
+        url: '/admin/user',
+        icon: 'icon-list',
+      },
+      {
+        name: 'All Report',
+        url: '/admin/allReport',
         icon: 'icon-list',
       },
       {
@@ -49,23 +59,7 @@ export default {
         name: 'Setting',
         url: '/admin/setting',
         icon: 'icon-settings',
-      },
-      {
-        name: 'All Assignment',
-        url: '/admin/listAll',
-        icon: 'icon-list',
-      },
-      {
-        name: 'All User',
-        url: '/admin/user',
-        icon: 'icon-list',
-      },
-      {
-        name: 'All Report',
-        url: '/admin/allReport',
-        icon: 'icon-list',
-      },
-  
+      },  
       // {
       //   name: 'ex',
       //   url: '/form',

@@ -12,6 +12,7 @@
               style="position:relative; height:500px; overflow-y:scroll;">
               <div id="people" style="width: 1500px">
                 <v-client-table :data="users" :columns="columns" :options="options">
+                   <img :src="'//' + picture" class="img-avatar" slot="picture">
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="show(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
@@ -19,7 +20,7 @@
                         <i class="fa fa-trash-o"></i>
                     </b-button>
                 </v-client-table>
-              </div>
+              </div>  
             </b-card-body>
           </div>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
@@ -119,7 +120,7 @@
                 sortable: [
                   'id', 'email', 'full_name',
                   'position','phone_number', 'address',
-                  'place_birth', 'date_birth','motto','picture',
+                  'place_birth', 'date_birth','motto',
                 ],
                 filterable:[
                   'id', 'email', 'full_name',
