@@ -6,23 +6,29 @@
             <b-card-header>
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All User</h5>
             </b-card-header>
-            <b-card-body
-              id="nav-scroller"
-              ref="content"
-              style="position:relative; height:500px; overflow-y:scroll;">
-              <div id="people" style="width: 1500px">
-                <v-client-table :data="users" :columns="columns" :options="options">
+              <div id="people">
+                <vue-virtual-table 
+                    :data="users"
+                    :config="tableConfig"
+                    :height="500"
+                    :itemHeight="55"
+                    :minWidth="1000"
+                    :selectable="true"
+                    :hoverHighlight="true"
+                    :enableExport="true"
+                    :language="'en'"
+                    v-on:changeSelection="handleSelectionChange">
+                   <!-- <img :src="'//' + picture" class="img-avatar" slot="picture"> -->
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="show(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
                     <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                         <i class="fa fa-trash-o"></i>
                     </b-button>
-                </v-client-table>
-              </div>
-            </b-card-body>
+                </vue-virtual-table>
+              </div>  
           </div>
-        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
         <b-modal id="show" size="lg" title="Edit Assignmnet"  @ok="edit()">
            <form @submit.prevent ="edit()">
@@ -69,11 +75,15 @@
   </b-row>
 </template>
 <script>
+  import VueVirtualTable from 'vue-virtual-table'
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
+      components: {
+            VueVirtualTable
+        },
     data () {
         return {
             name: 'people',
@@ -85,51 +95,66 @@
             select: [
                 { value: null, text: 'Select Position', disabled: true },
             ],
-            columns: ['id',
-                        'email',
-                        'full_name',
-                        'position',
-                        'phone_number',
-                        'address',
-                        'place_birth',
-                        'date_birth',
-                        'motto',
-                        'picture',
-                        'edit',
-                        'delete',
-                        ],
-            options: {
-                filterByColumn: true,
-                listColumns: {
-                },
-                headings: {
-                  id: 'ID',
-                  email: 'Email',
-                  full_name: 'Name',
-                  position: 'Position',
-                  phone_number: 'Phone Number',
-                  address: 'Address',
-                  place_birth: 'Place Birth',
-                  date_birth: 'Date Birth',
-                  motto: 'Motto',
-                  picture: 'Picture',
-                  edit: 'edit',
-                  delete: 'delete'
-                },
-                sortable: [
-                  'id', 'email', 'full_name',
-                  'position','phone_number', 'address',
-                  'place_birth', 'date_birth','motto','picture',
-                ],
-                filterable:[
-                  'id', 'email', 'full_name',
-                  'position','phone_number', 'address',
-                  'place_birth',  'date_birth'
-                ],
-                texts: {
-                //   filterPlaceholder: 'filter'
-                }
-            }
+             tableConfig: [
+                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 80},
+                {prop: 'id', name: 'ID', numberFilter: true, sortable: true},
+                {prop: 'full_name', name: 'Name', searchable: true, sortable: true},
+                {prop: 'email', name: 'Email', searchable: true, sortable: true},
+                {prop: 'position', name: 'Potition', filterable: true},
+                {prop: 'phone_number', name: 'Phone Number', searchable: true},
+                {prop: 'address', name: 'Address', searchable: true},
+                {prop: 'place_birth', name: 'Place Birth', searchable: true},
+                {prop: 'date_birth', name: 'Date Birth', searchable: true},
+                {prop: 'motto', name: 'Motto'},
+                {prop: 'picture', name: 'Picture'},
+                {prop: '_action', name: 'Edit', actionName: 'edit'},
+                {prop: '_action', name: 'Delete', actionName: 'delete'}
+            ],
+            // columns: ['id',
+            //             'email',
+            //             'full_name',
+            //             'position',
+            //             'phone_number',
+            //             'address',
+            //             'place_birth',
+            //             'date_birth',
+            //             'motto',
+            //             'picture',
+            //             'edit',
+            //             'delete',
+            //             ],
+            // options: {
+            //     filterByColumn: true,
+            //     listColumns: {
+            //     },
+            //     headings: {
+            //       id: 'ID',
+            //       email: 'Email',
+            //       full_name: 'Name',
+            //       position: 'Position',
+            //       phone_number: 'Phone Number',
+            //       address: 'Address',
+            //       place_birth: 'Place Birth',
+            //       date_birth: 'Date Birth',
+            //       motto: 'Motto',
+            //       picture: 'Picture',
+            //       edit: 'edit',
+            //       delete: 'delete'
+            //     },
+            //     sortable: [
+            //       'id', 'email', 'full_name',
+            //       'position','phone_number', 'address',
+            //       'place_birth', 'date_birth','motto',
+            //     ],
+            //     filterable:[
+            //       'id', 'email', 'full_name',
+            //       'position','phone_number', 'address',
+            //       'place_birth',  'date_birth'
+            //     ],
+            //     texts: {
+            //     //   filterPlaceholder: 'filter'
+            //     }
+            // }
         }
     },
     mounted(){
@@ -142,8 +167,8 @@
           this.$axios.get('admin/users').then(response => {
               for(let i=0;i<response.data.length;i++){
                   temp = { id: response.data[i].id,
-                            email: response.data[i].email,
                             full_name: response.data[i].full_name,
+                            email: response.data[i].email,
                             position: response.data[i].role.name,
                             phone_number: response.data[i].phone_number,
                             address: response.data[i].address,

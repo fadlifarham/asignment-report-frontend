@@ -6,21 +6,28 @@
             <b-card-header>
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
             </b-card-header>
-            <b-card-body
-              id="nav-scroller"
-              ref="content"
-              style="position:relative; height:500px; overflow-y:scroll;">
-              <div id="admin" style="width: 1500px">
-                <v-client-table :data="assignments" :columns="columns" :options="options">
+            <div id="people">
+                <vue-virtual-table 
+                    :config="columns"
+                    :data="assignments"
+                    :height="500"
+                    :itemHeight="55"
+                    :minWidth="1000"
+                    :selectable="true"
+                    :hoverHighlight="true"
+                    :enableExport="true"
+                    :borderedHeadings="true"
+                    :language="'en'"
+                    v-on:changeSelection="handleSelectionChange"
+                    >
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
                     <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                         <i class="fa fa-trash-o"></i>
-                    </b-button>
-                </v-client-table>
-              </div>
-            </b-card-body>
+                    </b-button> 
+                </vue-virtual-table>
+            </div>
           </div>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
         </div>
@@ -94,15 +101,18 @@
 <script>
   import StarRating from 'vue-star-rating'
   import Multiselect from 'vue-multiselect'
-
-  import Vue from 'vue';
-  Vue.use(require('vue-moment'));
-  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+  import VueVirtualTable from 'vue-virtual-table'
+    import Vue from 'vue';
+    Vue.use(require('vue-moment'));
+    import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
+    import JsonExcel from 'vue-json-excel'
+    Vue.component('downloadExcel', JsonExcel)
     export default {
     components: {
         Multiselect,
-        StarRating
+        StarRating,
+        VueVirtualTable
     },
     validate(params) {
       return true
@@ -110,7 +120,7 @@
     props: ['id'],
     data () {
         return {
-            name: 'admin',
+            name: 'people',
             assignments: [],
             errors: [],
             value: [],
@@ -127,57 +137,22 @@
             assignment_desc: '',
             difficulty_level: '',
             assignment_user: [],
-            columns: ['id', 
-                        'project_number', 
-                        'io_number', 
-                        'assignment_class', 
-                        'assignment_tittle', 
-                        'assignment_desc', 
-                        'difficulty_level',
-                        'name_created',
-                        'created_at',
-                        'update_at',
-                        'team_name',
-                        'status',
-                        'edit',
-                        'delete',
-                        ],
-            options: {
-                filterByColumn: true,
-                listColumns: {
-                },
-                headings: {
-                  id: 'ID',
-                  project_number: 'Project Number',
-                  io_number: 'IO Number',
-                  assignment_class: 'Assignment Class',
-                  assignment_tittle: 'Assignment Title',
-                  assignment_desc: 'Assignment Description',
-                  difficulty_level: 'Difficulty Level',
-                  name_created: 'Name Created',
-                  created_at: 'Created Add',
-                  update_at: 'Update at',
-                  team_name: 'Team Name',
-                  status: 'Status',
-                  edit: 'edit',
-                  delete: 'delete'
-                },
-                sortable: [
-                  'id', 'project_number', 'io_number', 
-                  'assignment_class', 'assignment_tittle', 'assignment_desc', 
-                  'difficulty_level','name_created','created_at',
-                  'update_at','team_name','status'
-                ],
-                filterable:[
-                    'id', 'project_number', 'io_number', 
-                    'assignment_class', 'assignment_tittle', 'assignment_desc', 
-                    'difficulty_level','name_created','created_at',
-                    'update_at','team_name','status'
-                ],
-                texts: {
-                //   filterPlaceholder: 'filter'
-                }
-            }
+            columns: [
+              { prop: '_index', name: 'No', summary: 'COUNT', width: 40},
+              { prop: 'id', name: 'ID', numberFilter: true, sortable: true,searchable: true, width: 90 },
+              { prop: 'project_number', name: 'Project Number', numberFilter: true, sortable: true,searchable: true, width: 150 },
+              { prop: 'io_number', name: 'IO Number', numberFilter: true ,searchable: true, sortable: true, width: 150},
+              { prop: 'assignment_class', name: 'Class', filterable: true, sortable: true, width: 120},
+              { prop: 'assignment_tittle', name: 'Title',searchable: true, width: 150},
+              { prop: 'assignment_desc', name: 'Description',searchable: true, width: 150},
+              { prop: 'difficulty_level', name: 'Level', numberFilter: true, sortable: true, searchable: true, width: 50},
+              { prop: 'name_created', name: 'Name Created', sortable: true, filterable: true, width: 150},
+              { prop: 'update_at', name: 'Update At', sortable: true, searchable: true, width: 80},
+              { prop: 'team_name', name: 'Team Name', sortable: true, searchable: true, width: 150},
+              { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 110},
+              { prop: '_action', name: 'Edit', actionName: 'edit'},
+              { prop: '_action', name: 'Delete', actionName: 'delete'}
+            ],
         }
     },
     mounted(){

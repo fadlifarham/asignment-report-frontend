@@ -8,7 +8,7 @@
         <b-row class="text-center">
 
           <b-col cols="6" sm="4" md="3">
-            <i class="icon-user icons font-2xl d-block mt-4"></i>icon-user
+            <i class="icon-user icons font-2xl d-block mt-4" style="color: white"></i>icon-user
           </b-col>
 
           <b-col cols="6" sm="4" md="3">
@@ -743,7 +743,6 @@
     </b-card>
   </div>
 </template>
-
 <script>
 export default {
   name: 'simple-line-icons'
