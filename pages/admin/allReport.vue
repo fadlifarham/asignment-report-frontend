@@ -20,14 +20,26 @@
           ref="content"
           style="position:relative; height:600px;">
           <div id="demo">
-            <v-client-table :data="ars" :columns="columns" :options="options">
+            <vue-virtual-table
+              :config="columns"
+              :data="ars"
+              :height="500"
+              :itemHeight="55"
+              :minWidth="1000"
+              :selectable="true"
+              :hoverHighlight="true"
+              :enableExport="true"
+              :borderedHeadings="true"
+              :language="'en'"
+              v-on:changeSelection="handleSelectionChange"
+            >
                 <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/admin/editReportAdmin/' + props.row.assignment_id">
                   <i class="fa fa-edit"></i>
                 </b-button>
                 <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
                 </b-button>
-            </v-client-table>
+            </vue-virtual-table>
           </div>
         </b-card-body>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
@@ -38,9 +50,13 @@
 <script>
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
+  import VueVirtualTable from 'vue-virtual-table'
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
+    components: {
+        VueVirtualTable
+    },
     data () {
         return {
           files: [],
@@ -48,48 +64,24 @@
           ars: [],
           errors: [],
           columns: [
-            'id', 'assignment_id', 'assignment_type', 'sppd_status', 'day_number', 'brief_work', 'result',
-            'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_desc',
-            'difficulty_level', 'status', 'edit', 'delete'
+              { prop: '_index', name: 'No', summary: 'COUNT', width: 50},
+              { prop: 'assignment_id', name: 'ID', numberFilter: true, sortable: true, width: 120 },
+              { prop: 'assignment_type', name: 'Type', filterable: true, sortable: true, width: 90 },
+              { prop: 'sppd_status', name: 'SPPD Status', numberFilter: true, sortable: true, width: 110 },
+              { prop: 'day_number', name: 'Day', numberFilter: true, sortable: true,searchable: true, width: 50 },
+              { prop: 'brief_work', name: 'Brief Work', numberFilter: true, sortable: true,searchable: true, width: 90 },
+              { prop: 'result', name: 'Result', numberFilter: true, sortable: true,searchable: true, width: 90 },
+              { prop: 'ptl_id', name: 'PTL ID', numberFilter: true, sortable: true,searchable: true, width: 60 },
+              { prop: 'project_number', name: 'Project Number', numberFilter: true, sortable: true,searchable: true, width: 130 },
+              { prop: 'io_number', name: 'IO Number', numberFilter: true ,searchable: true, sortable: true, width: 100},
+              { prop: 'assignment_class', name: 'Class', filterable: true, sortable: true, width: 100},
+              { prop: 'assignment_tittle', name: 'Title',searchable: true, width: 100},
+              { prop: 'assignment_desc', name: 'Description',searchable: true, width: 100},
+              { prop: 'difficulty_level', name: 'Level', numberFilter: true, sortable: true, searchable: true, width: 50},
+              { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 110},
+              { prop: '_action', name: 'Edit', actionName: 'edit'},
+              { prop: '_action', name: 'Delete', actionName: 'delete'}
           ],
-          options: {
-                filterByColumn: true,
-                listColumns: {
-                },
-                headings: {
-                  id: 'ID',
-                  assignment_id: 'Assignment ID',
-                  assignment_type: 'Assignment Type',
-                  sppd_status: 'SPPD Status',
-                  day_number: 'Number of Days',
-                  brief_work: 'Brief Work',
-                  result: 'result',
-                  ptl_id: 'PTL ID',
-                  project_number: 'Project Number',
-                  io_number: 'IO Number',
-                  assignment_class: 'Assignment Class',
-                  assignment_tittle: 'Assignment Title',
-                  assignment_desc: 'Assignment Description',
-                  difficulty_level: 'Difficulty Level',
-                  view: 'View',
-                  edit: 'Edit',
-                  delete: 'Delete',
-                },
-                sortable: [
-                    'id', 'assignment_id', 'assignment_type', 'sppd_status', 'day_number', 'brief_work', 'result',
-                    'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_desc',
-                    'difficulty_level', 'status',
-                ],
-                filterable: [
-                    'id', 'assignment_id', 'assignment_type', 'sppd_status', 'day_number', 'brief_work', 'result',
-                    'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_desc',
-                    'difficulty_level', 'status',
-                ],
-                texts: {
-                  filterPlaceholder: 'filter'
-                },
-                perPage: 4
-            }
         }
     },
 
@@ -104,9 +96,6 @@
               for(let i=0;i<response.data.length;i++){
                   console.log("saya oke")
                   let files = ''
-                //   for(let j=0; j<response.data[i].user.length;j++){
-                //       teams += response.data[i].file[j].filename + '<br>';
-                //   }
                   temp = { 
                     id: response.data[i].id,
                     assignment_id: response.data[i].assignment_id, 
@@ -130,13 +119,6 @@
             console.log(this.ars);
           })
         },
-        // read() {
-        //     this.$axios.get('assignment/ptl')
-        //     .then(response => {
-        //         this.ptls = response.data;
-        //         console.log(this.ptls);
-        //     })
-        // },
         getBadge (status) {
         return status === 'On Progress' ? 'success'
           : status === 'Close' ? 'secondary'
@@ -165,18 +147,6 @@
                 })
             }
         },
-        // show:function () {
-        //         this.ID = 'GET COW ID HERE'
-        //       var data = new FormData()
-        //       data.append('function','show')
-        //         data.append('ID',this.ID)
-        //       axios.post(this.url,data)
-        //           .then( function (response ) {
-        //       }.bind(this)).catch(function (error) {
-
-        //       })
-
-        //     },
     },
 
     middleware: "forPtl"
