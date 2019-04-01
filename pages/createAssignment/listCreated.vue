@@ -20,7 +20,14 @@
           ref="content"
           style="position:relative; height:300px;">
           <div id="demo">
-            <v-client-table :data="ptls" :columns="columns" :options="options">
+            <vue-virtual-table :data="ptls" :config="columns"
+              :height="800"
+              :itemHeight="55"
+              :minWidth="1000"
+              :selectable="true"
+              :enableExport="true"
+              v-on:changeSelection="handleSelectionChange"
+            >
                 <b-button variant="success" style="border-radius: 5px" slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
                 </b-button>
@@ -30,7 +37,7 @@
                 <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
                 </b-button>
-            </v-client-table>
+            </vue-virtual-table>
           </div>
         </b-card-body>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right">Export to Excel</b-button>
@@ -42,45 +49,56 @@
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+  import VueVirtualTable from 'vue-virtual-table';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
+    components: {
+      VueVirtualTable
+    },
     data () {
         return {
           name: 'demo',
           ptls: [],
           errors: [],
           columns: [
-            'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle',
-            'assignment_status', 'view', 'edit', 'delete'
+            { prop: "id", name: "ID", searchable: true },
+            { prop: "project_number", name: "Project Number", searchable: true },
+            { prop: "io_number", name: "IO Number", searchable: true },
+            { prop: "assignment_class", name: "Assignment Class", searchable: true },
+            { prop: "assignment_tittle", name: "Assignment Title", searchable: true },
+            { prop: "assignment_status", name: "Assignment Status", searchable: true },
+            { prop: "view", name: "View", searchable: true },
+            { prop: "edit", name: "Edit", searchable: true },
+            { prop: "delete", name: "Delete", searchable: true },
           ],
-          options: {
-                filterByColumn: true,
-                listColumns: {
-                },
-                headings: {
-                  id: 'ID',
-                  ptl_id: 'PTL ID',
-                  project_number: 'Project Number',
-                  io_number: 'IO Number',
-                  assignment_class: 'Assignment Class',
-                  assignment_tittle: 'Assignment Title',
-                  assignment_status: 'Assignment Status',
-                  view: 'View',
-                  edit: 'Edit',
-                  delete: 'Delete',
-                },
-                sortable: [
-                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
-                ],
-                filterable: [
-                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
-                ],
-                texts: {
-                  filterPlaceholder: 'filter'
-                },
-                perPage: 10,
-                perPageValues: [10,25,50,100]
-            }
+          // options: {
+          //       filterByColumn: true,
+          //       listColumns: {
+          //       },
+          //       headings: {
+          //         id: 'ID',
+          //         ptl_id: 'PTL ID',
+          //         project_number: 'Project Number',
+          //         io_number: 'IO Number',
+          //         assignment_class: 'Assignment Class',
+          //         assignment_tittle: 'Assignment Title',
+          //         assignment_status: 'Assignment Status',
+          //         view: 'View',
+          //         edit: 'Edit',
+          //         delete: 'Delete',
+          //       },
+          //       sortable: [
+          //         'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
+          //       ],
+          //       filterable: [
+          //         'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
+          //       ],
+          //       texts: {
+          //         filterPlaceholder: 'filter'
+          //       },
+          //       perPage: 10,
+          //       perPageValues: [10,25,50,100],
+          //   }
         }
     },
 
