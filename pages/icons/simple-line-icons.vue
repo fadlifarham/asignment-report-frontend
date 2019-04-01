@@ -743,7 +743,6 @@
     </b-card>
   </div>
 </template>
-
 <script>
 export default {
   name: 'simple-line-icons'

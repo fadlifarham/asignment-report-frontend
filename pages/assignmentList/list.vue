@@ -142,6 +142,9 @@
   table {
     counter-reset: section;
   }
+  .headings{
+    background-color:red;
+  }
 
   .no:before {
     counter-increment: section;
