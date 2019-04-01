@@ -57,14 +57,14 @@
                 :horizontal="true">
                     <div id="app">
                         <star-rating
-                        v-model="difficulty_level"
-                        v-bind:increment="1"
-                        v-bind:max-rating="5"
-                        inactive-color="#000"
-                        active-color="orange"
-                        v-bind:star-size="50"
-                        @rating-selected ="setRating"
-                        >
+                          v-model="difficulty_level"
+                          v-bind:increment="1"
+                          v-bind:max-rating="5"
+                          inactive-color="#000"
+                          active-color="orange"
+                          v-bind:star-size="50"
+                          @rating-selected ="setRating"
+                          >
                         </star-rating>
                     </div>
             </b-form-group>
@@ -81,7 +81,7 @@ import StarRating from 'vue-star-rating';
 
 export default {
     components: {
-        StarRating
+        StarRating,
     },
     validate(params) {
       return true
@@ -132,7 +132,7 @@ export default {
                 assignment_desc: this.assignment_desc,
                 io_number: this.io_number,
                 difficulty_level: this.difficulty_level,
-               
+
             }).then(response => {
                 this.status = 'Assignment Approved Success!';
                 console.log(this.status);

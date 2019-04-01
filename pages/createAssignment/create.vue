@@ -154,6 +154,7 @@
           console.log(this.status);
           swal('Success', this.status, 'success');
           this.reset();
+          this.$router.push('/')
         }, response => {
             this.status = 'Please Fill In All Data';
             console.log(this.status);

@@ -92,9 +92,9 @@
                             id="nav-scroller"
                             ref="content"
                             style="position:relative; height:300px; overflow-y:scroll;">
-                            <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
+                            <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 10px">
                                 <b-col cols="2"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
-                                <b-col sm="0"><strong>{{detail.user.full_name}}</strong></b-col>
+                                <b-col sm="2" ><strong>{{detail.user.full_name}}</strong></b-col>
                                 <b-col sm="2"></b-col>
                                 <b-col sm="6"><b-form-group>
                                         <div id="app">
@@ -105,7 +105,7 @@
                                                 inactive-color="#111"
                                                 active-color="orange"
                                                 v-bind:star-size="25"
-                                                @rating-selected ="setRating(rating, detail.id)">
+                                                @rating-selected ="setRating(rating, detail.user_id)">
                                             </star-rating>
                                         </div>
                                     </b-form-group>
@@ -119,6 +119,7 @@
         <b-input-group>
                 <b-col cols="12" class="text-right" style="padding: 10px">
                     <b-button @click="approve" size="lg" variant="primary" style="margin: 10px">Approve & Save</b-button>
+                    <b-button @click="back" size="lg" variant="danger" style="margin: 10px">Back</b-button>
                 </b-col>
             </b-input-group>
     </b-col>
@@ -143,11 +144,11 @@ export default {
             project_number: '',
             io_number: '',
             difficulty_level: '',
-            
+
             assignment_user:[],
             assignment_report:[],
             user_id:[],
-            
+
             errors: [],
         }
     },
@@ -176,27 +177,39 @@ export default {
         approve(){
             this.$axios.post('/assignment/approve', {
                 assignment_id: this.assignment_id,
-                user_id: this.user_id,
+                engineers: this.user_id,
             }).then(response => {
                 this.status = 'Assignment Approved Success!';
                 console.log(this.status);
                 swal('Success', this.status, 'success');
                 this.reset();
+                this.$router.push('/');
             }, response => {
                 this.status = 'Failed';
                 console.log("ass : " + this.assignment_id);
-                console.log("user : " + this.user_id);
+                console.log(this.user_id);
                 swal('Failed', this.status, 'warning');
             })
         },
-        setRating: function(rating){
-            this.rating= rating;
+        setRating: function(rating, id){
+            // this.rating= rating;
+            console.log(rating + " " + id)
+            let temp
+            temp = {
+              id: id,
+              rating: rating
+            }
+
+            this.user_id.push(temp);
       },
       setEngineers() {
 
+      },
+      back() {
+        this.$router.push('/createAssignment/listCreated');
       }
     },
 
     middleware: ['viewReport', 'forPtl']
 }
-</script>   
+</script>
