@@ -1,21 +1,30 @@
 <template>
 <div class="animated fadeIn">
-          <b-card header="Team Utilzation">
-            <b-card-body
-            id="nav-scroller"
-            ref="content"
-            style="position:relative; height:500px; overflow-y:scroll;">
+  <div class="card">
+          <b-card-header>
+              <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Team Utilization</h5>
+          </b-card-header>
               <div id="utils">
-                <v-client-table :data="utils" :columns="columns" :options="options">
-                  <b-button v-b-modal.chart variant="primary" style="border-radius: 5px" slot="show" @click="setData(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
+                <vue-virtual-table 
+                    :config="tableConfig"
+                    :data="utils" 
+                    :height="500"
+                    :itemHeight="55"
+                    :minWidth="1000"
+                    :selectable="true"
+                    :hoverHighlight="true"
+                    :enableExport="true"
+                    :language="'en'"
+                    :bordered="true"
+                    v-on:changeSelection="handleSelectionChange">
+                    <b-button v-b-modal.chart variant="primary" style="border-radius: 5px" slot="show" @click="setData(props.row.work_load, props.row.work_quality, props.row.sppd, props.row.complete_assignment)"
                     slot-scope="props">
                     <i class="fa fa-bar-chart"></i>
                   </b-button>
-                </v-client-table>
+                </vue-virtual-table>
               </div>
-            </b-card-body>
-          </b-card>
-          <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+  </div>
+          <!-- <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
     <div>
       <b-modal id="chart" size="md" title="Performance Member">
         <b-card>
@@ -31,11 +40,8 @@
 
 </template>
 <script>
-  // import BarExample from '~/components/charts/BarExample'
+  import VueVirtualTable from 'vue-virtual-table'
   import UtilizationBar from '~/components/charts/UtilizationBar'
-  // import { Bar } from 'vue-chartjs'
-  // import VueCharts from 'vue-chartjs'
-  // import { Pie, Bar, mixins } from 'vue-chartjs'
 
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
@@ -47,6 +53,7 @@
       // mixins: [mixins.reactiveData],
       name: 'charts',
       components: {
+        VueVirtualTable,
         UtilizationBar,
       },
     data () {
@@ -58,30 +65,40 @@
             errors: [],
             dataCollection: [],
             opsi: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
-            columns: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
-            options: {
-                filterByColumn: true,
-                listColumns: {
-                },
-                headings: {
-                  id: '',
-                  user_id: 'User ID',
-                  full_name: 'Name',
-                  work_load: 'Work Load',
-                  work_quality: 'Work Quality',
-                  sppd: 'SPPD',
-                  complete_assignment: 'Complete Assignment',
-                  show: 'Show',
-                },
-                sortable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
-                filterable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', ],
-                // texts: {
-                //   filterPlaceholder: 'filter'
-                // }
-                // chartdata: null,
-                // responsive: true,
-                // maintainAspectRatio: false
-            },
+            tableConfig: [
+                {prop: '_index', name: 'No ', numberFilter: true, width: 80},
+                {prop: 'full_name', name: ' Name', searchable: true, sortable: true, summary: 'COUNT'},
+                {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, summary: 'COUNT'},
+                {prop: 'work_load', name: ' Work Load', numberFilter: true, sortable: true, summary: 'COUNT'},
+                {prop: 'work_quality', name: ' Work Quality', numberFilter: true, sortable: true, summary: 'COUNT'},
+                {prop: 'sppd', name: ' SPPD', numberFilter: true, sortable: true, summary: 'COUNT'},
+                {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, summary: 'COUNT'},
+                {prop: '_action', name: 'Show', actionName: 'show'}
+            ],
+            // columns: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
+            // options: {
+            //     filterByColumn: true,
+            //     listColumns: {
+            //     },
+            //     headings: {
+            //       id: '',
+            //       user_id: 'User ID',
+            //       full_name: 'Name',
+            //       work_load: 'Work Load',
+            //       work_quality: 'Work Quality',
+            //       sppd: 'SPPD',
+            //       complete_assignment: 'Complete Assignment',
+            //       show: 'Show',
+            //     },
+            //     sortable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
+            //     filterable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', ],
+            //     // texts: {
+            //     //   filterPlaceholder: 'filter'
+            //     // }
+            //     // chartdata: null,
+            //     // responsive: true,
+            //     // maintainAspectRatio: false
+            // },
         }
     },
     // extends: Bar,

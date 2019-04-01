@@ -2,6 +2,7 @@
   <b-row>
     <b-col lg="12">
     <div class="animated fadeIn">
+      <div class="card">
         <b-card-header>
           <b-input-group>
             <b-col sm="4">
@@ -14,13 +15,18 @@
             </b-col>
           </b-input-group>
         </b-card-header>
-        <b-card-body
-          class="card"
-          id="nav-scroller"
-          ref="content"
-          style="position:relative; height:300px;">
           <div id="demo">
-            <v-client-table :data="ptls" :columns="columns" :options="options">
+            <vue-virtual-table  
+                    :data="ptls" 
+                    :config="tableConfig"
+                    :height="500"
+                    :itemHeight="55"
+                    :minWidth="1000"
+                    :selectable="true"
+                    :hoverHighlight="true"
+                    :enableExport="true"
+                    :language="'en'"
+                    v-on:changeSelection="handleSelectionChange">
                 <b-button variant="success" style="border-radius: 5px" slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
                 </b-button>
@@ -30,57 +36,44 @@
                 <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
                 </b-button>
-            </v-client-table>
+            </vue-virtual-table >
           </div>
-        </b-card-body>
-        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right">Export to Excel</b-button>
+        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right">Export to Excel</b-button> -->
         </div>
+    </div>
     </b-col>
   </b-row>
 </template>
 <script>
+  import VueVirtualTable from 'vue-virtual-table'
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
   import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
+      components: {
+            VueVirtualTable
+        },
     data () {
         return {
           name: 'demo',
           ptls: [],
           errors: [],
-          columns: [
-            'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle',
-            'assignment_status', 'view', 'edit', 'delete'
-          ],
-          options: {
-                filterByColumn: true,
-                listColumns: {
-                },
-                headings: {
-                  id: 'ID',
-                  ptl_id: 'PTL ID',
-                  project_number: 'Project Number',
-                  io_number: 'IO Number',
-                  assignment_class: 'Assignment Class',
-                  assignment_tittle: 'Assignment Title',
-                  assignment_status: 'Assignment Status',
-                  view: 'View',
-                  edit: 'Edit',
-                  delete: 'Delete',
-                },
-                sortable: [
-                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
-                ],
-                filterable: [
-                  'id', 'ptl_id', 'project_number', 'io_number', 'assignment_class', 'assignment_tittle', 'assignment_status'
-                ],
-                texts: {
-                  filterPlaceholder: 'filter'
-                },
-                perPage: 10,
-                perPageValues: [10,25,50,100]
-            }
+          tableConfig: [
+                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 80},
+                {prop: 'id', name: 'ID', searchable: true, sortable: true},
+                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true},
+                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true},
+                {prop: 'assignment_class', name: 'Assignment Class', filterable: true},
+                {prop: 'assignment_tittle', name: 'Assignment Title'},
+                {prop: 'assignment_desc', name: 'Description'},
+                {prop: 'status', name: 'Status', filterable: true},
+                // {prop: 'team_name', name: 'Team Name', searchable: true,},
+                // {prop: 'age', name: 'Age', numberFilter: true},
+                {prop: '_action', name: 'View', actionName: 'view'},
+                {prop: '_action', name: 'Edit', actionName: 'edit'},
+                {prop: '_action', name: 'Delete', actionName: 'delete'}
+            ],
         }
     },
 
@@ -92,9 +85,14 @@
           var temp;
           this.$axios.get('assignment/ptl').then(response => {
               for(let i=0;i<response.data.length;i++){
-                  temp = { id: response.data[i].id, ptl_id: response.data[i].ptl_id, project_number: response.data[i].project_number,
-                  io_number: response.data[i].io_number, assignment_class: response.data[i].assignment_class, assignment_tittle: response.data[i].assignment_tittle,
-                  assignment_desc: response.data[i].assignment_desc, assignment_status: response.data[i].status};
+                  temp = { id: response.data[i].id, 
+                          ptl_id: response.data[i].ptl_id, 
+                          project_number: response.data[i].project_number,
+                          io_number: response.data[i].io_number, 
+                          assignment_class: response.data[i].assignment_class, 
+                          assignment_tittle: response.data[i].assignment_tittle,
+                          assignment_desc: response.data[i].assignment_desc, 
+                          status: response.data[i].status};
                 this.ptls.push(temp);
               }
             console.log(this.ptls);
@@ -129,7 +127,8 @@
                     this.status = 'Delete Success!';
                     console.log(this.status);
                     swal('Success', this.status, 'success');
-                    this.readPtls();
+                    this.$router.push('/');
+                    // this.readPtls();
                 }).catch(error => {
                     console.log(error.response.data.error);
                 })

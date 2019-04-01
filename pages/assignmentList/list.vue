@@ -20,15 +20,13 @@
                     :selectable="true"
                     :hoverHighlight="true"
                     :enableExport="true"
-                    :borderedHeadings="true"
                     :language="'en'"
-                    v-on:changeSelection="handleSelectionChange"
-                    >
+                    v-on:changeSelection="handleSelectionChange">
                     <!-- :columns="columns" :options="options"> -->
                     <!-- <template slot-scope="scope" slot="actionCommon">
                         <button @click="edit(scope.index, scope.row)">Edit</button>
                         <button @click="del(scope.index, scope.row)">Delete</button>
-                    </template> --> 
+                    </template> -->
                     </vue-virtual-table>
               </div>
             <!-- </b-card-body> -->
@@ -80,16 +78,16 @@
             },
             errors: [],
             tableConfig: [
-                {prop: '_index', name: 'No', width: 30},
-                {prop: 'id', name: 'ID', searchable: true, sortable: true, summary: 'COUNT'},
+                {prop: '_index', name: 'No ', numberFilter: true, width: 80, summary: 'COUNT'},
+                {prop: 'id', name: 'ID', numberFilter: true, sortable: true},
                 {prop: 'ptl', name: 'PTL', filterable: true},
-                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true, summary: 'COUNT'},
-                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true, summary: 'COUNT'},
+                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true},
+                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true},
                 {prop: 'assignment_class', name: 'Assignment Class', filterable: true},
                 {prop: 'assignment_tittle', name: 'Assignment Title'},
                 {prop: 'assignment_desc', name: 'Description'},
                 {prop: 'status', name: 'Status', filterable: true},
-                {prop: 'team_name', name: 'Team Name'},
+                {prop: 'team_name', name: 'Team Name', searchable: true,},
                 // {prop: 'age', name: 'Age', numberFilter: true},
                 // {prop: '_action', name: 'Action', actionName: 'actionCommon'}
             ],
