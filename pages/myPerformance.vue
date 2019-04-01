@@ -1,14 +1,17 @@
 <template>
-    <div class="animated fadeIn" style="">
-        <b-card header="My Performance">
-            <div class="chart-wrapper">
-              <performance-bar
-                :chart-data="dataCollection"
-              />
-            </div>
-        </b-card>
-        
-    </div>
+<b-row>
+    <b-col sm="6">
+        <div class="animated fadeIn" style="">
+            <b-card header="My Performance">
+                <div class="chart-wrapper">
+                <performance-bar
+                    :chart-data="dataCollection"
+                />
+                </div>
+            </b-card>
+        </div>
+    </b-col>
+</b-row>
 </template>
 <script>
   import PerformanceBar from '~/components/charts/PerformanceBar'

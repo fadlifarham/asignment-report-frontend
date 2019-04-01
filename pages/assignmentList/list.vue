@@ -6,19 +6,35 @@
             <b-card-header>
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
             </b-card-header>
-            <b-card-body
+            <!-- <b-card-body
               id="nav-scroller"
               ref="content"
-              style="position:relative; height:500px; overflow-y:scroll;">
-              <div id="people" style="width: 1500px">
-                <v-client-table :data="alls" :columns="columns" :options="options"></v-client-table>
+              style="position:relative; height:500px;"> -->
+              <div id="people">
+                <vue-virtual-table 
+                    :config="tableConfig"
+                    :data="alls"
+                    :height="500"
+                    :itemHeight="55"
+                    :minWidth="1000"
+                    :selectable="true"
+                    :hoverHighlight="true"
+                    :enableExport="true"
+                    :language="'en'"
+                    v-on:changeSelection="handleSelectionChange">
+                    <!-- :columns="columns" :options="options"> -->
+                    <!-- <template slot-scope="scope" slot="actionCommon">
+                        <button @click="edit(scope.index, scope.row)">Edit</button>
+                        <button @click="del(scope.index, scope.row)">Delete</button>
+                    </template> -->
+                    </vue-virtual-table>
               </div>
-            </b-card-body>
+            <!-- </b-card-body> -->
           </div>
         </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" > -->
 
-          <download-excel
+          <!-- <download-excel
             class="btn btn-primary btn-xs pull-right"
             :data="alls"
             :fields="json_fields"
@@ -26,7 +42,7 @@
             name="AllAssignment.xls">
 
             Export to Excel
-          </download-excel>
+          </download-excel> -->
 
 
         <!-- </b-button> -->
@@ -34,6 +50,7 @@
   </b-row>
 </template>
 <script>
+    import VueVirtualTable from 'vue-virtual-table'
     import Vue from 'vue';
     Vue.use(require('vue-moment'));
     import {ServerTable, ClientTable, Event} from 'vue-tables-2';
@@ -42,6 +59,9 @@
     Vue.component('downloadExcel', JsonExcel)
 
     export default {
+        components: {
+            VueVirtualTable
+        },
     data () {
         return {
             name: 'people',
@@ -60,30 +80,20 @@
                 'Status'                  : 'status'
             },
             errors: [],
-            columns: ['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Title', 'assignment_Desc', 'team_name','status'],
-            options: {
-                filterByColumn: true,
-                listColumns: {
-                },
-                headings: {
-                  ID: 'ID',
-                  PTL: 'PTL',
-                  project_Number: 'Project Number',
-                  IO_Number: 'IO Number',
-                  assignment_Class: 'Assignment Class',
-                  assignment_Title: 'Assignment Title',
-                  assignment_Desc: 'Assignment Description',
-                  team_name: 'Team Name',
-                  status: 'Status'
-                },
-                sortable: [
-                  'ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'team_name','status'
-                ],
-                filterable:['ID', 'PTL', 'project_Number', 'IO_Number', 'assignment_Class', 'assignment_Desc', 'assignment_Title', 'team_name', 'status'],
-                texts: {
-                  filterPlaceholder: 'filter'
-                }
-            }
+            tableConfig: [
+                {prop: '_index', name: 'No ', numberFilter: true, width: 80, summary: 'COUNT'},
+                {prop: 'id', name: 'ID', numberFilter: true, sortable: true},
+                {prop: 'ptl', name: 'PTL', filterable: true},
+                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true},
+                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true},
+                {prop: 'assignment_class', name: 'Assignment Class', filterable: true},
+                {prop: 'assignment_tittle', name: 'Assignment Title'},
+                {prop: 'assignment_desc', name: 'Description'},
+                {prop: 'status', name: 'Status', filterable: true},
+                {prop: 'team_name', name: 'Team Name', searchable: true,},
+                // {prop: 'age', name: 'Age', numberFilter: true},
+                // {prop: '_action', name: 'Action', actionName: 'actionCommon'}
+            ],
         }
     },
     mounted(){
@@ -94,20 +104,28 @@
           var temp;
           this.$axios.get('assignment/all').then(response => {
               for(let i=0;i<response.data.length;i++){
+                  let teams = ''
+                  for(let j=0; j<response.data[i].user.length;j++){
+                      teams += response.data[i].user[j].full_name+', ';
+                  }
                   temp = {
-                      'ID'              : response.data[i].id,
-                      'PTL'             : response.data[i].ptl.full_name,
-                      'project_Number'  : response.data[i].project_number,
-                      'IO_Number'       : response.data[i].io_number,
-                      'assignment_Class': response.data[i].assignment_class,
-                      'assignment_Title': response.data[i].assignment_tittle,
-                      'assignment_Desc' : response.data[i].assignment_desc,
+                      'id'              : response.data[i].id,
+                      'ptl'             : response.data[i].ptl.full_name,
+                      'project_number'  : response.data[i].project_number,
+                      'io_number'       : response.data[i].io_number,
+                      'assignment_class': response.data[i].assignment_class,
+                      'assignment_tittle': response.data[i].assignment_tittle,
+                      'assignment_desc' : response.data[i].assignment_desc,
+                      'team_name'       : teams,
                       'status'          : response.data[i].status
                   };
                   this.alls.push(temp);
               }
               console.log(this.alls);
           })
+        },
+        handleSelectionChange(rows){
+            console.log(rows)
         },
           getBadge (status) {
           return status === 'On Progress' ? 'success'
