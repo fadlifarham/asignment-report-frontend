@@ -47,6 +47,7 @@
     "vue-scroll-table": "^0.2.11",
     "vue-star-rating": "^1.6.1",
     "vue-tables-2": "^1.4.70",
+    "vue-virtual-table": "^0.2.8",
     "vue2-filters": "^0.5.1"
   },
   "devDependencies": {

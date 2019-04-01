@@ -7,7 +7,7 @@ export default {
     },
     {
       name: 'All Assignment',
-      url: '/assignmentList/list',
+      url: '/assignmentList/cobaTable',
       icon: 'icon-list',
     },
     // {
