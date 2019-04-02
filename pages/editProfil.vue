@@ -1,19 +1,19 @@
 <template>
 <b-col>
-  <b-row>
-    <!-- <b-col sm="4">
+  <b-row lg="12">
+    <b-col sm="4">
         <br><br><br><br>
-        <img src="~/static/img/avatars/ss.jpg" class="rounded-circle" alt="Cinque Terre" width="304" height="236"> 
-    </b-col> -->
-    <b-col lg="2"></b-col>
-    <b-col>
+        <img :src="'//' + picture" class="img-avatar" alt="Photo Profile" width="300" height="300">
+        <b-button v-b-modal.picture size="md" variant="primary" style="margin: 10px; border-radius: 10px" class="fa fa-pencil"></b-button>
+        <br>
+        <b-col style="padding: 10px" class="text-right">
+            
+        </b-col>
+    </b-col>
+    <!-- <b-col sm="2"></b-col> -->
+    <b-col sm="6">
         <div class="animated fadeIn" style="padding: 0px">
             <br><br>
-            <center>
-                <b-form-file id="other" v-model="other" :plain="true" ref="other" @change="otherHandler"></b-form-file>
-                <b-button @click="submit" size="lg" variant="primary" style="margin: 10px">Submit</b-button>
-            <!-- <button v-b-modal.picture class="btn btn-default" @click="showPicture()"><i class="fa fa-pencil" style="font-size: 24px; color: blue"></i></button> -->
-            </center>  
             <br><br>
             <b-card style="border-radius: 8px" >
              <b-row style="width: 100%; margin-center: auto">
@@ -52,12 +52,10 @@
              </b-row>
              <br><br>
              <b-col style="padding: 10px" class="text-right">
+                 <b-button variant="link"  v-b-modal.password class="px-0">Change Password</b-button> or
                 <b-button v-b-modal.update size="md" variant="primary" style="margin: 10px" @click="showItem()">
                     Edit
                 </b-button>
-                <!-- <b-button size="md" variant="danger" style="margin: 10px" >
-                    Kembali
-                </b-button> -->
             </b-col>
             </b-card>
             
@@ -93,24 +91,50 @@
                 <textarea name="motto" id="motto" cols="30" rows="5" class="form-control" 
                             placeholder="Motto" v-model="motto"></textarea>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Password :</label>
                 <input type="password" placeholder="Password" class="form-control" v-model="password">
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label>Konfirmasi Password :</label>
                 <input type="password" placeholder="Konfirmasi Password" class="form-control">
-            </div>
+            </div> -->
         </form>
     </b-modal>
   </div>
   <div>
-    <b-modal id="picture" size="lg" title="Edit Photo Profile" @ok="editPicture()">
-        <form @submit.prevent ="editPicture()">
+    <b-modal id="picture" size="md" title="Edit Photo Profile" @ok="submit()">
+        <form @submit.prevent ="submit()">
             <div class="form-group">
-                <label for="picture">Logo :</label>
-                    <b-form-file id="picture" :plain="true" v-model="picture" @change="onFileSelected"></b-form-file><br>
-                    <img :src="picture" width="100" height="100">
+                <label for="picture">Photo Profile :</label>
+                    <b-form-file id="other" v-model="other" :plain="true" ref="other" @change="otherHandler"></b-form-file>
+                    <!-- <img :src="'//' + picture" class="img-avatar" alt="Photo Profile" width="100" height="100"> -->
+                    <!-- <img :src="picture" width="100" height="100"> -->
+            </div>
+        </form>
+    </b-modal>
+    <b-modal id="password" size="md" title="Edit Password" @ok="editPassword()">
+        <form @submit.prevent ="editPassword()">
+            <div class="form-group">
+                <label>Password :</label>
+                <input type="password" v-validate="'required'" placeholder="Password" 
+                class="form-control" v-model="password" ref="password">
+                <!-- <span>{{ errors.first('password') }}</span> -->
+            </div>
+            <div class="form-group">
+                <label>Confirm Password :</label>
+                <input type="password" v-validate="'required|confirmed:password'" placeholder="Confirm Password" 
+                class="form-control" v-model="password_confirmation" data-vv-as="password">
+                <!-- <span>{{ errors.first('confirm_password') }}</span> -->
+            </div>
+            <div class="alert alert-danger" v-show="errors.any()">
+                <div v-if="errors.has('password')">
+                    {{ errors.first('password') }}
+                </div>
+                Confirm Password is Not Match
+                <div v-if="errors.has('password_confirmation')">
+                    {{ errors.first('password_confirmation') }}
+                </div>
             </div>
         </form>
     </b-modal>
@@ -118,9 +142,15 @@
   </b-col>
 </template>
 <script>
+import Vue from 'vue'
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate);
 import VModal from 'vue-js-modal'
 
     export default {
+        component: {
+            VeeValidate
+        },
     data :() => ({
         full_name: '',
         place_birth: '',
@@ -129,8 +159,8 @@ import VModal from 'vue-js-modal'
         address: '',
         motto: '',
         password: '',
-        picture:'',
-        errors: [],
+        picture:"",
+        // errors: [],
         edits: false,
         edit: '',
         status:'',
@@ -138,15 +168,14 @@ import VModal from 'vue-js-modal'
     }),
     mounted(){
         this.showItem();
+        this.readPicture();
     },
     methods: {
-        // readProfile() {
-        //     this.$axios.get('/profile')
-        //     .then(response => {
-        //         this.profiles = response.data;
-        //         console.log(this.profiles);
-        //     })
-        // },
+        readPicture() {
+            this.$axios.get('/profile').then( response => {
+                this.picture = response.data.picture;
+            })
+        },
         showItem() {
             this.edits = true;
             this.$axios.get('/profile')
@@ -157,8 +186,6 @@ import VModal from 'vue-js-modal'
                 this.phone_number = response.data.phone_number;
                 this.address = response.data.address;
                 this.motto = response.data.motto;
-                this.password = response.data.password;
-                this.picture = response.data.picture;
                 // console.log(response.data.profiles);
             })
             .catch(e => {
@@ -176,10 +203,22 @@ import VModal from 'vue-js-modal'
               // this.assignment.push(response.data.task);
               this.status = 'Upload success';
               console.log(this.status);
-              swal('Success', this.status, 'success');
+              swal('Success, Please Reload Your Page', this.status, 'success');
+              this.$router.push('/');
               this.reset();
           }, response => {
           })
+        },
+        editPassword(){
+            const fd = new FormData();
+            fd.append('_method', 'POST');
+            fd.set('password', this.password);
+            this.$axios.post('/password', fd)
+            .then(response => {
+                 this.status = 'Change Password Success!';
+                // console.log(this.status);
+                swal('Success', this.status, 'success');
+            })
         },
         editProfile(profiles) {
             const fd = new FormData();
@@ -190,7 +229,6 @@ import VModal from 'vue-js-modal'
             fd.set('phone_number', this.phone_number);
             fd.set('address', this.address);
             fd.set('motto', this.motto);
-            fd.set('password', this.password);
             this.$axios.post('/profile', fd)
             .then(response => {
                  this.status = 'Update Profile Success!';
@@ -221,9 +259,12 @@ import VModal from 'vue-js-modal'
             }
             his.$axios.post('/profile', fd)
             .then(response => {
-                 this.status = 'Update Photo Profile Success!';
+                 this.status = 'Success, Please Reload Your Page!';
                 // console.log(this.status);
                 swal('Success', this.status, 'success');
+                this.$router.push('/');
+            }).catch(error => {
+                console.log(error.response.data.error);
             })
         },
         otherHandler(e) {

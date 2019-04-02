@@ -12,13 +12,13 @@
                     :config="tableConfig"
                     :height="500"
                     :itemHeight="55"
-                    :minWidth="1000"
+                    :minWidth="1500"
                     :selectable="true"
                     :hoverHighlight="true"
                     :enableExport="true"
                     :language="'en'"
                     v-on:changeSelection="handleSelectionChange">
-                   <!-- <img :src="'//' + picture" class="img-avatar" slot="picture"> -->
+                   <img :src="'//' + picture" class="img-avatar" slot="picture">
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="show(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
@@ -26,7 +26,7 @@
                         <i class="fa fa-trash-o"></i>
                     </b-button>
                 </vue-virtual-table>
-              </div>  
+              </div>
           </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
@@ -96,19 +96,19 @@
                 { value: null, text: 'Select Position', disabled: true },
             ],
              tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 80},
-                {prop: 'id', name: 'ID', numberFilter: true, sortable: true},
-                {prop: 'full_name', name: 'Name', searchable: true, sortable: true},
-                {prop: 'email', name: 'Email', searchable: true, sortable: true},
-                {prop: 'position', name: 'Potition', filterable: true},
-                {prop: 'phone_number', name: 'Phone Number', searchable: true},
-                {prop: 'address', name: 'Address', searchable: true},
-                {prop: 'place_birth', name: 'Place Birth', searchable: true},
-                {prop: 'date_birth', name: 'Date Birth', searchable: true},
-                {prop: 'motto', name: 'Motto'},
-                {prop: 'picture', name: 'Picture'},
-                {prop: '_action', name: 'Edit', actionName: 'edit'},
-                {prop: '_action', name: 'Delete', actionName: 'delete'}
+                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: 'id', name: 'ID', numberFilter: true, sortable: true, width: 40},
+                {prop: 'full_name', name: 'Name', searchable: true, sortable: true, width: 120},
+                {prop: 'email', name: 'Email', searchable: true, sortable: true, width: 150},
+                {prop: 'position', name: 'Potition', filterable: true, width: 70},
+                {prop: 'phone_number', name: 'Phone Number', searchable: true, width: 75},
+                {prop: 'address', name: 'Address', searchable: true, width: 100},
+                {prop: 'place_birth', name: 'Place Birth', searchable: true, width: 70},
+                {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 50},
+                // {prop: 'motto', name: 'Motto'},
+                {prop: 'picture', name: 'Picture', actionName: 'picture',width: 100},
+                {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},
+                {prop: '_action', name: 'Delete', actionName: 'delete', width: 40}
             ],
             // columns: ['id',
             //             'email',
@@ -174,7 +174,7 @@
                             address: response.data[i].address,
                             place_birth: response.data[i].place_birth,
                             date_birth: response.data[i].date_birth,
-                            motto: response.data[i].motto,
+                            // motto: response.data[i].motto,
                             picture: response.data[i].picture,};
                 this.users.push(temp);
               }

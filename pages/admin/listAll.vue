@@ -6,13 +6,14 @@
             <b-card-header>
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
             </b-card-header>
-            <div id="people">
+            <div id="people"
+              >
                 <vue-virtual-table 
                     :config="columns"
                     :data="assignments"
                     :height="500"
                     :itemHeight="55"
-                    :minWidth="1000"
+                    :minWidth="1500"
                     :selectable="true"
                     :hoverHighlight="true"
                     :enableExport="true"
@@ -29,7 +30,7 @@
                 </vue-virtual-table>
             </div>
           </div>
-        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
 
          <b-modal id="show" size="lg" title="Edit Assignmnet"  @ok="edit()">
@@ -76,7 +77,7 @@
                         </star-rating>
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Dispose Team :</label>
                 <div>
                     <multiselect
@@ -91,7 +92,7 @@
                         @tag="addTag">
                     </multiselect>
                 </div>
-            </div>
+            </div> -->
            </form>
          </b-modal>
     </b-col>
@@ -138,20 +139,20 @@
             difficulty_level: '',
             assignment_user: [],
             columns: [
-              { prop: '_index', name: 'No', summary: 'COUNT', width: 40},
-              { prop: 'id', name: 'ID', numberFilter: true, sortable: true,searchable: true, width: 90 },
+              { prop: '_index', name: ' ', summary: 'COUNT', width: 40},
+              { prop: 'id', name: 'ID', numberFilter: true, sortable: true,searchable: true, width: 120 },
               { prop: 'project_number', name: 'Project Number', numberFilter: true, sortable: true,searchable: true, width: 150 },
               { prop: 'io_number', name: 'IO Number', numberFilter: true ,searchable: true, sortable: true, width: 150},
-              { prop: 'assignment_class', name: 'Class', filterable: true, sortable: true, width: 120},
+              { prop: 'assignment_class', name: 'Class', filterable: true, sortable: true, width: 170},
               { prop: 'assignment_tittle', name: 'Title',searchable: true, width: 150},
-              { prop: 'assignment_desc', name: 'Description',searchable: true, width: 150},
+              { prop: 'assignment_desc', name: 'Description',searchable: true, width: 180},
               { prop: 'difficulty_level', name: 'Level', numberFilter: true, sortable: true, searchable: true, width: 50},
-              { prop: 'name_created', name: 'Name Created', sortable: true, filterable: true, width: 150},
-              { prop: 'update_at', name: 'Update At', sortable: true, searchable: true, width: 80},
+              { prop: 'name_created', name: 'Name Created', sortable: true, filterable: true, width: 170},
+              // { prop: 'update_at', name: 'Update At', sortable: true, searchable: true, width: 100},
               { prop: 'team_name', name: 'Team Name', sortable: true, searchable: true, width: 150},
-              { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 110},
-              { prop: '_action', name: 'Edit', actionName: 'edit'},
-              { prop: '_action', name: 'Delete', actionName: 'delete'}
+              { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 90},
+              { prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
+              { prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
             ],
         }
     },
@@ -177,7 +178,7 @@
                             difficulty_level: response.data[i].difficulty_level,
                             name_created: response.data[i].ptl.full_name,
                             created_at: response.data[i].created_at,
-                            update_at: response.data[i].update_at,
+                            // update_at: response.data[i].update_at,
                             team_name: teams,
                             status: response.data[i].status};
                 this.assignments.push(temp);
@@ -186,9 +187,9 @@
           })
         },
         showEdit(id){
-        this.edits = true;
-        console.log("id : " + id);
-            this.$axios.get('/admin/edit_assignment/'+ id)
+          this.edits = true;
+          console.log("id : " + id);
+          this.$axios.get('/admin/edit_assignment/'+ id)
             .then(response => {
                 this.project_number = response.data.project_number
                 this.io_number = response.data.io_number
@@ -196,7 +197,7 @@
                 this.assignment_tittle = response.data.assignment_tittle
                 this.assignment_desc = response.data.assignment_desc
                 this.difficulty_level = response.data.difficulty_level
-                this.value = response.data.assignment_user
+                // this.value = response.data.assignment_user
                 console.log(response.data)
             })
             .catch(e => {
@@ -212,12 +213,12 @@
             fd.set('assignment_tittle', this.assignment_tittle);
             fd.set('assignment_desc', this.assignment_desc);
             fd.set('difficulty_level', this.difficulty_level);
-            this.$axios.post('/admin/edit_assignment', fd)
+            this.$axios.post('/admin/edit_assignment/', fd)
             .then(response => {
-                 this.status = 'Update Profile Success!';
+                 this.status = 'Edit Success!';
                 // console.log(this.status);
                 swal('Success', this.status, 'success');
-                this.readAssignment();
+                this.$router.push('/');
             })
       },
       addTag (newTag) {

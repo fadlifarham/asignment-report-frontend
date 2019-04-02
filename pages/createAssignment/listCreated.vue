@@ -21,7 +21,7 @@
                     :config="tableConfig"
                     :height="500"
                     :itemHeight="55"
-                    :minWidth="1000"
+                    :minWidth="1500"
                     :selectable="true"
                     :hoverHighlight="true"
                     :enableExport="true"
@@ -30,7 +30,8 @@
                 <b-button variant="success" style="border-radius: 5px" slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
                 </b-button>
-                <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id">
+                <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="show(props.row.id)">
+                <!-- <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/createAssignment/editReport/' + props.row.id"> -->
                   <i class="fa fa-edit"></i>
                 </b-button>
                 <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
@@ -40,6 +41,10 @@
           </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right">Export to Excel</b-button> -->
         </div>
+        <b-modal id="show" size="lg" title="Edit Assignmnet"  @ok="edit()">
+           <form @submit.prevent ="edit()">
+           </form>
+        </b-modal>
     </div>
     </b-col>
   </b-row>
@@ -60,19 +65,19 @@
           ptls: [],
           errors: [],
           tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 80},
-                {prop: 'id', name: 'ID', searchable: true, sortable: true},
-                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true},
-                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true},
-                {prop: 'assignment_class', name: 'Assignment Class', filterable: true},
-                {prop: 'assignment_tittle', name: 'Assignment Title'},
-                {prop: 'assignment_desc', name: 'Description'},
-                {prop: 'status', name: 'Status', filterable: true},
+                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: 'id', name: 'ID', searchable: true, sortable: true, width: 120},
+                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true, width: 150},
+                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true, width: 150},
+                {prop: 'assignment_class', name: 'Assignment Class', filterable: true, width: 150},
+                {prop: 'assignment_tittle', name: 'Assignment Title', width: 150},
+                {prop: 'assignment_desc', name: 'Description', width: 170},
+                {prop: 'status', name: 'Status', filterable: true, width: 100},
                 // {prop: 'team_name', name: 'Team Name', searchable: true,},
                 // {prop: 'age', name: 'Age', numberFilter: true},
-                {prop: '_action', name: 'View', actionName: 'view'},
-                {prop: '_action', name: 'Edit', actionName: 'edit'},
-                {prop: '_action', name: 'Delete', actionName: 'delete'}
+                {prop: '_action', name: 'View', actionName: 'view', width: 50},
+                {prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
+                {prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
             ],
         }
     },

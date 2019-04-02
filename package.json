@@ -33,6 +33,7 @@
     "simple-line-icons": "^2.4.1",
     "v-data-table": "^2.1.0",
     "v-tooltip": "^2.0.0-rc.33",
+    "vee-validate": "^2.2.0",
     "vue-avatar": "^2.1.7",
     "vue-bootstrap4-table": "^1.1.1",
     "vue-chartjs": "^3.1.1",
