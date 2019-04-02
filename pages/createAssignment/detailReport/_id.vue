@@ -189,7 +189,7 @@
                             </b-row>
                         </b-col>
                     </b-row>
-                    <b-row style="padding: 6px">
+                    <b-row v-if="other != ''" style="padding: 6px">
                         <b-col sm="4">Other</b-col>
                         <b-col>
                             <b-button :href="'//' + other" target="_blank" size="sm" style="margin: 10px">Open</b-button>
@@ -200,8 +200,8 @@
             </b-row>
             <b-row>
             <b-col style="padding: 10px" class="text-right">
-                    <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button>
-                    <b-button @click="reset" size="lg" variant="danger" style="margin: 10px">Delete and back</b-button>
+                    <!-- <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button> -->
+                    <b-button @click="back(assignment_id)" size="lg" variant="danger" style="margin: 10px">Back</b-button>
             </b-col>
             </b-row>
         </div>
@@ -261,7 +261,7 @@ export default {
         getAssignment() {
             console.log("id : " + this.$route.params.id);
             this.$axios.get('/ar/' + this.$route.params.id).then(response => {
-                this.assignment_id = response.data.id
+                this.assignment_id = response.data.assignment_id
                 this.assignment_type = response.data.assignment_type
                 this.time_record_id = response.data.time_record_id
                 this.customer_info_id = response.data.customer_info_id
@@ -297,6 +297,10 @@ export default {
             this.rating= rating;
             // console.log(this.rating);
       },
+      back(id) {
+        console.log(id);
+        this.$router.push('/createAssignment/viewReport/' + id);
+      }
     }
 }
 </script>

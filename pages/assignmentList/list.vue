@@ -16,7 +16,7 @@
                     :data="alls"
                     :height="500"
                     :itemHeight="55"
-                    :minWidth="1000"
+                    :minWidth="1500"
                     :selectable="true"
                     :hoverHighlight="true"
                     :enableExport="true"
@@ -78,16 +78,16 @@
             },
             errors: [],
             tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, width: 80, summary: 'COUNT'},
-                {prop: 'id', name: 'ID', numberFilter: true, sortable: true},
-                {prop: 'ptl', name: 'PTL', filterable: true},
-                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true},
-                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true},
-                {prop: 'assignment_class', name: 'Assignment Class', filterable: true},
-                {prop: 'assignment_tittle', name: 'Assignment Title'},
-                {prop: 'assignment_desc', name: 'Description'},
-                {prop: 'status', name: 'Status', filterable: true},
-                {prop: 'team_name', name: 'Team Name', searchable: true,},
+                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: 'id', name: 'ID', numberFilter: true, sortable: true, width: 120},
+                {prop: 'ptl', name: 'PTL', filterable: true, width: 150},
+                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true, width: 150},
+                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true, width: 150},
+                {prop: 'assignment_class', name: 'Assignment Class', filterable: true, width: 170},
+                {prop: 'assignment_tittle', name: 'Assignment Title', width: 150},
+                {prop: 'assignment_desc', name: 'Description', width: 180},
+                {prop: 'status', name: 'Status', filterable: true, width: 90},
+                {prop: 'team_name', name: 'Team Name', searchable: true, width: 150},
                 // {prop: 'age', name: 'Age', numberFilter: true},
                 // {prop: '_action', name: 'Action', actionName: 'actionCommon'}
             ],

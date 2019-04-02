@@ -30,11 +30,11 @@ export default {
         },
       ]
     },
-    {
-        name: 'Assignment Report',
-        url: '/report/listReport',
-        icon: 'icon-book-open',
-    },
+    // {
+    //     name: 'Assignment Report',
+    //     url: '/report/listReport',
+    //     icon: 'icon-book-open',
+    // },
     {
       name: 'Team Utilization',
       url: '/utilization',

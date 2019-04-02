@@ -66,14 +66,14 @@
             dataCollection: [],
             opsi: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
             tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, width: 80},
-                {prop: 'full_name', name: ' Name', searchable: true, sortable: true, summary: 'COUNT'},
-                {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, summary: 'COUNT'},
-                {prop: 'work_load', name: ' Work Load', numberFilter: true, sortable: true, summary: 'COUNT'},
-                {prop: 'work_quality', name: ' Work Quality', numberFilter: true, sortable: true, summary: 'COUNT'},
-                {prop: 'sppd', name: ' SPPD', numberFilter: true, sortable: true, summary: 'COUNT'},
-                {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, summary: 'COUNT'},
-                {prop: '_action', name: 'Show', actionName: 'show'}
+                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: 'full_name', name: ' Name', searchable: true, sortable: true, width: 180},
+                {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, width: 40},
+                {prop: 'work_load', name: ' Work Load', numberFilter: true, sortable: true, width: 40},
+                {prop: 'work_quality', name: ' Work Quality', numberFilter: true, sortable: true, width: 40},
+                {prop: 'sppd', name: ' SPPD', numberFilter: true, sortable: true, width: 40},
+                {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, width: 70},
+                {prop: '_action', name: 'Show', actionName: 'show', width: 50}
             ],
             // columns: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
             // options: {
@@ -156,12 +156,12 @@
             // labels: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
             datasets: [
               {
-                label: 'Work Load',
+                label: 'Work Load (%)',
                 backgroundColor: '#9999ff',
                 data: [work_load]
               },
               {
-                label: 'Work Quality',
+                label: 'Work Quality  (%)',
                 backgroundColor: '#79d2a6',
                 data: [work_quality]
               },

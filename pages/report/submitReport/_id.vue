@@ -373,6 +373,7 @@ import moment from 'moment'
               console.log(this.status);
               swal('Success', this.status, 'success');
               this.reset();
+              this.$router.push('/')
           }, response => {
               // console.log("BAI")
               // console.log(this.bai);
