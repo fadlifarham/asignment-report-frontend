@@ -36,12 +36,9 @@
                 <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                   <i class="fa fa-edit"></i>
                 </b-button>
-<<<<<<< HEAD
                 <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
                 </b-button> -->
-=======
->>>>>>> 3b0d0d5509fd6d837803da4715e5cea2849fba5b
             </vue-virtual-table>
           </div>
         </b-card-body>
