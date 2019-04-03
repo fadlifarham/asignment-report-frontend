@@ -22,9 +22,9 @@
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="show(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
-                    <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
+                    <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                         <i class="fa fa-trash-o"></i>
-                    </b-button>
+                    </b-button> -->
                 </vue-virtual-table>
               </div>
           </div>
@@ -108,7 +108,7 @@
                 // {prop: 'motto', name: 'Motto'},
                 {prop: 'picture', name: 'Picture', actionName: 'picture',width: 100},
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},
-                {prop: '_action', name: 'Delete', actionName: 'delete', width: 40}
+                // {prop: '_action', name: 'Delete', actionName: 'delete', width: 40}
             ],
             // columns: ['id',
             //             'email',

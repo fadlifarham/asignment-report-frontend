@@ -24,9 +24,9 @@
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
-                    <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
+                    <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                         <i class="fa fa-trash-o"></i>
-                    </b-button> 
+                    </b-button>  -->
                 </vue-virtual-table>
             </div>
           </div>
@@ -152,7 +152,7 @@
               { prop: 'team_name', name: 'Team Name', sortable: true, searchable: true, width: 150},
               { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 90},
               { prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
-              { prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
+              // { prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
             ],
         }
     },

@@ -26,13 +26,41 @@
   </div>
           <!-- <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
     <div>
-      <b-modal id="chart" size="md" title="Performance Member">
+      <b-modal id="chart" size="lg" title="Performance Member">
         <b-card>
-            <div class="chart-wrapper">
-              <utilization-bar
-                :chart-data="dataCollection"
-              />
-            </div>
+          <b-row>
+            <b-col sm="6">
+              <div class="chart-wrapper">
+                <utilization-bar
+                  :chart-data="dataCollectionLoad"
+                />
+              </div>
+            </b-col>
+            <b-col sm="6">
+              <div class="chart-wrapper">
+                <utilization-bar
+                  :chart-data="dataCollectionQuality"
+                />
+              </div>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col sm="6">
+              <div class="chart-wrapper">
+                <utilization-bar
+                  :chart-data="dataCollectionSppd"
+                />
+              </div>
+            </b-col>
+            <b-col sm="6">
+              <div class="chart-wrapper">
+                <utilization-bar
+                  :chart-data="dataCollectionComplete"
+                />
+              </div>
+            </b-col>
+          </b-row>
+            
           </b-card>
       </b-modal>
     </div>
@@ -63,7 +91,10 @@
             id:'',
             utils: [],
             errors: [],
-            dataCollection: [],
+            dataCollectionLoad: [],
+            dataCollectionQuality: [],
+            dataCollectionSppd: [],
+            dataCollectionComplete: [],
             opsi: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
             tableConfig: [
                 {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
@@ -75,30 +106,6 @@
                 {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, width: 70},
                 {prop: '_action', name: 'Show', actionName: 'show', width: 50}
             ],
-            // columns: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
-            // options: {
-            //     filterByColumn: true,
-            //     listColumns: {
-            //     },
-            //     headings: {
-            //       id: '',
-            //       user_id: 'User ID',
-            //       full_name: 'Name',
-            //       work_load: 'Work Load',
-            //       work_quality: 'Work Quality',
-            //       sppd: 'SPPD',
-            //       complete_assignment: 'Complete Assignment',
-            //       show: 'Show',
-            //     },
-            //     sortable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', 'show'],
-            //     filterable: ['user_id', 'full_name', 'work_load', 'work_quality', 'sppd', 'complete_assignment', ],
-            //     // texts: {
-            //     //   filterPlaceholder: 'filter'
-            //     // }
-            //     // chartdata: null,
-            //     // responsive: true,
-            //     // maintainAspectRatio: false
-            // },
         }
     },
     // extends: Bar,
@@ -152,30 +159,41 @@
 
         setData(work_load, work_quality, sppd, complete_assignment) {
           // console.log("WL : " + work_load)
-          this.dataCollection = {
-            // labels: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
+          this.dataCollectionLoad = {
             datasets: [
               {
                 label: 'Work Load (%)',
                 backgroundColor: '#9999ff',
                 data: [work_load]
               },
-              {
-                label: 'Work Quality  (%)',
-                backgroundColor: '#79d2a6',
-                data: [work_quality]
-              },
-              {
-                label: 'SPPD',
-                backgroundColor: '#ff8080',
-                data: [sppd]
-              },
-              {
-                label: 'Complete Assignment',
-                backgroundColor: '#ffff4d',
-                data: [complete_assignment]
-              }
             ]
+          },
+          this.dataCollectionQuality = {
+            datasets: [
+                {
+                  label: 'Work Quality  (%)',
+                  backgroundColor: '#79d2a6',
+                  data: [work_quality]
+                },
+              ]
+          },
+          this.dataCollectionSppd = {
+            datasets: [
+                {
+                  label: 'SPPD',
+                  backgroundColor: '#ff8080',
+                  data: [sppd]
+                },
+              ]
+          },
+          this.dataCollectionComplete = {
+            datasets: [
+                {
+                  label: 'Complete Assignment',
+                  backgroundColor: '#ffff4d',
+                  data: [complete_assignment]
+                }
+              ]
           }
         }
       }

@@ -26,7 +26,7 @@
                     <!-- <b-button variant="link" class="px-0">Lupa Kata Sandi?</b-button> -->
                   </b-col>
                   <b-col cols="6" class="text-right">
-                    <b-button variant="link"  v-b-modal.show class="px-0">Register</b-button> or
+                    <!-- <b-button variant="link"  v-b-modal.show class="px-0">Register</b-button> or -->
                     <b-button @click="loginUser" variant="primary" class="px-4">Login</b-button>
                   </b-col>
                 </b-row>
