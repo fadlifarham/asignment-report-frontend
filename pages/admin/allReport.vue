@@ -33,17 +33,153 @@
               :language="'en'"
               v-on:changeSelection="handleSelectionChange"
             >
-                <b-button variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" :href="'/admin/editReportAdmin/' + props.row.assignment_id">
+                <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                   <i class="fa fa-edit"></i>
                 </b-button>
+<<<<<<< HEAD
                 <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
                 </b-button> -->
+=======
+>>>>>>> 3b0d0d5509fd6d837803da4715e5cea2849fba5b
             </vue-virtual-table>
           </div>
         </b-card-body>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
         </div>
+        <b-modal id="show" size="md" title="Edit Assignmnet" @ok="edit()">
+           <form @submit.prevent ="edit()">
+             <b-form-group
+              label="Assignment ID "
+              label-for="assignment_id"
+              :label-cols="4"
+              :horizontal="true"> : {{assignment_id}}
+            </b-form-group>
+            <b-form-group
+              label="Assignment Type"
+              label-for="assignment_type">
+              <b-form-select
+                :plain="true"
+                :options="['Pre-Sales','Aktivasi','Pembangunan','Pemeliharaan']"
+                value="Assignment Type"
+                style="border-radius: 5px"
+                v-model="assignment_type">
+              </b-form-select>
+            </b-form-group>
+            <b-form-group
+              label="Date Work"
+              label-for="date_work">
+              <b-form-input
+                type="date"
+                label="Date work"
+                label-for="date_work"
+                v-model="date_work"
+                style="border-radius: 5px; vertical-align: center">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Time Start"
+              label-for="time_start">
+              <b-form-input type="time"
+                v-model="time_start"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Time At"
+              label-for="time_at">
+              <b-form-input type="time"
+                v-model="time_at"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Time Job Finish"
+              label-for="time_job_finish">
+              <b-form-input type="time"
+                v-model="time_job_finish"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Time End"
+              label-for="time_end">
+              <b-form-input type="time"
+                v-model="time_end"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Company"
+              label-for="company">
+              <b-form-input type="text"
+                v-model="company"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Address"
+              label-for="address">
+              <b-form-input type="text"
+                v-model="address"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Contact Person"
+              label-for="cp">
+              <b-form-input type="text"
+                v-model="cp"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="PIC Onsite"
+              label-for="pic">
+              <b-form-input type="text"
+                v-model="pic"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="SPPD Status"
+              label-for="sppd_status">
+              <b-form-radio-group id="basicInlineRadios"
+                :plain="true"
+                :options="[
+                    {text: 'YA ',value: '1'},
+                    {text: 'TIDAK ',value: '2'}
+                ]"
+                :checked="2"
+                v-model="sppd_status">
+              </b-form-radio-group>
+            </b-form-group>
+            <b-form-group
+              label="Day Number"
+              label-for="day_number">
+              <b-form-input type="number"
+                v-model="day_number"
+                style="border-radius: 5px">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Brief of Work Carried Out"
+              label-for="brief_work">
+              <textarea class="form-control"
+                v-model="brief_work"
+                rows="6" >
+              </textarea>
+            </b-form-group>
+            <b-form-group
+              label="Result of Assignment & Further Action"
+              label-for="result">
+              <textarea class="form-control"
+                v-model="result"
+                rows="6">
+              </textarea>
+            </b-form-group>
+           </form>
+        </b-modal>
     </b-col>
   </b-row>
 </template>
@@ -55,11 +191,36 @@
     Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
     components: {
-        VueVirtualTable
+        VueVirtualTable,
     },
     data () {
         return {
-          files: [],
+          assignment_id: '',
+            assignment_type: '',
+            time_record_id: '',
+            customer_info_id: '',
+            sppd_status: '',
+            day_number: '',
+            brief_work: '',
+            other: '',
+            result: '',
+            ptl_id: '',
+            assignment_class: '',
+            assignment_tittle: '',
+            assignment_desc: '',
+            project_number: '',
+            io_number: '',
+            date_work: '',
+            time_start: '',
+            time_at: '',
+            time_job_finish: '',
+            time_end: '',
+            company: '',
+            address: '',
+            cp: '',
+            pic: '',
+            filesTab: [],
+            filesData: [],
           name: 'demo',
           ars: [],
           errors: [],
@@ -94,11 +255,7 @@
           var temp;
           this.$axios.get('admin/ar/').then(response => {
               for(let i=0;i<response.data.length;i++){
-                  console.log("saya oke")
-                  // let attach = ''
-                  // for(let j=0; j<response.data[i].file.length;j++){
-                  //     attach += response.data[i].file[j].type +', ';
-                  // }
+                  let files = ''
                   temp = { 
                     id: response.data[i].id,
                     assignment_id: response.data[i].assignment_id, 
@@ -115,9 +272,7 @@
                     assignment_tittle: response.data[i].assignment.assignment_tittle,
                     assignment_desc: response.data[i].assignment.assignment_desc,
                     difficulty_level: response.data[i].assignment.difficulty_level,
-                    status: response.data[i].assignment.status,
-                    // attachment: attach,
-                    files: response.data[i].file };
+                    filesTab: response.data[i].file };
                 this.ars.push(temp);
               }
             console.log(this.ars);
@@ -137,20 +292,58 @@
             this.$refs.content.scrollTop = el.offsetTop
           }
         },
-        deleteAss(id){
-          console.log("id : " + id)
-          if (confirm("Are you sure you want to delete this item?")) {
-                this.$axios.post('assignment/delete/' + id)
-                .then(response => {
-                    this.status = 'Delete Success!';
-                    console.log(this.status);
-                    swal('Success', this.status, 'success');
-                    this.readPtls();
-                }).catch(error => {
-                    console.log(error.response.data.error);
-                })
+        showEdit(id){
+        this.edits = true;
+        console.log("id : " + id);
+            this.$axios.get('/admin/edit_assignment_report/' + id).then(response => {
+                this.assignment_id = response.data.id
+                this.assignment_type = response.data.assignment_type
+                this.date_work = response.data.time_record.date_work
+                this.time_start = response.data.time_record.time_start
+                this.time_at = response.data.time_record.time_at
+                this.time_job_finish = response.data.time_record.time_job_finish
+                this.time_end = response.data.time_record.time_end
+                this.company = response.data.customer_info.company
+                this.address = response.data.customer_info.address
+                this.pic = response.data.customer_info.pic
+                this.cp = response.data.customer_info.cp
+                this.sppd_status = response.data.sppd_status
+                this.day_number = response.data.day_number
+                this.brief_work = response.data.brief_work
+                this.result = response.data.result
+                console.log(response.data)
             }
+            );
         },
+        edit(){
+          const fd = new FormData();
+              fd.append('_method', 'POST');
+              fd.set('date_work', this.date_work);
+              fd.set('time_start', this.time_start);
+              fd.set('time_at', this.time_at);
+              fd.set('time_job_finish', this.time_job_finish);
+              fd.set('time_end', this.time_end);
+              fd.set('company', this.company);
+              fd.set('address', this.address);
+              fd.set('cp', this.cp);
+              fd.set('pic', this.pic);
+              fd.set('assignment_type', this.assignment_type);
+              fd.set('sppd_status', this.sppd_status);
+              fd.set('day_number', this.day_number);
+              fd.set('brief_work', this.brief_work);
+              fd.set('result', this.result);
+
+              this.$axios.post('/admin/edit_assignment_report/', fd)
+              .then(response => {
+                  this.status = 'Update Profile Success!';
+                  // console.log(this.status);
+                  swal('Success', this.status, 'success');
+                  this.readPtls();
+              })
+        },
+        removeFile(file) {
+          this.$refs.vue_clip.removeFile(file)
+        }
     },
 
     middleware: "forPtl"

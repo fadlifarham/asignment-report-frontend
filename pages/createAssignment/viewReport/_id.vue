@@ -182,7 +182,7 @@ export default {
                 this.status = 'Assignment Approved Success!';
                 console.log(this.status);
                 swal('Success', this.status, 'success');
-                this.reset();
+                // this.reset();
                 this.$router.push('/');
             }, response => {
                 this.status = 'Failed';
