@@ -17,6 +17,7 @@
                     :hoverHighlight="true"
                     :enableExport="true"
                     :language="'en'"
+                    :bordered="true"
                     v-on:changeSelection="handleSelectionChange">
                    <img :src="'//' + picture" class="img-avatar" slot="picture">
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
@@ -41,13 +42,16 @@
                 <input type="text" style="border-radius: 5px" placeholder="IO Number" class="form-control" v-model="email">
             </div>
             <div class="form-group">
-                <label>Position :</label>
-                <b-form-select id="role_id"
-                  :plain="true"
-                  :options="select"
-                  value="Select Position"
-                  v-model="role_id">
-                </b-form-select>
+              <b-row style="margin: 3px">
+                <label>Position :</label> 
+                <h6 style="color : blue ">*please select again</h6>
+              </b-row>
+                  <b-form-select id="role_id"
+                    :plain="true"
+                    :options="select"
+                    value="Select Position" 
+                    v-model="role_id">
+                  </b-form-select>
             </div>
             <div class="form-group">
                 <label>Phone Number :</label>
@@ -91,6 +95,7 @@
     data () {
         return {
             name: 'people',
+            id:'',
             full_name:'',
             email:'',
             position: '',
@@ -118,8 +123,8 @@
                 {prop: 'phone_number', name: 'Phone Number', searchable: true, width: 75},
                 {prop: 'address', name: 'Address', searchable: true, width: 100},
                 {prop: 'place_birth', name: 'Place Birth', searchable: true, width: 70},
-                {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 50},
-                // {prop: 'motto', name: 'Motto'},
+                {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 80},
+                {prop: 'motto', name: 'Motto', width: 150},
                 {prop: 'picture', name: 'Picture', actionName: 'picture',width: 100},
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},
                 // {prop: '_action', name: 'Delete', actionName: 'delete', width: 40}
@@ -143,7 +148,7 @@
                             address: response.data[i].address,
                             place_birth: response.data[i].place_birth,
                             date_birth: response.data[i].date_birth,
-                            // motto: response.data[i].motto,
+                            motto: response.data[i].motto,
                             picture: response.data[i].picture,};
                 this.users.push(temp);
               }
@@ -168,6 +173,7 @@
             console.log("id : " + id);
             this.$axios.get('/admin/edit_user/'+ id)
               .then(response => {
+                  this.id = response.data.id
                   this.full_name = response.data.full_name
                   this.email = response.data.email
                   this.position = response.data.role.name
@@ -183,6 +189,32 @@
               .catch(e => {
                   (error) => console.log(error)
               });
+        },
+        edit(users) {
+            const fd = new FormData();
+            fd.append('_method', 'POST');
+            fd.set('id', this.id);
+            fd.set('full_name', this.full_name);
+            fd.set('email', this.email);
+            fd.set('role_id', this.role_id);
+            fd.set('phone_number', this.phone_number);
+            fd.set('address', this.address);
+            fd.set('date_birth', this.date_birth);
+            fd.set('place_birth', this.place_birth);
+            fd.set('motto', this.motto);
+            fd.set('start_date', this.start_date);
+            this.$axios.post('/admin/edit_user/', fd)
+            .then(response => {
+                 this.status = 'Update Profile Success!';
+                // console.log(this.status);
+                swal('Success', this.status, 'success');
+                this.$router.push('/')
+            }).catch(error => {
+                console.log(error.response.data.error);
+                this.status = 'Please Fill in All Data!';
+                // console.log(this.status);
+                 swal('Failed', this.status, 'warning');
+            })
         },
         scrollIntoView(evt) {
           evt.preventDefault()
