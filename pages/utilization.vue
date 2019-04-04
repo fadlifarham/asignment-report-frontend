@@ -162,6 +162,7 @@
           this.dataCollectionLoad = {
             datasets: [
               {
+                
                 label: 'Work Load (%)',
                 backgroundColor: '#9999ff',
                 data: [work_load]
