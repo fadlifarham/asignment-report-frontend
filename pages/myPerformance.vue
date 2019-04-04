@@ -26,9 +26,7 @@
         <div class="animated fadeIn" style="">
             <b-card header="SPPD Performance">
                 <div class="chart-wrapper">
-                <performance-bar
-                    :chart-data="dataCollectionSppd"
-                />
+                    <b-row align-h="center"><h3>{{sppd}}</h3></b-row>
                 </div>
             </b-card>
         </div>
@@ -37,9 +35,7 @@
         <div class="animated fadeIn" style="">
             <b-card header="Complete Assignment Performance">
                 <div class="chart-wrapper">
-                <performance-bar
-                    :chart-data="dataCollectionComplete"
-                />
+                    <b-row align-h="center"><h3>{{complete_assignment}}</h3></b-row>
                 </div>
             </b-card>
         </div>
