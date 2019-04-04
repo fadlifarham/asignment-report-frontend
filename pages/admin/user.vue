@@ -19,7 +19,7 @@
                     :language="'en'"
                     v-on:changeSelection="handleSelectionChange">
                    <img :src="'//' + picture" class="img-avatar" slot="picture">
-                    <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="show(props.row.id)">
+                    <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
                     <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
@@ -30,7 +30,7 @@
           </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
-        <b-modal id="show" size="lg" title="Edit Assignmnet"  @ok="edit()">
+        <b-modal id="show" size="lg" title="Edit User"  @ok="edit()">
            <form @submit.prevent ="edit()">
              <div class="form-group">
                 <label>Full Name :</label>
@@ -69,6 +69,10 @@
                 <label>Motto :</label>
                 <textarea v-model="motto" class="form-control" rows="4" id="motto"></textarea>
             </div>
+            <div class="form-group">
+                <label>Start Date :</label>
+                <b-form-input type="date" id="date" v-model="start_date"> </b-form-input>
+            </div>
            </form>
          </b-modal>
     </b-col>
@@ -87,7 +91,17 @@
     data () {
         return {
             name: 'people',
+            full_name:'',
+            email:'',
+            position: '',
+            phone_number: '',
+            address:'',
+            place_birth:'',
+            date_birth:'',
+            motto:'',
+            start_date:'',
             users: [],
+            edits: false,
             errors: [],
             roles:[],
             role_id: null,
@@ -110,51 +124,6 @@
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},
                 // {prop: '_action', name: 'Delete', actionName: 'delete', width: 40}
             ],
-            // columns: ['id',
-            //             'email',
-            //             'full_name',
-            //             'position',
-            //             'phone_number',
-            //             'address',
-            //             'place_birth',
-            //             'date_birth',
-            //             'motto',
-            //             'picture',
-            //             'edit',
-            //             'delete',
-            //             ],
-            // options: {
-            //     filterByColumn: true,
-            //     listColumns: {
-            //     },
-            //     headings: {
-            //       id: 'ID',
-            //       email: 'Email',
-            //       full_name: 'Name',
-            //       position: 'Position',
-            //       phone_number: 'Phone Number',
-            //       address: 'Address',
-            //       place_birth: 'Place Birth',
-            //       date_birth: 'Date Birth',
-            //       motto: 'Motto',
-            //       picture: 'Picture',
-            //       edit: 'edit',
-            //       delete: 'delete'
-            //     },
-            //     sortable: [
-            //       'id', 'email', 'full_name',
-            //       'position','phone_number', 'address',
-            //       'place_birth', 'date_birth','motto',
-            //     ],
-            //     filterable:[
-            //       'id', 'email', 'full_name',
-            //       'position','phone_number', 'address',
-            //       'place_birth',  'date_birth'
-            //     ],
-            //     texts: {
-            //     //   filterPlaceholder: 'filter'
-            //     }
-            // }
         }
     },
     mounted(){
@@ -193,6 +162,27 @@
                 });
                 console.log("ll : " + this.select)
             })
+        },
+        showEdit(id){
+            this.edits = true;
+            console.log("id : " + id);
+            this.$axios.get('/admin/edit_user/'+ id)
+              .then(response => {
+                  this.full_name = response.data.full_name
+                  this.email = response.data.email
+                  this.position = response.data.role.name
+                  this.phone_number = response.data.phone_number
+                  this.address = response.data.address
+                  this.place_birth = response.data.place_birth
+                  this.date_birth = response.data.date_birth
+                  this.motto = response.data.motto
+                  this.start_date = response.data.start_date
+                  // this.value = response.data.assignment_user
+                  console.log(response.data)
+              })
+              .catch(e => {
+                  (error) => console.log(error)
+              });
         },
         scrollIntoView(evt) {
           evt.preventDefault()
