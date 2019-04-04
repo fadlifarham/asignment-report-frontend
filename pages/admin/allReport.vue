@@ -44,7 +44,7 @@
         </b-card-body>
         <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
         </div>
-        <b-modal id="show" size="md" title="Edit Assignmnet" @ok="edit()">
+        <b-modal id="show" size="md" title="Edit Report" @ok="edit()">
            <form @submit.prevent ="edit()">
              <b-form-group
               label="Assignment ID "
@@ -192,7 +192,8 @@
     },
     data () {
         return {
-          assignment_id: '',
+            id: '',
+            assignment_id: '',
             assignment_type: '',
             time_record_id: '',
             customer_info_id: '',
@@ -201,12 +202,12 @@
             brief_work: '',
             other: '',
             result: '',
-            ptl_id: '',
-            assignment_class: '',
-            assignment_tittle: '',
-            assignment_desc: '',
-            project_number: '',
-            io_number: '',
+            // ptl_id: '',
+            // assignment_class: '',
+            // assignment_tittle: '',
+            // assignment_desc: '',
+            // project_number: '',
+            // io_number: '',
             date_work: '',
             time_start: '',
             time_at: '',
@@ -216,8 +217,7 @@
             address: '',
             cp: '',
             pic: '',
-            filesTab: [],
-            filesData: [],
+            files: [],
           name: 'demo',
           ars: [],
           errors: [],
@@ -269,7 +269,8 @@
                     assignment_tittle: response.data[i].assignment.assignment_tittle,
                     assignment_desc: response.data[i].assignment.assignment_desc,
                     difficulty_level: response.data[i].assignment.difficulty_level,
-                    filesTab: response.data[i].file };
+                    status: response.data[i].assignment.status,
+                    file: response.data[i].file };
                 this.ars.push(temp);
               }
             console.log(this.ars);
@@ -293,7 +294,10 @@
         this.edits = true;
         console.log("id : " + id);
             this.$axios.get('/admin/edit_assignment_report/' + id).then(response => {
-                this.assignment_id = response.data.id
+                this.id = response.data.id
+                this.assignment_id = response.data.assignment_id
+                this.time_record_id = response.data.time_record_id
+                this.customer_info_id = response.data.customer_info_id
                 this.assignment_type = response.data.assignment_type
                 this.date_work = response.data.time_record.date_work
                 this.time_start = response.data.time_record.time_start
@@ -308,6 +312,7 @@
                 this.day_number = response.data.day_number
                 this.brief_work = response.data.brief_work
                 this.result = response.data.result
+                this.other = response.data.other
                 console.log(response.data)
             }
             );
@@ -315,6 +320,7 @@
         edit(){
           const fd = new FormData();
               fd.append('_method', 'POST');
+              fd.set('id', this.id);
               fd.set('date_work', this.date_work);
               fd.set('time_start', this.time_start);
               fd.set('time_at', this.time_at);
@@ -330,13 +336,18 @@
               fd.set('brief_work', this.brief_work);
               fd.set('result', this.result);
 
-              this.$axios.post('/admin/edit_assignment_report/', fd)
+              this.$axios.post('/admin/edit_assignment_report', fd)
               .then(response => {
                   this.status = 'Update Profile Success!';
                   // console.log(this.status);
                   swal('Success', this.status, 'success');
-                  this.readPtls();
-              })
+                  this.$router.push('/')
+              }).catch(error => {
+                console.log(error.response.data.error);
+                this.status = 'Please Fill in All Data!';
+                // console.log(this.status);
+                 swal('Failed', this.status, 'warning');
+            })
         },
         removeFile(file) {
           this.$refs.vue_clip.removeFile(file)

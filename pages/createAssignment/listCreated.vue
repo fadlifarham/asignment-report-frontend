@@ -200,6 +200,7 @@
         edit(){
           const fd = new FormData();
               fd.append('_method', 'POST');
+              fd.set('id', this.assignment_id);
               fd.set('project_number', this.project_number);
               fd.set('io_number', this.io_number);
               fd.set('assignment_class', this.assignment_class);

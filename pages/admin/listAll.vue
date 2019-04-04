@@ -128,12 +128,16 @@
             multi: [
             ],
             edits: false,
+            assignment_id: '',
             project_number: '',
             io_number: '',
             assignment_class: '',
             assignment_tittle: '',
             assignment_desc: '',
             difficulty_level: '',
+            status:'',
+            is_deleted: '',
+            engineer: [],
             assignment_user: [],
             columns: [
               { prop: '_index', name: ' ', summary: 'COUNT', width: 40},
@@ -188,12 +192,16 @@
           console.log("id : " + id);
           this.$axios.get('/admin/edit_assignment/'+ id)
             .then(response => {
+                this.id = response.data.id
+                this.assignment_id = response.data.assignment_id
                 this.project_number = response.data.project_number
                 this.io_number = response.data.io_number
                 this.assignment_class = response.data.assignment_class
                 this.assignment_tittle = response.data.assignment_tittle
                 this.assignment_desc = response.data.assignment_desc
                 this.difficulty_level = response.data.difficulty_level
+                this.status = response.data.status
+                this.is_deleted = response.data.is_deleted
                 // this.value = response.data.assignment_user
                 console.log(response.data)
             })
@@ -204,12 +212,15 @@
       edit(){
         const fd = new FormData();
             fd.append('_method', 'POST');
+            fd.set('id', this.id);
             fd.set('project_number', this.project_number);
             fd.set('io_number', this.io_number);
             fd.set('assignment_class', this.assignment_class);
             fd.set('assignment_tittle', this.assignment_tittle);
             fd.set('assignment_desc', this.assignment_desc);
             fd.set('difficulty_level', this.difficulty_level);
+            fd.set('status', this.status);
+            fd.set('is_deleted', this.is_deleted);
             this.$axios.post('/admin/edit_assignment/', fd)
             .then(response => {
                  this.status = 'Edit Success!';
