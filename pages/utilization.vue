@@ -10,7 +10,7 @@
                     :data="utils" 
                     :height="500"
                     :itemHeight="55"
-                    :minWidth="1000"
+                    :minWidth="1500"
                     :selectable="true"
                     :hoverHighlight="true"
                     :enableExport="true"
@@ -100,10 +100,10 @@
                 {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
                 {prop: 'full_name', name: ' Name', searchable: true, sortable: true, width: 180},
                 {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, width: 40},
-                {prop: 'work_load', name: ' Work Load', numberFilter: true, sortable: true, width: 40},
-                {prop: 'work_quality', name: ' Work Quality', numberFilter: true, sortable: true, width: 40},
+                {prop: 'work_load', name: ' Work Load', numberFilter: true, sortable: true, width: 60},
+                {prop: 'work_quality', name: ' Work Quality', numberFilter: true, sortable: true, width: 60},
                 {prop: 'sppd', name: ' SPPD', numberFilter: true, sortable: true, width: 40},
-                {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, width: 70},
+                {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, width: 80},
                 {prop: '_action', name: 'Show', actionName: 'show', width: 50}
             ],
         }
