@@ -126,9 +126,6 @@
             errors: [],
             value: [],
             multi: [
-                // { name: 'Vue.js', code: 'vu' },
-                // { name: 'Javascript', code: 'js' },
-                // { name: 'Open Source', code: 'os' }
             ],
             edits: false,
             project_number: '',
