@@ -212,7 +212,7 @@
               fd.set('difficulty_level', this.difficulty_level);
               this.$axios.post('/assignment/edit', fd)
               .then(response => {
-                  this.status = 'Update Profile Success!';
+                  this.status = 'Edit Success!';
                   // console.log(this.status);
                   swal('Success', this.status, 'success');
                   this.$router.push('/')
