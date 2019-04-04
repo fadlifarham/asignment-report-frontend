@@ -42,7 +42,7 @@
             </vue-virtual-table>
           </div>
         </b-card-body>
-        <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button>
+        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
         <b-modal id="show" size="md" title="Edit Report" @ok="edit()">
            <form @submit.prevent ="edit()">

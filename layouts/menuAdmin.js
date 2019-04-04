@@ -21,25 +21,30 @@ export default {
         icon: 'icon-list',
       },
       {
-        name: 'Assignment',
-        url: '/createAssignment',
-        icon: 'icon-paper-clip',
-        children: [
-          {
-            name: 'Assignment List',
-            url: '/createAssignment/listCreated',
-            icon: 'icon-list',
-            meta: {
-              engineer: true,
-            }
-          },
-          {
-            name: 'Create Assignment',
-            url: '/createAssignment/create',
-            icon: 'icon-plus'
-          },
-        ]
+        name: 'Create Assignment',
+        url: '/createAssignment/create',
+        icon: 'icon-plus'
       },
+      // {
+      //   name: 'Assignment',
+      //   url: '/createAssignment',
+      //   icon: 'icon-paper-clip',
+      //   children: [
+      //     {
+      //       name: 'Assignment List',
+      //       url: '/createAssignment/listCreated',
+      //       icon: 'icon-list',
+      //       meta: {
+      //         engineer: true,
+      //       }
+      //     },
+          // {
+          //   name: 'Create Assignment',
+          //   url: '/createAssignment/create',
+          //   icon: 'icon-plus'
+          // },
+      //   ]
+      // },
       // {
       //     name: 'Assignment Report',
       //     url: '/report/listReport',

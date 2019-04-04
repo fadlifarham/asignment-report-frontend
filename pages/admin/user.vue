@@ -17,6 +17,7 @@
                     :hoverHighlight="true"
                     :enableExport="true"
                     :language="'en'"
+                    :bordered="true"
                     v-on:changeSelection="handleSelectionChange">
                    <img :src="'//' + picture" class="img-avatar" slot="picture">
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
@@ -41,13 +42,16 @@
                 <input type="text" style="border-radius: 5px" placeholder="IO Number" class="form-control" v-model="email">
             </div>
             <div class="form-group">
-                <label>Position :</label>
-                <b-form-select id="role_id"
-                  :plain="true"
-                  :options="select"
-                  value="Select Position"
-                  v-model="role_id">
-                </b-form-select>
+              <b-row style="margin: 3px">
+                <label>Position :</label> 
+                <h6 style="color : blue ">*please select again</h6>
+              </b-row>
+                  <b-form-select id="role_id"
+                    :plain="true"
+                    :options="select"
+                    value="Select Position" 
+                    v-model="role_id">
+                  </b-form-select>
             </div>
             <div class="form-group">
                 <label>Phone Number :</label>
@@ -119,7 +123,7 @@
                 {prop: 'phone_number', name: 'Phone Number', searchable: true, width: 75},
                 {prop: 'address', name: 'Address', searchable: true, width: 100},
                 {prop: 'place_birth', name: 'Place Birth', searchable: true, width: 70},
-                {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 50},
+                {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 80},
                 {prop: 'motto', name: 'Motto', width: 150},
                 {prop: 'picture', name: 'Picture', actionName: 'picture',width: 100},
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},

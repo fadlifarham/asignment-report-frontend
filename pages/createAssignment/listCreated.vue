@@ -26,6 +26,7 @@
                     :hoverHighlight="true"
                     :enableExport="true"
                     :language="'en'"
+                    :bordered="true"
                     v-on:changeSelection="handleSelectionChange">
                 <b-button variant="success" style="border-radius: 5px" slot="view" slot-scope="props" :href="'/createAssignment/viewReport/' + props.row.id">
                   <i class="fa fa-eye"></i>
@@ -51,7 +52,7 @@
                 <input type="text" style="border-radius: 5px" placeholder="IO Number" class="form-control" v-model="io_number">
             </div>
             <div class="form-group">
-                <label>Assigment Class :</label>
+                <label>Assignment Class :</label>
                 <b-form-select id="assignment_class"
                     :plain="true"
                     :options="['Testcomm','Survey','Installation','QC','BERTest','Supervise Vendor','Migration','Integration',
@@ -143,18 +144,19 @@
           difficulty_level: '',
           tableConfig: [
                 {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 50},
-                {prop: 'id', name: 'ID', searchable: true, sortable: true},
-                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true},
-                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true},
-                {prop: 'assignment_class', name: 'Assignment Class', filterable: true},
+                {prop: 'id', name: 'ID', searchable: true, sortable: true, width: 120},
+                {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true, width: 120},
+                {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true , width: 120},
+                {prop: 'assignment_class', name: 'Assignment Class', filterable: true , width: 150},
                 {prop: 'assignment_tittle', name: 'Assignment Title', width: 200},
                 {prop: 'assignment_desc', name: 'Description', width: 300},
-                {prop: 'status', name: 'Status', filterable: true},
+                {prop: 'difficulty_level', name: 'Level', numberFilter: true , width: 40},
+                {prop: 'status', name: 'Status', filterable: true, width: 90},
                 // {prop: 'team_name', name: 'Team Name', searchable: true,},
                 // {prop: 'age', name: 'Age', numberFilter: true},
-                {prop: '_action', name: 'View', actionName: 'view', width: 60},
-                {prop: '_action', name: 'Edit', actionName: 'edit', width: 60},
-                {prop: '_action', name: 'Delete', actionName: 'delete', width: 60}
+                {prop: '_action', name: 'View', actionName: 'view', width: 50},
+                {prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
+                {prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
             ],
         }
     },
@@ -174,6 +176,7 @@
                           assignment_class: response.data[i].assignment_class, 
                           assignment_tittle: response.data[i].assignment_tittle,
                           assignment_desc: response.data[i].assignment_desc, 
+                          difficulty_level: response.data[i].difficulty_level,
                           status: response.data[i].status};
                 this.ptls.push(temp);
               }
@@ -184,23 +187,27 @@
         this.edits = true;
         console.log("id : " + id);
             this.$axios.get('assignment/detail/' + id).then(response => {
-                this.assignment_id = response.data.id
+                this.id = response.data.id
                 this.assignment_class = response.data.assignment_class
                 this.assignment_tittle = response.data.assignment_tittle
                 this.assignment_desc = response.data.assignment_desc
                 this.project_number = response.data.project_number
                 this.io_number = response.data.io_number
                 this.difficulty_level = response.data.difficulty_level
-                this.assignment_user = response.data.assignment_user
-                this.assignment_report = response.data.assignment_report
+                // this.assignment_user = response.data.assignment_user
+                // this.assignment_report = response.data.assignment_report
                 console.log(response.data)
             }
             );
         },
-        edit(){
+        edit(ptls){
           const fd = new FormData();
               fd.append('_method', 'POST');
+<<<<<<< HEAD
               fd.set('id', this.assignment_id);
+=======
+              fd.set('id', this.id);
+>>>>>>> ce1d2330a538485281bb252b1165cc20d40e8f1a
               fd.set('project_number', this.project_number);
               fd.set('io_number', this.io_number);
               fd.set('assignment_class', this.assignment_class);
@@ -212,8 +219,13 @@
                   this.status = 'Update Profile Success!';
                   // console.log(this.status);
                   swal('Success', this.status, 'success');
-                  this.readPtls();
-              })
+                  this.$router.push('/')
+              }).catch(error => {
+                console.log(error.response.data.error);
+                this.status = 'Please Fill in All Data!';
+                // console.log(this.status);
+                 swal('Failed', this.status, 'warning');
+            })
         },
         // read() {
         //     this.$axios.get('assignment/ptl')
