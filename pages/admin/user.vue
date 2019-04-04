@@ -73,10 +73,10 @@
                 <label>Motto :</label>
                 <textarea v-model="motto" class="form-control" rows="4" id="motto"></textarea>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Start Date :</label>
                 <b-form-input type="date" id="date" v-model="start_date"> </b-form-input>
-            </div>
+            </div> -->
            </form>
          </b-modal>
     </b-col>
