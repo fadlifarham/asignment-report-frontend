@@ -16,8 +16,8 @@
           </b-input-group>
         </b-card-header>
           <div id="demo">
-            <vue-virtual-table  
-                    :data="ptls" 
+            <vue-virtual-table
+                    :data="ptls"
                     :config="tableConfig"
                     :height="500"
                     :itemHeight="55"
@@ -138,6 +138,7 @@
           errors: [],
           project_number: '',
           io_number: '',
+          assignment_id: '',
           assignment_class: '',
           assignment_tittle: '',
           assignment_desc: '',
@@ -169,13 +170,13 @@
           var temp;
           this.$axios.get('assignment/ptl').then(response => {
               for(let i=0;i<response.data.length;i++){
-                  temp = { id: response.data[i].id, 
-                          ptl_id: response.data[i].ptl_id, 
+                  temp = { id: response.data[i].id,
+                          ptl_id: response.data[i].ptl_id,
                           project_number: response.data[i].project_number,
-                          io_number: response.data[i].io_number, 
-                          assignment_class: response.data[i].assignment_class, 
+                          io_number: response.data[i].io_number,
+                          assignment_class: response.data[i].assignment_class,
                           assignment_tittle: response.data[i].assignment_tittle,
-                          assignment_desc: response.data[i].assignment_desc, 
+                          assignment_desc: response.data[i].assignment_desc,
                           difficulty_level: response.data[i].difficulty_level,
                           status: response.data[i].status};
                 this.ptls.push(temp);
@@ -187,7 +188,7 @@
         this.edits = true;
         console.log("id : " + id);
             this.$axios.get('assignment/detail/' + id).then(response => {
-                this.id = response.data.id
+                this.assignment_id = response.data.id
                 this.assignment_class = response.data.assignment_class
                 this.assignment_tittle = response.data.assignment_tittle
                 this.assignment_desc = response.data.assignment_desc
@@ -203,11 +204,7 @@
         edit(ptls){
           const fd = new FormData();
               fd.append('_method', 'POST');
-<<<<<<< HEAD
               fd.set('id', this.assignment_id);
-=======
-              fd.set('id', this.id);
->>>>>>> ce1d2330a538485281bb252b1165cc20d40e8f1a
               fd.set('project_number', this.project_number);
               fd.set('io_number', this.io_number);
               fd.set('assignment_class', this.assignment_class);
