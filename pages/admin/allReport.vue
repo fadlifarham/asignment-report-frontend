@@ -36,6 +36,9 @@
                 <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                   <i class="fa fa-edit"></i>
                 </b-button>
+                <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
+                  <i class="fa fa-trash-o"></i>
+                </b-button> -->
             </vue-virtual-table>
           </div>
         </b-card-body>
@@ -236,7 +239,7 @@
               { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 90},
               // { prop: 'attachment', name: 'Attachment',width: 120},
               { prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
-              { prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
+              // { prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
           ],
         }
     },
