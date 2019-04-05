@@ -105,8 +105,6 @@
   import VueVirtualTable from 'vue-virtual-table'
     import Vue from 'vue';
     Vue.use(require('vue-moment'));
-    import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    Vue.use(ClientTable, {}, false, 'bootstrap4');
     import JsonExcel from 'vue-json-excel'
     Vue.component('downloadExcel', JsonExcel)
     export default {

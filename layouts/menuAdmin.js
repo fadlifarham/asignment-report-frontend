@@ -71,6 +71,11 @@ export default {
         icon: 'icon-settings',
       },  
       // {
+      //   name: 'charts',
+      //   url: '/charts',
+      //   icon: 'icon-settings',
+      // }, 
+      // {
       //   name: 'ex',
       //   url: '/form',
       //   icon: 'icon-puzzle',

@@ -44,10 +44,8 @@
             name: 'people',
             id:'',
             full_name:'',
-            position:'',
-            start_date:'',
-            end_date:'',
-            ket:'',
+            start:'',
+            end:'',
             permissions: [],
             edits: false,
             errors: [],
@@ -59,35 +57,29 @@
             ],
              tableConfig: [
                 {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
-                {prop: 'id', name: 'ID', numberFilter: true, sortable: true, width: 40},
                 {prop: 'full_name', name: 'Name', searchable: true, sortable: true, width: 120},
-                {prop: 'position', name: 'Position', filterable: true, sortable: true, width: 100},
-                {prop: 'start_date', name: 'Start Date', sortable: true, width: 120},
-                {prop: 'end_date', name: 'End Date', sortable: true, width: 120},
-                {prop: 'ket', name: 'Keterangan', width: 120},
+                {prop: 'start', name: 'Start Permission', sortable: true, width: 120},
+                {prop: 'end', name: 'End Permission', sortable: true, width: 120},
             ],
         }
     },
     mounted(){
-        // this.readPermission();
+        this.readPermission();
     },
     methods: {
-        // readPermission() {
-        //   var temp;
-        //   this.$axios.get('admin/users').then(response => {
-        //       for(let i=0;i<response.data.length;i++){
-        //           temp = { id: response.data[i].id,
-        //                     full_name: response.data[i].full_name,
-        //                     email: response.data[i].email,
-        //                     position: response.data[i].role.name,
-        //                     start_date: response.data[i].start_date,
-        //                     end_date: response.data[i].end_date,
-        //                     ket: response.data[i].ket,};
-        //         this.permissions.push(temp);
-        //       }
-        //     console.log(this.permissions);
-        //   })
-        // },
+        readPermission() {
+          var temp;
+          this.$axios.get('admin/permission').then(response => {
+              for(let i=0;i<response.data.length;i++){
+                  temp = { id: response.data[i].id,
+                            full_name: response.data[i].user.full_name,
+                            start: response.data[i].start,
+                            end: response.data[i].end,};
+                this.permissions.push(temp);
+              }
+            console.log(this.permissions);
+          })
+        },
         scrollIntoView(evt) {
           evt.preventDefault()
           const href = evt.target.getAttribute('href')
