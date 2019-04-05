@@ -244,15 +244,15 @@
                     <b-row style="padding: 6px">
                         <b-col sm="4">BAI</b-col>
                         <b-col sm="8">
-                            <b-row><b-form-file id="bai" multiple="" accept=".pdf" :plain="true" v-model="bai" @change="baiHandler" ></b-form-file></b-row>
-                            <b-row style="color : blue">*.pdf</b-row>
+                            <b-row><b-form-file id="bai" multiple="" accept=".pdf, .jpg, .png" :plain="true" v-model="bai" @change="baiHandler" ></b-form-file></b-row>
+                            <b-row style="color : blue">*.pdf, *.jpg, *.png</b-row>
                         </b-col>
                     </b-row>
                     <b-row style="padding: 6px">
                         <b-col sm="4">TNC</b-col>
                         <b-col sm="5">
-                            <b-row><b-form-file accept=".pdf" id="tnc" multiple="" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-row>
-                            <b-row style="color : blue">*.pdf</b-row>
+                            <b-row><b-form-file accept=".pdf, .docx" id="tnc" multiple="" :plain="true" v-model="tnc" @change="tncHandler"></b-form-file></b-row>
+                            <b-row style="color : blue">*.pdf, *.docx</b-row>
                         </b-col>
                     </b-row>
                     <b-row style="padding: 6px">

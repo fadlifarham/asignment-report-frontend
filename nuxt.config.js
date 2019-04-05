@@ -1,4 +1,5 @@
 module.exports = {
+// export default {
   /*Modules
   */
  modules: [
@@ -7,14 +8,32 @@ module.exports = {
 
  plugins: [
   '~/plugins/axios',
+  { src: '~/plugins/virtual-table.js', ssr: false },
+  // '~/plugins/virtual-table',
+  '~/plugins/star-rating',
  ],
+
+ build: {
+  vendor: [
+    'virtual-table'
+  ]
+ },
+
+//  build: {
+//   vendor: [
+//     'vue-virtual-table'
+//   ],
+//   plugins: [
+        // '~/plugins/axios',
+//     { src: '~/plugins/vue-virtual-table.js', ssr: false }
+//   ]
+//  },
 
  axios: {
   // baseURL: "https://still-spire-77258.herokuapp.com/api/v1",
 
   // baseURL: "http://localhost:8000/api/",
-   baseURL: "http://10.14.36.79:8000/api",
-  // baseURL: "http://10.14.36.33:8000/api",
+   baseURL: "http://10.14.36.112:8000/api",
   credentials: false
  },
  auth: {
@@ -116,6 +135,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
+  //  vendor: ['vue-virtual-table'],
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({

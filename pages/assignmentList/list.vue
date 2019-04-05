@@ -11,7 +11,20 @@
               ref="content"
               style="position:relative; height:500px;"> -->
               <div id="people">
-                <vue-virtual-table 
+                <!-- <vue-virtual-table
+                    :config="tableConfig"
+                    :data="alls"
+                    :height="500"
+                    :itemHeight="55"
+                    :minWidth="1500"
+                    :selectable="true"
+                    :hoverHighlight="true"
+                    :enableExport="true"
+                    :language="'en'"
+                    v-on:changeSelection="handleSelectionChange"/> -->
+
+
+                <virtual-table
                     :config="tableConfig"
                     :data="alls"
                     :height="500"
@@ -27,7 +40,8 @@
                         <button @click="edit(scope.index, scope.row)">Edit</button>
                         <button @click="del(scope.index, scope.row)">Delete</button>
                     </template> -->
-                    </vue-virtual-table>
+                    </virtual-table>
+                    <!-- <vue-virtual-table/> -->
               </div>
             <!-- </b-card-body> -->
           </div>
@@ -50,17 +64,19 @@
   </b-row>
 </template>
 <script>
-    import VueVirtualTable from 'vue-virtual-table'
-    import Vue from 'vue';
-    Vue.use(require('vue-moment'));
-    import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    Vue.use(ClientTable, {}, false, 'bootstrap4');
-    import JsonExcel from 'vue-json-excel'
-    Vue.component('downloadExcel', JsonExcel)
+    // import VirtualTable from 'vue-virtual-table'
+    // import Vue from 'vue';
+    // Vue.use(require('vue-moment'));
+
+    import VirtualTable from '~/components/Tables/VirtualTable.vue'
+    // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+    // Vue.use(ClientTable, {}, false, 'bootstrap4');
+    // import JsonExcel from 'vue-json-excel'
+    // Vue.component('downloadExcel', JsonExcel)
 
     export default {
         components: {
-            VueVirtualTable
+            VirtualTable
         },
     data () {
         return {
