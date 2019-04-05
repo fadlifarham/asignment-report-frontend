@@ -204,11 +204,7 @@
         edit(ptls){
           const fd = new FormData();
               fd.append('_method', 'POST');
-<<<<<<< HEAD
               fd.set('id', this.id);
-=======
-              fd.set('id', this.assignment_id);
->>>>>>> ce59d1a9d15af531f69bec7fa1071d2b1fd56b59
               fd.set('project_number', this.project_number);
               fd.set('io_number', this.io_number);
               fd.set('assignment_class', this.assignment_class);

@@ -164,9 +164,17 @@
               {
                 label: 'Work Load (%)',
                 backgroundColor: '#9999ff',
-                data: [work_load]
+                data: [work_load],
+                scales: {
+                  yAxes: [{
+                      ticks: {
+                        stepSize: 50,
+                        maxTicksLimit: 3
+                      }
+                  }]
+                }
               },
-            ]
+            ],
           },
           this.dataCollectionQuality = {
             datasets: [
