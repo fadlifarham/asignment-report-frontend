@@ -123,7 +123,7 @@
                 {prop: 'place_birth', name: 'Place Birth', searchable: true, width: 70},
                 {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 80},
                 {prop: 'motto', name: 'Motto', width: 150},
-                {prop: 'picture', name: 'Picture', actionName: 'picture',width: 100},
+                // {prop: 'picture', name: 'Picture', actionName: 'picture',width: 100},
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},
                 // {prop: '_action', name: 'Delete', actionName: 'delete', width: 40}
             ],
@@ -147,7 +147,8 @@
                             place_birth: response.data[i].place_birth,
                             date_birth: response.data[i].date_birth,
                             motto: response.data[i].motto,
-                            picture: response.data[i].picture,};
+                            // picture: response.data[i].picture,
+                            };
                 this.users.push(temp);
               }
             console.log(this.users);
