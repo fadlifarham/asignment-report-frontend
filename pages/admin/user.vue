@@ -7,7 +7,7 @@
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All User</h5>
             </b-card-header>
               <div id="people">
-                <v-table 
+                <vue-virtual-table 
                     :data="users"
                     :config="tableConfig"
                     :height="500"
@@ -26,7 +26,7 @@
                     <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                         <i class="fa fa-trash-o"></i>
                     </b-button> -->
-                </v-table >
+                </vue-virtual-table >
               </div>
           </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
@@ -83,7 +83,6 @@
   </b-row>
 </template>
 <script>
-// import VueVirtualTable from '~/plugins/vue-virtual-table'
   import VueVirtualTable from 'vue-virtual-table'
   import Vue from 'vue';
     export default {
