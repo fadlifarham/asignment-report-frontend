@@ -107,7 +107,7 @@
 </style>
 
 <script>
-    import StarRating from 'vue-star-rating'
+    import StarRating from '~/components/Rating/StarRating.vue'
     import Multiselect from 'vue-multiselect'
 
     export default {

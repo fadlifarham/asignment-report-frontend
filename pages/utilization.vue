@@ -5,9 +5,9 @@
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Team Utilization</h5>
           </b-card-header>
               <div id="utils">
-                <vue-virtual-table 
+                <virtual-table
                     :config="tableConfig"
-                    :data="utils" 
+                    :data="utils"
                     :height="500"
                     :itemHeight="55"
                     :minWidth="1000"
@@ -21,7 +21,7 @@
                     slot-scope="props">
                     <i class="fa fa-bar-chart"></i>
                   </b-button>
-                </vue-virtual-table>
+                </virtual-table>
               </div>
   </div>
           <!-- <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
@@ -60,7 +60,7 @@
               </div>
             </b-col>
           </b-row>
-            
+
           </b-card>
       </b-modal>
     </div>
@@ -68,7 +68,7 @@
 
 </template>
 <script>
-  import VueVirtualTable from 'vue-virtual-table'
+  import VirtualTable from '~/components/Tables/VirtualTable.vue'
   import UtilizationBar from '~/components/charts/UtilizationBar'
 
   import Vue from 'vue';
@@ -81,7 +81,7 @@
       // mixins: [mixins.reactiveData],
       name: 'charts',
       components: {
-        VueVirtualTable,
+        VirtualTable,
         UtilizationBar,
       },
     data () {
