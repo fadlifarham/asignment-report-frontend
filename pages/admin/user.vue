@@ -83,9 +83,9 @@
   </b-row>
 </template>
 <script>
-import VueVirtualTable from '~/plugins/vue-virtual-table'
-  // import VueVirtualTable from 'vue-virtual-table'
-  // import Vue from 'vue';
+// import VueVirtualTable from '~/plugins/vue-virtual-table'
+  import VueVirtualTable from 'vue-virtual-table'
+  import Vue from 'vue';
     export default {
       components: {
             VueVirtualTable
