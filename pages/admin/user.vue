@@ -7,7 +7,7 @@
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All User</h5>
             </b-card-header>
               <div id="people">
-                <v-table 
+                <vue-virtual-table
                     :data="users"
                     :config="tableConfig"
                     :height="500"
@@ -26,7 +26,7 @@
                     <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                         <i class="fa fa-trash-o"></i>
                     </b-button> -->
-                </v-table >
+                </vue-virtual-table >
               </div>
           </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
@@ -43,13 +43,13 @@
             </div>
             <div class="form-group">
               <b-row style="margin: 3px">
-                <label>Position :</label> 
+                <label>Position :</label>
                 <h6 style="color : blue ">*please select again</h6>
               </b-row>
                   <b-form-select id="role_id"
                     :plain="true"
                     :options="select"
-                    value="Select Position" 
+                    value="Select Position"
                     v-model="role_id">
                   </b-form-select>
             </div>

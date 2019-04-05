@@ -6,13 +6,13 @@ export default {
         icon: 'icon-speedometer',
       },
       {
-        name: 'All Assignment',
-        url: '/admin/listAll',
+        name: 'All User',
+        url: '/admin/user',
         icon: 'icon-list',
       },
       {
-        name: 'All User',
-        url: '/admin/user',
+        name: 'All Assignment',
+        url: '/admin/listAll',
         icon: 'icon-list',
       },
       {
@@ -25,11 +25,11 @@ export default {
         url: '/admin/allPermission',
         icon: 'icon-list',
       },
-      {
-        name: 'Create Assignment',
-        url: '/createAssignment/create',
-        icon: 'icon-plus'
-      },
+      // {
+      //   name: 'Create Assignment',
+      //   url: '/createAssignment/create',
+      //   icon: 'icon-plus'
+      // },
       // {
       //   name: 'Assignment',
       //   url: '/createAssignment',
@@ -69,12 +69,12 @@ export default {
         name: 'Setting',
         url: '/admin/setting',
         icon: 'icon-settings',
-      },  
+      },
       // {
       //   name: 'charts',
       //   url: '/charts',
       //   icon: 'icon-settings',
-      // }, 
+      // },
       // {
       //   name: 'ex',
       //   url: '/form',
@@ -97,7 +97,6 @@ export default {
       //     },
       //   ]
       // },
-  
+
     ],
   }
-  
