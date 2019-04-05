@@ -13,7 +13,7 @@
                                     :options="options"
                                     style="border-radius: 5px; vertical-align: center"
                                     value="Select Name"
-                                    v-model="engineer">
+                                    v-model="user_id">
                                 </b-form-select>
                             </b-col>
                         </b-row>
@@ -24,7 +24,8 @@
                             <b-col sm="0">:</b-col>
                             <b-col>
                                 <b-form-input type="date"
-                                    id="start_date"
+                                    id="start"
+                                    v-model="start"
                                     style="border-radius: 5px; vertical-align: center">
                                 </b-form-input>
                             </b-col>
@@ -36,7 +37,8 @@
                             <b-col sm="0">:</b-col>
                             <b-col>
                                 <b-form-input type="date"
-                                    id="date"
+                                    id="end"
+                                    v-model="end"
                                     style="border-radius: 5px; vertical-align: center">
                                 </b-form-input>
                             </b-col>
@@ -78,6 +80,9 @@ export default {
         return{
             engineer: null,
             start_date: '',
+            start:'',
+            end:'',
+            user_id:null,
             selected: null,
             options: [
                 { value: null, text: 'Select Name', disabled: true },
@@ -106,7 +111,7 @@ export default {
                     this.status = 'Create Assignment Success!';
                     console.log(this.status);
                     swal('Success', this.status, 'success');
-                    this.reset();
+                    this.resetApp();
                 }, response => {
                     this.status = 'Please Fill In All Data';
                     console.log(this.status);
@@ -114,10 +119,28 @@ export default {
             })
         },
         submitPermission(){
-
+            this.$axios.post('/admin/permission', {
+                user_id: this.user_id,
+                start: this.start,
+                end: this.end
+                }).then(response => {
+                    this.status = 'Submit Permission Success!';
+                    console.log(this.status);
+                    swal('Success', this.status, 'success');
+                    this.reset();
+                }, response => {
+                    this.status = 'Please Fill In All Data';
+                    console.log(this.status);
+                    swal('Failed', this.status, 'warning');
+            })
+        },
+        resetApp(){
+            this.start_date = "";
         },
         reset(){
-            this.start_date = "";
+            this.user_id = "";
+            this.start = "";
+            this.end = "";
         }
     },
 

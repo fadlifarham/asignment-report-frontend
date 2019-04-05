@@ -98,12 +98,12 @@
             opsi: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
             tableConfig: [
                 {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
-                {prop: 'full_name', name: ' Name', searchable: true, sortable: true, width: 180},
+                {prop: 'full_name', name: ' Name', searchable: true, sortable: true, width: 120},
                 {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, width: 40},
-                {prop: 'work_load', name: ' Work Load', numberFilter: true, sortable: true, width: 40},
-                {prop: 'work_quality', name: ' Work Quality', numberFilter: true, sortable: true, width: 40},
+                {prop: 'work_load', name: ' Work Load (%)', numberFilter: true, sortable: true, width: 60},
+                {prop: 'work_quality', name: ' Work Quality (%)', numberFilter: true, sortable: true, width: 60},
                 {prop: 'sppd', name: ' SPPD', numberFilter: true, sortable: true, width: 40},
-                {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, width: 70},
+                {prop: 'complete_assignment', name: ' Complite Assignment', numberFilter: true, sortable: true, width: 80},
                 {prop: '_action', name: 'Show', actionName: 'show', width: 50}
             ],
         }
@@ -162,11 +162,20 @@
           this.dataCollectionLoad = {
             datasets: [
               {
+                
                 label: 'Work Load (%)',
                 backgroundColor: '#9999ff',
-                data: [work_load]
+                data: [work_load],
+                scales: {
+                  yAxes: [{
+                      ticks: {
+                        stepSize: 50,
+                        maxTicksLimit: 3
+                      }
+                  }]
+                }
               },
-            ]
+            ],
           },
           this.dataCollectionQuality = {
             datasets: [

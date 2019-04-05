@@ -21,6 +21,11 @@ export default {
         icon: 'icon-list',
       },
       {
+        name: 'All Permission',
+        url: '/admin/allPermission',
+        icon: 'icon-list',
+      },
+      {
         name: 'Create Assignment',
         url: '/createAssignment/create',
         icon: 'icon-plus'
@@ -65,6 +70,11 @@ export default {
         url: '/admin/setting',
         icon: 'icon-settings',
       },  
+      // {
+      //   name: 'charts',
+      //   url: '/charts',
+      //   icon: 'icon-settings',
+      // }, 
       // {
       //   name: 'ex',
       //   url: '/form',
