@@ -23,7 +23,7 @@
                     :language="'en'"
                     v-on:changeSelection="handleSelectionChange"/> -->
 
-
+                <no-ssr placeholder="Loading.....">
                 <virtual-table
                     :config="tableConfig"
                     :data="alls"
@@ -40,7 +40,8 @@
                         <button @click="edit(scope.index, scope.row)">Edit</button>
                         <button @click="del(scope.index, scope.row)">Delete</button>
                     </template> -->
-                    </virtual-table>
+                  </virtual-table>
+                  </no-ssr>
                     <!-- <vue-virtual-table/> -->
               </div>
             <!-- </b-card-body> -->
@@ -68,15 +69,16 @@
     // import Vue from 'vue';
     // Vue.use(require('vue-moment'));
 
-    import VirtualTable from '~/components/Tables/VirtualTable.vue'
+    // import VirtualTable from '~/components/Tables/VirtualTable.vue'
     // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
     // Vue.use(ClientTable, {}, false, 'bootstrap4');
     // import JsonExcel from 'vue-json-excel'
     // Vue.component('downloadExcel', JsonExcel)
 
     export default {
+        // name: 'vue-virtual-table',
         components: {
-            VirtualTable
+            // VirtualTable
         },
     data () {
         return {

@@ -7,7 +7,7 @@
         <b-button v-b-modal.picture size="md" variant="primary" style="margin: 10px; border-radius: 10px" class="fa fa-pencil"></b-button>
         <br>
         <b-col style="padding: 10px" class="text-right">
-            
+
         </b-col>
     </b-col>
     <!-- <b-col sm="2"></b-col> -->
@@ -58,7 +58,7 @@
                 </b-button>
             </b-col>
             </b-card>
-            
+
         </div>
     </b-col>
     <b-col lg="2"></b-col>
@@ -88,7 +88,7 @@
             </div>
             <div class="form-group">
                 <label>Motto :</label>
-                <textarea name="motto" id="motto" cols="30" rows="5" class="form-control" 
+                <textarea name="motto" id="motto" cols="30" rows="5" class="form-control"
                             placeholder="Motto" v-model="motto"></textarea>
             </div>
             <!-- <div class="form-group">
@@ -117,13 +117,13 @@
         <form @submit.prevent ="editPassword()">
             <div class="form-group">
                 <label>Password :</label>
-                <input type="password" v-validate="'required'" placeholder="Password" 
+                <input type="password" v-validate="'required'" placeholder="Password"
                 class="form-control" v-model="password" ref="password">
                 <!-- <span>{{ errors.first('password') }}</span> -->
             </div>
             <div class="form-group">
                 <label>Confirm Password :</label>
-                <input type="password" v-validate="'required|confirmed:password'" placeholder="Confirm Password" 
+                <input type="password" v-validate="'required|confirmed:password'" placeholder="Confirm Password"
                 class="form-control" v-model="password_confirmation" data-vv-as="password">
                 <!-- <span>{{ errors.first('confirm_password') }}</span> -->
             </div>
@@ -145,7 +145,7 @@
 import Vue from 'vue'
 import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate);
-import VModal from 'vue-js-modal'
+// import VModal from 'vue-js-modal'
 
     export default {
         component: {

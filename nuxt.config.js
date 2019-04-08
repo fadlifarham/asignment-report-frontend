@@ -6,18 +6,16 @@ module.exports = {
   '@nuxtjs/axios', '@nuxtjs/auth',
  ],
 
- plugins: [
-  '~/plugins/axios',
-  { src: '~/plugins/virtual-table.js', ssr: false },
-  // '~/plugins/virtual-table',
-  '~/plugins/star-rating',
- ],
+//  plugins: [
+//   '~plugins/axios'
+//   // { src: "~/plugins/virtual-table.js", ssr: false },
+//   // // '~/plugins/virtual-table',
+//   // {src: "~/plugins/star-rating", ssr:true},
+//  ],
 
- build: {
-  vendor: [
-    'virtual-table'
-  ]
- },
+//  build: {
+
+//  },
 
 //  build: {
 //   vendor: [
@@ -33,7 +31,7 @@ module.exports = {
   // baseURL: "https://still-spire-77258.herokuapp.com/api/v1",
 
   // baseURL: "http://localhost:8000/api/",
-   baseURL: "http://10.14.36.112:8000/api",
+   baseURL: "http://10.14.36.84:8000/api",
   credentials: false
  },
  auth: {
@@ -125,6 +123,11 @@ module.exports = {
   ** Import Plugin
    */
   plugins: [
+    // {src: "~/plugins/axios"},
+    { src: '~/plugins/virtual-table.js', ssr: false },
+    // '~/plugins/virtual-table',
+    {src: '~/plugins/star-rating', ssr:false},
+
     { src: '~plugins/bootstrap-vue.js', ssr: true }
   ],
 
@@ -132,6 +135,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: [
+      "vue-virtual-table",
+      "vue-star-rating"
+    ],
     /*
     ** Run ESLint on save
     */

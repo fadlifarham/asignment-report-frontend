@@ -16,7 +16,8 @@
           </b-input-group>
         </b-card-header>
           <div id="demo">
-            <vue-virtual-table
+            <no-ssr placeholder="Loading...">
+            <virtual-table
                     :data="ptls"
                     :config="tableConfig"
                     :height="500"
@@ -37,7 +38,8 @@
                 <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
                 </b-button>
-            </vue-virtual-table >
+            </virtual-table >
+            </no-ssr>
           </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right">Export to Excel</b-button> -->
         </div>
@@ -112,20 +114,21 @@
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <script>
-  import StarRating from 'vue-star-rating'
-  import Multiselect from 'vue-multiselect'
-  import VueVirtualTable from 'vue-virtual-table'
     import Vue from 'vue';
+    // import StarRating from 'vue-star-rating'
+    import Multiselect from 'vue-multiselect'
+    // import VueVirtualTable from 'vue-virtual-table'
+
     Vue.use(require('vue-moment'));
-    import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    Vue.use(ClientTable, {}, false, 'bootstrap4');
-    import JsonExcel from 'vue-json-excel'
-    Vue.component('downloadExcel', JsonExcel)
+    // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+    // Vue.use(ClientTable, {}, false, 'bootstrap4');
+    // import JsonExcel from 'vue-json-excel'
+    // Vue.component('downloadExcel', JsonExcel)
     export default {
       components: {
         Multiselect,
-        StarRating,
-        VueVirtualTable
+        // StarRating,
+        // VueVirtualTable
       },
     validate(params) {
       return true

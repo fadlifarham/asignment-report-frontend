@@ -5,6 +5,7 @@
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">Team Utilization</h5>
           </b-card-header>
               <div id="utils">
+                <no-ssr placeholder="Loading...">
                 <virtual-table
                     :config="tableConfig"
                     :data="utils"
@@ -22,6 +23,7 @@
                     <i class="fa fa-bar-chart"></i>
                   </b-button>
                 </virtual-table>
+                </no-ssr>
               </div>
   </div>
           <!-- <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
@@ -68,7 +70,7 @@
 
 </template>
 <script>
-  import VirtualTable from '~/components/Tables/VirtualTable.vue'
+  // import VirtualTable from '~/components/Tables/VirtualTable.vue'
   import UtilizationBar from '~/components/charts/UtilizationBar'
 
   import Vue from 'vue';
@@ -81,7 +83,7 @@
       // mixins: [mixins.reactiveData],
       name: 'charts',
       components: {
-        VirtualTable,
+        // VirtualTable,
         UtilizationBar,
       },
     data () {
@@ -162,7 +164,7 @@
           this.dataCollectionLoad = {
             datasets: [
               {
-                
+
                 label: 'Work Load (%)',
                 backgroundColor: '#9999ff',
                 data: [work_load],

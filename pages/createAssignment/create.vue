@@ -107,13 +107,13 @@
 </style>
 
 <script>
-    import StarRating from '~/components/Rating/StarRating.vue'
+    // import StarRating from '~/components/Rating/StarRating.vue'
     import Multiselect from 'vue-multiselect'
 
     export default {
     components: {
         Multiselect,
-        StarRating
+        // StarRating
     },
     data () {
         return {

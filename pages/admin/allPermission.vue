@@ -10,7 +10,8 @@
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Permission</h5>
             </b-card-header>
               <div id="people">
-                <vue-virtual-table 
+                <no-ssr placeholder="Loading...">
+                <virtual-table
                     :data="permissions"
                     :config="tableConfig"
                     :height="500"
@@ -22,7 +23,8 @@
                     :language="'en'"
                     :bordered="true"
                     v-on:changeSelection="handleSelectionChange">
-                </vue-virtual-table>
+                </virtual-table>
+                </no-ssr>
               </div>
           </div>
         </div>
@@ -30,14 +32,14 @@
   </b-row>
 </template>
 <script>
-  import VueVirtualTable from 'vue-virtual-table'
+  // import VueVirtualTable from 'vue-virtual-table'
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
-  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    Vue.use(ClientTable, {}, false, 'bootstrap4');
+  // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+  //   Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
       components: {
-            VueVirtualTable
+            // VueVirtualTable
         },
     data () {
         return {

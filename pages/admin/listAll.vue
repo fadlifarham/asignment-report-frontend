@@ -8,7 +8,8 @@
             </b-card-header>
             <div id="people"
               >
-                <vue-virtual-table 
+                <no-ssr placeholder="Loading...">
+                <virtual-table
                     :config="columns"
                     :data="assignments"
                     :height="500"
@@ -27,7 +28,8 @@
                     <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                         <i class="fa fa-trash-o"></i>
                     </b-button>  -->
-                </vue-virtual-table>
+                </virtual-table>
+                </no-ssr>
             </div>
           </div>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
@@ -100,18 +102,18 @@
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <script>
-  import StarRating from 'vue-star-rating'
+  // import StarRating from 'vue-star-rating'
   import Multiselect from 'vue-multiselect'
-  import VueVirtualTable from 'vue-virtual-table'
+  // import VueVirtualTable from 'vue-virtual-table'
     import Vue from 'vue';
     Vue.use(require('vue-moment'));
-    import JsonExcel from 'vue-json-excel'
-    Vue.component('downloadExcel', JsonExcel)
+    // import JsonExcel from 'vue-json-excel'
+    // Vue.component('downloadExcel', JsonExcel)
     export default {
     components: {
         Multiselect,
-        StarRating,
-        VueVirtualTable
+        // StarRating,
+        // VueVirtualTable
     },
     validate(params) {
       return true
@@ -170,8 +172,8 @@
                   }
                   temp = { id: response.data[i].id,
                             project_number: response.data[i].project_number,
-                            io_number: response.data[i].io_number, 
-                            assignment_class: response.data[i].assignment_class, 
+                            io_number: response.data[i].io_number,
+                            assignment_class: response.data[i].assignment_class,
                             assignment_tittle: response.data[i].assignment_tittle,
                             assignment_desc: response.data[i].assignment_desc,
                             difficulty_level: response.data[i].difficulty_level,
@@ -241,7 +243,7 @@
         this.difficulty_level= difficulty_level;
         // console.log(this.rating);
       },
-      
+
       deleteAss(id){
           console.log("id : " + id)
           if (confirm("Are you sure you want to delete this item?")) {
@@ -256,7 +258,7 @@
                 })
             }
         },
-      
+
         getBadge (status) {
           return status === 'On Progress' ? 'success'
             : status === 'Close' ? 'secondary'
@@ -272,7 +274,7 @@
           }
         }
       },
-      
+
       exportToExcel() {
         this.$axios.get('assignment/all/export').then(response => {
           this.apply = response.data

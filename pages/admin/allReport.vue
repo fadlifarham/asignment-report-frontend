@@ -20,7 +20,8 @@
           ref="content"
           style="position:relative; height:600px;">
           <div id="demo">
-            <vue-virtual-table
+            <no-ssr placeholder="Loading...">
+            <virtual-table
               :config="columns"
               :data="ars"
               :height="500"
@@ -39,7 +40,8 @@
                 <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
                   <i class="fa fa-trash-o"></i>
                 </b-button> -->
-            </vue-virtual-table>
+            </virtual-table>
+            </no-ssr>
           </div>
         </b-card-body>
         <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
@@ -183,12 +185,12 @@
 <script>
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
-  import VueVirtualTable from 'vue-virtual-table'
-  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    Vue.use(ClientTable, {}, false, 'bootstrap4');
+  // import VueVirtualTable from 'vue-virtual-table'
+  // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+  //   Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
     components: {
-        VueVirtualTable,
+        // VueVirtualTable,
     },
     data () {
         return {
@@ -253,12 +255,12 @@
           this.$axios.get('admin/ar/').then(response => {
               for(let i=0;i<response.data.length;i++){
                   let files = ''
-                  temp = { 
+                  temp = {
                     id: response.data[i].id,
-                    assignment_id: response.data[i].assignment_id, 
+                    assignment_id: response.data[i].assignment_id,
                     assignment_type: response.data[i].assignment_type,
-                    sppd_status: response.data[i].sppd_status, 
-                    day_number: response.data[i].day_number, 
+                    sppd_status: response.data[i].sppd_status,
+                    day_number: response.data[i].day_number,
                     // brief_work: response.data[i].brief_work,
                     // other: response.data[i].other,
                     // result: response.data[i].result,
