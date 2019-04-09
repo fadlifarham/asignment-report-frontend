@@ -125,6 +125,7 @@ Vue.use(VeeValidate);
             motto:'',
             start_date:'',
             password:'',
+            nip:'',
             users: [],
             edits: false,
             roles:[],
@@ -135,7 +136,7 @@ Vue.use(VeeValidate);
             ],
              tableConfig: [
                 {prop: '_index', name: 'No ', summary: 'COUNT', width: 40},
-                {prop: 'id', name: 'ID', numberFilter: true, sortable: true, width: 40},
+                {prop: 'nip', name: 'NIP', numberFilter: true, sortable: true, width: 100},
                 {prop: 'full_name', name: 'Name', searchable: true, sortable: true, width: 120},
                 {prop: 'email', name: 'Email', searchable: true, sortable: true, width: 150},
                 {prop: 'position', name: 'Potition', filterable: true, width: 70},
@@ -159,6 +160,7 @@ Vue.use(VeeValidate);
           this.$axios.get('admin/users').then(response => {
               for(let i=0;i<response.data.length;i++){
                   temp = { id: response.data[i].id,
+                            nip: response.data[i].nip,
                             full_name: response.data[i].full_name,
                             email: response.data[i].email,
                             position: response.data[i].role.name,
@@ -192,6 +194,7 @@ Vue.use(VeeValidate);
             this.$axios.get('/admin/edit_user/'+ id)
               .then(response => {
                   this.id = response.data.id
+                  this.nip = response.data.nip
                   this.full_name = response.data.full_name
                   this.email = response.data.email
                   this.position = response.data.role.name
@@ -210,7 +213,7 @@ Vue.use(VeeValidate);
         edit(users) {
             const fd = new FormData();
             fd.append('_method', 'POST');
-            fd.set('id', this.id);
+            fd.set('nip', this.nip);
             fd.set('full_name', this.full_name);
             fd.set('email', this.email);
             fd.set('role_id', this.role_id);

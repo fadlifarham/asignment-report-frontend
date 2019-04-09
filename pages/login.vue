@@ -50,6 +50,7 @@
                 <br>
                 Email &emsp; &emsp; &nbsp; : (Masukkan Email Anda)<br>
                 Password &emsp; : (Masukkan Password Anda)<br>
+                NIP/CN&emsp; &emsp;: (Masukkan NIP / Contrat Number Anda)<br>
                 No. Telp &emsp; &nbsp; : (Masukkan No. Telp Anda)<br>
                 Position &emsp; &nbsp; : (Manager/SPV/PTL/Field Service/Magang)
                 <br>
@@ -114,7 +115,7 @@ export default {
 </script>
 <style>
 .bg {
-  background-image: url("~assets/background.jpeg");
+  background-image: url("~/static/img/background.jpeg");
   height: 100%;
   /* opacity: 0.6; */
   background-position: center;
