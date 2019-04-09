@@ -11,7 +11,7 @@
                   <b-input-group-text><i class="icon-user"></i></b-input-group-text>
                 </b-input-group-prepend>
                 <input type="text" class="form-control" id="full_name" placeholder="Full Name" v-model="full_name">
-              </b-input-group>
+              </b-input-group>  
 
               <b-input-group class="mb-3">
                 <b-input-group-prepend>
@@ -25,6 +25,13 @@
                   <b-input-group-text><i class="icon-lock"></i></b-input-group-text>
                 </b-input-group-prepend>
                 <input type="password" class="form-control" id="password" placeholder="Password" v-model="password">
+              </b-input-group>
+
+              <b-input-group class="mb-3">
+                <b-input-group-prepend>
+                  <b-input-group-text><i class="icon-user"></i></b-input-group-text>
+                </b-input-group-prepend>
+                <input type="text" class="form-control" id="nip" placeholder="NIP / Contract Number" v-model="nip">
               </b-input-group>
 
               <b-input-group class="mb-3">
@@ -61,6 +68,7 @@ export default {
             email: '',
             password: '',
             phone_number: '',
+            nip:'',
             role_id: null,
             errors: [],
             selected: null,
@@ -89,6 +97,7 @@ export default {
           full_name: this.full_name,
           email: this.email,
           password: this.password,
+          nip: this.nip,
           phone_number: this.phone_number,
           role_id: this.role_id,
         }).then(response => {
@@ -106,6 +115,7 @@ export default {
         this.full_name = "";
         this.email = "";
         this.password = "";
+        this.nip = "";
         this.phone_number = "";
         this.role_id = "";
       }
