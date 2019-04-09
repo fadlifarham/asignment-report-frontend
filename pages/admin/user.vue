@@ -136,7 +136,7 @@ Vue.use(VeeValidate);
             ],
              tableConfig: [
                 {prop: '_index', name: 'No ', summary: 'COUNT', width: 40},
-                {prop: 'nip', name: 'NIP', numberFilter: true, sortable: true, width: 100},
+                {prop: 'nip', name: 'ID', numberFilter: true, sortable: true, width: 100},
                 {prop: 'full_name', name: 'Name', searchable: true, sortable: true, width: 120},
                 {prop: 'email', name: 'Email', searchable: true, sortable: true, width: 150},
                 {prop: 'position', name: 'Potition', filterable: true, width: 70},
