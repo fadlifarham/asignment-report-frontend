@@ -9,19 +9,19 @@
 
       <br><br>
       <b-row class="justify-content-center">
-        <b-col md="8">
+        <b-col md="6" class="content">
           <b-card-group>
             <b-card no-body class="p-4">
               <b-card-body>
-                <center><h1 class="text-muted">Assignment Report Online</h1>
-                  <h4 class="text-muted">Indonesia Comnets Plus SBU Semarang</h4>
+                <center><h2 class="text-muted">Assignment Report Online</h2>
+                  <h5 class="text-muted">Indonesia Comnets Plus SBU Semarang</h5>
                 </center>
                 <br>
                 <h3>Login</h3>
                 <p class="text-muted">Masuk Dengan Akun Anda</p>
                 <b-input-group class="mb-3">
-                  <b-input-group-prepend><b-input-group-text><i class="icon-user"></i></b-input-group-text></b-input-group-prepend>
-                  <input type="email" v-model="email" class="form-control" placeholder="Username">
+                  <b-input-group-prepend><b-input-group-text><i class="fa fa-envelope-o"></i></b-input-group-text></b-input-group-prepend>
+                  <input type="email" v-model="email" class="form-control" placeholder="Email">
                 </b-input-group>
                 <b-input-group class="mb-4">
                   <b-input-group-prepend><b-input-group-text><i class="icon-lock"></i></b-input-group-text></b-input-group-prepend>
@@ -40,7 +40,7 @@
             </b-card>
           </b-card-group>
           <br><br>
-          <b-modal id="show" size="lg" title="Register User Information">
+          <b-modal id="show" size="md" title="Register User Information">
             <div class="form-group">
                 Silahkan Mengirimkan Email ke <b>assignmentonline1@gmail.com</b> <br>
                 Dengan Subject : <b>Register User</b> <br>
@@ -123,8 +123,8 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-h1{
-  color: black;
+.content{
+  opacity: 0.8;
 }
 </style>
 
