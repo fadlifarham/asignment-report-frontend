@@ -40,7 +40,9 @@
             </b-card>
           </b-card-group>
           <br><br>
-          <b-modal id="show" size="md" title="Register User Information">
+        </b-col>
+      </b-row>
+      <b-modal id="show" size="md" title="Register User Information">
             <div class="form-group">
                 Silahkan Mengirimkan Email ke <b>assignmentonline1@gmail.com</b> <br>
                 Dengan Subject : <b>Register User</b> <br>
@@ -52,12 +54,8 @@
                 Position &emsp; &nbsp; : (Manager/SPV/PTL/Field Service/Magang)
                 <br>
                 <br>
-
-            </div>
-         </b-modal>
-
-        </b-col>
-      </b-row>
+          </div>
+      </b-modal>
     </div>
   </div>
 </div>
