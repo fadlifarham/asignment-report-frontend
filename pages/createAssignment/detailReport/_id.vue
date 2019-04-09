@@ -6,21 +6,18 @@
             label-for="assignment_id"
             :label-cols="4"
             :horizontal="true"> : {{assignment_id}}
-            <!-- <b-form-input  id="assignmentId" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Class"
             label-for="assignment_class"
             :label-cols="4"
             :horizontal="true"> : {{assignment_class}}
-            <!-- <b-form-input  id="assignmentClass" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Title"
             label-for="assignment_title"
             :label-cols="4"
             :horizontal="true">  : {{assignment_tittle}}
-            <!-- <b-form-input  id="assignmentTitle" type="text"></b-form-input> -->
           </b-form-group>
     </b-col>
     <b-col lg="12">
@@ -178,14 +175,12 @@
                                 <b-col>
                                     <b-button :href="'//' + file.filename" target="_blank" size="sm" style="margin: 10px">Open</b-button>
                                 </b-col>
-                                <!-- <b-col sm="5"><b-form-file id="tnc" :plain="true" v-model="tnc" @change="onFileSelected"></b-form-file></b-col> -->
                             </b-row>
                             <b-row  v-if="file.type=='selfie'" style="padding: 6px">
                                 <b-col sm="4">Selfie/Wefie at Site with time/location stamp</b-col>
                                 <b-col>
                                     <b-button :href="'//' + file.filename" target="_blank" size="sm" style="margin: 10px">Open</b-button>
                                 </b-col>
-                                <!-- <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col> -->
                             </b-row>
                         </b-col>
                     </b-row>
@@ -194,13 +189,11 @@
                         <b-col>
                             <b-button :href="'//' + other" target="_blank" size="sm" style="margin: 10px">Open</b-button>
                         </b-col>
-                        <!-- <b-col sm="5"><b-form-file id="photo" :plain="true" v-model="photo" @change="onFileSelected"></b-form-file></b-col> -->
                     </b-row>
                 </b-col>
             </b-row>
             <b-row>
             <b-col style="padding: 10px" class="text-right">
-                    <!-- <b-button @click="addStore" size="lg" variant="primary" style="margin: 10px">Submit for Approval</b-button> -->
                     <b-button @click="back(assignment_id)" size="lg" variant="danger" style="margin: 10px">Back</b-button>
             </b-col>
             </b-row>
@@ -215,8 +208,6 @@ export default {
         StarRating
     },
     validate(params) {
-      // return /^\d+$/.test(params.id)]
-      // console.log("params " + params)
       return true
     },
     props: ['id'],
@@ -247,10 +238,6 @@ export default {
             cp: '',
             pic: '',
             files: [],
-            // assignment_user:[],
-            // assignment_report:[],
-            // user_id:[],
-            // rating: 0,
             errors: [],
         }
     },

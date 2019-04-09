@@ -41,7 +41,6 @@
             </virtual-table >
             </no-ssr>
           </div>
-        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right">Export to Excel</b-button> -->
         </div>
         <b-modal id="show" size="lg" title="Edit Assignmnet" @ok="edit()">
            <form @submit.prevent ="edit()">
@@ -115,20 +114,12 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <script>
     import Vue from 'vue';
-    // import StarRating from 'vue-star-rating'
     import Multiselect from 'vue-multiselect'
-    // import VueVirtualTable from 'vue-virtual-table'
 
     Vue.use(require('vue-moment'));
-    // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    // Vue.use(ClientTable, {}, false, 'bootstrap4');
-    // import JsonExcel from 'vue-json-excel'
-    // Vue.component('downloadExcel', JsonExcel)
     export default {
       components: {
         Multiselect,
-        // StarRating,
-        // VueVirtualTable
       },
     validate(params) {
       return true
@@ -147,7 +138,7 @@
           assignment_desc: '',
           difficulty_level: '',
           tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 50},
+                {prop: '_index', name: 'No ', summary: 'COUNT', width: 50},
                 {prop: 'id', name: 'ID', searchable: true, sortable: true, width: 120},
                 {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true, width: 120},
                 {prop: 'io_number', name: 'IO Number', searchable: true, sortable: true , width: 120},
@@ -156,8 +147,6 @@
                 {prop: 'assignment_desc', name: 'Description', width: 300},
                 {prop: 'difficulty_level', name: 'Level', numberFilter: true , width: 40},
                 {prop: 'status', name: 'Status', filterable: true, width: 90},
-                // {prop: 'team_name', name: 'Team Name', searchable: true,},
-                // {prop: 'age', name: 'Age', numberFilter: true},
                 {prop: '_action', name: 'View', actionName: 'view', width: 50},
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
                 {prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
@@ -198,8 +187,6 @@
                 this.project_number = response.data.project_number
                 this.io_number = response.data.io_number
                 this.difficulty_level = response.data.difficulty_level
-                // this.assignment_user = response.data.assignment_user
-                // this.assignment_report = response.data.assignment_report
                 console.log(response.data)
             }
             );
@@ -217,23 +204,14 @@
               this.$axios.post('/assignment/edit', fd)
               .then(response => {
                   this.status = 'Edit Success!';
-                  // console.log(this.status);
                   swal('Success', this.status, 'success');
                   this.$router.push('/')
               }).catch(error => {
                 console.log(error.response.data.error);
                 this.status = 'Please Fill in All Data!';
-                // console.log(this.status);
                  swal('Failed', this.status, 'warning');
             })
         },
-        // read() {
-        //     this.$axios.get('assignment/ptl')
-        //     .then(response => {
-        //         this.ptls = response.data;
-        //         console.log(this.ptls);
-        //     })
-        // },
         getBadge (status) {
         return status === 'On Progress' ? 'success'
           : status === 'Close' ? 'secondary'
@@ -275,20 +253,7 @@
         },
         setRating: function(difficulty_level){
           this.difficulty_level= difficulty_level;
-          // console.log(this.rating);
         },
-        // show:function () {
-        //         this.ID = 'GET COW ID HERE'
-        //       var data = new FormData()
-        //       data.append('function','show')
-        //         data.append('ID',this.ID)
-        //       axios.post(this.url,data)
-        //           .then( function (response ) {
-        //       }.bind(this)).catch(function (error) {
-
-        //       })
-
-        //     },
     },
 
     middleware: "forPtl"

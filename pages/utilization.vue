@@ -26,7 +26,6 @@
                 </no-ssr>
               </div>
   </div>
-          <!-- <b-button variant="secondary" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
     <div>
       <b-modal id="chart" size="lg" title="Performance Member">
         <b-card>
@@ -70,7 +69,6 @@
 
 </template>
 <script>
-  // import VirtualTable from '~/components/Tables/VirtualTable.vue'
   import UtilizationBar from '~/components/charts/UtilizationBar'
 
   import Vue from 'vue';
@@ -99,7 +97,7 @@
             dataCollectionComplete: [],
             opsi: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
             tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: '_index', name: 'No ', summary: 'COUNT', width: 40},
                 {prop: 'full_name', name: ' Name', searchable: true, sortable: true, width: 120},
                 {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, width: 40},
                 {prop: 'work_load', name: ' Work Load (%)', numberFilter: true, sortable: true, width: 60},
@@ -110,10 +108,8 @@
             ],
         }
     },
-    // extends: Bar,
     mounted(){
         this.readUsers();
-        // this.renderChart(this.chartData)
     },
     methods: {
         readUsers() {
@@ -134,24 +130,6 @@
               console.log(this.utils);
             })
         },
-        // chart(){
-        //   axios.get('https://localhost:44379/api/DailyStudents')
-        //   .then(response => {
-        //     // JSON responses are automatically parsed.
-        //     const responseData = response.data
-        //     this.chartData = {
-        //       labels: ['Work Load', 'Work Quality', 'SPPD', 'Complite Assignment'],
-        //       datasets: [
-        //         label: 'Performance',
-        //         backgroundColor: '#538cc6',
-        //         data: responseData.map(item => item.totalStudents)
-        //       ]
-        //     }
-        //   })
-        //   .catch(e => {
-        //     this.errors.push(e)
-        //   })
-        // },
         getBadge (status) {
         return status === 'Approve' ? 'success'
           : status === 'Done' ? 'secondary'
@@ -160,7 +138,6 @@
         },
 
         setData(work_load, work_quality, sppd, complete_assignment) {
-          // console.log("WL : " + work_load)
           this.dataCollectionLoad = {
             datasets: [
               {

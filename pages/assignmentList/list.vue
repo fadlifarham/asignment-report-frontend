@@ -6,23 +6,7 @@
             <b-card-header>
               <h5 id="traffic" class="card-title mb-0" style="padding : 5px">All Assignment</h5>
             </b-card-header>
-            <!-- <b-card-body
-              id="nav-scroller"
-              ref="content"
-              style="position:relative; height:500px;"> -->
               <div id="people">
-                <!-- <vue-virtual-table
-                    :config="tableConfig"
-                    :data="alls"
-                    :height="500"
-                    :itemHeight="55"
-                    :minWidth="1500"
-                    :selectable="true"
-                    :hoverHighlight="true"
-                    :enableExport="true"
-                    :language="'en'"
-                    v-on:changeSelection="handleSelectionChange"/> -->
-
                 <no-ssr placeholder="Loading.....">
                 <virtual-table
                     :config="tableConfig"
@@ -35,50 +19,17 @@
                     :enableExport="true"
                     :language="'en'"
                     v-on:changeSelection="handleSelectionChange">
-                    <!-- :columns="columns" :options="options"> -->
-                    <!-- <template slot-scope="scope" slot="actionCommon">
-                        <button @click="edit(scope.index, scope.row)">Edit</button>
-                        <button @click="del(scope.index, scope.row)">Delete</button>
-                    </template> -->
                   </virtual-table>
                   </no-ssr>
-                    <!-- <vue-virtual-table/> -->
               </div>
-            <!-- </b-card-body> -->
           </div>
         </div>
-        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" > -->
-
-          <!-- <download-excel
-            class="btn btn-primary btn-xs pull-right"
-            :data="alls"
-            :fields="json_fields"
-            worksheet="Data"
-            name="AllAssignment.xls">
-
-            Export to Excel
-          </download-excel> -->
-
-
-        <!-- </b-button> -->
     </b-col>
   </b-row>
 </template>
 <script>
-    // import VirtualTable from 'vue-virtual-table'
-    // import Vue from 'vue';
-    // Vue.use(require('vue-moment'));
-
-    // import VirtualTable from '~/components/Tables/VirtualTable.vue'
-    // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    // Vue.use(ClientTable, {}, false, 'bootstrap4');
-    // import JsonExcel from 'vue-json-excel'
-    // Vue.component('downloadExcel', JsonExcel)
-
     export default {
-        // name: 'vue-virtual-table',
         components: {
-            // VirtualTable
         },
     data () {
         return {
@@ -96,7 +47,7 @@
             },
             errors: [],
             tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: '_index', name: 'No ', summary: 'COUNT', width: 40},
                 {prop: 'id', name: 'ID', numberFilter: true, sortable: true, width: 120},
                 {prop: 'ptl', name: 'PTL', filterable: true, width: 150},
                 {prop: 'project_number', name: 'Project Number', searchable: true, sortable: true, width: 150},
@@ -106,8 +57,6 @@
                 {prop: 'assignment_desc', name: 'Description', width: 180},
                 {prop: 'status', name: 'Status', filterable: true, width: 90},
                 {prop: 'team_name', name: 'Team Name', searchable: true, width: 150},
-                // {prop: 'age', name: 'Age', numberFilter: true},
-                // {prop: '_action', name: 'Action', actionName: 'actionCommon'}
             ],
         }
     },
@@ -166,7 +115,6 @@
           link.href = window.URL.createObjectURL(blob)
           link.download = 'All_Assignment.xlsx'
           link.click()
-          // console.log(response.data)
         });
       }
     }

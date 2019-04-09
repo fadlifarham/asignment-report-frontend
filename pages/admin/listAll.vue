@@ -25,14 +25,10 @@
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
-                    <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
-                        <i class="fa fa-trash-o"></i>
-                    </b-button>  -->
                 </virtual-table>
                 </no-ssr>
             </div>
           </div>
-        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
 
          <b-modal id="show" size="lg" title="Edit Assignmnet"  @ok="edit()">
@@ -102,18 +98,12 @@
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <script>
-  // import StarRating from 'vue-star-rating'
   import Multiselect from 'vue-multiselect'
-  // import VueVirtualTable from 'vue-virtual-table'
     import Vue from 'vue';
     Vue.use(require('vue-moment'));
-    // import JsonExcel from 'vue-json-excel'
-    // Vue.component('downloadExcel', JsonExcel)
     export default {
     components: {
         Multiselect,
-        // StarRating,
-        // VueVirtualTable
     },
     validate(params) {
       return true
@@ -149,17 +139,14 @@
               { prop: 'assignment_desc', name: 'Description',searchable: true, width: 180},
               { prop: 'difficulty_level', name: 'Level', numberFilter: true, sortable: true, searchable: true, width: 50},
               { prop: 'name_created', name: 'Name Created', sortable: true, filterable: true, width: 170},
-              // { prop: 'update_at', name: 'Update At', sortable: true, searchable: true, width: 100},
               { prop: 'team_name', name: 'Team Name', sortable: true, searchable: true, width: 150},
               { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 90},
               { prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
-              // { prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
             ],
         }
     },
     mounted(){
         this.readAssignment();
-        // this.showEdit(id);
     },
     methods: {
         readAssignment() {
@@ -179,7 +166,6 @@
                             difficulty_level: response.data[i].difficulty_level,
                             name_created: response.data[i].ptl.full_name,
                             created_at: response.data[i].created_at,
-                            // update_at: response.data[i].update_at,
                             team_name: teams,
                             status: response.data[i].status};
                 this.assignments.push(temp);
@@ -202,7 +188,6 @@
                 this.difficulty_level = response.data.difficulty_level
                 this.status = response.data.status
                 this.is_deleted = response.data.is_deleted
-                // this.value = response.data.assignment_user
                 console.log(response.data)
             })
             .catch(e => {
@@ -224,7 +209,6 @@
             this.$axios.post('/admin/edit_assignment/', fd)
             .then(response => {
                  this.status = 'Edit Success!';
-                // console.log(this.status);
                 swal('Success', this.status, 'success');
                 this.$router.push('/');
             })

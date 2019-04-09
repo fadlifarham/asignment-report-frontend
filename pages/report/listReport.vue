@@ -2,7 +2,6 @@
   <b-row>
         <div v-for="list in lists" :key="list.id" class="animated fadeIn" style="padding: 0px">
             <b-col lg="12" sm="6">
-            <!-- <b-card-group columns class="card-columns cols-2"> -->
                 <b-card style="width: 500px">
                         <b-col>
                             <b-row style="padding: 2px"><strong>{{list.assignment.assignment_class}}</strong></b-row><br>
@@ -53,19 +52,6 @@
                     console.log(this.lists);
                 })
             },
-            // showReport(list){
-            //     this.showReports = true;
-            //     this.$axios.get('assignment/list/' + list.id)
-            //     .then(response => {
-            //         this.showReports = response.data;
-            //         console.log(response.data);
-            //         this.$router.push('/submitReport');
-            //     })
-            //     .catch(e => {
-            //         (error) => console.log(error)
-            //     });
-            // },
         },
-        // middleware: 'report'
     }
 </script>

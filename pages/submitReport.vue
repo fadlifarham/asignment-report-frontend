@@ -6,21 +6,18 @@
             label-for="assignment_id"
             :label-cols="4"
             :horizontal="true"> : {{assignment_id}}
-            <!-- <b-form-input  id="assignmentId" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Class"
             label-for="assignment_class"
             :label-cols="4"
             :horizontal="true"> : {{assignment_class}}
-            <!-- <b-form-input  id="assignmentClass" type="text"></b-form-input> -->
           </b-form-group>
         <b-form-group
             label="Assignment Title"
             label-for="assignment_title"
             :label-cols="4"
             :horizontal="true">  : {{assignment_title}}
-            <!-- <b-form-input  id="assignmentTitle" type="text"></b-form-input> -->
           </b-form-group>
     </b-col>
     <b-col lg="12">
@@ -265,19 +262,6 @@
             </b-row>
         </div>
         <br>
-        <table class="table table-striped table--middle table-responsive">
-          <thead>
-            <tr>
-              
-            </tr>
-            <!-- <tr v-for="assignment_report in assignment_report" :key="assignment_report.id">
-              <td>{{ assignment_report.id }}</td>
-              <td>{{ assignment_report.name }}</td>
-              <td>{{ assignment_report.email }}</td>
-              <td><img :src="user.foto" width="100" height="100"></td>
-            </tr> -->
-          </thead>
-        </table>
     </b-col>
   </b-row>
 </template>

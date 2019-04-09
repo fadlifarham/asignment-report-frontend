@@ -37,14 +37,10 @@
                 <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                   <i class="fa fa-edit"></i>
                 </b-button>
-                <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
-                  <i class="fa fa-trash-o"></i>
-                </b-button> -->
             </virtual-table>
             </no-ssr>
           </div>
         </b-card-body>
-        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
         <b-modal id="show" size="md" title="Edit Report" @ok="edit()">
            <form @submit.prevent ="edit()">
@@ -185,12 +181,8 @@
 <script>
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
-  // import VueVirtualTable from 'vue-virtual-table'
-  // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-  //   Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
     components: {
-        // VueVirtualTable,
     },
     data () {
         return {
@@ -204,12 +196,6 @@
             brief_work: '',
             other: '',
             result: '',
-            // ptl_id: '',
-            // assignment_class: '',
-            // assignment_tittle: '',
-            // assignment_desc: '',
-            // project_number: '',
-            // io_number: '',
             date_work: '',
             time_start: '',
             time_at: '',
@@ -229,8 +215,6 @@
               { prop: 'assignment_type', name: 'Type', filterable: true, sortable: true, width: 150 },
               { prop: 'sppd_status', name: 'SPPD Status', numberFilter: true, sortable: true, width: 80 },
               { prop: 'day_number', name: 'Day', numberFilter: true, sortable: true, width: 50 },
-              // { prop: 'brief_work', name: 'Brief Work',searchable: true, width: 40 },
-              // { prop: 'result', name: 'Result',searchable: true, width: 40 },
               { prop: 'ptl_id', name: 'PTL ID', numberFilter: true, sortable: true, width: 60 },
               { prop: 'project_number', name: 'Project Number', numberFilter: true, sortable: true, width: 130 },
               { prop: 'io_number', name: 'IO Number', numberFilter: true , sortable: true, width: 150},
@@ -239,9 +223,7 @@
               { prop: 'assignment_desc', name: 'Description',searchable: true, width: 170},
               { prop: 'difficulty_level', name: 'Level', numberFilter: true, sortable: true, width: 50},
               { prop: 'status', name: 'Status', filterable: true, sortable: true, width: 90},
-              // { prop: 'attachment', name: 'Attachment',width: 120},
               { prop: '_action', name: 'Edit', actionName: 'edit', width: 50},
-              // { prop: '_action', name: 'Delete', actionName: 'delete', width: 50}
           ],
         }
     },
@@ -261,9 +243,6 @@
                     assignment_type: response.data[i].assignment_type,
                     sppd_status: response.data[i].sppd_status,
                     day_number: response.data[i].day_number,
-                    // brief_work: response.data[i].brief_work,
-                    // other: response.data[i].other,
-                    // result: response.data[i].result,
                     ptl_id: response.data[i].assignment.ptl_id,
                     project_number: response.data[i].assignment.project_number,
                     io_number: response.data[i].assignment.io_number,
@@ -341,13 +320,11 @@
               this.$axios.post('/admin/edit_assignment_report', fd)
               .then(response => {
                   this.status = 'Update Profile Success!';
-                  // console.log(this.status);
                   swal('Success', this.status, 'success');
                   this.$router.push('/')
               }).catch(error => {
                 console.log(error.response.data.error);
                 this.status = 'Please Fill in All Data!';
-                // console.log(this.status);
                  swal('Failed', this.status, 'warning');
             })
         },

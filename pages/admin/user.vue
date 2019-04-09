@@ -24,14 +24,13 @@
                     <b-button v-b-modal.show variant="primary" style="border-radius: 5px" slot="edit" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
                         <i class="fa fa-edit"></i>
                     </b-button>
-                    <!-- <b-button variant="danger" style="border-radius: 5px" slot="delete" slot-scope="props" target="_blank" @click="deleteAss(props.row.id)">
-                        <i class="fa fa-trash-o"></i>
-                    </b-button> -->
+                    <b-button v-b-modal.password variant="primary" style="border-radius: 5px" slot="editPass" slot-scope="props" target="_blank" @click="showEdit(props.row.id)">
+                        <i class="fa fa-lock"></i>
+                    </b-button>
                 </virtual-table >
                 </no-ssr>
               </div>
           </div>
-        <!-- <b-button variant="secondary" to="" class="btn btn-primary btn-xs pull-right" >Export to Excel</b-button> -->
         </div>
         <b-modal id="show" size="lg" title="Edit User"  @ok="edit()">
            <form @submit.prevent ="edit()">
@@ -75,21 +74,42 @@
                 <label>Motto :</label>
                 <textarea v-model="motto" class="form-control" rows="4" id="motto"></textarea>
             </div>
-            <!-- <div class="form-group">
-                <label>Start Date :</label>
-                <b-form-input type="date" id="date" v-model="start_date"> </b-form-input>
-            </div> -->
            </form>
          </b-modal>
+         <b-modal id="password" size="md" title="Edit Password" @ok="editPassword()">
+        <form @submit.prevent ="editPassword()">
+            <div class="form-group">
+                <label>Password :</label>
+                <input type="password" v-validate="'required'" placeholder="Password"
+                class="form-control" v-model="password" ref="password">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password :</label>
+                <input type="password" v-validate="'required|confirmed:password'" placeholder="Confirm Password"
+                class="form-control" v-model="password_confirmation" data-vv-as="password">
+            </div>
+            <div class="alert alert-danger" v-show="errors.any()">
+                <div v-if="errors.has('password')">
+                    {{ errors.first('password') }}
+                </div>
+                Confirm Password is Not Match
+                <div v-if="errors.has('password_confirmation')">
+                    {{ errors.first('password_confirmation') }}
+                </div>
+            </div>
+        </form>
+    </b-modal>
     </b-col>
   </b-row>
 </template>
 <script>
-  // import VueVirtualTable from 'vue-virtual-table'
-  // import Vue from 'vue';
+import Vue from 'vue'
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate);
+
     export default {
       components: {
-            // VueVirtualTable
+          VeeValidate
         },
     data () {
         return {
@@ -104,9 +124,9 @@
             date_birth:'',
             motto:'',
             start_date:'',
+            password:'',
             users: [],
             edits: false,
-            errors: [],
             roles:[],
             role_id: null,
             selected: null,
@@ -114,7 +134,7 @@
                 { value: null, text: 'Select Position', disabled: true },
             ],
              tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: '_index', name: 'No ', summary: 'COUNT', width: 40},
                 {prop: 'id', name: 'ID', numberFilter: true, sortable: true, width: 40},
                 {prop: 'full_name', name: 'Name', searchable: true, sortable: true, width: 120},
                 {prop: 'email', name: 'Email', searchable: true, sortable: true, width: 150},
@@ -124,9 +144,8 @@
                 {prop: 'place_birth', name: 'Place Birth', searchable: true, width: 70},
                 {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 80},
                 {prop: 'motto', name: 'Motto', width: 150},
-                // {prop: 'picture', name: 'Picture', actionName: 'picture',width: 100},
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},
-                // {prop: '_action', name: 'Delete', actionName: 'delete', width: 40}
+                {prop: '_action', name: 'Change Password', actionName: 'editPass', width: 80},
             ],
         }
     },
@@ -148,7 +167,6 @@
                             place_birth: response.data[i].place_birth,
                             date_birth: response.data[i].date_birth,
                             motto: response.data[i].motto,
-                            // picture: response.data[i].picture,
                             };
                 this.users.push(temp);
               }
@@ -183,7 +201,6 @@
                   this.date_birth = response.data.date_birth
                   this.motto = response.data.motto
                   this.start_date = response.data.start_date
-                  // this.value = response.data.assignment_user
                   console.log(response.data)
               })
               .catch(e => {
@@ -206,13 +223,27 @@
             this.$axios.post('/admin/edit_user/', fd)
             .then(response => {
                  this.status = 'Update Profile Success!';
-                // console.log(this.status);
                 swal('Success', this.status, 'success');
                 this.$router.push('/')
             }).catch(error => {
                 console.log(error.response.data.error);
                 this.status = 'Please Fill in All Data!';
-                // console.log(this.status);
+                 swal('Failed', this.status, 'warning');
+            })
+        },
+        editPassword(){
+            const fd = new FormData();
+            fd.append('_method', 'POST');
+            fd.set('id', this.id);
+            fd.set('password', this.password);
+            this.$axios.post('/admin/password', fd)
+            .then(response => {
+                 this.status = 'Change Password Success!';
+                swal('Success', this.status, 'success');
+            }).catch(error => {
+                console.log(error.response.data.error);
+                console.log(this.id)
+                this.status = 'Please Fill in All Data!';
                  swal('Failed', this.status, 'warning');
             })
         },
@@ -248,7 +279,6 @@
           link.href = window.URL.createObjectURL(blob)
           link.download = 'All_Assignment.xlsx'
           link.click()
-          // console.log(response.data)
         });
       },
 

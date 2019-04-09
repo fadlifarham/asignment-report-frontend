@@ -126,9 +126,6 @@
             errors: [],
             value: [],
             options: [
-                // { name: 'Vue.js', code: 'vu' },
-                // { name: 'Javascript', code: 'js' },
-                // { name: 'Open Source', code: 'os' }
             ],
             difficulty_level: 0
         };
@@ -146,10 +143,7 @@
           assignment_desc: this.assignment_desc,
           engineer: this.value,
           difficulty_level: this.difficulty_level,
-        //   sum_engineer: 1,
-        //   user_id_0: 1,
         }).then(response => {
-             // this.assignment.push(response.data.task);
           this.status = 'Create Assignment Success!';
           console.log(this.status);
           swal('Success', this.status, 'success');
@@ -164,13 +158,10 @@
       engineer() {
           var temp;
           this.$axios.get('/engineers').then(response => {
-            //   this.options = response.data;
               for(let i = 0; i < response.data.length; i++){
-                //   console.log(response.data[i]);
                 temp = { id: response.data[i].id, name: response.data[i].full_name};
                 this.options.push(temp);
               }
-            //   this.options = temp;
             console.log(this.options);
           })
       },
@@ -193,7 +184,6 @@
       },
       setRating: function(difficulty_level){
         this.difficulty_level= difficulty_level;
-        // console.log(this.rating);
       },
     },
     middleware: "forPtl"

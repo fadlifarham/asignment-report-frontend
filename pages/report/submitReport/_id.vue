@@ -368,36 +368,14 @@ import moment from 'moment'
             other: this.other, //21
 
           }).then(response => {
-              // this.assignment.push(response.data.task);
               this.status = 'Submit Assignment Report Success!';
               console.log(this.status);
               swal('Success', this.status, 'success');
               this.reset();
               this.$router.push('/')
           }, response => {
-              // console.log("BAI")
-              // console.log(this.bai);
-              // console.log("TnC \t: " + this.tnc);
-              // console.log("Photo \t: " + this.photos);
-              // console.log("Others \t: " + this.other);
           })
         },
-        // handleFileBai(){
-        //     this.bai = this.$refs.bai.files[0];
-        // },
-        // handleFileTnc(){
-        //     this.tnc = this.$refs.tnc.files[0];
-        // },
-        // handleFilePhotos(){
-        //     this.photos = this.$refs.photos.files[0];
-        // },
-        // handleFileOther(){
-        //     this.other = this.$refs.other.files[0];
-        // },
-        // onFileSelected(event) {
-        //     this.selectedFile = event.target.files[0]
-        // },
-
         baiHandler(e) {
           let files = e.target.files || e.dataTransfer.files
           if (!files.length)

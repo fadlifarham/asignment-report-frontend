@@ -1,8 +1,5 @@
 <template>
   <b-row>
-      <!-- <b-col sm="4"></b-col>
-      <b-col><h1>COMING SOON</h1></b-col>
-      <center></center> -->
     <b-col lg="12">
         <div class="animated fadeIn">
           <div class="card">
@@ -32,14 +29,10 @@
   </b-row>
 </template>
 <script>
-  // import VueVirtualTable from 'vue-virtual-table'
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
-  // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-  //   Vue.use(ClientTable, {}, false, 'bootstrap4');
     export default {
       components: {
-            // VueVirtualTable
         },
     data () {
         return {
@@ -58,7 +51,7 @@
                 { value: null, text: 'Select Position', disabled: true },
             ],
              tableConfig: [
-                {prop: '_index', name: 'No ', numberFilter: true, summary: 'COUNT', width: 40},
+                {prop: '_index', name: 'No ', summary: 'COUNT', width: 40},
                 {prop: 'full_name', name: 'Name', searchable: true, sortable: true, width: 120},
                 {prop: 'start', name: 'Start Permission', sortable: true, width: 120},
                 {prop: 'end', name: 'End Permission', sortable: true, width: 120},

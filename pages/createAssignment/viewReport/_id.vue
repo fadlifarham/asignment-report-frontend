@@ -50,10 +50,8 @@
                             id="nav-scroller"
                             ref="content"
                             style="position:relative; height:300px; overflow-y:scroll;">
-                            <!-- v-for="detail in details" :key="detail.id" -->
                             <b-row v-for="detail in assignment_user" :key="detail.id" style="padding: 5px">
                                 <b-col cols="4"><i class="fa fa-user fa-3x" aria-hidden="true"></i></b-col>
-                                <!-- <b-col sm="2">{{detail.user_id}}</b-col> -->
                                 <b-col sm="0">{{detail.user.full_name}}</b-col>
                             </b-row>
                         </b-card-body>
@@ -192,7 +190,6 @@ export default {
             })
         },
         setRating: function(rating, id){
-            // this.rating= rating;
             console.log(rating + " " + id)
             let temp
             temp = {
