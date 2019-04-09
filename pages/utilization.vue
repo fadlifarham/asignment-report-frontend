@@ -73,8 +73,8 @@
 
   import Vue from 'vue';
   Vue.use(require('vue-moment'));
-  import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-  Vue.use(ClientTable, {}, false, 'bootstrap4');
+  // import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+  // Vue.use(ClientTable, {}, false, 'bootstrap4');
 
     export default {
       // extends: Bar,
@@ -99,7 +99,7 @@
             tableConfig: [
                 {prop: '_index', name: 'No ', summary: 'COUNT', width: 40},
                 {prop: 'full_name', name: ' Name', searchable: true, sortable: true, width: 120},
-                {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, width: 40},
+                // {prop: 'user_id', name: ' User ID', numberFilter: true, sortable: true, width: 40},
                 {prop: 'work_load', name: ' Work Load (%)', numberFilter: true, sortable: true, width: 60},
                 {prop: 'work_quality', name: ' Work Quality (%)', numberFilter: true, sortable: true, width: 60},
                 {prop: 'sppd', name: ' SPPD', numberFilter: true, sortable: true, width: 40},
