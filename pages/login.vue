@@ -44,7 +44,7 @@
       </b-row>
       <b-modal id="show" size="md" title="Register User Information">
             <div class="form-group">
-                Silahkan Mengirimkan Email ke <b>assignmentonline1@gmail.com</b> <br>
+                Silahkan Mengirimkan Email ke <b>Admin</b> <br>
                 Dengan Subject : <b>Register User</b> <br>
                 Dengan Isi : <br>
                 <br>
@@ -114,8 +114,8 @@ export default {
 </script>
 <style>
 .bg {
-  background-image: url("background.jpeg");
-  height: 100%; 
+  background-image: url("~assets/background.jpeg");
+  height: 100%;
   /* opacity: 0.6; */
   background-position: center;
   background-repeat: no-repeat;
