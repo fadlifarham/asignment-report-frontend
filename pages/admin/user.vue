@@ -146,7 +146,7 @@ Vue.use(VeeValidate);
                 {prop: 'date_birth', name: 'Date Birth', searchable: true, width: 80},
                 {prop: 'motto', name: 'Motto', width: 150},
                 {prop: '_action', name: 'Edit', actionName: 'edit', width: 40},
-                {prop: '_action', name: 'Change Password', actionName: 'editPass', width: 80},
+                {prop: '_action', name: 'Change Password', actionName: 'editPass', width: 90},
             ],
         }
     },
